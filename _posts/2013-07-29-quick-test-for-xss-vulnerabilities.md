@@ -11,7 +11,7 @@ If you aren't familiar, a XSS vulnerability occurs when your application takes u
 Instead of entering 'Bob' as a first name though, an attacker can place a string of malicious javascript into the "name" field that could cause havoc on your site. Possible consequences could be defacement to inserting hidden code that would redirect future users to another malicious site controlled by the attacker.
 
 One easy way to check whether or not you are vulnerable is to place some javascript of your own into the various fields of your web application forms.
-{% highlight html5 %}
+{% highlight html %}
 <script type="text/javascript">alert(42)</script>
 {% endhighlight %}
 That single line isn't malicious but it does run unintended code if your app is vulnerable. If your app is vulnerable the confirmation page will display a pop-up window with "42". A properly secured application will recognize that string as invalid and either drop any sort of tags or code or produce an error.
