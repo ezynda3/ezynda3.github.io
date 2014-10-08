@@ -1,12 +1,3 @@
-# Site settings
-title: Ed Zynda - Coder, Hacker, Superhero
-email: contact@edzynda.com
-description: > # this means to ignore newlines until "baseurl:"
-    This is my new site. Awesome huh?
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://edzynda.com" # the base hostname & protocol for your site
-twitter_username: edzynda
-github_username:  ezynda3
-
-# Build settings
-markdown: kramdown
+url: http://www.edzynda.com
+name: Ed Zynda
+description: 'Coder  Hacker  Superhero'
