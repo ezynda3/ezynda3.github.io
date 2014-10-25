@@ -122,15 +122,15 @@ The first view 'create.blade.php' will represent our message creation form. Noti
     <div class="form-group">
         @if($errors->first())
             <div class="alert alert-danger">
-                \{\{ $errors->first() \}\}
+                {{ $errors->first() }}
             </div>
         @endif
-        \{\{ Form::label('body', 'Message') \}\}
-        \{\{ Form::textarea('body', null, ['class' => 'form-control']) \}\}
+        {{ Form::label('body', 'Message') }}
+        {{ Form::textarea('body', null, ['class' => 'form-control']) }}
     </div>
     <div class="form-group">
-        \{\{ Form::submit('Submit', ['class' => 'btn btn-primary']) \}\}
-        \{\{ Form::close() \}\}
+        {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+        {{ Form::close() }}
     </div>
     @stop
 ```
@@ -145,7 +145,7 @@ Once the message is submitted our 'store.blade.php' view will display a link for
     @section('content')
     <div class="alert alert-success">
         Your message has been saved.
-        Here is the URL <a href="\{\{ route('messages.show', [$url, $key]) \}\}">\{\{ route('messages.show', [$url, $key]) \}\}</a>
+        Here is the URL <a href="{{ route('messages.show', [$url, $key]) }}">{{ route('messages.show', [$url, $key]) }}</a>
     </div>
     @stop
 ```
