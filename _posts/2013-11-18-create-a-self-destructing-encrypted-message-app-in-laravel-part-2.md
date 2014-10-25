@@ -113,7 +113,7 @@ Now all that is left is to create our various views which correspond to the diff
 
 The first view 'create.blade.php' will represent our message creation form. Notice that it '@extends' our default layout and renders the form within the 'content' section which is referenced in the default layout.
 
-```html  
+```php  
 @extends('layouts.default')
  
 @section('content')
@@ -136,7 +136,7 @@ The first view 'create.blade.php' will represent our message creation form. Noti
 
 Once the message is submitted our 'store.blade.php' view will display a link for the user to copy and give to whomever they wish for later reading.
 
-```html 
+```php 
 @extends('layouts.default')
  
 @section('content')
@@ -149,7 +149,7 @@ Once the message is submitted our 'store.blade.php' view will display a link for
 
 Lastly the 'show.blade.php' view will display the message for the user once they decide to read it.
 
-```  
+```php
 @extends('layouts.default')
  
 @section('content')
