@@ -22,20 +22,20 @@ While reading about different Javascript frameworks and utilities, I kept runnin
 Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns. You can pass a function name as the parameter like in this jquery example.
 
 ```javascript  
-$( &#8220;#target&#8221; ).submit(myCallback);
+$( "#target" ).submit(myCallback);
 
 myCallback = function ( event ) {  
-alert( &#8220;Handler for .submit() called.&#8221; );  
-event.preventDefault();  
+    alert( "Handler for .submit() called." );  
+    event.preventDefault();  
 });  
 ```
 
 Or you can use an anonymous function.
 
 ```javascript  
-$( &#8220;#target&#8221; ).submit(function( event ) {  
-alert( &#8220;Handler for .submit() called.&#8221; );  
-event.preventDefault();  
+$( "#target" ).submit(function( event ) {  
+    alert( "Handler for .submit() called." );  
+    event.preventDefault();  
 });  
 ```
 
@@ -43,8 +43,8 @@ This is all fine and dandy. A problem arises though when you start using various
 
 ```javascript  
 setTimeout(function() {  
-// do some stuff  
-var myVar = 'Some value';  
+    // do some stuff  
+    var myVar = 'Some value';  
 }, 2000);
 
 console.log(myVar);  
@@ -54,9 +54,9 @@ What happens when you run it? Well the setTimeout function takes a function as t
 
 ```javascript  
 setTimeout(function() {  
-// do some stuff  
-var myVar = 'Some value';  
-console.log(myVar);  
+    // do some stuff  
+    var myVar = 'Some value';  
+    console.log(myVar);  
 }, 2000);  
 ```
 
@@ -68,17 +68,17 @@ JQuery uses what it calls a 'deferred' object. A deferred has a resolve message 
 
 ```javascript  
 var myFunc = function() {  
-var deferred = new $.Deferred();  
-setTimeout(function() {  
-// do some stuff  
-var myVar = 'Some value';  
-deferred.resolve();  
-}, 2000);  
-return deferred.promise();  
+    var deferred = new $.Deferred();  
+    setTimeout(function() {  
+        // do some stuff  
+        var myVar = 'Some value';  
+        deferred.resolve();  
+    }, 2000);  
+    return deferred.promise();  
 };
 
 myFunc().done(function() {  
-console.log('Finished: ' + myVar);  
+    console.log('Finished: ' + myVar);  
 });  
 ```
 
