@@ -19,8 +19,8 @@ tags:
   - WYSIHTML5
   - WYSIWYG
 ---
-For a lot of HTML forms you really don&#8217;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&#8217;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
-You can grab WYSIHTML5 from <a href="https://github.com/xing/wysihtml5" title="WYSIHTML5" target="_blank">GitHub</a>. To add a little style we&#8217;ll use Twitter&#8217;s <a href="http://getbootstrap.com/" title="Twitter Bootstrap" target="_blank">Bootstrap</a> framework and <a href="http://fontawesome.io/" title="Font Awesome" target="_blank">Font Awesome</a> icon fonts.
+For a lot of HTML forms you really don't need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you're likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
+You can grab WYSIHTML5 from [Github](https://github.com/xing/wysihtml5). To add a little style we'll use Twitter's <a href="http://getbootstrap.com/" title="Twitter Bootstrap" target="_blank">Bootstrap</a> framework and <a href="http://fontawesome.io/" title="Font Awesome" target="_blank">Font Awesome</a> icon fonts.
 Copy the WYSIHTML5 files into the correct directories.
 
 ```bash
@@ -31,7 +31,7 @@ Copy the WYSIHTML5 files into the correct directories.
     └── wysihtml5-0.3.0.js<br />
 ```
 
-&#8216;wysihtml5-0.3.0.js&#8217; can be found in the &#8216;dist&#8217; directory and &#8216;advanced.js&#8217; in the &#8216;parser_rules&#8217; directory.
+'wysihtml5-0.3.0.js' can be found in the 'dist' directory and 'advanced.js' in the 'parser_rules' directory.
 Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.
 
 ```html5
@@ -75,7 +75,7 @@ Now we can build the form with our editor. There is slightly more coding involve
 </form>
 ```
 
-The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The &#8216;data-wysihtml5-command&#8217; directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the &#8216;btn btn-default&#8217; classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
+The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The 'data-wysihtml5-command' directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the 'btn btn-default' classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
 Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.
 
 ```html5
