@@ -43,7 +43,7 @@ When prompted enter 2.4.1 for the version.
 Now we can create a simple twitter class.
 
 ```php
-
+<?php
 require 'vendor/autoload.php'
 
 class Twitter
