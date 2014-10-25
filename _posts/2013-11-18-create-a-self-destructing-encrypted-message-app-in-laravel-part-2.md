@@ -149,15 +149,17 @@ Once the message is submitted our 'store.blade.php' view will display a link for
 
 Lastly the 'show.blade.php' view will display the message for the user once they decide to read it.
 
+{% raw %}
 ```html
     @extends('layouts.default')
      
     @section('content')
     <article>
-    \{{{ $body \}}}
+    {{{ $body }}}
     </article>
     @stop
 ```
+{% endraw %}
 
 Now we should have a pretty sweet messaging app that destroys your message upon reading. Keep in mind that I am no cryptography or digital forensics expert so rely on this application at your own risk. Go ahead and modify it to make it more secure if you like. Leave any suggestions you may have in the comments.
 
