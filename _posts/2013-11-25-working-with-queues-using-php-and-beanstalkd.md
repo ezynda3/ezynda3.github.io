@@ -17,6 +17,7 @@ tags:
   - queues
 ---
 [<img src="http://www.edzynda.com/media/beanstalk-242x300.jpg" alt="Beanstalk" width="242" height="300" class="alignleft size-medium wp-image-578" />][1]  
+
 PHP is often considered the glue of the Internet because it's can be used for a lot of different things. There are so many built in functions and features that you are unlikely to use close to all of them if you work with PHP the rest of your life. This is great because we can solve various problems in our web apps without resorting to bringing in another language. Sometimes though, our application logic can get quite large or resource intensive. This translates into slow response times for the users of our apps if certain operations are tied into user events.
 
 Let's say we're running dating site. Users are asked to enter a bunch of information at sign-up. This information will then be used by our application to match the new user with existing users and then email or send them a message with their new matches. This can potentially be a lengthy operation. If we run this as soon as the user hits submit they could be greeted by a long wait for the page or even worse a timeout error. To prevent this we can use a queue.
