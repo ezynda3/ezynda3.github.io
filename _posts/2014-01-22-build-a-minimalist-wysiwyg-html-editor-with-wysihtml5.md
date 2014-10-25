@@ -20,7 +20,7 @@ tags:
   - WYSIWYG
 ---
 For a lot of HTML forms you really don't need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you're likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
-You can grab WYSIHTML5 from [Github](https://github.com/xing/wysihtml5). To add a little style we'll use Twitter's <a href="http://getbootstrap.com/" title="Twitter Bootstrap" target="_blank">Bootstrap</a> framework and <a href="http://fontawesome.io/" title="Font Awesome" target="_blank">Font Awesome</a> icon fonts.
+You can grab WYSIHTML5 from [Github](https://github.com/xing/wysihtml5). To add a little style we'll use Twitter's [Bootstrap](http://getbootstrap.com/) framework and [Font Awesome](http://fontawesome.io/) icon fonts.
 Copy the WYSIHTML5 files into the correct directories.
 
 ```bash
@@ -34,7 +34,7 @@ Copy the WYSIHTML5 files into the correct directories.
 'wysihtml5-0.3.0.js' can be found in the 'dist' directory and 'advanced.js' in the 'parser_rules' directory.
 Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.
 
-```html5
+```html
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><br />
@@ -44,7 +44,7 @@ Now to integrate WYSIHTML5 all you need to do is include it in our page along wi
 
 Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.
 
-```html5
+```html
 <form method="POST" action="/" >
 <div class="row">
 <div class="col-md-3"></div>
@@ -78,7 +78,7 @@ Now we can build the form with our editor. There is slightly more coding involve
 The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The 'data-wysihtml5-command' directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the 'btn btn-default' classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
 Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.
 
-```html5
+```html
 <script>
 (function() {
     	var editor = new wysihtml5.Editor("editor", { // id of textarea element
