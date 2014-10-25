@@ -154,7 +154,7 @@ Lastly the 'show.blade.php' view will display the message for the user once they
      
     @section('content')
     <article>
-    \{\{\{ $body \}\}\}
+    `{`{`{ $body `}`}`}
     </article>
     @stop
 ```
