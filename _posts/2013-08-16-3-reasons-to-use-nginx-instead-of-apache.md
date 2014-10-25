@@ -3,12 +3,6 @@ title: 3 Reasons To Use Nginx Instead Of Apache
 author: Ed Zynda
 layout: post
 permalink: /3-reasons-to-use-nginx-instead-of-apache/
-dm3_fwk_slideshow:
-  - none
-dm3_fwk_slideshow_interval:
-  - 0
-dm3sb_custom_sidebar:
-  - 
 categories:
   - Web Development
 tags:
@@ -18,12 +12,6 @@ tags:
   - vps
   - web server
 ---
-[<img class="alignnone  wp-image-233" alt="Apache and Nginx Benchmark" src="http://www.edzynda.com/media/apache_nginx_benchmark.png" width="352" height="265" />][1]
-
-If you&#8217;ve been working with the web for the past decade, you&#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&#8217;s free, functional and very modular. I&#8217;ve been using Apache for years as it&#8217;s the default on many hosting solutions.
-
-<!--more-->
-
 [<img class="alignnone  wp-image-233" alt="Apache and Nginx Benchmark" src="http://www.edzynda.com/media/apache_nginx_benchmark.png" width="352" height="265" />][1]
 
 If you&#8217;ve been working with the web for the past decade, you&#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&#8217;s free, functional and very modular. I&#8217;ve been using Apache for years as it&#8217;s the default on many hosting solutions.
@@ -45,16 +33,16 @@ Like I mentioned before, Nginx really only serves static web pages. Being less m
 Most projects aren&#8217;t full of static content but rather dynamic. If you want to incorporate Python or Ruby on Rails into your project, it&#8217;s as simple as adding a proxy directive to your configuration.
 
 Start a Python or Rails server on a particular port like 8000 and add something like this.  
-[sh]  
+
+```nginx  
 location /railsapp {  
-proxy_pass http://127.0.0.1:8000;  
-proxy_redirect off;  
+    proxy_pass http://127.0.0.1:8000;  
+    proxy_redirect off;  
 }  
-[sh]  
+``` 
+
 The Python or Rails server can do all the heavy lifting when it needs to and Nginx can do what it does best.
 
 Apache is great for a lot of things and I&#8217;m not saying it&#8217;s no longer needed but if your project doesn&#8217;t require everything under the sun, you might want to consider giving Nginx a try.
-
-&nbsp;
 
  [1]: http://www.edzynda.com/media/apache_nginx_benchmark.png

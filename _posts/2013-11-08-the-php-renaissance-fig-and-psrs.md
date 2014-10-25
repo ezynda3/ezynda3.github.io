@@ -3,12 +3,6 @@ title: 'The PHP Renaissance: FIG and PSRs'
 author: Ed Zynda
 layout: post
 permalink: /the-php-renaissance-fig-and-psrs/
-dm3sb_custom_sidebar:
-  - 
-dm3_fwk_slideshow:
-  - none
-dm3_fwk_slideshow_interval:
-  - 0
 categories:
   - PHP
   - Web Development
@@ -20,12 +14,6 @@ tags:
   - renaissance
   - standards
 ---
-[<img src="http://www.edzynda.com/media/rennaissance-300x168.jpg" alt="Rennaissance" width="300" height="168" class="alignnone size-medium wp-image-527" />][1]
-
-If you worked with PHP in the early days or even if you are a newcomer, you are probably familiar with how messy and painful working with another developer&#8217;s code can be. PHP has a low barrier to entry which is great for getting things done. At the same time though, it creates a culture of lazy developers. Even those developers with years of experience have coding styles that are hard to wade through. Like some people&#8217;s handwriting, it only makes sense to them. This is fine if they don&#8217;t plan on sharing the code or expect someone else to have to maintain it later. In reality though, a lot of code these days is opensource or will eventually become someone else&#8217;s responsibility to maintain. Some top PHP developers have realized this and come together to try and shape the PHP community for the better.
-
-<!--more-->
-
 [<img src="http://www.edzynda.com/media/rennaissance-300x168.jpg" alt="Rennaissance" width="300" height="168" class="alignnone size-medium wp-image-527" />][1]
 
 If you worked with PHP in the early days or even if you are a newcomer, you are probably familiar with how messy and painful working with another developer&#8217;s code can be. PHP has a low barrier to entry which is great for getting things done. At the same time though, it creates a culture of lazy developers. Even those developers with years of experience have coding styles that are hard to wade through. Like some people&#8217;s handwriting, it only makes sense to them. This is fine if they don&#8217;t plan on sharing the code or expect someone else to have to maintain it later. In reality though, a lot of code these days is opensource or will eventually become someone else&#8217;s responsibility to maintain. Some top PHP developers have realized this and come together to try and shape the PHP community for the better.
