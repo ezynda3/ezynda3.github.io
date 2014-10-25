@@ -20,13 +20,13 @@ Recently I needed to add some social media functionality to a project. I needed 
 
 The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.
 
-![Create your app](http://www.edzynda.com/media/twitter_post_app_1-300x300.jpg)
+![Create your app](http://www.edzynda.com/media/twitter_post_app_1-300x300.jpg =600x600)
 
 Once you've successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &#8220;modify app permissions&#8221; and change it to read and write.
 
 Last you will need to create an access token. This is what will allow your app to post on your Twitter account&#8217;s behalf. Click &#8220;Generate my Access Token&#8221; and then copy down the Access token and Access token secret.
 
-![Grab your tokens](http://www.edzynda.com/media/twitter_post_app_2-257x300.jpg)
+![Grab your tokens](http://www.edzynda.com/media/twitter_post_app_2-257x300.jpg =514x600)
 
 Now that we have an app registered with Twitter we can get to the code.
 
