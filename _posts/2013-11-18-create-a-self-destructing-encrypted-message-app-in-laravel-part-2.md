@@ -113,50 +113,50 @@ Now all that is left is to create our various views which correspond to the diff
 
 The first view 'create.blade.php' will represent our message creation form. Notice that it '@extends' our default layout and renders the form within the 'content' section which is referenced in the default layout.
 
-```handlebars  
-@extends('layouts.default')
- 
-@section('content')
-{{ Form::open(['method' => 'post', 'route' => 'messages.store', 'class' => 'form']) }}
-<div class="form-group">
-    @if($errors->first())
-        <div class="alert alert-danger">
-            {{ $errors->first() }}
-        </div>
-    @endif
-    {{ Form::label('body', 'Message') }}
-    {{ Form::textarea('body', null, ['class' => 'form-control']) }}
-</div>
-<div class="form-group">
-    {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
-    {{ Form::close() }}
-</div>
-@stop
+```html  
+    @extends('layouts.default')
+     
+    @section('content')
+    {{ Form::open(['method' => 'post', 'route' => 'messages.store', 'class' => 'form']) }}
+    <div class="form-group">
+        @if($errors->first())
+            <div class="alert alert-danger">
+                {{ $errors->first() }}
+            </div>
+        @endif
+        {{ Form::label('body', 'Message') }}
+        {{ Form::textarea('body', null, ['class' => 'form-control']) }}
+    </div>
+    <div class="form-group">
+        {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+        {{ Form::close() }}
+    </div>
+    @stop
 ```
 
 Once the message is submitted our 'store.blade.php' view will display a link for the user to copy and give to whomever they wish for later reading.
 
-```handlebars 
-@extends('layouts.default')
- 
-@section('content')
-<div class="alert alert-success">
-    Your message has been saved.
-    Here is the URL <a href="{{ route('messages.show', [$url, $key]) }}">{{ route('messages.show', [$url, $key]) }}</a>
-</div>
-@stop
+```html 
+    @extends('layouts.default')
+     
+    @section('content')
+    <div class="alert alert-success">
+        Your message has been saved.
+        Here is the URL <a href="{{ route('messages.show', [$url, $key]) }}">{{ route('messages.show', [$url, $key]) }}</a>
+    </div>
+    @stop
 ```
 
 Lastly the 'show.blade.php' view will display the message for the user once they decide to read it.
 
-```handlebars
-@extends('layouts.default')
- 
-@section('content')
-<article>
-{{{ $body }}}
-</article>
-@stop
+```html
+    @extends('layouts.default')
+     
+    @section('content')
+    <article>
+    {{{ $body }}}
+    </article>
+    @stop
 ```
 
 Now we should have a pretty sweet messaging app that destroys your message upon reading. Keep in mind that I am no cryptography or digital forensics expert so rely on this application at your own risk. Go ahead and modify it to make it more secure if you like. Leave any suggestions you may have in the comments.
