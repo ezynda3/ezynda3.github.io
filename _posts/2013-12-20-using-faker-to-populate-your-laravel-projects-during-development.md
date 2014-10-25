@@ -48,7 +48,7 @@ class UserTableSeeder extends Seeder
         foreach(range(1,30) as $index)  
         {  
             User::create([  
-                'username' => str_replace('.', &#8221;, $faker->unique()->userName),  
+                'username' => str_replace('.', '_', $faker->unique()->userName),  
                 'email' => $faker->email,  
                 'password' => 'password',  
                 'confirmation' => str_random(64),  
