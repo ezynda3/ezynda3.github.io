@@ -24,11 +24,11 @@ You can grab WYSIHTML5 from [Github](https://github.com/xing/wysihtml5). To add 
 Copy the WYSIHTML5 files into the correct directories.
 
 ```bash
-├── css<br />
-├── fonts<br />
-└── js<br />
-    ├── advanced.js<br />
-    └── wysihtml5-0.3.0.js<br />
+├── css
+├── fonts
+└── js
+    ├── advanced.js
+    └── wysihtml5-0.3.0.js
 ```
 
 'wysihtml5-0.3.0.js' can be found in the 'dist' directory and 'advanced.js' in the 'parser_rules' directory.
@@ -37,9 +37,9 @@ Now to integrate WYSIHTML5 all you need to do is include it in our page along wi
 ```html
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><br />
-    <script src="/js/wysihtml5-0.3.0.js"></script><br />
-    <script src="/js/advanced.js"></script><br />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="/js/wysihtml5-0.3.0.js"></script>
+    <script src="/js/advanced.js"></script>
 ```
 
 Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.
@@ -50,15 +50,15 @@ Now we can build the form with our editor. There is slightly more coding involve
 <div class="col-md-3"></div>
 <div id="toolbar" class="wysihtml5-toolbar btn-toolbar col-md-9">
 <div class="btn-group">
-				<a data-wysihtml5-command="bold" class="btn btn-default">Bold</a><br />
+				<a data-wysihtml5-command="bold" class="btn btn-default">Bold</a>
 				<a data-wysihtml5-command="italic" class="btn btn-default">Italic</a>
 			</div>
 <div class="btn-group">
-				<a data-wysihtml5-command="insertUnorderedList" class="btn btn-default"><br />
-					<i class="fa fa-list-ul"></i><br />
-				</a><br />
-				<a data-wysihtml5-command="insertOrderedList" class="btn btn-default"><br />
-					<i class="fa fa-list-ol"></i><br />
+				<a data-wysihtml5-command="insertUnorderedList" class="btn btn-default">
+					<i class="fa fa-list-ul"></i>
+				</a>
+				<a data-wysihtml5-command="insertOrderedList" class="btn btn-default">
+					<i class="fa fa-list-ol"></i>
 				</a>
 			</div>
 </div>
