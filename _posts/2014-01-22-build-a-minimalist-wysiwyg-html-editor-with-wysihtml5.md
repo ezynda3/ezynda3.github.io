@@ -18,6 +18,7 @@ tags:
   - javascript
   - WYSIHTML5
   - WYSIWYG
+  
 ---
 <p>For a lot of HTML forms you really don&#8217;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&#8217;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.</p>
 <p>You can grab WYSIHTML5 from <a href="https://github.com/xing/wysihtml5" title="WYSIHTML5" target="_blank">GitHub</a>. To add a little style we&#8217;ll use Twitter&#8217;s <a href="http://getbootstrap.com/" title="Twitter Bootstrap" target="_blank">Bootstrap</a> framework and <a href="http://fontawesome.io/" title="Font Awesome" target="_blank">Font Awesome</a> icon fonts.</p>
