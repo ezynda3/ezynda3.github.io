@@ -3,12 +3,7 @@ title: Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5
 author: Ed Zynda
 layout: post
 permalink: /build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/
-dm3sb_custom_sidebar:
-  - 
-dm3_fwk_slideshow:
-  - none
-dm3_fwk_slideshow_interval:
-  - 0
+
 dsq_thread_id:
   - 2156289267
 categories:
@@ -25,8 +20,6 @@ tags:
   - WYSIWYG
 ---
 <p>For a lot of HTML forms you really don&#8217;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&#8217;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.</p>
-<p><!--more--></p>
-<p>For a lot of HTML forms you really don&#8217;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&#8217;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.</p>
 <p>You can grab WYSIHTML5 from <a href="https://github.com/xing/wysihtml5" title="WYSIHTML5" target="_blank">GitHub</a>. To add a little style we&#8217;ll use Twitter&#8217;s <a href="http://getbootstrap.com/" title="Twitter Bootstrap" target="_blank">Bootstrap</a> framework and <a href="http://fontawesome.io/" title="Font Awesome" target="_blank">Font Awesome</a> icon fonts.</p>
 <p>Copy the WYSIHTML5 files into the correct directories.</p>
 <p>[sh]<br />
@@ -38,15 +31,15 @@ tags:
 [/sh]</p>
 <p>&#8216;wysihtml5-0.3.0.js&#8217; can be found in the &#8216;dist&#8217; directory and &#8216;advanced.js&#8217; in the &#8216;parser_rules&#8217; directory.</p>
 <p>Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.</p>
-<p>[xhtml]</p>
+```html5
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><br />
     <script src="/js/wysihtml5-0.3.0.js"></script><br />
     <script src="/js/advanced.js"></script><br />
-[/xhtml]</p>
+```
 <p>Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.</p>
-<p>[xhtml]</p>
+```html5
 <form method="POST" action="/" >
 <div class="row">
 <div class="col-md-3"></div>
@@ -75,10 +68,10 @@ tags:
 		<input class="btn btn-primary" type="submit" value="Submit">
 	</div>
 </form>
-<p>[/xhtml]</p>
+```
 <p>The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The &#8216;data-wysihtml5-command&#8217; directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the &#8216;btn btn-default&#8217; classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.</p>
 <p>Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.</p>
-<p>[xhtml]<br />
+```html5
 <script>
 (function() {
     	var editor = new wysihtml5.Editor("editor", { // id of textarea element
@@ -86,7 +79,7 @@ tags:
         	parserRules:  wysihtml5ParserRules // defined in parser rules set 
     	});
 })();
-</script><br />
-[/xhtml]</p>
+</script>
+```
 <p>You should now have a nice clean but functional editor that looks like this.</p>
 <p><a href="http://www.edzynda.com/media/wysihtml5_screenshot.png"><img src="http://www.edzynda.com/media/wysihtml5_screenshot.png" alt="wysihtml5_screenshot"/></a></p>
