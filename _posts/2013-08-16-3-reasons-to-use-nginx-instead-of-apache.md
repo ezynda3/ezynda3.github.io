@@ -3,6 +3,7 @@ title: 3 Reasons To Use Nginx Instead Of Apache
 author: Ed Zynda
 layout: post
 permalink: /3-reasons-to-use-nginx-instead-of-apache/
+comments: true
 categories:
   - Web Development
 tags:

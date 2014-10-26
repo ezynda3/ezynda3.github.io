@@ -3,6 +3,7 @@ title: Using Hooks In WordPress
 author: Ed Zynda
 layout: post
 permalink: /using-hooks-in-wordpress/
+comments: true
 categories:
   - Tutorials
   - Web Development

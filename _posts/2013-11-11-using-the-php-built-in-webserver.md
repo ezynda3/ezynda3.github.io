@@ -3,6 +3,7 @@ title: Using The PHP Built-in Webserver
 author: Ed Zynda
 layout: post
 permalink: /using-the-php-built-in-webserver/
+comments: true
 categories:
   - PHP
   - Tutorials

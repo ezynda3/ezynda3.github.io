@@ -3,6 +3,7 @@ title: What Is An IoC Container?
 author: Ed Zynda
 layout: post
 permalink: /what-is-an-ioc-container/
+comments: true
 categories:
   - Laravel
   - PHP

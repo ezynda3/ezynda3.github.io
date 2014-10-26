@@ -3,6 +3,7 @@ title: 'Use Laravel&#8217;s Eloquent ORM Outside Of Laravel'
 author: Ed Zynda
 layout: post
 permalink: /use-laravels-eloquent-orm-outside-of-laravel/
+comments: true
 categories:
   - Laravel
   - Tutorials

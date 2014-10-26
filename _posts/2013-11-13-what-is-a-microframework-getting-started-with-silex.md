@@ -3,6 +3,7 @@ title: What Is A Microframework? Getting Started With Silex
 author: Ed Zynda
 layout: post
 permalink: /what-is-a-microframework-getting-started-with-silex/
+comments: true
 categories:
   - Frameworks
   - PHP

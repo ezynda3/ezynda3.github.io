@@ -3,6 +3,7 @@ title: Using Respositories In Laravel
 author: Ed Zynda
 layout: post
 permalink: /using-respositories-in-laravel/
+comments: true
 categories:
   - Frameworks
   - Laravel

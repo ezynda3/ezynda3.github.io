@@ -3,7 +3,7 @@ title: Using Faker To Populate Your Laravel Projects During Development
 author: Ed Zynda
 layout: post
 permalink: /using-faker-to-populate-your-laravel-projects-during-development/
-
+comments: true
 categories:
   - Laravel
   - PHP

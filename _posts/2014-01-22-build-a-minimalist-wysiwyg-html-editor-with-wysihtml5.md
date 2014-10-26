@@ -3,7 +3,7 @@ title: Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5
 author: Ed Zynda
 layout: post
 permalink: /build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/
-
+comments: true
 dsq_thread_id:
   - 2156289267
 categories:

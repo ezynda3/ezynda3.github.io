@@ -3,7 +3,7 @@ title: Javascript Promises Explained
 author: Ed Zynda
 layout: post
 permalink: /javascript-promises-explained/
-
+comments: true
 categories:
   - Javascript
   - JQuery

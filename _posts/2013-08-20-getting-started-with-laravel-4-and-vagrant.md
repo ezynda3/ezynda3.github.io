@@ -3,6 +3,7 @@ title: Getting Started With Laravel 4 and Vagrant
 author: Ed Zynda
 layout: post
 permalink: /getting-started-with-laravel-4-and-vagrant/
+comments: true
 categories:
   - Frameworks
   - Laravel

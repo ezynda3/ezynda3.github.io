@@ -3,9 +3,7 @@ title: Create A Self-destructing, Encrypted Message App In Laravel Part 1
 author: Ed Zynda
 layout: post
 permalink: /create-a-self-destructing-encrypted-message-app-in-laravel-part-1/
-
-dsq_thread_id:
-  - 1958225084
+comments: true
 categories:
   - Frameworks
   - Laravel

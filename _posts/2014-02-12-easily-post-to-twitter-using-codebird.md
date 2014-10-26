@@ -3,6 +3,7 @@ title: Easily Post To Twitter Using Codebird
 author: Ed Zynda
 layout: post
 permalink: /easily-post-to-twitter-using-codebird/
+comments: true
 categories:
   - PHP
   - Tutorials

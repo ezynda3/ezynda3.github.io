@@ -3,6 +3,7 @@ title: Using Route/Model Binding In Laravel
 author: Ed Zynda
 layout: post
 permalink: /using-routemodel-binding-in-laravel/
+comments: true
 categories:
   - Laravel
   - Tips
@@ -21,7 +22,7 @@ Let&#8217;s say that you have the following route setup.
 
 ```php
 <?php
-Route::get('books/{book}, function($book) {
+Route::get('books/{book}', function($book) {
     return Book::find($book);
 });
 ```

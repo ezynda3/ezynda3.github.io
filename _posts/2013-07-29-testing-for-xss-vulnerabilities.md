@@ -3,6 +3,7 @@ title: 'Tip: Quick Test For XSS Vulnerabilities'
 author: Ed Zynda
 layout: post
 permalink: /testing-for-xss-vulnerabilities/
+comments: true
 categories:
   - Tips
   - Web Development

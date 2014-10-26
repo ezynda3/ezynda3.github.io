@@ -3,6 +3,7 @@ title: 'Tip: Custom Scripts In WordPress'
 author: Ed Zynda
 layout: post
 permalink: /tip-custom-scripts-and-stylesheets-in-wordpress/
+comments: true
 categories:
   - Tips
   - Web Development

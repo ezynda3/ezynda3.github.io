@@ -3,6 +3,7 @@ title: 'The PHP Renaissance: FIG and PSRs'
 author: Ed Zynda
 layout: post
 permalink: /the-php-renaissance-fig-and-psrs/
+comments: true
 categories:
   - PHP
   - Web Development

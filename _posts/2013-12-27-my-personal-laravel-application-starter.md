@@ -3,7 +3,7 @@ title: My Personal Laravel Application Starter
 author: Ed Zynda
 layout: post
 permalink: /my-personal-laravel-application-starter/
-
+comments: true
 categories:
   - Uncategorized
 ---

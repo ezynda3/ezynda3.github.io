@@ -3,6 +3,7 @@ title: Simple Image Manipulation With Intervention Image
 author: Ed Zynda
 layout: post
 permalink: /simple-image-manipulation-with-intervention-image/
+comments: true
 categories:
   - Laravel
   - Tutorials

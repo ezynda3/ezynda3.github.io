@@ -3,9 +3,7 @@ title: Working With Queues Using PHP And Beanstalkd
 author: Ed Zynda
 layout: post
 permalink: /working-with-queues-using-php-and-beanstalkd/
-
-dsq_thread_id:
-  - 1996679882
+comments: true
 categories:
   - PHP
   - Tutorials
