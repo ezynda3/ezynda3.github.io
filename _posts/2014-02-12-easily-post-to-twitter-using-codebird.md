@@ -50,9 +50,9 @@ require 'vendor/autoload.php'
 class Twitter
 {
     protected $consumer_key = <API_KEY>;
-    protected $consumer_secret = &lt;API_SECRET>;
-    protected $access_token = &lt;ACCESS_TOKEN>;
-    protected $access_secret = &lt;ACCESS_SECRET>;
+    protected $consumer_secret = <API_SECRET>;
+    protected $access_token = <ACCESS_TOKEN>;
+    protected $access_secret = <ACCESS_SECRET>;
     protected $twitter;
 
     public function __construct()
