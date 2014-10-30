@@ -45,7 +45,9 @@ Now we can create a simple twitter class.
 
 ```php
 <?php
-require 'vendor/autoload.php'
+require 'vendor/autoload.php';
+
+use Codebird\Codebird;
 
 class Twitter
 {
