@@ -199,7 +199,7 @@ To display the associated comic book titles, add the 'titles' option like this.
 $ ./marvel search:character --titles Thor
 ```
 
-The output looks somthing like this.
+The output looks something like this.
 
 ![Output](/images/marvel-search-output.png)
 
