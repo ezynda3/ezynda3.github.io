@@ -49,6 +49,7 @@ Jenkins has a huge collection of useful plugins available. We're going to need a
 - Git
 
 You can install these through the Jenkins dashboard but you can also install them through the command line like this.
+
 ```bash
 wget http://localhost:8080/jnlpJars/jenkins-cli.jar
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin htmlpublisher git
