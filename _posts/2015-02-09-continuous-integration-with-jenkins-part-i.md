@@ -24,16 +24,16 @@ At first glance, Jenkins looks pretty complicated to setup but after playing aro
 
 In this first part I'm going to go over how to get Jenkins setup to build a simple PHP app, run some tests and publish the results. Most other tutorials I've found include fancy build scripts for a powerful tool called Ant. Those can get pretty complicated so I won't include anything like that in this part. We just want to get something running so you can see some results.
 
-**Installation**
+###Installation
 Installation is not in the scope of this article. Please refer to the documentation on the [Jenkins](http://jenkins-ci.org) website or Google for instructions on installing it on your OS of choice. It should be as simple as 'yum install jenkins' or 'apt-get install jenkins' depending on your setup.
 
-**PHP**
+###PHP
 As we will be working with a PHP application, our Jenkins server will need it's own instance of PHP. For this example we need version 5.4 or higher. Install based on your OS.
 
-**Git**
+###Git
 We will need Git installed in order to fetch source code to build and run our tests. Install based on your OS.
 
-**Composer**
+###Composer
 Part of the build process will include downloading dependencies using Composer. You can install it globally like so.
 
 ```bash
@@ -42,7 +42,7 @@ sudo chmod +x ./composer.phar
 sudo cp ./composer.phar /usr/local/bin/composer
 ```
 
-**Plugins**
+###Plugins
 Jenkins has a huge collection of useful plugins available. We're going to need a few in order to run our build.
 
 - HTML Publisher
@@ -56,7 +56,7 @@ java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin htmlpublisher 
 java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart
 ```
 
-**The Build**
+###The Build
 If you have Jenkins installed correctly you should be able to reach the dashboard by pointing your browser to the server it's installed on using port 8080 (e.g. http://myjenkins.com:8080). 
 
 Once there you should see a screen like this.
