@@ -9,7 +9,7 @@ url:              http://www.edzynda.com
 # Owner/author information
 owner:
   name:           Ed Zynda
-  avatar:         avatar.png
+  avatar:         http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200
   bio:            "I’m an nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick."
   email:          contact@edzynda.com
   # Social networking links used in footer. Update and remove as you like.
