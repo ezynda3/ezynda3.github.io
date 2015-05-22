@@ -15,9 +15,8 @@ tags:
   - laravel
   - ORM
   - PHP
+thumbnail: /media/orm-247x300.jpg
 ---
-[<img class="alignright size-medium wp-image-484" alt="ORM" src="http://www.edzynda.com/media/orm-247x300.jpg" width="247" height="300" />][1]
-
 Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&#8217;s code, however, I&#8217;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&#8217;s key components can be used as stand-alone modules.
 
 Using Laravel&#8217;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&#8217;s codename is &#8220;Illuminate&#8221;. It&#8217;s database component is therefore called &#8220;Illuminate\Database&#8221;. The easiest way to grab &#8220;Illuminate\Database&#8221; and it&#8217;s dependencies is to use <a title="Composer" href="http://getcomposer.org/" target="_blank">Composer</a>.

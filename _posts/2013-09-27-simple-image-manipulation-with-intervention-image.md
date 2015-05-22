@@ -13,9 +13,8 @@ tags:
   - image manipulation
   - laravel
   - PHP
+thumbnail: /media/image_manipulation-300x219.png
 ---
-[<img class="alignnone size-medium wp-image-490" alt="image_manipulation" src="http://www.edzynda.com/media/image_manipulation-300x219.png" width="300" height="219" />][1]
-
 A lot of web applications include some sort of photo uploading functionality. Whether it&#8217;s allowing a user to upload a personal avatar or to create and manage an entire photo gallery with watermarking features, it&#8217;s somewhat of a pain to code. PHP includes several built-in functions for accomplishing this using the GD library but they&#8217;re cumbersome at best. Luckily someone else feels your pain and has written a class that makes it a snap to work with images. &#8216;<a title="Intervention\Image" href="http://intervention.olivervogel.net/" target="_blank">Intervention\Image</a>&#8216; is written by <a title="Oliver Vogel" href="http://olivervogel.net/" target="_blank">Oliver Vogel</a> and it integrates brilliantly with our favorite framework Laravel!
 
 Installation like anything that uses Composer is a snap. Add this to the &#8220;require&#8221; section of your composer.json file.

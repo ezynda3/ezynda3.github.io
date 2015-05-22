@@ -15,9 +15,8 @@ tags:
   - IoC
   - laravel
   - OOP PHP
+thumbnail: /media/container-300x206.jpg
 ---
-[<img src="http://www.edzynda.com/media/container-300x206.jpg" alt="Container" width="300" height="206" class="alignnone size-medium wp-image-516" />][1]
-
 If you&#8217;re discussing object oriented programming in PHP these days, it&#8217;s likely that you&#8217;ve at least heard about such topics as dependency injection or IoC containers. They&#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&#8217;s really not.
 
 If you read my earlier post on using repositories in Laravel you might have noticed that when using dependency injection in our __construct method, we didn&#8217;t have to actually instantiate our repository. Laravel&#8217;s IoC container did it for us. Behind the scenes, when our controller was called, Laravel ran the App::make() method and passed it through to our constructor.

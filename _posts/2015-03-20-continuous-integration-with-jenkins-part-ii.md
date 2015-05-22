@@ -15,9 +15,8 @@ tags:
   - Jenkins
   - PHPSpec
   - Robo
+thumbnail: /images/jenkins-robo.png
 ---
-![](/images/jenkins-robo.png) 
-
 In the [first part](/continuous-integration-with-jenkins-part-ii/)  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?
 
 A better options is to use another tool to automate the build process and perform certain tasks dynamically. There are quite a lot of tools out there to do this. A popular tool used in Jenkins setups is [Apache Ant](http://ant.apache.org/) . It's used a lot by Java developers to automate builds of their applications but can also be used to build and run tasks for just about anything.

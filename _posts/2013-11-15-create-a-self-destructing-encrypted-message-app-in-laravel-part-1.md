@@ -18,8 +18,8 @@ tags:
   - NSA
   - PHP
   - self-destruct
+thumbnail: /media/self-destruct-300x239.jpg
 ---
-[<img src="http://www.edzynda.com/media/self-destruct-300x239.jpg" alt="This Message Will Self-destruct" width="300" height="239" class="alignright size-medium wp-image-564" />][1]  
 The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn't say that I fall into the paranoid category but security, anonymity and cryptography fascinate me. 
 
 While brain storming one day, I decided to go ahead and build a self-destructing, encrypted messaging application in Laravel, using PHP's built-in mcrypt library to see how hard it would be. Turns out it isn't very hard at all.

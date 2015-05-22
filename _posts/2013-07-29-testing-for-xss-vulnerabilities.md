@@ -10,9 +10,8 @@ categories:
 tags:
   - javascript
   - xss
+thumbnail: /media/cross-site-injecting1.jpg
 ---
-<img class="alignnone size-full wp-image-188" alt="cross-site-injecting1" src="http://www.edzynda.com/media/cross-site-injecting1.jpg" width="242" height="179" />
-
 There are a lot of things to keep in mind when it comes to web development. Security should be at the top of your list. If you read up on web application security, you&#8217;re probably familiar with cross-site scripting or XSS attacks. XSS attacks can cause serious damage but are really simple to prevent.
 
 If you aren&#8217;t familiar, a XSS vulnerability occurs when your application takes user data and then sends it to the web browser without proper validation. An example would be a contact form that displays a confirmation after it has been submitted. The contact form asks for your first name then displays a message like &#8220;Thanks for your inquiry Bob!&#8221;

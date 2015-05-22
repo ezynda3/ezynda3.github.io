@@ -15,8 +15,8 @@ tags:
   - javascript
   - jquery
   - promises
+thumbnail: /media/promise-300x202.jpg
 ---
-[<img src="http://www.edzynda.com/media/promise-300x202.jpg" alt="Promise" width="300" height="202" class="alignnone size-medium wp-image-595" />][1]  
 While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called 'promises'. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn't really as difficult as I thought.
 
 Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns. You can pass a function name as the parameter like in this jquery example.

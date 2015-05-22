@@ -13,9 +13,8 @@ tags:
   - javascript
   - jquery
   - wordpress
+thumbnail: /media/wp-code.png
 ---
-[<img class="alignnone size-full wp-image-297" alt="Wordpress Code" src="http://www.edzynda.com/media/wp-code.png" width="200" height="200" />][1]
-
 WordPress is a great CMS (Content Management System) is you want to get a site up and running very quickly. It&#8217;s themable and within the theming framework, WordPress includes the ability to include popular assets like JQuery. All it takes is a simple command.
 
 ```php

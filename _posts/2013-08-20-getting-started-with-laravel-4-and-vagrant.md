@@ -16,9 +16,8 @@ tags:
   - vagrant
   - virtual machine
   - virtualbox
+thumbnail: /media/laravel-l-slant-300x205.png
 ---
-[<img class="alignnone size-medium wp-image-280" alt="laravel-l-slant" src="http://www.edzynda.com/media/laravel-l-slant-300x205.png" width="300" height="205" />][1]
-
 I've worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.
 
 I came across Laravel while randomly browsing the web. I don't even remember what I was looking for but after reading more about Laravel and how simple it was to setup, I was hooked. In this article I'll take you through setting up a PHP development environment for Laravel 4.

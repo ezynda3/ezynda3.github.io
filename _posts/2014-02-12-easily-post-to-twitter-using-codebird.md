@@ -14,9 +14,8 @@ tags:
   - Composer
   - PHP
   - Twitter
+thumbnail: /media/twitter_logo-300x300.png
 ---
-![Twitter Logo](http://www.edzynda.com/media/twitter_logo-300x300.png)
-
 Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&#8217;t as hard as you might think.
 
 The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.

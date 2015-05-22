@@ -12,9 +12,8 @@ tags:
   - nginx
   - vps
   - web server
+thumbnail: /media/apache_nginx_benchmark.png
 ---
-[<img class="alignnone  wp-image-233" alt="Apache and Nginx Benchmark" src="http://www.edzynda.com/media/apache_nginx_benchmark.png" width="352" height="265" />][1]
-
 If you&#8217;ve been working with the web for the past decade, you&#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&#8217;s free, functional and very modular. I&#8217;ve been using Apache for years as it&#8217;s the default on many hosting solutions.
 
 As great as Apache is, it&#8217;s not a one size fits all solution. In fact it may even be overkill for some projects. About six months ago, I traded in my old hosting provider for a Virtual Private Server (VPS) at<a title="Xen VPS Hosting" href="http://www.linode.com/?r=e023858b4fde04bffe508bb43c30bad4ee47a9f0" target="_blank"> Linode</a>. Around the same time, I started reading about a new web server called <a title="Nginx" href="http://nginx.org/" target="_blank">Nginx</a>. While not the most popular sever, it was gaining in popularity. At first I wasn&#8217;t sure about switching but after some research, I decided to take the plunge. Here are 3 reasons you should consider trying out Nginx for yourself.

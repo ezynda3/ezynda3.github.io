@@ -16,8 +16,8 @@ tags:
   - laravel
   - PHP
   - seeder
+thumbnail: /media/fake-300x162.jpg
 ---
-[<img src="http://www.edzynda.com/media/fake-300x162.jpg" alt="Fake" width="300" height="162" class="alignnone size-medium wp-image-625" />][1]  
 I'm a very visual person so when I'm developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don't have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there's still some manual data entry involved. We can eliminate this with a cool library called <a href="https://github.com/fzaninotto/Faker" title="Faker on GitHub" target="_blank">Faker</a>.
 
 Faker takes all the manual entry out of database seeding. It can generate anything from usernames, email addresses and city names to dates and fake credit card numbers. This saves loads of time when creating your database seeder. If you're new to Laravel or have no idea how to seed your database, check out the awesome Laravel <a href="http://laravel.com/docs/migrations#database-seeding" title="Laravel - Database Seeding" target="_blank">documentation</a> on the subject.

@@ -21,10 +21,8 @@ tags:
   - PHP
   - self-destruct
   - Twitter
+thumbnail: /media/self-destruct-button-300x284.jpg
 ---
-[<img src="http://www.edzynda.com/media/self-destruct-button-300x284.jpg" alt="Self Destruct Button" width="300" height="284" class="alignright size-medium wp-image-570" />][1]  
-<a href="http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/" title="Create A Self-destructing, Encrypted Message App In Laravel Part 1" target="_blank">Last week</a> we built the more complicated pieces of a simple and somewhat secure read-once, encrypted messaging app. In this part we will sketch out a simple interface using Laravel's blade templating engine and Twitter Bootstrap.
-
 The first thing we'll need to do is create a default layout. This is the layout that the rest of our views will extend. Let's save it as 'app/views/layouts/default.blade.php'.
 
 ```html

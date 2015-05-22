@@ -16,9 +16,8 @@ tags:
   - Python
   - Ruby
   - server
+thumbnail: /media/php-ele-300x195.jpg
 ---
-[<img src="http://www.edzynda.com/media/php-ele-300x195.jpg" alt="PHP Elephant" width="300" height="195" class="alignnone size-medium wp-image-535" />][1]
-
 For years Ruby and Python have been stealing the show with innovative features and functionality to help developers get their projects off the ground. PHP was left in the dust for quite a while. One simple but invaluable feature that PHP had been lacking was it's own webserver. Since version 5.4 however, PHP developers can now enjoy this modern convenience.
 
 Not all backend developers are system administrators. They know how to code and code well. That doesn't mean they know how to optimally configure an Apache or Nginx webserver. Depending on the project they work on, their code can live on any number of server configurations. Rather than worry about setting up Apache, developers should be making sure their code works. Leave the configuration to the sys admins.

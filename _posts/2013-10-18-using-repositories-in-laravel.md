@@ -1,8 +1,8 @@
 ---
-title: Using Respositories In Laravel
+title: Using Repositories In Laravel
 author: Ed Zynda
 layout: post
-permalink: /using-respositories-in-laravel/
+permalink: /using-repositories-in-laravel/
 comments: true
 categories:
   - Frameworks
@@ -17,9 +17,8 @@ tags:
   - PHP
   - repository
   - TDD
+thumbnail: /media/repository-300x224.jpg
 ---
-[<img src="http://www.edzynda.com/media/repository-300x224.jpg" alt="Repository" width="300" height="224" class="alignnone size-medium wp-image-504" />][1]
-
 The past couple of days I have been cramming my brain with coding knowledge. I&#8217;m working on a side project that I&#8217;ll likely announce in detail as it gets closer to launch. Since I&#8217;m starting from an empty Laravel project and building it from the ground up, I&#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.
 
 One technique I&#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&#8217;s powerful IoC container.

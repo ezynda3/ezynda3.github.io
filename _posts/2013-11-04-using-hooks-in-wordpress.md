@@ -12,9 +12,8 @@ tags:
   - filters
   - hooks
   - wordpress
+thumbnail: /media/Fishing_hooks_on_white_surface-300x296.jpg
 ---
-[<img src="http://www.edzynda.com/media/Fishing_hooks_on_white_surface-300x296.jpg" alt="Hooks" width="300" height="296" class="alignnone size-medium wp-image-512" />][1]
-
 Every so often I have clients who want me to work on WordPress sites or plugins. I honestly hate working with WordPress. While it&#8217;s one of the most popular CMS products in the world with a massive developer base, I find that anything coded for WordPress tends to follow a tacky and poorly organized form of coding. Coding styles vary wildly from developer to developer and there really is no standard. This makes doing modifications a nightmare.
 
 As crazy as WordPress development is, it makes up for it with some very helpful features for developers. In the early days of WordPress, if you wanted to add or modify functionality you had to modify the core of WordPress. This is dangerous because as soon as an update comes out, your modification might get wiped out. WordPress then introduced theming and plugin functionality. Along with those features, they allowed for developers to &#8216;hook&#8217; into actual WordPress processes without modifying the core source code.

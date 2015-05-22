@@ -14,9 +14,8 @@ tags:
   - PSR
   - renaissance
   - standards
+thumbnail: /media/rennaissance-300x168.jpg
 ---
-[<img src="http://www.edzynda.com/media/rennaissance-300x168.jpg" alt="Rennaissance" width="300" height="168" class="alignnone size-medium wp-image-527" />][1]
-
 If you worked with PHP in the early days or even if you are a newcomer, you are probably familiar with how messy and painful working with another developer&#8217;s code can be. PHP has a low barrier to entry which is great for getting things done. At the same time though, it creates a culture of lazy developers. Even those developers with years of experience have coding styles that are hard to wade through. Like some people&#8217;s handwriting, it only makes sense to them. This is fine if they don&#8217;t plan on sharing the code or expect someone else to have to maintain it later. In reality though, a lot of code these days is opensource or will eventually become someone else&#8217;s responsibility to maintain. Some top PHP developers have realized this and come together to try and shape the PHP community for the better.
 
 A lot of large PHP projects are built on frameworks because why re-invent the wheel. There are a handful of popular frameworks in active development today and they all have their pros and cons. It would be nice for a developer if he/she could use one framework for a project one week and start another project using a different framework the next week with minimal time spent learning the intricacies of the new framework. It would also be nice if the source code to these frameworks could be readable by anyone with a basic knowledge of PHP.
