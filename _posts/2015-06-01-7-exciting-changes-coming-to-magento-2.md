@@ -20,9 +20,9 @@ Because I was brought on at pretty much the beginning of the project I was able 
 
 I bursted back into the world of PHP development after a nine year stint in the US Air Force doing something totally un-related. Because I was basically a newb all over again, I dove head first into all the latest literature and video tutorials dealing with how to code "[PHP the right way.](http://www.phptherightway.com/)" I had become familiar with concepts like dependency injection, coding to interfaces, unit testing and a plethora of useful design patterns. Imagine my discomfort when I started writing custom code for Magento.
 
-The autoloader, while very sofisticated, is terribly outdated compared to the PSR-0 and PSR-4 standards. Composer isn't supported by default. There's not DI container to speak of and unit tests are almost impossible to create without needing to bootstrap a database which technically makes them integration tests.
+The autoloader, while very sofisticated, is terribly outdated compared to the PSR-0 and PSR-4 standards. Composer isn't supported by default. There's no DI container to speak of and unit tests are almost impossible to create without needing to bootstrap a database which technically makes them integration tests.
 
-I've since made my peace with Magento and it's silly conventions. I've also come up with some nifty hacks to allow modern practices. Those days are soon to be over though with the coming of Magento 2!
+I've since made my peace with Magento and it's silly conventions. I've also come up with some nifty hacks to allow for modern coding practices. Those days are soon to be over though with the coming of Magento 2!
 
 Magento 2 has a handful of welcome changes in store. Here are just a few of them.
 
