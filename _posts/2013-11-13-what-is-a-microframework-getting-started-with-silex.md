@@ -16,6 +16,7 @@ tags:
   - PHP
   - silex
   - symfony
+share: true
 ---
 There is no shortage of coding frameworks these days. I can't scroll through my twitter and facebook feeds or my favorite dev forums without stumbling upon something new. Like a hungry barracuda, I'm instantly attracted to new shiny things. While browsing reddit.com/r/php I came across a mention of a microframework called <a href="http://silex.sensiolabs.org/" title="Silex" target="_blank">Silex</a>. Now you may be wondering what a microframework is. I was wondering the same thing, so I took a look at the project's website to figure out for myself.
 

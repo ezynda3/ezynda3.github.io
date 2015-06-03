@@ -13,6 +13,7 @@ tags:
   - pheanstalk
   - PHP
   - queues
+share: true
 thumbnail: /media/beanstalk-242x300.jpg
 ---
 PHP is often considered the glue of the Internet because it's can be used for a lot of different things. There are so many built in functions and features that you are unlikely to use close to all of them if you work with PHP the rest of your life. This is great because we can solve various problems in our web apps without resorting to bringing in another language. Sometimes though, our application logic can get quite large or resource intensive. This translates into slow response times for the users of our apps if certain operations are tied into user events.

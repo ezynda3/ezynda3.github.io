@@ -16,6 +16,7 @@ tags:
   - PHP
   - Marvel
   - API
+share: true
 ---
 
 PHP is no doubt a great fit for building web applications but it also has the ability to create powerful command line applications. PHP has had this ability for a long time but recently there has been some excellent work done in order to improve the quality of PHP command line tools. The [Symfony\Console](http://symfony.com/doc/current/components/console/introduction.html) component makes it incredibly easy to create a command line application that accepts different arguments and options. Let's see how easy it can be.

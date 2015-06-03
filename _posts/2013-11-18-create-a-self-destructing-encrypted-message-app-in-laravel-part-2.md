@@ -21,6 +21,7 @@ tags:
   - PHP
   - self-destruct
   - Twitter
+share: true
 thumbnail: /media/self-destruct-button-300x284.jpg
 ---
 The first thing we'll need to do is create a default layout. This is the layout that the rest of our views will extend. Let's save it as 'app/views/layouts/default.blade.php'.

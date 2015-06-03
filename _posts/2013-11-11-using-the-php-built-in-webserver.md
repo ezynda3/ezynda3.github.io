@@ -16,6 +16,7 @@ tags:
   - Python
   - Ruby
   - server
+share: true
 thumbnail: /media/php-ele-300x195.jpg
 ---
 For years Ruby and Python have been stealing the show with innovative features and functionality to help developers get their projects off the ground. PHP was left in the dust for quite a while. One simple but invaluable feature that PHP had been lacking was it's own webserver. Since version 5.4 however, PHP developers can now enjoy this modern convenience.

@@ -6,6 +6,7 @@ permalink: /my-personal-laravel-application-starter/
 comments: true
 categories:
   - Uncategorized
+share: true
 ---
 Frameworks make it easy to hit the ground running when writing web apps. The one hurdle I run into consistently when starting any app though is creating a base user authentication system. It's pretty simple to do with most modern frameworks like Laravel but it's also just an annoying boilerplate task. This is just one of many boilerplate tasks that I've decided to eliminate by creating a basic starter app that I can pull from GitHub and modify from there.
 

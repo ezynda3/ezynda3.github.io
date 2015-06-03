@@ -18,6 +18,7 @@ tags:
   - NSA
   - PHP
   - self-destruct
+share: true
 thumbnail: /media/self-destruct-300x239.jpg
 ---
 The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn't say that I fall into the paranoid category but security, anonymity and cryptography fascinate me. 

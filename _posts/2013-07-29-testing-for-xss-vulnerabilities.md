@@ -10,6 +10,7 @@ categories:
 tags:
   - javascript
   - xss
+share: true
 thumbnail: /media/cross-site-injecting1.jpg
 ---
 There are a lot of things to keep in mind when it comes to web development. Security should be at the top of your list. If you read up on web application security, you&#8217;re probably familiar with cross-site scripting or XSS attacks. XSS attacks can cause serious damage but are really simple to prevent.

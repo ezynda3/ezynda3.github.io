@@ -16,6 +16,7 @@ tags:
   - laravel
   - PHP
   - seeder
+share: true
 thumbnail: /media/fake-300x162.jpg
 ---
 I'm a very visual person so when I'm developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don't have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there's still some manual data entry involved. We can eliminate this with a cool library called <a href="https://github.com/fzaninotto/Faker" title="Faker on GitHub" target="_blank">Faker</a>.

@@ -17,6 +17,7 @@ tags:
   - PHP
   - repository
   - TDD
+share: true
 thumbnail: /media/repository-300x224.jpg
 ---
 The past couple of days I have been cramming my brain with coding knowledge. I&#8217;m working on a side project that I&#8217;ll likely announce in detail as it gets closer to launch. Since I&#8217;m starting from an empty Laravel project and building it from the ground up, I&#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.

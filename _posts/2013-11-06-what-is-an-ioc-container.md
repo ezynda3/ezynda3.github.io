@@ -15,6 +15,7 @@ tags:
   - IoC
   - laravel
   - OOP PHP
+share: true
 thumbnail: /media/container-300x206.jpg
 ---
 If you&#8217;re discussing object oriented programming in PHP these days, it&#8217;s likely that you&#8217;ve at least heard about such topics as dependency injection or IoC containers. They&#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&#8217;s really not.

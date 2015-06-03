@@ -16,6 +16,7 @@ tags:
   - vagrant
   - virtual machine
   - virtualbox
+share: true
 thumbnail: /media/laravel-l-slant-300x205.png
 ---
 I've worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.

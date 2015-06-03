@@ -15,6 +15,7 @@ tags:
   - laravel
   - ORM
   - PHP
+share: true
 thumbnail: /media/orm-247x300.jpg
 ---
 Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&#8217;s code, however, I&#8217;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&#8217;s key components can be used as stand-alone modules.

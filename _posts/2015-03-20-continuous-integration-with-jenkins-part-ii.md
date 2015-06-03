@@ -15,6 +15,7 @@ tags:
   - Jenkins
   - PHPSpec
   - Robo
+share: true
 thumbnail: /images/jenkins-robo.png
 ---
 In the [first part](/continuous-integration-with-jenkins-part-ii/)  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?

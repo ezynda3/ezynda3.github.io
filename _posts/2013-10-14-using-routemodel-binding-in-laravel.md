@@ -15,6 +15,7 @@ tags:
   - models
   - PHP
   - routes
+share: true
 ---
 As I work more and more with Laravel, I keep running across some really cool time saving tricks. One of those time savers is route/model binding.
 

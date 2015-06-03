@@ -15,6 +15,7 @@ tags:
   - javascript
   - jquery
   - promises
+share: true
 thumbnail: /media/promise-300x202.jpg
 ---
 While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called 'promises'. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn't really as difficult as I thought.

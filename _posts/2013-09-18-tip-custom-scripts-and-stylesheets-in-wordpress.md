@@ -13,6 +13,7 @@ tags:
   - javascript
   - jquery
   - wordpress
+share: true
 thumbnail: /media/wp-code.png
 ---
 WordPress is a great CMS (Content Management System) is you want to get a site up and running very quickly. It&#8217;s themable and within the theming framework, WordPress includes the ability to include popular assets like JQuery. All it takes is a simple command.

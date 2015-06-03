@@ -12,6 +12,7 @@ tags:
   - filters
   - hooks
   - wordpress
+share: true
 thumbnail: /media/Fishing_hooks_on_white_surface-300x296.jpg
 ---
 Every so often I have clients who want me to work on WordPress sites or plugins. I honestly hate working with WordPress. While it&#8217;s one of the most popular CMS products in the world with a massive developer base, I find that anything coded for WordPress tends to follow a tacky and poorly organized form of coding. Coding styles vary wildly from developer to developer and there really is no standard. This makes doing modifications a nightmare.

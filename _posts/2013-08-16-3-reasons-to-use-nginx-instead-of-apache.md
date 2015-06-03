@@ -12,6 +12,7 @@ tags:
   - nginx
   - vps
   - web server
+share: true
 thumbnail: /media/apache_nginx_benchmark.png
 ---
 If you&#8217;ve been working with the web for the past decade, you&#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&#8217;s free, functional and very modular. I&#8217;ve been using Apache for years as it&#8217;s the default on many hosting solutions.

@@ -14,6 +14,7 @@ tags:
   - CI
   - Jenkins
   - PHPSpec
+share: true
 thumbnail: /images/jenkins-logo.png
 ---
 Continuous integration or CI, is all the rage these days. If you're not familiar with what CI is, it's basically a methodology for rapidly developing, testing and deploying applications. Using a well configured CI setup or pipeline, a developer or team of developers can make a change to their codebase, test those changes to make sure they didn't break those changes and then push that code live in a matter of minutes. They can do this all day long and rest assured that their changes are good to go on their production servers.
