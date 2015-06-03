@@ -11,13 +11,14 @@ categories:
 tags:
   - PHP
   - Magento
+share: true
 thumbnail: /images/magento-2.jpg
 ---
 E-commerce is not my favorite thing to write code for and as such, I'm no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn't called "Magneto" which is what I originally thought when I first glanced at the name.
 
 Because I was brought on at pretty much the beginning of the project I was able to learn a lot while building the site. The learning curve was steep at first but eventually I started to become familiar with the "Magento way" of doing things. To tell the truth I didn't like it much.
 
-I bursted back into the world of PHP development after a nine year stint in the US Air Force doing something totally un-related. Because I was basically a newb all over again, I dove head first into all the latest literature and video tutorials dealing with how to code "PHP the right way." I had become familiar with concepts like dependency injection, coding to interfaces, unit testing and a plethora of useful design patterns. Imagine my discomfort when I started writing custom code for Magento.
+I bursted back into the world of PHP development after a nine year stint in the US Air Force doing something totally un-related. Because I was basically a newb all over again, I dove head first into all the latest literature and video tutorials dealing with how to code "[PHP the right way.](http://www.phptherightway.com/)" I had become familiar with concepts like dependency injection, coding to interfaces, unit testing and a plethora of useful design patterns. Imagine my discomfort when I started writing custom code for Magento.
 
 The autoloader, while very sofisticated, is terribly outdated compared to the PSR-0 and PSR-4 standards. Composer isn't supported by default. There's not DI container to speak of and unit tests are almost impossible to create without needing to bootstrap a database which technically makes them integration tests.
 
@@ -52,4 +53,4 @@ Magento 2 will use semantic versioning for the core product. No more keeping tra
 ### 7. Tests, tests, tests!
 Magento 2 is very test friendly and even includes an extensive set of tests for the core code. This includes unit, integration and even javascript tests. Tests for your modules live inside the module's directory along with everything else.
 
-These just a few of the exciting changes coming to Magento 2. To find out more, checkout of the GitHub repo.
+These just a few of the exciting changes coming to Magento 2. To find out more, checkout of the [GitHub repo](https://github.com/magento/magento2).
