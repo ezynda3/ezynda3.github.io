@@ -82,7 +82,7 @@ You can match a bunch of methods in the same class by doing something like this.
 
 ```php
 <?php
-aop_add_before('Admin->*()', 'restrictAccess');
+aop_add_before('Admin->*()', 'restrictAccessAdvice');
 ```
 
 ####aop\_add\_after
