@@ -61,7 +61,7 @@ function restrictAccessAdvice()
     } 
 } 
   
-aop_add_before('Admin->showDashboard()', 'restrictAccess');
+aop_add_before('Admin->showDashboard()', 'restrictAccessAdvice');
   
 $_SESSION['user_type'] = 'user';
 $admin = new Admin();
