@@ -29,6 +29,7 @@ image:
   <div class="entry-content">
     <p><img src="{{ post.thumbnail }}" /></p>
     {{ post.excerpt | markdownify }}
+    <p><a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}" itemprop="url">Read More</a></p>
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 {% endfor %}
