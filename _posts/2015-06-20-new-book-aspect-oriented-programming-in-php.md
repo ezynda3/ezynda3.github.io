@@ -17,7 +17,7 @@ tags:
   - Book
   - Leanpub
 share: true
-thumbnail: images/aopinphp.png
+thumbnail: /images/aopinphp.png
 ---
 I've been looking for a way to challenge myself as well as showcase some of my knowledge to the world. After some thinking, I've decided that I would go ahead and write a book. 
 
