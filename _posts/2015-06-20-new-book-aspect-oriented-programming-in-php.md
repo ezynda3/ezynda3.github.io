@@ -1,5 +1,5 @@
 ---
-title: New Book: Aspect-Oriented Programming in PHP
+title: "New Book: Aspect-Oriented Programming in PHP"
 author: Ed Zynda
 layout: post
 permalink: /new-book-aspect-oriented-programming-in-php/
