@@ -84,7 +84,7 @@ Now when we want to tweet we can do something like the following.
 ```php
 <?php
 
-require 'Twitter.php'
+require 'Twitter.php';
 
 $twtr = new Twitter;
 
