@@ -30,7 +30,9 @@ The document goes on to list 12 different factors that any modern web applicatio
 
 Basically, factor four discusses the idea of backing services or resources. Most web applications utilize at least one external resource. A database is probably the most common. A modern web application shouldn't really care too much about the details of these resources except how to connect to it. These resources should be interchangeable without the need for a change in your source code.
 
-One of the first pieces that need to be in place for this is having a flexible configuration system. In PHP you can store configuration in a handful of ways. Probably the most common and easiest is to just store it in code itself. You can orginaize it and keep it somewhat manageable 
+One of the first pieces that need to be in place for this is having a flexible configuration system. In PHP you can store configuration in a handful of ways. Probably the most common and easiest is to just store it in code itself. You can orginaize it and keep it somewhat manageable by keeping PHP files with config settings separate. The only problem is that you need to actually edit the source whenever you want to make a configuration change.
+
+There is a better way. 
 
 
 
