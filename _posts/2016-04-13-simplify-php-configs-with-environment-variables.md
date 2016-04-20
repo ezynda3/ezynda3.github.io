@@ -13,27 +13,86 @@ tags:
   - Twelve Factor App
 share: true
 ---
+Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within 'app/config' to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.
 
-Modern web development has come a long way from HTML mixed with CGI scripts to well architected and complex applications that scale. Over the years, experts have come together to create design patterns and best practices that build on lessons learned. One excellent document that details best practices in the realm of web application development is "[The Twelve Factor App](http://12factor.net/)". The document's introduction does a great job of explaining it's purpose.
+In Laravel 5 and above you just create a file name '.env' and place your configuration in environment variables. The file would look something like this.
 
-_In the modern era, software is commonly delivered as a service: called web apps, or software-as-a-service. The twelve-factor app is a methodology for building software-as-a-service apps that:
+```sh
+DB_NAME=mydatabse
+FOOBAR=baz
+SOME_API_KEY=1234abcef
+```
 
-- Use declarative formats for setup automation, to minimize time and cost for new developers joining the project;
-- Have a clean contract with the underlying operating system, offering maximum portability between execution environments;
-- Are suitable for deployment on modern cloud platforms, obviating the need for servers and systems administration;
-- Minimize divergence between development and production, enabling continuous deployment for maximum agility;
-- And can scale up without significant changes to tooling, architecture, or development practices.
+You would create this file and make sure to add '.env' to '.gitignore' in order to keep sensitive data out of your code repository. When you deploy to your different environments you can then just include a '.env' file that's appropriate for the environment.
 
-The twelve-factor methodology can be applied to apps written in any programming language, and which use any combination of backing services (database, queue, memory cache, etc)._
+Laravel 4.2 and below doesn't have this but fortunately, with a little bit of tweaking you can add it.
 
-The document goes on to list 12 different factors that any modern web application should have. In this article, I want to cover [factor number four](http://12factor.net/backing-services).
+First we need to include a helpful package that reads '.env' files and then loads them for PHP to access.
 
-Basically, factor four discusses the idea of backing services or resources. Most web applications utilize at least one external resource. A database is probably the most common. A modern web application shouldn't really care too much about the details of these resources except how to connect to it. These resources should be interchangeable without the need for a change in your source code.
+```sh
+composer require vlucas/phpdotenv
+```
+If you're using Laravel 4.2 you next need to edit 'bootstrap/start.php'. If you're using another framework or none at all you just need to add the following code to wherever you bootstrap your application.
 
-One of the first pieces that need to be in place for this is having a flexible configuration system. In PHP you can store configuration in a handful of ways. Probably the most common and easiest is to just store it in code itself. You can orginaize it and keep it somewhat manageable by keeping PHP files with config settings separate. The only problem is that you need to actually edit the source whenever you want to make a configuration change.
+```php
+<?php
+if (is_file(__DIR__ . '/../.env')) {
+	Dotenv::load(__DIR__ . '/../');
+}
+```
 
-There is a better way. 
+This will check to see that the file exists and if so, load the data into PHP's $_ENV superglobal array.
 
+Next we'll need a helper function to grab environment variables or use an acceptable default. If you're using Laravel, place this in 'app/helpers.php' if not you can place it wherever you keep helper functions.
 
+```php
+<?php
+if ( ! function_exists('env'))
+{
+    /**
+     * Gets the value of an environment variable. Supports boolean, empty and null.
+     *
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function env($key, $default = null)
+    {
+        $value = getenv($key);
 
+        if ($value === false) return value($default);
 
+        switch (strtolower($value))
+        {
+            case 'true':
+            case '(true)':
+                return true;
+
+            case 'false':
+            case '(false)':
+                return false;
+
+            case 'null':
+            case '(null)':
+                return null;
+
+            case 'empty':
+            case '(empty)':
+                return '';
+        }
+
+        return $value;
+    }
+}
+```
+
+Now you should be able to use .env files an consolidate your configuration data. For example if you need a config file like 'app/config/sendgrid.php' to handle sending mail with SendGrid you can make it look something like this.
+
+```php
+<?php
+return [
+    'api_key' => env('SENDGRID_API_KEY')
+];
+```
+
+This will greatly simplify your deployments and help avoid configuration comlexity in your older Laravel or other non-Laravel applications.
