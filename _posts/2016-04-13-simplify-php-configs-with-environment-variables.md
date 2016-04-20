@@ -12,6 +12,7 @@ tags:
   - Environment Variables
   - Twelve Factor App
 share: true
+title: Simplify PHP Configs With Environment Variables
 ---
 Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within 'app/config' to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.
 
