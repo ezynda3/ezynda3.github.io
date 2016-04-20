@@ -44,7 +44,7 @@ links:
 timezone:    America/Chicago
 future:      true
 highliter:    true
-markdown:    redcarpet
+markdown:    kramdown
 
 # Amount of posts to show on home page
 paginate: 5
