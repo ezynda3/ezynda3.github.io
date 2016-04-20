@@ -2,7 +2,7 @@
 title: "Simplify PHP Configs With Environment Variables"
 author: Ed Zynda
 layout: post
-permalink: "/simplify-php-configs-with-environment-variables/"
+permalink: /simplify-php-configs-with-environment-variables/
 comments: true
 categories: 
   - PHP
