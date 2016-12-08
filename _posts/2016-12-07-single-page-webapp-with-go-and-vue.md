@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 author: Ed Zynda
 layout: post
 permalink: /single-page-webapp-with-go-and-vue/
