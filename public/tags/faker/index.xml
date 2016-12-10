@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Faker on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/faker/index.xml</link>
+    <description>Recent content in Faker on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/faker/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using Faker To Populate Your Laravel Projects During Development</title>
+      <link>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</link>
+      <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m a very visual person so when I&amp;rsquo;m developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don&amp;rsquo;t have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there&amp;rsquo;s still some manual data entry involved. We can eliminate this with a cool library called &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;Faker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Faker takes all the manual entry out of database seeding. It can generate anything from usernames, email addresses and city names to dates and fake credit card numbers. This saves loads of time when creating your database seeder. If you&amp;rsquo;re new to Laravel or have no idea how to seed your database, check out the awesome Laravel &lt;a href=&#34;http://laravel.com/docs/migrations#database-seeding&#34; title=&#34;Laravel - Database Seeding&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on the subject.&lt;/p&gt;
+
+&lt;p&gt;To get started just add Faker using composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer require fzaninotto/faker  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When prompted for the version I entered &amp;lsquo;1.4.*@dev&amp;rsquo; which is the latest at the time of this writing. This will add faker to &amp;lsquo;comoposer.json&amp;rsquo; and download the library. Laravel will autoload the library for you.&lt;/p&gt;
+
+&lt;p&gt;I have a travel buddy meetup site, that I&amp;rsquo;m creating. Users can sign-up and then create trips. Other users can see these trips and then propose a meetup or just give helpful tips and advice. Let&amp;rsquo;s see what my seeders will look like using Faker.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the user seeder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserTableSeeder extends Seeder 
+{
+
+    public function run()  
+    {  
+        $faker = Faker\Factory::create();
+
+        User::truncate();
+
+        foreach(range(1,30) as $index)  
+        {  
+            User::create([  
+                &#39;username&#39; =&amp;gt; str_replace(&#39;.&#39;, &#39;_&#39;, $faker-&amp;gt;unique()-&amp;gt;userName),  
+                &#39;email&#39; =&amp;gt; $faker-&amp;gt;email,  
+                &#39;password&#39; =&amp;gt; &#39;password&#39;,  
+                &#39;confirmation&#39; =&amp;gt; str_random(64),  
+                &#39;confirmed&#39; =&amp;gt; true  
+            ]);  
+        }
+    }
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First I created a new instance of Faker using &amp;lsquo;$faker = Faker\Factory::create();&amp;lsquo;. &amp;lsquo;User::truncate();&amp;rsquo; just clears the database out so we can reseed it. Next I create a loop that will create 30 new users. For any field that requires fake data just call the Faker instance we created up top and the type of data we need (e.g &amp;lsquo;$faker-&amp;gt;userName). Faker likes to add a &amp;lsquo;.&amp;rsquo; to some usernames which doesn&amp;rsquo;t play nice with my app which is why I used &amp;lsquo;str_replace()&amp;rsquo; to get rid of those. You can even use the &amp;lsquo;unique()&amp;rsquo; modifier to make sure usernames aren&amp;rsquo;t repeated.&lt;/p&gt;
+
+&lt;p&gt;As you can see, it&amp;rsquo;s pretty straight forward. Let&amp;rsquo;s look at another example. Here I have my trip seeder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php 
+
+class TripTableSeeder extends Seeder 
+{
+
+    public function run()  
+    {
+
+        $faker = Faker\Factory::create();
+
+        Trip::truncate();
+
+        foreach(range(1,10) as $index)  
+        {  
+            Trip::create([  
+                &#39;user_id&#39; =&amp;gt; rand(1,30),  
+                &#39;location&#39; =&amp;gt; $faker-&amp;gt;city . &#39;, &#39; . $faker-&amp;gt;country,  
+                &#39;from&#39; =&amp;gt; $from = $faker-&amp;gt;dateTimeBetween(&#39;+1 days&#39;, &#39;+2 years&#39;)-&amp;gt;format(&#39;m/d/Y&#39;),  
+                &#39;to&#39; =&amp;gt; $faker-&amp;gt;dateTimeBetween($from, $from . &#39; +3 months&#39;)-&amp;gt;format(&#39;m/d/Y&#39;),  
+                &#39;note&#39; =&amp;gt; $faker-&amp;gt;paragraph(1)  
+            ]);  
+        }  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Same principle as before. Faker can create dates in a specific range, words, sentences and even paragraphs using the popular &amp;lsquo;lorem ipsum&amp;rsquo; filler.&lt;/p&gt;
+
+&lt;p&gt;This is a great tool for projects that will be working with a lot of users and data. For more information on Faker&amp;rsquo;s features, check out the &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

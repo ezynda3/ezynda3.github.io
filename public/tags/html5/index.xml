@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Html5 on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/html5/index.xml</link>
+    <description>Recent content in Html5 on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/html5/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</title>
+      <link>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
+      <description>&lt;p&gt;For a lot of HTML forms you really don&amp;rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&amp;rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
+You can grab WYSIHTML5 from &lt;a href=&#34;https://github.com/xing/wysihtml5&#34;&gt;Github&lt;/a&gt;. To add a little style we&amp;rsquo;ll use Twitter&amp;rsquo;s &lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; framework and &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt; icon fonts.
+Copy the WYSIHTML5 files into the correct directories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;├── css
+├── fonts
+└── js
+    ├── advanced.js
+    └── wysihtml5-0.3.0.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lsquo;wysihtml5-0.3.0.js&amp;rsquo; can be found in the &amp;lsquo;dist&amp;rsquo; directory and &amp;lsquo;advanced.js&amp;rsquo; in the &amp;lsquo;parser_rules&amp;rsquo; directory.
+Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+    &amp;lt;script src=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/wysihtml5-0.3.0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/advanced.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;form method=&amp;quot;POST&amp;quot; action=&amp;quot;/&amp;quot; &amp;gt;
+&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-3&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div id=&amp;quot;toolbar&amp;quot; class=&amp;quot;wysihtml5-toolbar btn-toolbar col-md-9&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;bold&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Bold&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;italic&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Italic&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertUnorderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ul&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertOrderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ol&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group row&amp;quot;&amp;gt;
+		&amp;lt;label for=&amp;quot;editor&amp;quot; class=&amp;quot;col-md-3 control-label&amp;quot;&amp;gt;Job description&amp;lt;/label&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+			&amp;lt;textarea id=&amp;quot;editor&amp;quot; class=&amp;quot;form-control &amp;quot; name=&amp;quot;description&amp;quot; cols=&amp;quot;50&amp;quot; rows=&amp;quot;10&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+		&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;
+		&amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot;&amp;gt;
+	&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The &amp;lsquo;data-wysihtml5-command&amp;rsquo; directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the &amp;lsquo;btn btn-default&amp;rsquo; classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
+Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+(function() {
+    	var editor = new wysihtml5.Editor(&amp;quot;editor&amp;quot;, { // id of textarea element
+        	toolbar:      &amp;quot;toolbar&amp;quot;, // id of toolbar element
+        	parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    	});
+})();
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should now have a nice clean but functional editor that looks like this.
+&lt;a href=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34;&gt;&lt;img src=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34; alt=&#34;wysihtml5_screenshot&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

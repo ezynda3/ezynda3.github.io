@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Assets on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/assets/index.xml</link>
+    <description>Recent content in Assets on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/assets/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Tip: Custom Scripts In WordPress</title>
+      <link>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</link>
+      <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</guid>
+      <description>&lt;p&gt;WordPress is a great CMS (Content Management System) is you want to get a site up and running very quickly. It&amp;#8217;s themable and within the theming framework, WordPress includes the ability to include popular assets like JQuery. All it takes is a simple command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+wp_enqueue_script(&#39;jquery&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What if you don&amp;#8217;t want to use the version of JQuery included in WordPress though? There are several reasons you would require a different version, compatibility for example.&lt;/p&gt;
+
+&lt;p&gt;In order to use a custom asset you can do something like the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+wp_deregister_script(&#39;jquery&#39;);
+wp_register_script(&#39;jquery&#39;, &#39;http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js&#39;, false);
+wp_enqueue_script(&#39;jquery&#39;); 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will deregister the current jquery script which is the default included with WordPress and set it to your custom version. You can also register your own scripts like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+wp_register_script(&#39;myajaxscript&#39;, &#39;mythemedir/js/ajaxstuff.js&#39;, false);
+wp_enqueue_script(&#39;myajaxscript&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

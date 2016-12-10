@@ -1,0 +1,20 @@
+<ul class="pagination">
+    {{ if .Paginator.HasPrev }}
+    <li class="waves-effect"><a href="{{ .Paginator.Prev.URL }}"><i class="material-icons">chevron_left</i></a></li>
+    {{ else }}
+    <li class="disabled"><a href="i#!"><i class="material-icons">chevron_left</i></a></li>
+    {{ end }}
+    {{ $paginator := .Paginator }}
+    {{ range .Paginator.Pagers }}
+      {{ if eq .PageNumber $paginator.PageNumber }}
+        <li class="active">
+      {{ else }}
+        <li class="waves-effect">
+      {{ end }}
+        <a href="{{ .URL }}">{{ .PageNumber }}</a>
+      </li>
+    {{ end }}
+    {{ if .Paginator.HasNext }}
+    <li class="waves-effect"><a href="{{ .Paginator.Next.URL }}"><i class="material-icons">chevron_right</i></a></li>
+    {{ end }}
+</ul>

@@ -1,0 +1,34 @@
+baseurl = "http://edzynda.com/"
+languageCode = "en-us"
+title = "Ed Zynda - Coder, Hacker, Superhero"
+# Define how many pages appear per site
+paginate = 10
+# Enable comments powered by Disqus by entering your disqus shortname
+disqusShortname = "edzynda"
+
+[params]
+    site_author = "Ed Zynda"
+    site_description = "Coder, Hacker, Superhero"
+    location = "Earth"
+    # All paths are relative to the baseurl. Put your files
+    # somewhere in the static folder.
+    avatar = "img/profile-image.png"
+    header_background = "img/desk.jpg"
+    header_title = "Customizable header title"
+    copyright = "Powered by [Hugo](http://gohugo.io)."
+
+    # Enable gogle analytics by entering your tracking code
+    google_analytics = ""
+
+[social]
+    # Add your social network accounts to the profile section on the left
+    # by entering your username. The links to your account will be
+    # create automatically.
+    twitter   = "edzynda"
+    facebook  = ""
+    linkedin  = ""
+    behance   = ""
+    dribbble  = ""
+    instagram = "yungzee83"
+    github    = "ezynda3"
+    gplus     = ""

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ioc on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/ioc/index.xml</link>
+    <description>Recent content in Ioc on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/ioc/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>What Is An IoC Container?</title>
+      <link>http://edzynda.com/what-is-an-ioc-container/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/what-is-an-ioc-container/</guid>
+      <description>&lt;p&gt;If you&amp;#8217;re discussing object oriented programming in PHP these days, it&amp;#8217;s likely that you&amp;#8217;ve at least heard about such topics as dependency injection or IoC containers. They&amp;#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&amp;#8217;s really not.&lt;/p&gt;
+
+&lt;p&gt;If you read my earlier post on using repositories in Laravel you might have noticed that when using dependency injection in our __construct method, we didn&amp;#8217;t have to actually instantiate our repository. Laravel&amp;#8217;s IoC container did it for us. Behind the scenes, when our controller was called, Laravel ran the App::make() method and passed it through to our constructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+ 
+use Stark\Repositories\UserRespositoryInterface as Repository;
+ 
+class UserController extends BaseController {
+    protected $user;
+ 
+    public function __construct(Repository $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;getAll();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now basic object oriented programming says we can&amp;#8217;t instantiate an interface so we have to pass an object that implements the UserRepositoryInterface such as our EloquentUserRepository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repositories\EloquentUserRepository&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remember that line of code? What we are doing is telling Laravel&amp;#8217;s IoC to respond to any request for UserRepositoryInterface with EloquentUserRepository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+$userRepo = App::make(&#39;Stark\Repositories\UserRepositoryInterface&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$userRepo is actually an EloquentUserRepository object now.&lt;/p&gt;
+
+&lt;p&gt;To understand how this works let&amp;#8217;s flesh out our own IoC.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// IoC.php
+class IoC {
+ 
+    protected static $bindings = [];
+ 
+    public static function bind($name, Callable $resolver)
+    {
+        static::$bindings[$name] = $resolver;
+    }
+ 
+    public static function make($name)
+    {
+        if (isset(static::$bindings[$name]))
+        {
+            $resolver = static::$registry[$name];
+ 
+            return $resolver();
+        }
+ 
+        throw new Exception(&#39;Alias does not exist in the IoC registry.&#39;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This can be used in any PHP project outside of laravel. Check out this example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+ 
+include &#39;IoC.php&#39;;
+ 
+class Truck {}
+ 
+class Garage {
+    protected $veh;
+   
+    public function __construct(Vehicle $veh)
+    {
+        $this-&amp;gt;veh = $veh;
+    }
+}
+ 
+IoC::bind(&#39;Vehicle&#39;, &#39;Truck&#39;)
+ 
+$garage = new Garage(App::make(&#39;Vehicle&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So we created a class Truck and a class Garage which depends on a Vehicle object. Then we used our homebrewed IoC to bind any call for Vehicle to a call for Truck instead. So when we created a new Garage we passed IoC::bind which would pass whatever we registered with IoC::bind. That&amp;#8217;s all there is to it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using Repositories In Laravel</title>
+      <link>http://edzynda.com/using-repositories-in-laravel/</link>
+      <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-repositories-in-laravel/</guid>
+      <description>&lt;p&gt;The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.&lt;/p&gt;
+
+&lt;p&gt;One technique I&amp;#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&amp;#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&amp;#8217;s powerful IoC container.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#8217;ve frequented web development forums or IRC channels lately, you might hear seasoned veterans blabbing about the merits of TDD or Test Driven Development. It&amp;#8217;s another concept that sounds scary at first but really isn&amp;#8217;t once you start digging into it. Basically TDD preaches that you should write automated tests for your code &lt;strong&gt;before&lt;/strong&gt; you even write a single line of production code. Not only that, you should be writing tests that work with a single component at a time, in isolation. If you follow the single responsibility principle when writing code, this shouldn&amp;#8217;t be too hard.&lt;/p&gt;
+
+&lt;p&gt;What if your class or controller methods depend on another class that has it&amp;#8217;s own responsibilities? Theoretically those classes should have their own tests and should be isolated from your own tests. How do we do this though? The answer is dependency injection.&lt;/p&gt;
+
+&lt;p&gt;Dependency injection is simply passing the classes your current class depends on through the constructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+    protected $dependency;
+ 
+    public function __construct(Dependency $dependency)
+    {
+        $this-&amp;gt;dependency = $dependency;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s it. Not too scary right? This way, when you write your automated tests, you can now &amp;#8216;mock&amp;#8217; those classes with a tool like Mockery and inject them from inside your test code. If those dependencies accessed a database or live filesystem you can rest assured your tests will not because those dependencies are now mocked or stubbed.&lt;/p&gt;
+
+&lt;p&gt;So dependency injection is great for testing but it has other benefits. Let&amp;#8217;s say in laravel you have a UserController. That controller has a method that fetches all users and sends them to a view.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+ 
+    public function index()
+    {
+        $users = User::all();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s very simple to call our User model and just call methods from within the controller. But this will create a nightmare for testing and isn&amp;rsquo;t very flexible. Why not inject the User model?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+    protected $user;
+ 
+    public function __construct(User $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;all();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Okay that&amp;#8217;s great but say one day you decide to go with a different implementation of your users like MongoDB or a flatfile database? You&amp;#8217;ll have to go through your code and clean out and refactor anything that references the Laravel models because they extend Eloquent which uses an SQL database. This is where the idea of using repositories comes in.&lt;/p&gt;
+
+&lt;p&gt;First let&amp;#8217;s create an interface. Think of an interface as a contract. Any class that implements this interface must also implement its methods.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Repositories;
+ 
+interface UserRepositoryInterface {
+    public function getAll();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll store it in a custom directory called &amp;lsquo;Stark/Repositories&amp;rsquo;. Notice that the namespace goes along with the directory structure. Now let&amp;rsquo;s create a class that implements this interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Repositories;
+ 
+use User;
+ 
+class EloquentUserRepository implements UserRepositoryInterface {
+    public function getAll()
+    {
+        return User::all();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Cool. Now let&amp;rsquo;s just refactor our controller to use our interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+ 
+use Stark\Repositories\UserRespositoryInterface as Repository;
+ 
+class UserController extends BaseController {
+    protected $user;
+ 
+    public function __construct(Repository $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;getAll();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now remember that interfaces are cannot be instantiated but Laravel is smart enough to inject a proper class in it&amp;#8217;s place if you give it some hints. First we have to make sure our &amp;#8216;Stark&amp;#8217; namespace is autoloaded. For that we edit our composer.json file and add the namespace and it&amp;#8217;s location under &amp;#8220;psr-0&amp;#8243;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-0&amp;quot;: {
+            &amp;quot;Stark&amp;quot;: &amp;quot;app/&amp;quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we tell Laravel that anytime we reference UserRepositoryInterface we really want EloquentUserRepository. We can do that in our &amp;#8216;app/routes.php&amp;#8217; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repositories\EloquentUserRepository&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if we decide to use some other storage method we can simply code another repository that implements the UserRepositoryInterface and change that one line in the routes file to reflect the change. The rest of your app couldn&amp;#8217;t care less.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

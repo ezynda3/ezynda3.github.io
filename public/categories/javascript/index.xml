@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/categories/javascript/index.xml</link>
+    <description>Recent content in Javascript on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Running AJAX Requests Sequentially</title>
+      <link>http://edzynda.com/running-ajax-requests-sequentially/</link>
+      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/running-ajax-requests-sequentially/</guid>
+      <description>&lt;p&gt;Somewhat recently, I was refactoring a project that was having issues uploading and importing large CSV files. I was running into all kinds of issues from timeout errors to memory allocation exceptions. The solution was to break up the import and upload it in chunks. This alone was pretty easy but I also wanted to include the ability to display the progress of the entire import. The problem was, I was using AJAX to upload the data.&lt;/p&gt;
+
+&lt;p&gt;AJAX is pretty useful in that it allows you to make HTTP requests asynchronously without refreshing the entire page. You can update small sections of the page without reloading. This is great if you don&amp;rsquo;t care what order the requests finish. In my case I needed to upload the data in chunks but also calculate the overall progress based on how much had been uploaded vs how much was remaining. Using AJAX as intended, all of the chunks would be sent at the exact same which opens of the possibiity that a chunk that should be uploaded last would finish before an earlier chunk.&lt;/p&gt;
+
+&lt;p&gt;After banging my head against the wall dealing with Javascript promises and deferred objects, I decided to try a functional programming technique. The solution ended up being recursion. Let&amp;rsquo;s take a look at what I mean.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function recursivePost(url, data) {
+  var dfd = $.Deferred();
+  var total = data.length;
+  var chunk = data.splice(0, 10);
+  var payload = {}
+            
+  payload.data = chunk;
+  payload.remaining = total - chunk.length;
+            
+  $.post(url, payload)
+    .success(function (response) {
+                    
+      updateProgressBar(chunk.length);
+                        
+      if (response.status == &#39;complete&#39;) {
+        dfd.resolve(response);
+      } else {
+        recursivePost(url, data).done(function(response) {
+          dfd.resolve(response);
+        });
+      }
+    })
+    .fail(function (response) {
+      dfd.reject(response.responseText);
+    });
+                    
+  return dfd.promise();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The function above starts out by creating a deferred object which we use to return a promise object at the bottom of the function. This allows us to start the upload process and hold off on doing anything else until all the chunks are finished uploading. Then we take the initial data which should be an array and calculate the total. Then we shave off 10 items from the array using array_splice(). Then we construct a payload object that contains the chunk and then the number of items remaining after this upload completes. This will allow our backend code to determine when the entire process is complete in case it needs to run some additional logic after.&lt;/p&gt;
+
+&lt;p&gt;Using jQuery&amp;rsquo;s handy post() method we can upload the data to the specified URL. On success we can update our progress bar then we check whether there is more to be uploaded. In my case I let the backend decide by sending a &amp;lsquo;complete&amp;rsquo; status. We could also just check whether payload.reaining = 0. If there are still more items we call the same function from within itself. We also attach done() handler to catch the promise returned by that call. This allows the resolved promise from recursive calls to recursivePost to bubble up to the initial call and then be returned at completion.&lt;/p&gt;
+
+&lt;p&gt;If there are no more items to process, we resolve the promise object so the rest of the app knows the upload is complete.&lt;/p&gt;
+
+&lt;p&gt;Because we only run the next request after the previous request succeeds, we prevent the AJAX calls from firing at the same time. Each request is in sequential order and progress can be tracked.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</title>
+      <link>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
+      <description>&lt;p&gt;For a lot of HTML forms you really don&amp;rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&amp;rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
+You can grab WYSIHTML5 from &lt;a href=&#34;https://github.com/xing/wysihtml5&#34;&gt;Github&lt;/a&gt;. To add a little style we&amp;rsquo;ll use Twitter&amp;rsquo;s &lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; framework and &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt; icon fonts.
+Copy the WYSIHTML5 files into the correct directories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;├── css
+├── fonts
+└── js
+    ├── advanced.js
+    └── wysihtml5-0.3.0.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lsquo;wysihtml5-0.3.0.js&amp;rsquo; can be found in the &amp;lsquo;dist&amp;rsquo; directory and &amp;lsquo;advanced.js&amp;rsquo; in the &amp;lsquo;parser_rules&amp;rsquo; directory.
+Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+    &amp;lt;script src=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/wysihtml5-0.3.0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/advanced.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;form method=&amp;quot;POST&amp;quot; action=&amp;quot;/&amp;quot; &amp;gt;
+&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-3&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div id=&amp;quot;toolbar&amp;quot; class=&amp;quot;wysihtml5-toolbar btn-toolbar col-md-9&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;bold&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Bold&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;italic&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Italic&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertUnorderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ul&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertOrderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ol&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group row&amp;quot;&amp;gt;
+		&amp;lt;label for=&amp;quot;editor&amp;quot; class=&amp;quot;col-md-3 control-label&amp;quot;&amp;gt;Job description&amp;lt;/label&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+			&amp;lt;textarea id=&amp;quot;editor&amp;quot; class=&amp;quot;form-control &amp;quot; name=&amp;quot;description&amp;quot; cols=&amp;quot;50&amp;quot; rows=&amp;quot;10&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+		&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;
+		&amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot;&amp;gt;
+	&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The &amp;lsquo;data-wysihtml5-command&amp;rsquo; directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the &amp;lsquo;btn btn-default&amp;rsquo; classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
+Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+(function() {
+    	var editor = new wysihtml5.Editor(&amp;quot;editor&amp;quot;, { // id of textarea element
+        	toolbar:      &amp;quot;toolbar&amp;quot;, // id of toolbar element
+        	parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    	});
+})();
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should now have a nice clean but functional editor that looks like this.
+&lt;a href=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34;&gt;&lt;img src=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34; alt=&#34;wysihtml5_screenshot&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Javascript Promises Explained</title>
+      <link>http://edzynda.com/javascript-promises-explained/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/javascript-promises-explained/</guid>
+      <description>&lt;p&gt;While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called &amp;lsquo;promises&amp;rsquo;. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn&amp;rsquo;t really as difficult as I thought.&lt;/p&gt;
+
+&lt;p&gt;Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns. You can pass a function name as the parameter like in this jquery example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$( &amp;quot;#target&amp;quot; ).submit(myCallback);
+
+myCallback = function ( event ) {  
+    alert( &amp;quot;Handler for .submit() called.&amp;quot; );  
+    event.preventDefault();  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or you can use an anonymous function.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$( &amp;quot;#target&amp;quot; ).submit(function( event ) {  
+    alert( &amp;quot;Handler for .submit() called.&amp;quot; );  
+    event.preventDefault();  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is all fine and dandy. A problem arises though when you start using various functions or features in Javascript that run asynchronously. That means they don&amp;rsquo;t run in sequence but run concurrently with other functions. Take this small example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;setTimeout(function() {  
+    // do some stuff  
+    var myVar = &#39;Some value&#39;;  
+}, 2000);
+
+console.log(myVar);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What happens when you run it? Well the setTimeout function takes a function as the first argument and a time in milliseconds as the second. The function passed as the first argument will then execute in the time you passed in the second. setTimeout itself is executed immediately though and then console.log right after that. Because of this myVar doesn&amp;rsquo;t actually contain a value and you get an error. Two seconds later myVar is assigned &amp;lsquo;Some value&amp;rsquo; but then it&amp;rsquo;s too late. How do we access myVar only once our function has run? Well you can do this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;setTimeout(function() {  
+    // do some stuff  
+    var myVar = &#39;Some value&#39;;  
+    console.log(myVar);  
+}, 2000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By placing console.log inside our anonymous function we tell it only to execute when our function executes. Great! But this presents a problem. If you are writing a large application, it&amp;rsquo;s possible you are going to have more than one function called within a function. You might even have multiple callbacks with even more nested functions. This can get messy. To solve this problem, members of the Javascript community came up with the idea of &lt;a href=&#34;http://wiki.commonjs.org/wiki/Promises/A&#34; title=&#34;Promises/A Specification&#34; target=&#34;_blank&#34;&gt;promises&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Promises are a specification only and it is left up to developers to implement it. JQuery has it&amp;rsquo;s own implementation of promises. A promise is just an object. This object is returned by a function instead of an actual value. It&amp;rsquo;s basically an IOU for any other part of your script saying it will give you an actual value when it&amp;rsquo;s done doing what it&amp;rsquo;s doing.&lt;/p&gt;
+
+&lt;p&gt;JQuery uses what it calls a &amp;lsquo;deferred&amp;rsquo; object. A deferred has a resolve message that is run once your promise is fulfilled. It also has a reject method that is run if an error or something occurs. Take a look at this example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var myFunc = function() {  
+    var deferred = new $.Deferred();  
+    setTimeout(function() {  
+        // do some stuff  
+        var myVar = &#39;Some value&#39;;  
+        deferred.resolve();  
+    }, 2000);  
+    return deferred.promise();  
+};
+
+myFunc().done(function() {  
+    console.log(&#39;Finished: &#39; + myVar);  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ve wrapped everything in a function called myFunc and created a new Deferred object. Our return value is a promise which belongs to Deferred. Now we can take that returned promise and use a method called &amp;lsquo;done&amp;rsquo;. &amp;lsquo;done&amp;rsquo; is only executed when the Deferred object is resolved or when the &amp;lsquo;resolve&amp;rsquo; method is called. There are two more methods called &amp;lsquo;fail&amp;rsquo; and &amp;lsquo;always&amp;rsquo;. Fail is executed when the &amp;lsquo;reject&amp;rsquo; method is called. You can probably guess when the &amp;lsquo;always&amp;rsquo; method is executed. There is a fourth method called &amp;lsquo;then&amp;rsquo; which takes three functions as arguments. These functions would be the same that you would use for &amp;lsquo;done&amp;rsquo;, &amp;lsquo;fail&amp;rsquo; and &amp;lsquo;always&amp;rsquo; in that order.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s only the basics of what you can do with promises but even that is pretty powerful.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

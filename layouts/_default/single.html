@@ -1,0 +1,18 @@
+{{ partial "header" . }}
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      {{ partial "article-header" . }}
+      {{ .Content}}
+      {{ partial "article-share" . }}
+      <h3>{{ .Site.Data.l10n.comments.comments }}</h3>
+      {{ template "_internal/disqus.html" . }}
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+{{ partial "footer" . }}

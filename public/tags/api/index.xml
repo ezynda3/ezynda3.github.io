@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Api on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/api/index.xml</link>
+    <description>Recent content in Api on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Create A Simple PHP Command Line Tool</title>
+      <link>http://edzynda.com/create-a-simple-php-command-line-tool/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/create-a-simple-php-command-line-tool/</guid>
+      <description>&lt;p&gt;PHP is no doubt a great fit for building web applications but it also has the ability to create powerful command line applications. PHP has had this ability for a long time but recently there has been some excellent work done in order to improve the quality of PHP command line tools. The &lt;a href=&#34;http://symfony.com/doc/current/components/console/introduction.html&#34;&gt;Symfony\Console&lt;/a&gt; component makes it incredibly easy to create a command line application that accepts different arguments and options. Let&amp;rsquo;s see how easy it can be.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve decided to do something a little different then the standard &amp;ldquo;do stuff with Twitter&amp;rdquo; app that seems to be popular these days. Instead let&amp;rsquo;s do stuff with Marvel. More specifically let&amp;rsquo;s use data from the &lt;a href=&#34;http://developer.marvel.com/&#34;&gt;Marvel Developer&amp;rsquo;s API&lt;/a&gt; to make a command line app that searches for and displays the description of different characters from the Marvel universe. We&amp;rsquo;ll use an incomplete but usable PHP library called &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Marvel-PHP&lt;/a&gt; to help us interact with the API. To get started, create a new directory for your project and call it whatever you like.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup the Dependencies&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First we need to make sure we pull in the Symfony\Console component and the Marvel-PHP library with composer. Create a &amp;lsquo;composer.json&amp;rsquo; file at the root of your project that looks like this then run &amp;lsquo;composer install&amp;rsquo; from the command line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;symfony/console&amp;quot;: &amp;quot;~2.5&amp;quot;,
+        &amp;quot;caseysoftware/marvel-helper&amp;quot;: &amp;quot;dev-master&amp;quot;
+    },
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-4&amp;quot;: {
+            &amp;quot;Stark\\&amp;quot;: &amp;quot;app&amp;quot;
+        }
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We pulled in the our dependencies but we&amp;rsquo;ve also created a namespace for our app called &amp;lsquo;Stark&amp;rsquo; that lives in the &amp;lsquo;app&amp;rsquo; directory. That is where the meat of our command line app will live. Go ahead and create that.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bootstrap the Application&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In a normal modern web application, we would most likely have a front controller, usually index.php, as our entry point to the application. This would take care of the routing and bootstrapping of the rest of the application. A command line application isn&amp;rsquo;t much different. Let&amp;rsquo;s create shell script to bootstrap the rest of the app. First, as you&amp;rsquo;ll see in the code below, you will need to acquire credentials from Marvel to access the API. You can grab a public and private key pair &lt;a href=&#34;https://developer.marvel.com/account&#34;&gt;here&lt;/a&gt;. Once you have that, you&amp;rsquo;re ready to continue. Create a file called &amp;lsquo;marvel&amp;rsquo; at the top level of your app and paste the following code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;#!/usr/bin/env php
+&amp;lt;?php
+require_once &#39;vendor/autoload.php&#39;;
+
+use Stark\Console\Command\SearchCharacterCommand;
+use Symfony\Component\Console\Application;
+
+// API Keys
+$public_key = &#39;&amp;lt;YOUR_PUBLIC_KEY&amp;gt;&#39;;
+$private_key = &#39;&amp;lt;YOUR_PRIVATE_KEY&amp;gt;&#39;;
+
+$client = new Services_Marvel($public_key, $private_key);
+
+// Bootstrap
+$application = new Application();
+$application-&amp;gt;add(new SearchCharacterCommand($client));
+$application-&amp;gt;run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first line tells the shell or command line interface (bash, sh, zsh, etc&amp;hellip;) to use the PHP interpreter to execute the rest of the script. Then we require composer&amp;rsquo;s autoloader which gives us access to our dependencies and the &amp;lsquo;Stark&amp;rsquo; namespace we created.&lt;/p&gt;
+
+&lt;p&gt;Symfony command line applications are instantiated from the &amp;lsquo;Symfony\Component\Console\Application&amp;rsquo; class and can have a number of commands associated with them. We will create a search command called &amp;lsquo;Stark\Console\Command\SearchCharacterCommand&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;Fill out the placeholders for the API keys with the keys you acquired from Marvel. Next we pass those into a new instance of the Marvel-PHP client we included.&lt;/p&gt;
+
+&lt;p&gt;Finally we add a new instance of the &amp;lsquo;SearchCharacterCommand&amp;rsquo; to our application and call the &amp;lsquo;run()&amp;rsquo; method. Symfony takes care of the rest.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Define a Command&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we need define the actual command that should be executed when we run this from the command line. Symfony\Console applications can have multiple commands that can have various arguments and options. Let&amp;rsquo;s see what that would look like.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Console\Command;
+
+use Services_Marvel;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+
+class SearchCharacterCommand extends Command
+{
+    /**
+     * @var Services_Marvel
+     */
+    private $client;
+
+    /**
+     * Constructor
+     * @param Services_Marvel $client
+     */
+    public function __construct(Services_Marvel $client)
+    {
+        parent::__construct();
+        $this-&amp;gt;client = $client;
+    }
+
+    /**
+     * Configure the command
+     */
+    protected function configure()
+    {
+        $this
+            -&amp;gt;setName(&#39;search:character&#39;)
+            -&amp;gt;setDescription(&#39;Search for a Marvel character&#39;)
+            -&amp;gt;addArgument(
+                &#39;name&#39;,
+                InputArgument::REQUIRED,
+                &#39;Who do you want to search for?&#39;
+            )
+            -&amp;gt;addOption(
+                &#39;titles&#39;,
+                null,
+                InputOption::VALUE_NONE,
+                &#39;Display associated titles.&#39;
+            );
+    }
+
+    /**
+     * Execute the command
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $style = new OutputFormatterStyle(&#39;red&#39;, &#39;yellow&#39;, array(&#39;bold&#39;, &#39;blink&#39;));
+        $output-&amp;gt;getFormatter()-&amp;gt;setStyle(&#39;attribution&#39;, $style);
+
+        $name = $input-&amp;gt;getArgument(&#39;name&#39;);
+
+        $text = &#39;&#39;;
+
+        $characters = $this-&amp;gt;client-&amp;gt;characters-&amp;gt;index(1, 25, [&#39;name&#39; =&amp;gt; $name]);
+
+        if (! $characters) {
+            $text = &#39;&amp;lt;error&amp;gt;No results found for &#39; . $name . &#39;.&amp;lt;/error&amp;gt;&#39; .PHP_EOL;
+        }
+
+        foreach ($characters as $character) {
+            $text .= $character-&amp;gt;name . PHP_EOL . PHP_EOL
+                . &#39;&amp;lt;info&amp;gt;Description:&amp;lt;/info&amp;gt;&#39; . PHP_EOL . PHP_EOL
+                . $character-&amp;gt;description . PHP_EOL . PHP_EOL;
+
+            // --title
+            if ($input-&amp;gt;getOption(&#39;titles&#39;)) {
+                $text .= &#39;&amp;lt;info&amp;gt;Titles:&amp;lt;/info&amp;gt;&#39; . PHP_EOL . PHP_EOL
+                    . $this-&amp;gt;getSeries($character) . PHP_EOL;
+            }
+
+            $text .= &#39;&amp;lt;attribution&amp;gt;Data provided by Marvel. © 2014 Marvel&amp;lt;/attribution&amp;gt;&#39;;
+        }
+
+        $output-&amp;gt;writeln($text);
+    }
+
+    /**
+     * Get the comic book titles for the characters
+     * @param $character
+     * @return string
+     */
+    private function getSeries($character)
+    {
+        $titles = &#39;&#39;;
+        foreach ($character-&amp;gt;series-&amp;gt;items as $series) {
+            $titles .= $series-&amp;gt;name . PHP_EOL;
+        }
+
+        return $titles;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All commands extend &amp;lsquo;Symfony\Component\Console\Command\Command&amp;rsquo;. The &amp;lsquo;configure()&amp;rsquo; method is used to tell Symfony how to invoke the command. In this case it&amp;rsquo;s&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character &amp;lt;name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can create other commands if we want to but we&amp;rsquo;ll stick with one for now. We also define arguments and options to accept. In this case the &amp;lsquo;name&amp;rsquo; argument is required but the &amp;lsquo;titles&amp;rsquo; option is not. So to run a character search you would need to do something like.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character Thor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To display the associated comic book titles, add the &amp;lsquo;titles&amp;rsquo; option like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character --titles Thor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The output looks something like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &amp;lsquo;execute()&amp;rsquo; method tells Symfony what logic to run when our command is invoked. I won&amp;rsquo;t get too much into how the API client works but you can check out some of the examples in the library&amp;rsquo;s &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This should give you a taste of what kind of cool command line tools you can create. For more information and to learn what else the Symfony\Console component can do, check out the &lt;a href=&#34;http://symfony.com/doc/current/components/console/introduction.html&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Easily Post To Twitter Using Codebird</title>
+      <link>http://edzynda.com/easily-post-to-twitter-using-codebird/</link>
+      <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/easily-post-to-twitter-using-codebird/</guid>
+      <description>&lt;p&gt;Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&amp;#8217;t as hard as you might think.&lt;/p&gt;
+
+&lt;p&gt;The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;ve successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &amp;#8220;modify app permissions&amp;#8221; and change it to read and write.&lt;/p&gt;
+
+&lt;p&gt;Last you will need to create an access token. This is what will allow your app to post on your Twitter account&amp;#8217;s behalf. Click &amp;#8220;Generate my Access Token&amp;#8221; and then copy down the Access token and Access token secret.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that we have an app registered with Twitter we can get to the code.&lt;/p&gt;
+
+&lt;p&gt;In this example we will use a library called Codebird. This is an excellent library with excellent documentation. You can check out the project on &lt;a href=&#34;https://github.com/jublonet/codebird-php&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use composer to install Codebird&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer require jublonet/codebird-php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When prompted enter 2.4.1 for the version.&lt;/p&gt;
+
+&lt;p&gt;Now we can create a simple twitter class.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+require &#39;vendor/autoload.php&#39;;
+
+use Codebird\Codebird;
+
+class Twitter
+{
+    protected $consumer_key = &amp;lt;API_KEY&amp;gt;;
+    protected $consumer_secret = &amp;lt;API_SECRET&amp;gt;;
+    protected $access_token = &amp;lt;ACCESS_TOKEN&amp;gt;;
+    protected $access_secret = &amp;lt;ACCESS_SECRET&amp;gt;;
+    protected $twitter;
+
+    public function __construct()
+    {
+        // Fetch new Twitter Instance
+        Codebird::setConsumerKey($this-&amp;gt;consumer_key, $this-&amp;gt;consumer_secret);
+        $this-&amp;gt;twitter = Codebird::getInstance();
+
+        // Set access token
+        $this-&amp;gt;twitter-&amp;gt;setToken($this-&amp;gt;access_token, $this-&amp;gt;access_secret);
+    }
+
+    public function tweet($message)
+    {
+        return $this-&amp;gt;twitter-&amp;gt;statuses_update([&#39;status&#39; =&amp;gt; $message]);
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Replace the protected variables in &amp;#8216;&amp;lt; &amp;gt;&amp;#8216; brackets with your own app&amp;#8217;s information. In the constructor we simply set our consumer key then fetch an instance of Codebird. Once we have a fresh instance we can set our access token.&lt;/p&gt;
+
+&lt;p&gt;Next we create a simple method with accepts a single argument which is simply the message you would like to tweet.&lt;/p&gt;
+
+&lt;p&gt;Now when we want to tweet we can do something like the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+require &#39;Twitter.php&#39;;
+
+$twtr = new Twitter;
+
+$twtr-&amp;gt;tweet(&#39;Hello World!&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s really that simple. Of course there is a lot more you can do with this like post images for example but this is just to show you how easy it can be. For more features just check out the documentation on the Codebird &lt;a href=&#34;https://github.com/jublonet/codebird-php&#34;&gt;Github&lt;/a&gt; page.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

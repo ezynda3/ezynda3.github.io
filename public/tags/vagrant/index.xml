@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vagrant on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/vagrant/index.xml</link>
+    <description>Recent content in Vagrant on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Getting Started With Laravel 4 and Vagrant</title>
+      <link>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.&lt;/p&gt;
+
+&lt;p&gt;I came across Laravel while randomly browsing the web. I don&amp;rsquo;t even remember what I was looking for but after reading more about Laravel and how simple it was to setup, I was hooked. In this article I&amp;rsquo;ll take you through setting up a PHP development environment for Laravel 4.&lt;/p&gt;
+
+&lt;p&gt;In this tutorial, I will also be introducing you to a utility called Vagrant. Vagrant makes it ridiculously easy to create a virtual machine in which to run and test your web applications. It uses VirtualBox as a backend and is pretty straightforward once you get into it. No more fussing with WAMP, XAMP, or MAMP environments. You can easily create a small virtual machine that more closely resembles your production environment with a just few commands.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Install VirtualBox and Vagrant&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;On a standard Debian or Ubuntu box you should be able to run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install virtualbox  
+$ sudo apt-get install vagrant  
+$ sudo apt-get install linux-headers-$(uname -r)  
+$ sudo dpkg-reconfigure virtualbox-dkms  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This installs VirtualBox, Vagrant and it&amp;rsquo;s dependencies. It also compiles the various kernel modules needed for VirtualBox to run correctly.&lt;/p&gt;
+
+&lt;p&gt;On my Gentoo box, I run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ emerge virtualbox  
+$ emerge virtualbox-modules  
+$ emerge vagrant  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Setup The Vagrant Environment&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Vagrant&amp;rsquo;s virtual machines instances are based on prebuilt configurations called &amp;lsquo;boxes&amp;rsquo;. The following command will download a box based on Ubuntu Precise Pangolin (32bit) and name it &amp;lsquo;precise32&amp;#8242;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vagrant box add precise32 http://files.vagrantup.com/precise32.box  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You now no longer have to download that box and can create any number of VM instances based on this build.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir my_dev_env
+$ cd my_dev_env
+$ vagrant init precise32
+$ vagrant up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! You now have a fully functioning Ubuntu VM ready to play around with. To work with the VM run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vagrant ssh  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you will notice that the VM doesn&amp;rsquo;t automatically have a webserver or mysql or really anything needed for a development environment installed. You can go ahead and install everything you need manually but fortunately, Vagrant is scriptable. You can go ahead and write a script to install everything you need after running &amp;lsquo;vagrant up&amp;rsquo; but why do that when it can be done for you?&lt;/p&gt;
+
+&lt;p&gt;Head on over to PuPHPet to see what I mean.&lt;/p&gt;
+
+&lt;p&gt;This handy GUI will take you through configuring a Vagrant environment that&amp;rsquo;s functional as soon as it boots up.&lt;/p&gt;
+
+&lt;p&gt;First select &amp;lsquo;Create Locally&amp;rsquo;. Next, for this tutorial we&amp;rsquo;ll select Debian Wheezy as our base. There&amp;rsquo;s no reason to change the vagrant box name but you can change the &amp;lsquo;Name Your Box&amp;rsquo; section if you wish. You can also change the ip address that this VM will be accessed from.&lt;/p&gt;
+
+&lt;p&gt;One final thing I do in this section is change the default sync folder to &amp;lsquo;./work&amp;rsquo;. I&amp;rsquo;ll explain why later.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-1-.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-259&#34; alt=&#34;PuPHPet-step-1-&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-1-.png&#34; width=&#34;680&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On the Server Basics section you can safely leave everything as default. If you want to add things like your own personal aliases file, you can add that here.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-2.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-260&#34; alt=&#34;PuPHPet-step-2&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-2.png&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For the HTTP Server I choose Nginx because it&amp;rsquo;s awesome. Choose the host name you want to use for you dev environment. We&amp;rsquo;ll add that to our /etc/hosts file later for easy access. Everything else can safely stay the same.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-3.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-263&#34; alt=&#34;PuPHPet-step-3&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-3.png&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I keep everything here as default as well. Make sure &amp;lsquo;Install Composer&amp;rsquo; is checked. We&amp;rsquo;ll need that to install Laravel later. You can add any other PHP modules you want if you wish.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-4.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-264&#34; alt=&#34;PuPHPet-step-4&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-4.png&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The Database section should be pretty straightforward. Just create a root password and setup a non-root user.&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-5.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-265&#34; alt=&#34;PuPHPet-step-5&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-5.png&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally you can hit &amp;lsquo;Create My Manifest&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-6.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-266&#34; alt=&#34;PuPHPet-step-6&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-6.png&#34; width=&#34;640&#34; height=&#34;280&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Once the .zip file has finished downloading run the following&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ unzip wheezy64.zip  
+$ mv wheezy64 laravel_dev  
+$ cd laravel_dev  
+$ ls  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You&amp;rsquo;ll notice that this directory is cluttered with stuff. Normally Vagrant uses the top level directory of your environment to sync with a folder on the VM. In this case it will sync with &amp;lsquo;/var/www&amp;rsquo;. This comes in handy for developing on the local machine. Remember that we chose &amp;lsquo;./work&amp;rsquo; as our local sync directory back in the GUI. It&amp;rsquo;s not created by default, so we have to create it ourselves. After that we can start Vagrant as normal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir work  
+$ vagrant up  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To test to make sure everything is working run the following&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo echo &#39;192.168.56.101 laravel.dev&#39; &amp;gt;&amp;gt; /etc/hosts  
+$ cd work  
+$ echo &#39;&amp;lt;?php phpinfo(); ?&amp;gt;&#39; &amp;gt; index.php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that &amp;lsquo;laravel.dev&amp;rsquo; should be replaced with whatever you named your virtualhost back in the GUI. Open your web browser of choice and go to &amp;lsquo;&lt;a href=&#34;http://laravel.dev&#39;&#34;&gt;http://laravel.dev&#39;&lt;/a&gt; and you should see the familiar PHP Info page.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3. Install Laravel&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now to install Laravel we are going to use Composer which is an easy utility for installing various PHP related software such as the Laravel framework.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vagrant ssh  
+$ cd /var/www  
+$ composer create-project laravel/laravel your-project-name --prefer-dist  
+$ exit  
+$ chmod -R 777 my-project/app/storage  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now point your web browser to &amp;lsquo;&lt;a href=&#34;http://laravel.dev/my-project/public&#39;&#34;&gt;http://laravel.dev/my-project/public&#39;&lt;/a&gt;. You may have to &amp;lsquo;chmod -R 777&amp;#8242; the storage directory one more time as Laravel creates a &amp;lsquo;session&amp;rsquo; directory that needs to be writeable.&lt;/p&gt;
+
+&lt;p&gt;If all goes well you should see the Laravel welcome screen stating that &amp;#8220;You Have Arrived.&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/laravel-success.jpg&#34;&gt;&lt;img class=&#34;alignnone size-medium wp-image-270&#34; alt=&#34;laravel-success&#34; src=&#34;http://www.edzynda.com/media/laravel-success-300x168.jpg&#34; width=&#34;300&#34; height=&#34;168&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Congratulations! You should now have a functioning Laravel 4 development environment.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

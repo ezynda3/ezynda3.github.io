@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/apache/index.xml</link>
+    <description>Recent content in Apache on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using The PHP Built-in Webserver</title>
+      <link>http://edzynda.com/using-the-php-built-in-webserver/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-the-php-built-in-webserver/</guid>
+      <description>&lt;p&gt;For years Ruby and Python have been stealing the show with innovative features and functionality to help developers get their projects off the ground. PHP was left in the dust for quite a while. One simple but invaluable feature that PHP had been lacking was it&amp;rsquo;s own webserver. Since version 5.4 however, PHP developers can now enjoy this modern convenience.&lt;/p&gt;
+
+&lt;p&gt;Not all backend developers are system administrators. They know how to code and code well. That doesn&amp;rsquo;t mean they know how to optimally configure an Apache or Nginx webserver. Depending on the project they work on, their code can live on any number of server configurations. Rather than worry about setting up Apache, developers should be making sure their code works. Leave the configuration to the sys admins.&lt;/p&gt;
+
+&lt;p&gt;Using the PHP built-in web server is simple. Simply &amp;lsquo;cd&amp;rsquo; into the directory you want served and run php with the &amp;lsquo;-S&amp;rsquo; option.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/public_html  
+$ php -S localhost:8000  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Most people will bind it to localhost for development but you can also bind it to any interface like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ php -S 0.0.0.0:8000  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you need to handle special filetypes you can use a routes file like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// router.php
+$path = pathinfo($_SERVER[&amp;quot;SCRIPT_FILENAME&amp;quot;]);
+if ($path[&amp;quot;extension&amp;quot;] == &amp;quot;el&amp;quot;) {
+    // Handle .el files
+    header(&amp;quot;Content-Type: text/x-script.elisp&amp;quot;);
+    readfile($_SERVER[&amp;quot;SCRIPT_FILENAME&amp;quot;]);
+}
+else {
+    return false; // serve files normally
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then run the server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php -S localhost:8000 router.php  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What if you want your scripts to have slightly different behavior when running under the PHP server rather than production? Just use the php_sapi_name() function like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// router.php
+if (php_sapi_name() == &#39;cli-server&#39;) {
+    /* route static assets and return false */
+}
+/* go on with normal index.php operations */
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this nifty feature it&amp;rsquo;s possible to speed up development and cut down dependencies on special development servers or VMs in most cases.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>3 Reasons To Use Nginx Instead Of Apache</title>
+      <link>http://edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</link>
+      <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</guid>
+      <description>&lt;p&gt;If you&amp;#8217;ve been working with the web for the past decade, you&amp;#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&amp;#8217;s free, functional and very modular. I&amp;#8217;ve been using Apache for years as it&amp;#8217;s the default on many hosting solutions.&lt;/p&gt;
+
+&lt;p&gt;As great as Apache is, it&amp;#8217;s not a one size fits all solution. In fact it may even be overkill for some projects. About six months ago, I traded in my old hosting provider for a Virtual Private Server (VPS) at&lt;a title=&#34;Xen VPS Hosting&#34; href=&#34;http://www.linode.com/?r=e023858b4fde04bffe508bb43c30bad4ee47a9f0&#34; target=&#34;_blank&#34;&gt; Linode&lt;/a&gt;. Around the same time, I started reading about a new web server called &lt;a title=&#34;Nginx&#34; href=&#34;http://nginx.org/&#34; target=&#34;_blank&#34;&gt;Nginx&lt;/a&gt;. While not the most popular sever, it was gaining in popularity. At first I wasn&amp;#8217;t sure about switching but after some research, I decided to take the plunge. Here are 3 reasons you should consider trying out Nginx for yourself.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. It&amp;#8217;s Lightweight&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#8217;ve ever worked with Apache&amp;#8217;s configuration files you&amp;#8217;re familiar with how long and cluttered they are. Apache has a lot of features and options. You really don&amp;#8217;t need all of those features for most projects though.&lt;/p&gt;
+
+&lt;p&gt;Nginx is very simple in that it just serves static web pages while adding support for essential things like virtual hosts and URL rewrites. There are no modules for PHP or JSP. Instead those requests are passed efficiently to third party processors. This leaves Nginx&amp;#8217;s memory footprint small.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. It Serves Static Files FAST&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Like I mentioned before, Nginx really only serves static web pages. Being less memory and CPU hungry than Apache, it serves them up much faster.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3. Proxying Makes It Scalable&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Most projects aren&amp;#8217;t full of static content but rather dynamic. If you want to incorporate Python or Ruby on Rails into your project, it&amp;#8217;s as simple as adding a proxy directive to your configuration.&lt;/p&gt;
+
+&lt;p&gt;Start a Python or Rails server on a particular port like 8000 and add something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;location /railsapp {  
+    proxy_pass http://127.0.0.1:8000;  
+    proxy_redirect off;  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Python or Rails server can do all the heavy lifting when it needs to and Nginx can do what it does best.&lt;/p&gt;
+
+&lt;p&gt;Apache is great for a lot of things and I&amp;#8217;m not saying it&amp;#8217;s no longer needed but if your project doesn&amp;#8217;t require everything under the sun, you might want to consider giving Nginx a try.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

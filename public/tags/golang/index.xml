@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/golang/index.xml</link>
+    <description>Recent content in Golang on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Single Page Web App With Go And Vue</title>
+      <link>http://edzynda.com/single-page-web-app-with-go-and-vue/</link>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/single-page-web-app-with-go-and-vue/</guid>
+      <description>&lt;p&gt;I wrote a nice little tutorial on creating a single page web application using Go and VueJS. Check it out over at &lt;a href=&#34;https://scotch.io/tutorials/create-a-single-page-app-with-go-echo-and-vue&#34;&gt;Scotch.io&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

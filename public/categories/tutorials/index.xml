@@ -1,0 +1,1571 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/categories/tutorials/index.xml</link>
+    <description>Recent content in Tutorials on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Continuous Integration With Jenkins Part II</title>
+      <link>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://edzynda.com/continuous-integration-with-jenkins-part-ii/&#34;&gt;first part&lt;/a&gt;  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?&lt;/p&gt;
+
+&lt;p&gt;A better options is to use another tool to automate the build process and perform certain tasks dynamically. There are quite a lot of tools out there to do this. A popular tool used in Jenkins setups is &lt;a href=&#34;http://ant.apache.org/&#34;&gt;Apache Ant&lt;/a&gt; . It&amp;rsquo;s used a lot by Java developers to automate builds of their applications but can also be used to build and run tasks for just about anything.&lt;/p&gt;
+
+&lt;p&gt;I was planning to do this article about Ant but decided against it. While Ant is a very powerful tool, it&amp;rsquo;s configuration is in XML which is just gross. Don&amp;rsquo;t get me wrong, XML has it&amp;rsquo;s uses but I prefer something more readable. Instead, I found a PHP based tool called &lt;a href=&#34;http://robo.li&#34;&gt;Robo&lt;/a&gt;  which, in my opinion, is easier on the eyes and can be just as powerful.&lt;/p&gt;
+
+&lt;p&gt;If you still want to try out Ant you can check out a great example build file &lt;a href=&#34;http://jenkins-php.org/automation.html&#34;&gt;here&lt;/a&gt;. Don&amp;rsquo;t say I didn&amp;rsquo;t warn you though.&lt;/p&gt;
+
+&lt;p&gt;So what is robo? Here is what they say on their website.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Robo is a task runner you always have been looking for. It allows you to write fully customizable tasks in common OOP PHP style. Robo has comprehensive list of built-in common tasks for development, testing, and deployment.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Installing and running robo tasks is really simple. It can be installed using Composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer require codegyre/robo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once installed just run the command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vendor/bin/robo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If it&amp;rsquo;s your first time running, it will create a file called &amp;lsquo;RoboFile.php&amp;rsquo;. This is the file we will use to define our commands and run our tasks.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create a RoboFile for building and running some tests for a project.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class RoboFile extends \Robo\Tasks
+{
+    // Run ALL the tasks
+    public function build()
+    {
+        $this-&amp;gt;setup();
+        $this-&amp;gt;test();
+        $this-&amp;gt;lint();
+        $this-&amp;gt;codesniffer();
+    }
+
+    // Setup
+    private function setup()
+    {
+        if (! is_dir(&#39;reports&#39;)) {
+            $this-&amp;gt;taskFilesystemStack()
+                -&amp;gt;mkdir(&#39;reports&#39;)
+                -&amp;gt;run();
+        }
+
+        $this-&amp;gt;_cleanDir(&#39;reports&#39;);
+    }
+
+    // Run PHPSpec tests
+    public function test()
+    {
+        $this-&amp;gt;taskPhpspec()
+            -&amp;gt;format(&#39;html&#39;)
+            -&amp;gt;arg(&#39;&amp;gt; reports/phpspec.html&#39;)
+            -&amp;gt;run();
+    }
+
+    // Check for syntax errors
+    public function lint()
+    {
+        $this-&amp;gt;taskExec(&#39;php&#39;)
+            -&amp;gt;arg(&#39;-l&#39;)
+            -&amp;gt;arg(&#39;spec/*/*&#39;)
+            -&amp;gt;run();
+
+        $this-&amp;gt;taskExec(&#39;php&#39;)
+            -&amp;gt;arg(&#39;-l&#39;)
+            -&amp;gt;arg(&#39;src/*&#39;)
+            -&amp;gt;run();
+    }
+
+    // Check coding style
+    public function codesniffer()
+    {
+        $this-&amp;gt;taskExec(&#39;vendor/bin/phpcs&#39;)
+            -&amp;gt;arg(&#39;--report=checkstyle&#39;)
+            -&amp;gt;arg(&#39;--report-file=reports/checkstyle.xml&#39;)
+            -&amp;gt;arg(&#39;--standard=PSR2&#39;)
+            -&amp;gt;arg(&#39;--extensions=php&#39;)
+            -&amp;gt;arg(&#39;src&#39;)
+            -&amp;gt;run();
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each public method in the RoboFile class is interprented as a command. For example to run the lint command, which checks our code for syntax errors, we can run this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vendor/bin/robo lint
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each command can run one or more tasks. Robo comes with a handful of built in tasks to include running PHPUnit and PHPSpec tests. If there&amp;rsquo;s a task that robo doesn&amp;rsquo;t have, you can use the &amp;lsquo;taskExec&amp;rsquo; task and just give it the command like you would on the command line. Each task has an &amp;lsquo;arg&amp;rsquo; method which just tacks on the various arguments to the command. The &amp;lsquo;run&amp;rsquo; method is pretty self explanatory.&lt;/p&gt;
+
+&lt;p&gt;Because robo runs on PHP you can add all kinds of logic to run tasks only when certain conditions are met. I find the syntax and fluent interface to be much more readable than XML as well.&lt;/p&gt;
+
+&lt;p&gt;Now that we have a sweet build script we can simplify our config in Jenkins a little bit. Under your project&amp;rsquo;s config in Jenkin&amp;rsquo;s dashboard, in our &amp;lsquo;Execute Shell&amp;rsquo; build step we can add the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/usr/local/bin/composer --prefer-source install
+vendor/bin/robo build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! The script will go ahead and create a reports directory for published reports. It will run our tests, check for syntax and even do a code standard check against PSR-2. If you want to try it for yourself, you can grab this sample project I created &lt;a href=&#34;https://github.com/ezynda3/string-calculator&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can also check out Robo&amp;rsquo;s excellent documentation &lt;a href=&#34;http://robo.li/started/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration With Jenkins Part I</title>
+      <link>http://edzynda.com/continuous-integration-with-jenkins-part-i/</link>
+      <pubDate>Mon, 09 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/continuous-integration-with-jenkins-part-i/</guid>
+      <description>&lt;p&gt;Continuous integration or CI, is all the rage these days. If you&amp;rsquo;re not familiar with what CI is, it&amp;rsquo;s basically a methodology for rapidly developing, testing and deploying applications. Using a well configured CI setup or pipeline, a developer or team of developers can make a change to their codebase, test those changes to make sure they didn&amp;rsquo;t break those changes and then push that code live in a matter of minutes. They can do this all day long and rest assured that their changes are good to go on their production servers.&lt;/p&gt;
+
+&lt;p&gt;There are many ways to do this but one of the most popular tools used these days is Jenkins. Jenkins is a web application written in Java that helps to automate building, testing and even deploying your application. Jenkins, along with a a whole slew of plugins, can do most of the heavy lifting in your CI pipeline.&lt;/p&gt;
+
+&lt;p&gt;At first glance, Jenkins looks pretty complicated to setup but after playing around with it myself, I&amp;rsquo;ve found it&amp;rsquo;s pretty simple.&lt;/p&gt;
+
+&lt;p&gt;In this first part I&amp;rsquo;m going to go over how to get Jenkins setup to build a simple PHP app, run some tests and publish the results. Most other tutorials I&amp;rsquo;ve found include fancy build scripts for a powerful tool called Ant. Those can get pretty complicated so I won&amp;rsquo;t include anything like that in this part. We just want to get something running so you can see some results.&lt;/p&gt;
+
+&lt;p&gt;###Installation
+Installation is not in the scope of this article. Please refer to the documentation on the &lt;a href=&#34;http://jenkins-ci.org&#34;&gt;Jenkins&lt;/a&gt; website or Google for instructions on installing it on your OS of choice. It should be as simple as &amp;lsquo;yum install jenkins&amp;rsquo; or &amp;lsquo;apt-get install jenkins&amp;rsquo; depending on your setup.&lt;/p&gt;
+
+&lt;p&gt;###PHP
+As we will be working with a PHP application, our Jenkins server will need it&amp;rsquo;s own instance of PHP. For this example we need version 5.4 or higher. Install based on your OS.&lt;/p&gt;
+
+&lt;p&gt;###Git
+We will need Git installed in order to fetch source code to build and run our tests. Install based on your OS.&lt;/p&gt;
+
+&lt;p&gt;###Composer
+Part of the build process will include downloading dependencies using Composer. You can install it globally like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;php -r &amp;quot;readfile(&#39;https://getcomposer.org/installer&#39;);&amp;quot; | php
+sudo chmod +x ./composer.phar
+sudo cp ./composer.phar /usr/local/bin/composer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Plugins
+Jenkins has a huge collection of useful plugins available. We&amp;rsquo;re going to need a few in order to run our build.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HTML Publisher&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can install these through the Jenkins dashboard but you can also install them through the command line like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin htmlpublisher git
+java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###The Build
+If you have Jenkins installed correctly you should be able to reach the dashboard by pointing your browser to the server it&amp;rsquo;s installed on using port 8080 (e.g. &lt;a href=&#34;http://myjenkins.com:8080&#34;&gt;http://myjenkins.com:8080&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Once there you should see a screen like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click on &amp;ldquo;Create new jobs&amp;rdquo;. We&amp;rsquo;re going to use an existing open source project called Flysystem for our build test so we&amp;rsquo;ll just call our build &amp;ldquo;Flysystem&amp;rdquo; and we&amp;rsquo;re going to create a &amp;ldquo;Freestyle&amp;rdquo; project. Click &amp;ldquo;Ok&amp;rdquo; to continue.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can give our project a description if we like.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now down in the &amp;ldquo;Source Code Management&amp;rdquo; section we&amp;rsquo;ll select &amp;ldquo;Git&amp;rdquo; and set the repository to &lt;a href=&#34;https://github.com/thephpleague/flysystem&#34;&gt;https://github.com/thephpleague/flysystem&lt;/a&gt;. You can safely leave everything else as default.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Under the &amp;ldquo;Build&amp;rdquo; section we set up the different steps for building and testing our applications. Click on &amp;ldquo;Add build step&amp;rdquo; and select &amp;ldquo;Execute shell&amp;rdquo;. This is a quick and dirty way to run various build commands without having to create a complex XML build script for use with Ant or Maven. Add the following commands in the textbox.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/usr/local/bin/composer install
+bin/phpspec run -f html &amp;gt; report.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The great thing about Jenkins is that with the right plugins you can create all kinds of useful reports for every build of your application. In our build step we&amp;rsquo;re running phpspec for tests and setting the output format as HTML and saving it to a file. Jenkins can take that HTML and publish it for viewing later.
+.
+Under &amp;ldquo;Post-build Actions&amp;rdquo; click on &amp;ldquo;Add post-build action&amp;rdquo; and select &amp;ldquo;Publish HTML Reports&amp;rdquo;. Fill out the textboxes like so.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hit save and that&amp;rsquo;s it. On the left side menu click &amp;ldquo;Build Now&amp;rdquo;. You should a little blinking dot appear under &amp;ldquo;Build History&amp;rdquo;. Click on it and then click on &amp;ldquo;Console Output&amp;rdquo;. You should see a bunch of text scrolling past as the build runs. It should look something like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It might take a few minutes if this is the first time running the build as composer is downloading dependencies from scratch.&lt;/p&gt;
+
+&lt;p&gt;Now click &amp;ldquo;Back to Project&amp;rdquo; and then click &amp;ldquo;PHPSpec Report&amp;rdquo;. This is the nice HTML report we had published. This wil list out all the tests that were run. Tests that passed will be green while any that have failed will be red and usually give a stack trace with details on why it failed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s basically all you need to get a simple build running on Jenkins. Of course there is a lot more you can do but that will be covered in a later post.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create A Simple PHP Command Line Tool</title>
+      <link>http://edzynda.com/create-a-simple-php-command-line-tool/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/create-a-simple-php-command-line-tool/</guid>
+      <description>&lt;p&gt;PHP is no doubt a great fit for building web applications but it also has the ability to create powerful command line applications. PHP has had this ability for a long time but recently there has been some excellent work done in order to improve the quality of PHP command line tools. The &lt;a href=&#34;http://symfony.com/doc/current/components/console/introduction.html&#34;&gt;Symfony\Console&lt;/a&gt; component makes it incredibly easy to create a command line application that accepts different arguments and options. Let&amp;rsquo;s see how easy it can be.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve decided to do something a little different then the standard &amp;ldquo;do stuff with Twitter&amp;rdquo; app that seems to be popular these days. Instead let&amp;rsquo;s do stuff with Marvel. More specifically let&amp;rsquo;s use data from the &lt;a href=&#34;http://developer.marvel.com/&#34;&gt;Marvel Developer&amp;rsquo;s API&lt;/a&gt; to make a command line app that searches for and displays the description of different characters from the Marvel universe. We&amp;rsquo;ll use an incomplete but usable PHP library called &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Marvel-PHP&lt;/a&gt; to help us interact with the API. To get started, create a new directory for your project and call it whatever you like.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup the Dependencies&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First we need to make sure we pull in the Symfony\Console component and the Marvel-PHP library with composer. Create a &amp;lsquo;composer.json&amp;rsquo; file at the root of your project that looks like this then run &amp;lsquo;composer install&amp;rsquo; from the command line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;symfony/console&amp;quot;: &amp;quot;~2.5&amp;quot;,
+        &amp;quot;caseysoftware/marvel-helper&amp;quot;: &amp;quot;dev-master&amp;quot;
+    },
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-4&amp;quot;: {
+            &amp;quot;Stark\\&amp;quot;: &amp;quot;app&amp;quot;
+        }
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We pulled in the our dependencies but we&amp;rsquo;ve also created a namespace for our app called &amp;lsquo;Stark&amp;rsquo; that lives in the &amp;lsquo;app&amp;rsquo; directory. That is where the meat of our command line app will live. Go ahead and create that.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bootstrap the Application&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In a normal modern web application, we would most likely have a front controller, usually index.php, as our entry point to the application. This would take care of the routing and bootstrapping of the rest of the application. A command line application isn&amp;rsquo;t much different. Let&amp;rsquo;s create shell script to bootstrap the rest of the app. First, as you&amp;rsquo;ll see in the code below, you will need to acquire credentials from Marvel to access the API. You can grab a public and private key pair &lt;a href=&#34;https://developer.marvel.com/account&#34;&gt;here&lt;/a&gt;. Once you have that, you&amp;rsquo;re ready to continue. Create a file called &amp;lsquo;marvel&amp;rsquo; at the top level of your app and paste the following code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;#!/usr/bin/env php
+&amp;lt;?php
+require_once &#39;vendor/autoload.php&#39;;
+
+use Stark\Console\Command\SearchCharacterCommand;
+use Symfony\Component\Console\Application;
+
+// API Keys
+$public_key = &#39;&amp;lt;YOUR_PUBLIC_KEY&amp;gt;&#39;;
+$private_key = &#39;&amp;lt;YOUR_PRIVATE_KEY&amp;gt;&#39;;
+
+$client = new Services_Marvel($public_key, $private_key);
+
+// Bootstrap
+$application = new Application();
+$application-&amp;gt;add(new SearchCharacterCommand($client));
+$application-&amp;gt;run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first line tells the shell or command line interface (bash, sh, zsh, etc&amp;hellip;) to use the PHP interpreter to execute the rest of the script. Then we require composer&amp;rsquo;s autoloader which gives us access to our dependencies and the &amp;lsquo;Stark&amp;rsquo; namespace we created.&lt;/p&gt;
+
+&lt;p&gt;Symfony command line applications are instantiated from the &amp;lsquo;Symfony\Component\Console\Application&amp;rsquo; class and can have a number of commands associated with them. We will create a search command called &amp;lsquo;Stark\Console\Command\SearchCharacterCommand&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;Fill out the placeholders for the API keys with the keys you acquired from Marvel. Next we pass those into a new instance of the Marvel-PHP client we included.&lt;/p&gt;
+
+&lt;p&gt;Finally we add a new instance of the &amp;lsquo;SearchCharacterCommand&amp;rsquo; to our application and call the &amp;lsquo;run()&amp;rsquo; method. Symfony takes care of the rest.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Define a Command&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we need define the actual command that should be executed when we run this from the command line. Symfony\Console applications can have multiple commands that can have various arguments and options. Let&amp;rsquo;s see what that would look like.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Console\Command;
+
+use Services_Marvel;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+
+class SearchCharacterCommand extends Command
+{
+    /**
+     * @var Services_Marvel
+     */
+    private $client;
+
+    /**
+     * Constructor
+     * @param Services_Marvel $client
+     */
+    public function __construct(Services_Marvel $client)
+    {
+        parent::__construct();
+        $this-&amp;gt;client = $client;
+    }
+
+    /**
+     * Configure the command
+     */
+    protected function configure()
+    {
+        $this
+            -&amp;gt;setName(&#39;search:character&#39;)
+            -&amp;gt;setDescription(&#39;Search for a Marvel character&#39;)
+            -&amp;gt;addArgument(
+                &#39;name&#39;,
+                InputArgument::REQUIRED,
+                &#39;Who do you want to search for?&#39;
+            )
+            -&amp;gt;addOption(
+                &#39;titles&#39;,
+                null,
+                InputOption::VALUE_NONE,
+                &#39;Display associated titles.&#39;
+            );
+    }
+
+    /**
+     * Execute the command
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $style = new OutputFormatterStyle(&#39;red&#39;, &#39;yellow&#39;, array(&#39;bold&#39;, &#39;blink&#39;));
+        $output-&amp;gt;getFormatter()-&amp;gt;setStyle(&#39;attribution&#39;, $style);
+
+        $name = $input-&amp;gt;getArgument(&#39;name&#39;);
+
+        $text = &#39;&#39;;
+
+        $characters = $this-&amp;gt;client-&amp;gt;characters-&amp;gt;index(1, 25, [&#39;name&#39; =&amp;gt; $name]);
+
+        if (! $characters) {
+            $text = &#39;&amp;lt;error&amp;gt;No results found for &#39; . $name . &#39;.&amp;lt;/error&amp;gt;&#39; .PHP_EOL;
+        }
+
+        foreach ($characters as $character) {
+            $text .= $character-&amp;gt;name . PHP_EOL . PHP_EOL
+                . &#39;&amp;lt;info&amp;gt;Description:&amp;lt;/info&amp;gt;&#39; . PHP_EOL . PHP_EOL
+                . $character-&amp;gt;description . PHP_EOL . PHP_EOL;
+
+            // --title
+            if ($input-&amp;gt;getOption(&#39;titles&#39;)) {
+                $text .= &#39;&amp;lt;info&amp;gt;Titles:&amp;lt;/info&amp;gt;&#39; . PHP_EOL . PHP_EOL
+                    . $this-&amp;gt;getSeries($character) . PHP_EOL;
+            }
+
+            $text .= &#39;&amp;lt;attribution&amp;gt;Data provided by Marvel. © 2014 Marvel&amp;lt;/attribution&amp;gt;&#39;;
+        }
+
+        $output-&amp;gt;writeln($text);
+    }
+
+    /**
+     * Get the comic book titles for the characters
+     * @param $character
+     * @return string
+     */
+    private function getSeries($character)
+    {
+        $titles = &#39;&#39;;
+        foreach ($character-&amp;gt;series-&amp;gt;items as $series) {
+            $titles .= $series-&amp;gt;name . PHP_EOL;
+        }
+
+        return $titles;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All commands extend &amp;lsquo;Symfony\Component\Console\Command\Command&amp;rsquo;. The &amp;lsquo;configure()&amp;rsquo; method is used to tell Symfony how to invoke the command. In this case it&amp;rsquo;s&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character &amp;lt;name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can create other commands if we want to but we&amp;rsquo;ll stick with one for now. We also define arguments and options to accept. In this case the &amp;lsquo;name&amp;rsquo; argument is required but the &amp;lsquo;titles&amp;rsquo; option is not. So to run a character search you would need to do something like.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character Thor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To display the associated comic book titles, add the &amp;lsquo;titles&amp;rsquo; option like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character --titles Thor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The output looks something like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &amp;lsquo;execute()&amp;rsquo; method tells Symfony what logic to run when our command is invoked. I won&amp;rsquo;t get too much into how the API client works but you can check out some of the examples in the library&amp;rsquo;s &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This should give you a taste of what kind of cool command line tools you can create. For more information and to learn what else the Symfony\Console component can do, check out the &lt;a href=&#34;http://symfony.com/doc/current/components/console/introduction.html&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Easily Post To Twitter Using Codebird</title>
+      <link>http://edzynda.com/easily-post-to-twitter-using-codebird/</link>
+      <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/easily-post-to-twitter-using-codebird/</guid>
+      <description>&lt;p&gt;Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&amp;#8217;t as hard as you might think.&lt;/p&gt;
+
+&lt;p&gt;The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;ve successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &amp;#8220;modify app permissions&amp;#8221; and change it to read and write.&lt;/p&gt;
+
+&lt;p&gt;Last you will need to create an access token. This is what will allow your app to post on your Twitter account&amp;#8217;s behalf. Click &amp;#8220;Generate my Access Token&amp;#8221; and then copy down the Access token and Access token secret.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that we have an app registered with Twitter we can get to the code.&lt;/p&gt;
+
+&lt;p&gt;In this example we will use a library called Codebird. This is an excellent library with excellent documentation. You can check out the project on &lt;a href=&#34;https://github.com/jublonet/codebird-php&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use composer to install Codebird&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer require jublonet/codebird-php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When prompted enter 2.4.1 for the version.&lt;/p&gt;
+
+&lt;p&gt;Now we can create a simple twitter class.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+require &#39;vendor/autoload.php&#39;;
+
+use Codebird\Codebird;
+
+class Twitter
+{
+    protected $consumer_key = &amp;lt;API_KEY&amp;gt;;
+    protected $consumer_secret = &amp;lt;API_SECRET&amp;gt;;
+    protected $access_token = &amp;lt;ACCESS_TOKEN&amp;gt;;
+    protected $access_secret = &amp;lt;ACCESS_SECRET&amp;gt;;
+    protected $twitter;
+
+    public function __construct()
+    {
+        // Fetch new Twitter Instance
+        Codebird::setConsumerKey($this-&amp;gt;consumer_key, $this-&amp;gt;consumer_secret);
+        $this-&amp;gt;twitter = Codebird::getInstance();
+
+        // Set access token
+        $this-&amp;gt;twitter-&amp;gt;setToken($this-&amp;gt;access_token, $this-&amp;gt;access_secret);
+    }
+
+    public function tweet($message)
+    {
+        return $this-&amp;gt;twitter-&amp;gt;statuses_update([&#39;status&#39; =&amp;gt; $message]);
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Replace the protected variables in &amp;#8216;&amp;lt; &amp;gt;&amp;#8216; brackets with your own app&amp;#8217;s information. In the constructor we simply set our consumer key then fetch an instance of Codebird. Once we have a fresh instance we can set our access token.&lt;/p&gt;
+
+&lt;p&gt;Next we create a simple method with accepts a single argument which is simply the message you would like to tweet.&lt;/p&gt;
+
+&lt;p&gt;Now when we want to tweet we can do something like the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+require &#39;Twitter.php&#39;;
+
+$twtr = new Twitter;
+
+$twtr-&amp;gt;tweet(&#39;Hello World!&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s really that simple. Of course there is a lot more you can do with this like post images for example but this is just to show you how easy it can be. For more features just check out the documentation on the Codebird &lt;a href=&#34;https://github.com/jublonet/codebird-php&#34;&gt;Github&lt;/a&gt; page.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</title>
+      <link>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
+      <description>&lt;p&gt;For a lot of HTML forms you really don&amp;rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&amp;rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
+You can grab WYSIHTML5 from &lt;a href=&#34;https://github.com/xing/wysihtml5&#34;&gt;Github&lt;/a&gt;. To add a little style we&amp;rsquo;ll use Twitter&amp;rsquo;s &lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; framework and &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt; icon fonts.
+Copy the WYSIHTML5 files into the correct directories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;├── css
+├── fonts
+└── js
+    ├── advanced.js
+    └── wysihtml5-0.3.0.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lsquo;wysihtml5-0.3.0.js&amp;rsquo; can be found in the &amp;lsquo;dist&amp;rsquo; directory and &amp;lsquo;advanced.js&amp;rsquo; in the &amp;lsquo;parser_rules&amp;rsquo; directory.
+Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+    &amp;lt;script src=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/wysihtml5-0.3.0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/advanced.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;form method=&amp;quot;POST&amp;quot; action=&amp;quot;/&amp;quot; &amp;gt;
+&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-3&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div id=&amp;quot;toolbar&amp;quot; class=&amp;quot;wysihtml5-toolbar btn-toolbar col-md-9&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;bold&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Bold&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;italic&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Italic&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertUnorderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ul&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertOrderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ol&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group row&amp;quot;&amp;gt;
+		&amp;lt;label for=&amp;quot;editor&amp;quot; class=&amp;quot;col-md-3 control-label&amp;quot;&amp;gt;Job description&amp;lt;/label&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+			&amp;lt;textarea id=&amp;quot;editor&amp;quot; class=&amp;quot;form-control &amp;quot; name=&amp;quot;description&amp;quot; cols=&amp;quot;50&amp;quot; rows=&amp;quot;10&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+		&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;
+		&amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot;&amp;gt;
+	&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The &amp;lsquo;data-wysihtml5-command&amp;rsquo; directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the &amp;lsquo;btn btn-default&amp;rsquo; classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
+Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+(function() {
+    	var editor = new wysihtml5.Editor(&amp;quot;editor&amp;quot;, { // id of textarea element
+        	toolbar:      &amp;quot;toolbar&amp;quot;, // id of toolbar element
+        	parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    	});
+})();
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should now have a nice clean but functional editor that looks like this.
+&lt;a href=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34;&gt;&lt;img src=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34; alt=&#34;wysihtml5_screenshot&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using Faker To Populate Your Laravel Projects During Development</title>
+      <link>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</link>
+      <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m a very visual person so when I&amp;rsquo;m developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don&amp;rsquo;t have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there&amp;rsquo;s still some manual data entry involved. We can eliminate this with a cool library called &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;Faker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Faker takes all the manual entry out of database seeding. It can generate anything from usernames, email addresses and city names to dates and fake credit card numbers. This saves loads of time when creating your database seeder. If you&amp;rsquo;re new to Laravel or have no idea how to seed your database, check out the awesome Laravel &lt;a href=&#34;http://laravel.com/docs/migrations#database-seeding&#34; title=&#34;Laravel - Database Seeding&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on the subject.&lt;/p&gt;
+
+&lt;p&gt;To get started just add Faker using composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer require fzaninotto/faker  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When prompted for the version I entered &amp;lsquo;1.4.*@dev&amp;rsquo; which is the latest at the time of this writing. This will add faker to &amp;lsquo;comoposer.json&amp;rsquo; and download the library. Laravel will autoload the library for you.&lt;/p&gt;
+
+&lt;p&gt;I have a travel buddy meetup site, that I&amp;rsquo;m creating. Users can sign-up and then create trips. Other users can see these trips and then propose a meetup or just give helpful tips and advice. Let&amp;rsquo;s see what my seeders will look like using Faker.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the user seeder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserTableSeeder extends Seeder 
+{
+
+    public function run()  
+    {  
+        $faker = Faker\Factory::create();
+
+        User::truncate();
+
+        foreach(range(1,30) as $index)  
+        {  
+            User::create([  
+                &#39;username&#39; =&amp;gt; str_replace(&#39;.&#39;, &#39;_&#39;, $faker-&amp;gt;unique()-&amp;gt;userName),  
+                &#39;email&#39; =&amp;gt; $faker-&amp;gt;email,  
+                &#39;password&#39; =&amp;gt; &#39;password&#39;,  
+                &#39;confirmation&#39; =&amp;gt; str_random(64),  
+                &#39;confirmed&#39; =&amp;gt; true  
+            ]);  
+        }
+    }
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First I created a new instance of Faker using &amp;lsquo;$faker = Faker\Factory::create();&amp;lsquo;. &amp;lsquo;User::truncate();&amp;rsquo; just clears the database out so we can reseed it. Next I create a loop that will create 30 new users. For any field that requires fake data just call the Faker instance we created up top and the type of data we need (e.g &amp;lsquo;$faker-&amp;gt;userName). Faker likes to add a &amp;lsquo;.&amp;rsquo; to some usernames which doesn&amp;rsquo;t play nice with my app which is why I used &amp;lsquo;str_replace()&amp;rsquo; to get rid of those. You can even use the &amp;lsquo;unique()&amp;rsquo; modifier to make sure usernames aren&amp;rsquo;t repeated.&lt;/p&gt;
+
+&lt;p&gt;As you can see, it&amp;rsquo;s pretty straight forward. Let&amp;rsquo;s look at another example. Here I have my trip seeder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php 
+
+class TripTableSeeder extends Seeder 
+{
+
+    public function run()  
+    {
+
+        $faker = Faker\Factory::create();
+
+        Trip::truncate();
+
+        foreach(range(1,10) as $index)  
+        {  
+            Trip::create([  
+                &#39;user_id&#39; =&amp;gt; rand(1,30),  
+                &#39;location&#39; =&amp;gt; $faker-&amp;gt;city . &#39;, &#39; . $faker-&amp;gt;country,  
+                &#39;from&#39; =&amp;gt; $from = $faker-&amp;gt;dateTimeBetween(&#39;+1 days&#39;, &#39;+2 years&#39;)-&amp;gt;format(&#39;m/d/Y&#39;),  
+                &#39;to&#39; =&amp;gt; $faker-&amp;gt;dateTimeBetween($from, $from . &#39; +3 months&#39;)-&amp;gt;format(&#39;m/d/Y&#39;),  
+                &#39;note&#39; =&amp;gt; $faker-&amp;gt;paragraph(1)  
+            ]);  
+        }  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Same principle as before. Faker can create dates in a specific range, words, sentences and even paragraphs using the popular &amp;lsquo;lorem ipsum&amp;rsquo; filler.&lt;/p&gt;
+
+&lt;p&gt;This is a great tool for projects that will be working with a lot of users and data. For more information on Faker&amp;rsquo;s features, check out the &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Javascript Promises Explained</title>
+      <link>http://edzynda.com/javascript-promises-explained/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/javascript-promises-explained/</guid>
+      <description>&lt;p&gt;While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called &amp;lsquo;promises&amp;rsquo;. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn&amp;rsquo;t really as difficult as I thought.&lt;/p&gt;
+
+&lt;p&gt;Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns. You can pass a function name as the parameter like in this jquery example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$( &amp;quot;#target&amp;quot; ).submit(myCallback);
+
+myCallback = function ( event ) {  
+    alert( &amp;quot;Handler for .submit() called.&amp;quot; );  
+    event.preventDefault();  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or you can use an anonymous function.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$( &amp;quot;#target&amp;quot; ).submit(function( event ) {  
+    alert( &amp;quot;Handler for .submit() called.&amp;quot; );  
+    event.preventDefault();  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is all fine and dandy. A problem arises though when you start using various functions or features in Javascript that run asynchronously. That means they don&amp;rsquo;t run in sequence but run concurrently with other functions. Take this small example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;setTimeout(function() {  
+    // do some stuff  
+    var myVar = &#39;Some value&#39;;  
+}, 2000);
+
+console.log(myVar);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What happens when you run it? Well the setTimeout function takes a function as the first argument and a time in milliseconds as the second. The function passed as the first argument will then execute in the time you passed in the second. setTimeout itself is executed immediately though and then console.log right after that. Because of this myVar doesn&amp;rsquo;t actually contain a value and you get an error. Two seconds later myVar is assigned &amp;lsquo;Some value&amp;rsquo; but then it&amp;rsquo;s too late. How do we access myVar only once our function has run? Well you can do this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;setTimeout(function() {  
+    // do some stuff  
+    var myVar = &#39;Some value&#39;;  
+    console.log(myVar);  
+}, 2000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By placing console.log inside our anonymous function we tell it only to execute when our function executes. Great! But this presents a problem. If you are writing a large application, it&amp;rsquo;s possible you are going to have more than one function called within a function. You might even have multiple callbacks with even more nested functions. This can get messy. To solve this problem, members of the Javascript community came up with the idea of &lt;a href=&#34;http://wiki.commonjs.org/wiki/Promises/A&#34; title=&#34;Promises/A Specification&#34; target=&#34;_blank&#34;&gt;promises&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Promises are a specification only and it is left up to developers to implement it. JQuery has it&amp;rsquo;s own implementation of promises. A promise is just an object. This object is returned by a function instead of an actual value. It&amp;rsquo;s basically an IOU for any other part of your script saying it will give you an actual value when it&amp;rsquo;s done doing what it&amp;rsquo;s doing.&lt;/p&gt;
+
+&lt;p&gt;JQuery uses what it calls a &amp;lsquo;deferred&amp;rsquo; object. A deferred has a resolve message that is run once your promise is fulfilled. It also has a reject method that is run if an error or something occurs. Take a look at this example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var myFunc = function() {  
+    var deferred = new $.Deferred();  
+    setTimeout(function() {  
+        // do some stuff  
+        var myVar = &#39;Some value&#39;;  
+        deferred.resolve();  
+    }, 2000);  
+    return deferred.promise();  
+};
+
+myFunc().done(function() {  
+    console.log(&#39;Finished: &#39; + myVar);  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ve wrapped everything in a function called myFunc and created a new Deferred object. Our return value is a promise which belongs to Deferred. Now we can take that returned promise and use a method called &amp;lsquo;done&amp;rsquo;. &amp;lsquo;done&amp;rsquo; is only executed when the Deferred object is resolved or when the &amp;lsquo;resolve&amp;rsquo; method is called. There are two more methods called &amp;lsquo;fail&amp;rsquo; and &amp;lsquo;always&amp;rsquo;. Fail is executed when the &amp;lsquo;reject&amp;rsquo; method is called. You can probably guess when the &amp;lsquo;always&amp;rsquo; method is executed. There is a fourth method called &amp;lsquo;then&amp;rsquo; which takes three functions as arguments. These functions would be the same that you would use for &amp;lsquo;done&amp;rsquo;, &amp;lsquo;fail&amp;rsquo; and &amp;lsquo;always&amp;rsquo; in that order.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s only the basics of what you can do with promises but even that is pretty powerful.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Working With Queues Using PHP And Beanstalkd</title>
+      <link>http://edzynda.com/working-with-queues-using-php-and-beanstalkd/</link>
+      <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/working-with-queues-using-php-and-beanstalkd/</guid>
+      <description>&lt;p&gt;PHP is often considered the glue of the Internet because it&amp;rsquo;s can be used for a lot of different things. There are so many built in functions and features that you are unlikely to use close to all of them if you work with PHP the rest of your life. This is great because we can solve various problems in our web apps without resorting to bringing in another language. Sometimes though, our application logic can get quite large or resource intensive. This translates into slow response times for the users of our apps if certain operations are tied into user events.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say we&amp;rsquo;re running dating site. Users are asked to enter a bunch of information at sign-up. This information will then be used by our application to match the new user with existing users and then email or send them a message with their new matches. This can potentially be a lengthy operation. If we run this as soon as the user hits submit they could be greeted by a long wait for the page or even worse a timeout error. To prevent this we can use a queue.&lt;/p&gt;
+
+&lt;p&gt;In this example we&amp;rsquo;ll be using a simple messaging queue called &lt;a href=&#34;http://kr.github.io/beanstalkd/&#34; title=&#34;Beanstalkd&#34; target=&#34;_blank&#34;&gt;Beanstalkd&lt;/a&gt; and a PHP wrapper package called &lt;a href=&#34;https://github.com/pda/pheanstalk/&#34; title=&#34;Pheanstalk&#34; target=&#34;_blank&#34;&gt;Pheanstalk&lt;/a&gt; to interact with it.&lt;/p&gt;
+
+&lt;p&gt;First install Beanstalkd using whatever is the norm in your current linux distribution whether that is yum or apt-get. You can also clone the github repo and compile from source. Once installed you can run Beanstalkd locally from the command line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ beanstalkd -l 127.0.0.1  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next let&amp;rsquo;s pull in Pheanstalk. Create a composer.json file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{  
+    &amp;quot;require&amp;quot;: {  
+        &amp;quot;pda/pheanstalk&amp;quot;: &amp;quot;2.1.0&amp;quot;  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run &amp;lsquo;composer update&amp;rsquo;. Now let&amp;rsquo;s create a file called &amp;lsquo;functions.php&amp;rsquo; to hold our super intensive matching function. This will be used by our worker script.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php 
+
+function find_matches($data) {  
+    // Run super awesome calculations  
+    // Send user our email  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s place a job on the queue. We&amp;rsquo;ll call this file &amp;lsquo;find_matches.php&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php 
+
+include &#39;vendor/autoload.php&#39;;
+
+$queue = new Pheanstalk_Pheanstalk(&#39;127.0.0.1&#39;);
+
+$job = new stdClass();  
+// the function to run  
+$job-&amp;gt;function = &#39;find_matches&#39;;  
+// our user entered data  
+$job-&amp;gt;user_data = $_POST;
+
+// beanstalkd uses strings so we json_encode our job for storage  
+$job_data = json_encode($job);
+
+// place our job into the queue into a tube we&#39;ll call matching  
+$queue-&amp;gt;useTube(&#39;matching&#39;)  
+    -&amp;gt;put($job_data);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now our job is in the queue waiting for a worker to come along and grab it. Let&amp;rsquo;s create one in &amp;lsquo;worker.php&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+include &#39;vendor/autoload.php&#39;;
+include &#39;functions.php&#39;;
+
+$queue = new Pheanstalk_Pheanstalk(&#39;127.0.0.1&#39;);
+
+while (true) {  
+    // grab the next job off the queue and reserve it  
+    $job = $queue-&amp;gt;watch(&#39;matching&#39;)  
+        -&amp;gt;ignore(&#39;default&#39;)  
+        -&amp;gt;reserve();
+
+    // decode the json data  
+    $job_data = json_decode($job-&amp;gt;getData(), false);
+
+    $function = $job_data-&amp;gt;function;  
+    $data = $job_data-&amp;gt;user_data;
+
+    // run the function  
+    $function($data);
+
+    // remove the job from the queue  
+    $queue-&amp;gt;delete($job);  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now the worker script will not run automatically so you will need to either run it as a cron job or use a tool like daemontools to keep it running all the time in the background.&lt;/p&gt;
+
+&lt;p&gt;This is just a simple example but hopefully it gives you an idea of what you can accomplish with queues.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create A Self-destructing, Encrypted Message App In Laravel Part 2</title>
+      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
+      <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+    &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;author&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
+ 
+    &amp;lt;title&amp;gt;Burnmsg - Self-desctructing, encrypted messages&amp;lt;/title&amp;gt;
+ 
+    &amp;lt;!-- Bootstrap core CSS --&amp;gt;
+    &amp;lt;link href=&amp;quot;{{ asset(&#39;css/styles.css&#39;) }}&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+ 
+    &amp;lt;!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --&amp;gt;
+    &amp;lt;!--[if lt IE 9]&amp;gt;
+      &amp;lt;script src=&amp;quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+      &amp;lt;script src=&amp;quot;https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;![endif]--&amp;gt;
+  &amp;lt;/head&amp;gt;
+ 
+  &amp;lt;body&amp;gt;
+ 
+    &amp;lt;div class=&amp;quot;navbar navbar-inverse navbar-fixed-top&amp;quot; role=&amp;quot;navigation&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+        &amp;lt;div class=&amp;quot;navbar-header&amp;quot;&amp;gt;
+          &amp;lt;a class=&amp;quot;navbar-brand&amp;quot; href=&amp;quot;{{ route(&#39;messages.create&#39;) }}&amp;quot;&amp;gt;Burnmsg&amp;lt;/a&amp;gt;
+        &amp;lt;/div&amp;gt;
+       &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+ 
+    &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+        @yield(&#39;content&#39;)
+    &amp;lt;/div&amp;gt;&amp;lt;!-- /.container --&amp;gt;
+ 
+ 
+    &amp;lt;!-- Bootstrap core JavaScript
+    ================================================== --&amp;gt;
+    &amp;lt;!-- Placed at the end of the document so the pages load faster --&amp;gt;
+    &amp;lt;script src=&amp;quot;https://code.jquery.com/jquery-1.10.2.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;{{ asset(&#39;js/bootstrap.min.js&#39;) }}&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to make sure that Twitter Bootstrap is accessible. Bootstrap is installed into the &amp;lsquo;vendor&amp;rsquo; folder of our project by composer. First let&amp;rsquo;s copy the Javascript libraries.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cp vendor/twitter/bootstrap/dist/js/bootstrap.min.js public/js  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We also need the CSS stylesheet but we are going to need to tweak some of the styles. We are going to do this using LESS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ touch public/css/styles.less  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In our newly created LESS file we will import the original stylesheet and make our tweaks as needed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;@import &amp;quot;../../vendor/twitter/bootstrap/less/bootstrap&amp;quot;;
+ 
+body {
+    padding-top: 65px; /* bring body to bottom of navbar */
+}
+ 
+article {
+    white-space: pre-wrap;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LESS makes it easy to work with CSS but it needs to be &amp;ldquo;compiled&amp;rdquo; in order for the browser to understand it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ lessc public/css/styles.less &amp;gt; public/css/styles.css  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I use &amp;lsquo;lessc&amp;rsquo; which is a Ruby gem but you can use any LESS compiler. Google should bring up a handful of options.&lt;/p&gt;
+
+&lt;p&gt;Now all that is left is to create our various views which correspond to the different actions involved in our application. Let&amp;rsquo;s save these views in &amp;lsquo;app/views/messages&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;The first view &amp;lsquo;create.blade.php&amp;rsquo; will represent our message creation form. Notice that it &amp;lsquo;@extends&amp;rsquo; our default layout and renders the form within the &amp;lsquo;content&amp;rsquo; section which is referenced in the default layout.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+     
+    @section(&#39;content&#39;)
+    {{ Form::open([&#39;method&#39; =&amp;gt; &#39;post&#39;, &#39;route&#39; =&amp;gt; &#39;messages.store&#39;, &#39;class&#39; =&amp;gt; &#39;form&#39;]) }}
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        @if($errors-&amp;gt;first())
+            &amp;lt;div class=&amp;quot;alert alert-danger&amp;quot;&amp;gt;
+                {{ $errors-&amp;gt;first() }}
+            &amp;lt;/div&amp;gt;
+        @endif
+        {{ Form::label(&#39;body&#39;, &#39;Message&#39;) }}
+        {{ Form::textarea(&#39;body&#39;, null, [&#39;class&#39; =&amp;gt; &#39;form-control&#39;]) }}
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        {{ Form::submit(&#39;Submit&#39;, [&#39;class&#39; =&amp;gt; &#39;btn btn-primary&#39;]) }}
+        {{ Form::close() }}
+    &amp;lt;/div&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Once the message is submitted our &amp;lsquo;store.blade.php&amp;rsquo; view will display a link for the user to copy and give to whomever they wish for later reading.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+     
+    @section(&#39;content&#39;)
+    &amp;lt;div class=&amp;quot;alert alert-success&amp;quot;&amp;gt;
+        Your message has been saved.
+        Here is the URL &amp;lt;a href=&amp;quot;{{ route(&#39;messages.show&#39;, [$url, $key]) }}&amp;quot;&amp;gt;{{ route(&#39;messages.show&#39;, [$url, $key]) }}&amp;lt;/a&amp;gt;
+    &amp;lt;/div&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Lastly the &amp;lsquo;show.blade.php&amp;rsquo; view will display the message for the user once they decide to read it.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+     
+    @section(&#39;content&#39;)
+    &amp;lt;article&amp;gt;
+    {{{ $body }}}
+    &amp;lt;/article&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Now we should have a pretty sweet messaging app that destroys your message upon reading. Keep in mind that I am no cryptography or digital forensics expert so rely on this application at your own risk. Go ahead and modify it to make it more secure if you like. Leave any suggestions you may have in the comments.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create A Self-destructing, Encrypted Message App In Laravel Part 1</title>
+      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
+      <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
+      <description>&lt;p&gt;The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn&amp;rsquo;t say that I fall into the paranoid category but security, anonymity and cryptography fascinate me.&lt;/p&gt;
+
+&lt;p&gt;While brain storming one day, I decided to go ahead and build a self-destructing, encrypted messaging application in Laravel, using PHP&amp;rsquo;s built-in mcrypt library to see how hard it would be. Turns out it isn&amp;rsquo;t very hard at all.&lt;/p&gt;
+
+&lt;p&gt;First we need to download Laravel and setup the base of our project. We&amp;rsquo;ll call it &amp;lsquo;Burnmsg&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer create-project laravel/laravel burnmsg  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s setup our composer.json file to fetch some dependencies. We&amp;rsquo;ll use Twitter&amp;rsquo;s bootstrap for styling and Jeffrey Way&amp;rsquo;s time-saving artisan generators.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;laravel/laravel&amp;quot;,
+    &amp;quot;description&amp;quot;: &amp;quot;The Laravel Framework.&amp;quot;,
+    &amp;quot;keywords&amp;quot;: [&amp;quot;framework&amp;quot;, &amp;quot;laravel&amp;quot;],
+    &amp;quot;license&amp;quot;: &amp;quot;MIT&amp;quot;,
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;laravel/framework&amp;quot;: &amp;quot;4.0.*&amp;quot;,
+        &amp;quot;twitter/bootstrap&amp;quot;: &amp;quot;3.0.*&amp;quot;
+        &amp;quot;way/generators&amp;quot;: &amp;quot;dev-master&amp;quot;
+    },
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;classmap&amp;quot;: [
+            &amp;quot;app/commands&amp;quot;,
+            &amp;quot;app/controllers&amp;quot;,
+            &amp;quot;app/models&amp;quot;,
+            &amp;quot;app/database/migrations&amp;quot;,
+            &amp;quot;app/database/seeds&amp;quot;,
+            &amp;quot;app/tests/TestCase.php&amp;quot;
+        ]
+    },
+    &amp;quot;scripts&amp;quot;: {
+        &amp;quot;post-install-cmd&amp;quot;: [
+            &amp;quot;php artisan optimize&amp;quot;
+        ],
+        &amp;quot;post-update-cmd&amp;quot;: [
+            &amp;quot;php artisan clear-compiled&amp;quot;,
+            &amp;quot;php artisan optimize&amp;quot;
+        ],
+        &amp;quot;post-create-project-cmd&amp;quot;: [
+            &amp;quot;php artisan key:generate&amp;quot;
+        ]
+    },
+    &amp;quot;config&amp;quot;: {
+        &amp;quot;preferred-install&amp;quot;: &amp;quot;dist&amp;quot;
+    },
+    &amp;quot;minimum-stability&amp;quot;: &amp;quot;dev&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure you add the generators service provider to &amp;lsquo;app/config/app.php&amp;rsquo; in the &amp;lsquo;providers&amp;rsquo; array.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+&#39;providers&#39; = array(
+    &#39;...&#39;,
+    &#39;Way\Generators\GeneratorsServiceProvider&#39;
+),
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Change your database configuration in &amp;lsquo;app/config/database.php&amp;rsquo;. Once that&amp;rsquo;s done we can generate our model, controller and views all in one command using the useful generators tool.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php artisan generate:resource --fields=&amp;quot;body:binary,url:string,iv:binary,destroyed:boolean&amp;quot; messages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can run our migration to create the messages table.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php artisan migrate  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next let&amp;rsquo;s set up our routes. We only need a few. One for the message form. One to post the data and one to view our message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::get(&#39;/&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.create&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@create&#39;]);
+Route::post(&#39;/&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.store&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@store&#39;]);
+Route::get(&#39;/{key}/{value}&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.show&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@show&#39;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In our controller we will only need a create, store and show method. The create method will return the view for displaying our form.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+public function create()
+{
+      return View::make(&#39;messages.create&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The store method will take the input and validate it. In this case we only care that the message isn&amp;rsquo;t left blank. Next we will generate a random key. Then we will generate an IV or initialization vector. This is used to improve the randomization of our encryption. In this case we will use the Blowfish algorithm. The last steps are to encrypt the message and then save the encrypted message and the IV for decryption later. We will also create a random identifier. The key will not be saved though. Instead it will be part of the URL for retrieving the message later. Because the key is part of the URL the message creator needs to keep this as safe as possible. This also prevents the person running the server from being able to read any of the messages. Plausible-deniability. Finally we return the view which displays the URL for our message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php  
+public function store()
+{
+        // Validate input
+        $v = Message::validate(Input::all());
+ 
+        if ($v !== true) {
+            return Redirect::route(&#39;messages.create&#39;)
+                -&amp;gt;withErrors($v-&amp;gt;errors());
+        }
+ 
+        $msg = new Message;
+ 
+        // Generate a key
+        $key = sha1(microtime(true).mt_rand(10000,90000));
+ 
+        // Generate an IV
+        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_CFB);
+        $iv = mcrypt_create_iv($iv_size, MCRYPT_DEV_URANDOM);
+ 
+        // Encrypt the message
+        $body = mcrypt_encrypt(MCRYPT_BLOWFISH, $key, Input::get(&#39;body&#39;), MCRYPT_MODE_CFB, $iv);
+ 
+        // Save the message to the database
+        $msg-&amp;gt;body = $body;
+        $msg-&amp;gt;url = Message::get_unique_url();
+        $msg-&amp;gt;iv = $iv;
+        $msg-&amp;gt;save();
+ 
+        // Return the view
+        return View::make(&#39;messages.store&#39;, [&#39;url&#39; =&amp;gt; $msg-&amp;gt;url, &#39;key&#39; =&amp;gt; $key]);
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The show method will take the random identifier and the key and decrypt the message. Once decrypted it will overwrite the message with &amp;lsquo;null&amp;rsquo; in the database and return the view displaying the one-time-viewable message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+public function show($url, $key)
+{
+        // Fetch our message
+        $msg = Message::where(&#39;url&#39;, &#39;=&#39;, $url)-&amp;gt;first();
+ 
+        if ($msg-&amp;gt;destroyed) {
+            $body = &amp;quot;This message has been destroyed&amp;quot;;
+        } else {
+            // Decrypt it
+            $iv = $msg-&amp;gt;iv;
+            $body = mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $msg-&amp;gt;body, MCRYPT_MODE_CFB, $iv);
+ 
+            // Destroy the message
+            $msg-&amp;gt;body = null;
+            $msg-&amp;gt;destroyed = true;
+            $msg-&amp;gt;save();
+        }
+ 
+        return View::make(&#39;messages.show&#39;, [&#39;body&#39; =&amp;gt; $body]);
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s take care of our model. The model will handle the validation as well as generating the random url identifier saved in the store method above.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+ 
+class Message extends Eloquent {
+    protected $guarded = [&#39;id&#39;, &#39;created_at&#39;, &#39;updated_at&#39;];
+ 
+    public static $rules = [&#39;body&#39; =&amp;gt; &#39;required&#39;];
+ 
+    public static function validate($input)
+    {
+        $v = Validator::make($input, static::$rules);
+        return $v-&amp;gt;fails() ? $v : true;
+    }
+ 
+    public static function  get_unique_url() {
+ 
+         // set a random number
+        $number = rand(10000, 9999999);
+ 
+                // character list for generating a random string
+        $charlist = &amp;quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;quot;;
+ 
+        $decimal = intval($number);
+ 
+        //get the list of valid characters
+        $charlist = substr($charlist, 0, 62);
+ 
+        $converted = &#39;&#39;;
+ 
+        while($number &amp;gt; 0) {
+            $converted = $charlist{($number % 62)} . $converted;
+            $number = floor($number / 62);
+        }
+ 
+        if( static::whereUrl($converted)-&amp;gt;first() ) {
+            static::get_unique_url();
+        }
+ 
+                return $converted;
+    }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we have most of the hard part out of the way. All that is left is to create and style the various views using Twitter Bootstrap which will be covered in part 2.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What Is A Microframework? Getting Started With Silex</title>
+      <link>http://edzynda.com/what-is-a-microframework-getting-started-with-silex/</link>
+      <pubDate>Wed, 13 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/what-is-a-microframework-getting-started-with-silex/</guid>
+      <description>&lt;p&gt;There is no shortage of coding frameworks these days. I can&amp;rsquo;t scroll through my twitter and facebook feeds or my favorite dev forums without stumbling upon something new. Like a hungry barracuda, I&amp;rsquo;m instantly attracted to new shiny things. While browsing reddit.com/r/php I came across a mention of a microframework called &lt;a href=&#34;http://silex.sensiolabs.org/&#34; title=&#34;Silex&#34; target=&#34;_blank&#34;&gt;Silex&lt;/a&gt;. Now you may be wondering what a microframework is. I was wondering the same thing, so I took a look at the project&amp;rsquo;s website to figure out for myself.&lt;/p&gt;
+
+&lt;p&gt;It turns out that a microframework, just like the name implies, is just a barebones framework meant to give the developer access to powerful tools without the bulk of a full-on framework. Silex is a microframework which utilizes components from the popular &lt;a href=&#34;http://symfony.com/&#34; title=&#34;Symfony2&#34; target=&#34;_blank&#34;&gt;Symfony2&lt;/a&gt; framework. In fact it&amp;rsquo;s written and maintained by the same people at Sensiolabs. It&amp;rsquo;s meant for applications consisting of usually one php file but you can definitely build something much bigger. Installing and using Silex is pretty straight-forward especially if you are familiar with other modern PHP frameworks.&lt;/p&gt;
+
+&lt;p&gt;Like all modern PHP projects you start with a composer.json file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;silex/silex&amp;quot;: &amp;quot;~1.1&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer install  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now create a public facing directory with an index.php file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir public  
+$ touch index.php  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you should end up with the following directory structure.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;├── composer.json  
+├── composer.lock  
+├── vendor  
+│ └── ...  
+└── public  
+└── index.php  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to bootstrap Silex so we can start using it in our index.php file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// public/index.php
+ 
+require_once __DIR__.&#39;/../vendor/autoload.php&#39;;
+ 
+$app = new Silex\Application;
+ 
+// definitions
+ 
+$app-&amp;gt;run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above snippet, we&amp;rsquo;ve created an instance of Silex called &amp;lsquo;$app&amp;rsquo;. Now we can use &amp;lsquo;$app&amp;rsquo; to define things like routes and service providers before calling &amp;lsquo;$app-&amp;gt;run()&amp;rsquo; which will load our application.&lt;/p&gt;
+
+&lt;p&gt;Defining routes is pretty simple. For each route you need to know the method (e.g. GET or POST), the URI pattern you want to match and method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// public/index.php
+ 
+require_once __DIR__.&#39;/../vendor/autoload.php&#39;;
+ 
+use Symfony\Component\HttpFoundation\Request;
+ 
+$app = new Silex\Application;
+ 
+// definitions
+$app-&amp;gt;get(&#39;/&#39;, function()
+{
+    return &#39;&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;/&amp;quot;&amp;gt;Enter your name: &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; /&amp;gt;&amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot; /&amp;gt;&amp;lt;/form&amp;gt;&#39;;
+});
+ 
+$app-&amp;gt;post(&#39;/&#39;, function(Request $request)
+{
+    $name = $request-&amp;gt;get(&#39;name&#39;);
+    return &amp;quot;Hello! Welcome &amp;quot; . $name . &amp;quot;!&amp;quot;;
+});
+ 
+$app-&amp;gt;run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above example, we defined two routes. The GET request returns a form which is then handled by our POST route once it is submitted. To access the variables passed in our POST request we use Symfony&amp;rsquo;s HttpFoundation\Request component and the &amp;lsquo;get()&amp;rsquo; method. An instance of of Request is automatically injected into our route closure by Silex using type-hinting or what I like to call magic.&lt;/p&gt;
+
+&lt;p&gt;Hopefully from this tutorial you can get an idea for how to create a small yet powerful app using Silex.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using The PHP Built-in Webserver</title>
+      <link>http://edzynda.com/using-the-php-built-in-webserver/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-the-php-built-in-webserver/</guid>
+      <description>&lt;p&gt;For years Ruby and Python have been stealing the show with innovative features and functionality to help developers get their projects off the ground. PHP was left in the dust for quite a while. One simple but invaluable feature that PHP had been lacking was it&amp;rsquo;s own webserver. Since version 5.4 however, PHP developers can now enjoy this modern convenience.&lt;/p&gt;
+
+&lt;p&gt;Not all backend developers are system administrators. They know how to code and code well. That doesn&amp;rsquo;t mean they know how to optimally configure an Apache or Nginx webserver. Depending on the project they work on, their code can live on any number of server configurations. Rather than worry about setting up Apache, developers should be making sure their code works. Leave the configuration to the sys admins.&lt;/p&gt;
+
+&lt;p&gt;Using the PHP built-in web server is simple. Simply &amp;lsquo;cd&amp;rsquo; into the directory you want served and run php with the &amp;lsquo;-S&amp;rsquo; option.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/public_html  
+$ php -S localhost:8000  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Most people will bind it to localhost for development but you can also bind it to any interface like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ php -S 0.0.0.0:8000  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you need to handle special filetypes you can use a routes file like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// router.php
+$path = pathinfo($_SERVER[&amp;quot;SCRIPT_FILENAME&amp;quot;]);
+if ($path[&amp;quot;extension&amp;quot;] == &amp;quot;el&amp;quot;) {
+    // Handle .el files
+    header(&amp;quot;Content-Type: text/x-script.elisp&amp;quot;);
+    readfile($_SERVER[&amp;quot;SCRIPT_FILENAME&amp;quot;]);
+}
+else {
+    return false; // serve files normally
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then run the server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php -S localhost:8000 router.php  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What if you want your scripts to have slightly different behavior when running under the PHP server rather than production? Just use the php_sapi_name() function like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// router.php
+if (php_sapi_name() == &#39;cli-server&#39;) {
+    /* route static assets and return false */
+}
+/* go on with normal index.php operations */
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this nifty feature it&amp;rsquo;s possible to speed up development and cut down dependencies on special development servers or VMs in most cases.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What Is An IoC Container?</title>
+      <link>http://edzynda.com/what-is-an-ioc-container/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/what-is-an-ioc-container/</guid>
+      <description>&lt;p&gt;If you&amp;#8217;re discussing object oriented programming in PHP these days, it&amp;#8217;s likely that you&amp;#8217;ve at least heard about such topics as dependency injection or IoC containers. They&amp;#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&amp;#8217;s really not.&lt;/p&gt;
+
+&lt;p&gt;If you read my earlier post on using repositories in Laravel you might have noticed that when using dependency injection in our __construct method, we didn&amp;#8217;t have to actually instantiate our repository. Laravel&amp;#8217;s IoC container did it for us. Behind the scenes, when our controller was called, Laravel ran the App::make() method and passed it through to our constructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+ 
+use Stark\Repositories\UserRespositoryInterface as Repository;
+ 
+class UserController extends BaseController {
+    protected $user;
+ 
+    public function __construct(Repository $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;getAll();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now basic object oriented programming says we can&amp;#8217;t instantiate an interface so we have to pass an object that implements the UserRepositoryInterface such as our EloquentUserRepository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repositories\EloquentUserRepository&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remember that line of code? What we are doing is telling Laravel&amp;#8217;s IoC to respond to any request for UserRepositoryInterface with EloquentUserRepository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+$userRepo = App::make(&#39;Stark\Repositories\UserRepositoryInterface&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$userRepo is actually an EloquentUserRepository object now.&lt;/p&gt;
+
+&lt;p&gt;To understand how this works let&amp;#8217;s flesh out our own IoC.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// IoC.php
+class IoC {
+ 
+    protected static $bindings = [];
+ 
+    public static function bind($name, Callable $resolver)
+    {
+        static::$bindings[$name] = $resolver;
+    }
+ 
+    public static function make($name)
+    {
+        if (isset(static::$bindings[$name]))
+        {
+            $resolver = static::$registry[$name];
+ 
+            return $resolver();
+        }
+ 
+        throw new Exception(&#39;Alias does not exist in the IoC registry.&#39;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This can be used in any PHP project outside of laravel. Check out this example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+ 
+include &#39;IoC.php&#39;;
+ 
+class Truck {}
+ 
+class Garage {
+    protected $veh;
+   
+    public function __construct(Vehicle $veh)
+    {
+        $this-&amp;gt;veh = $veh;
+    }
+}
+ 
+IoC::bind(&#39;Vehicle&#39;, &#39;Truck&#39;)
+ 
+$garage = new Garage(App::make(&#39;Vehicle&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So we created a class Truck and a class Garage which depends on a Vehicle object. Then we used our homebrewed IoC to bind any call for Vehicle to a call for Truck instead. So when we created a new Garage we passed IoC::bind which would pass whatever we registered with IoC::bind. That&amp;#8217;s all there is to it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using Hooks In WordPress</title>
+      <link>http://edzynda.com/using-hooks-in-wordpress/</link>
+      <pubDate>Mon, 04 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-hooks-in-wordpress/</guid>
+      <description>&lt;p&gt;Every so often I have clients who want me to work on WordPress sites or plugins. I honestly hate working with WordPress. While it&amp;#8217;s one of the most popular CMS products in the world with a massive developer base, I find that anything coded for WordPress tends to follow a tacky and poorly organized form of coding. Coding styles vary wildly from developer to developer and there really is no standard. This makes doing modifications a nightmare.&lt;/p&gt;
+
+&lt;p&gt;As crazy as WordPress development is, it makes up for it with some very helpful features for developers. In the early days of WordPress, if you wanted to add or modify functionality you had to modify the core of WordPress. This is dangerous because as soon as an update comes out, your modification might get wiped out. WordPress then introduced theming and plugin functionality. Along with those features, they allowed for developers to &amp;#8216;hook&amp;#8217; into actual WordPress processes without modifying the core source code.&lt;/p&gt;
+
+&lt;p&gt;The main concept that WordPress developers should be familiar to is &amp;#8216;The Loop&amp;#8217;. Basically every page you go to on a WordPress site is the result of &amp;#8216;The Loop&amp;#8217;. It&amp;#8217;s a set of steps that WordPress goes through to build page you are viewing. For example to view a single post, WordPress might pull the post from the database then call a header() function which pulls in the header template then a content() function and a footer() function then finally rendering the page.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s say that we want to add some extra meta tags to every wordpress page? How would we go about this? First we decide which process we want to hook into. WordPress has quite a few hooks. For this example we&amp;#8217;ll use the &amp;#8216;wp_head&amp;#8217; hook. To use a hook we use the &amp;#8216;add_action&amp;#8217; function.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+add_action(&#39;wp_head&#39;, &#39;insert_meta_tags&#39;);
+ 
+function insert_meta_tags() {
+    echo &#39;&amp;lt;meta property=&amp;quot;info&amp;quot; content=&amp;quot;Some info&amp;quot; /&amp;gt;&#39;;
+    echo &#39;&amp;lt;meta property=&amp;quot;info2&amp;quot; content=&amp;quot;Some more info&amp;quot; /&amp;gt;&#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically you specify the hook you want to access and then a function to be called. Once WordPress hits the &amp;#8216;wp_head&amp;#8217; portion of &amp;#8216;The Loop&amp;#8217; it will call the function that you registered. This particular hook is called an action hook. There is another popular hook type called a filter hook. Filter hooks are somewhat different in that they are used to modify specific content like your post title or content. To use a filter hook, we call the &amp;#8216;add_filter&amp;#8217; function.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+add_filter(&#39;the_content&#39;, &#39;add_some_stuff_to_content&#39;);
+ 
+function add_some_stuff_to_content($content) {
+    $content .= &#39;Blah blah blah&#39;;
+ 
+    return $content;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you create a filter your callback function is passed the variable that you&amp;#8217;re modifying which is in this case, the content of a post. In this case we appended &amp;#8216;Blah blah blah&amp;#8217; to it and then returned it.&lt;/p&gt;
+
+&lt;p&gt;This is all really just basic stuff but hopefully it gives you an idea of how you can make useful modifications to WordPress.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using Repositories In Laravel</title>
+      <link>http://edzynda.com/using-repositories-in-laravel/</link>
+      <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-repositories-in-laravel/</guid>
+      <description>&lt;p&gt;The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.&lt;/p&gt;
+
+&lt;p&gt;One technique I&amp;#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&amp;#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&amp;#8217;s powerful IoC container.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#8217;ve frequented web development forums or IRC channels lately, you might hear seasoned veterans blabbing about the merits of TDD or Test Driven Development. It&amp;#8217;s another concept that sounds scary at first but really isn&amp;#8217;t once you start digging into it. Basically TDD preaches that you should write automated tests for your code &lt;strong&gt;before&lt;/strong&gt; you even write a single line of production code. Not only that, you should be writing tests that work with a single component at a time, in isolation. If you follow the single responsibility principle when writing code, this shouldn&amp;#8217;t be too hard.&lt;/p&gt;
+
+&lt;p&gt;What if your class or controller methods depend on another class that has it&amp;#8217;s own responsibilities? Theoretically those classes should have their own tests and should be isolated from your own tests. How do we do this though? The answer is dependency injection.&lt;/p&gt;
+
+&lt;p&gt;Dependency injection is simply passing the classes your current class depends on through the constructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+    protected $dependency;
+ 
+    public function __construct(Dependency $dependency)
+    {
+        $this-&amp;gt;dependency = $dependency;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s it. Not too scary right? This way, when you write your automated tests, you can now &amp;#8216;mock&amp;#8217; those classes with a tool like Mockery and inject them from inside your test code. If those dependencies accessed a database or live filesystem you can rest assured your tests will not because those dependencies are now mocked or stubbed.&lt;/p&gt;
+
+&lt;p&gt;So dependency injection is great for testing but it has other benefits. Let&amp;#8217;s say in laravel you have a UserController. That controller has a method that fetches all users and sends them to a view.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+ 
+    public function index()
+    {
+        $users = User::all();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s very simple to call our User model and just call methods from within the controller. But this will create a nightmare for testing and isn&amp;rsquo;t very flexible. Why not inject the User model?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+    protected $user;
+ 
+    public function __construct(User $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;all();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Okay that&amp;#8217;s great but say one day you decide to go with a different implementation of your users like MongoDB or a flatfile database? You&amp;#8217;ll have to go through your code and clean out and refactor anything that references the Laravel models because they extend Eloquent which uses an SQL database. This is where the idea of using repositories comes in.&lt;/p&gt;
+
+&lt;p&gt;First let&amp;#8217;s create an interface. Think of an interface as a contract. Any class that implements this interface must also implement its methods.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Repositories;
+ 
+interface UserRepositoryInterface {
+    public function getAll();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll store it in a custom directory called &amp;lsquo;Stark/Repositories&amp;rsquo;. Notice that the namespace goes along with the directory structure. Now let&amp;rsquo;s create a class that implements this interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Repositories;
+ 
+use User;
+ 
+class EloquentUserRepository implements UserRepositoryInterface {
+    public function getAll()
+    {
+        return User::all();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Cool. Now let&amp;rsquo;s just refactor our controller to use our interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+ 
+use Stark\Repositories\UserRespositoryInterface as Repository;
+ 
+class UserController extends BaseController {
+    protected $user;
+ 
+    public function __construct(Repository $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;getAll();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now remember that interfaces are cannot be instantiated but Laravel is smart enough to inject a proper class in it&amp;#8217;s place if you give it some hints. First we have to make sure our &amp;#8216;Stark&amp;#8217; namespace is autoloaded. For that we edit our composer.json file and add the namespace and it&amp;#8217;s location under &amp;#8220;psr-0&amp;#8243;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-0&amp;quot;: {
+            &amp;quot;Stark&amp;quot;: &amp;quot;app/&amp;quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we tell Laravel that anytime we reference UserRepositoryInterface we really want EloquentUserRepository. We can do that in our &amp;#8216;app/routes.php&amp;#8217; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repositories\EloquentUserRepository&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if we decide to use some other storage method we can simply code another repository that implements the UserRepositoryInterface and change that one line in the routes file to reflect the change. The rest of your app couldn&amp;#8217;t care less.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

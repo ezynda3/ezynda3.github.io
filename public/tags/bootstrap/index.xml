@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bootstrap on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/bootstrap/index.xml</link>
+    <description>Recent content in Bootstrap on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/bootstrap/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</title>
+      <link>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
+      <description>&lt;p&gt;For a lot of HTML forms you really don&amp;rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&amp;rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
+You can grab WYSIHTML5 from &lt;a href=&#34;https://github.com/xing/wysihtml5&#34;&gt;Github&lt;/a&gt;. To add a little style we&amp;rsquo;ll use Twitter&amp;rsquo;s &lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; framework and &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt; icon fonts.
+Copy the WYSIHTML5 files into the correct directories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;├── css
+├── fonts
+└── js
+    ├── advanced.js
+    └── wysihtml5-0.3.0.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lsquo;wysihtml5-0.3.0.js&amp;rsquo; can be found in the &amp;lsquo;dist&amp;rsquo; directory and &amp;lsquo;advanced.js&amp;rsquo; in the &amp;lsquo;parser_rules&amp;rsquo; directory.
+Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+    &amp;lt;script src=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/wysihtml5-0.3.0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/advanced.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;form method=&amp;quot;POST&amp;quot; action=&amp;quot;/&amp;quot; &amp;gt;
+&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-3&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div id=&amp;quot;toolbar&amp;quot; class=&amp;quot;wysihtml5-toolbar btn-toolbar col-md-9&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;bold&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Bold&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;italic&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Italic&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertUnorderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ul&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertOrderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ol&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group row&amp;quot;&amp;gt;
+		&amp;lt;label for=&amp;quot;editor&amp;quot; class=&amp;quot;col-md-3 control-label&amp;quot;&amp;gt;Job description&amp;lt;/label&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+			&amp;lt;textarea id=&amp;quot;editor&amp;quot; class=&amp;quot;form-control &amp;quot; name=&amp;quot;description&amp;quot; cols=&amp;quot;50&amp;quot; rows=&amp;quot;10&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+		&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;
+		&amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot;&amp;gt;
+	&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The &amp;lsquo;data-wysihtml5-command&amp;rsquo; directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the &amp;lsquo;btn btn-default&amp;rsquo; classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
+Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+(function() {
+    	var editor = new wysihtml5.Editor(&amp;quot;editor&amp;quot;, { // id of textarea element
+        	toolbar:      &amp;quot;toolbar&amp;quot;, // id of toolbar element
+        	parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    	});
+})();
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should now have a nice clean but functional editor that looks like this.
+&lt;a href=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34;&gt;&lt;img src=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34; alt=&#34;wysihtml5_screenshot&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create A Self-destructing, Encrypted Message App In Laravel Part 2</title>
+      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
+      <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+    &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;author&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
+ 
+    &amp;lt;title&amp;gt;Burnmsg - Self-desctructing, encrypted messages&amp;lt;/title&amp;gt;
+ 
+    &amp;lt;!-- Bootstrap core CSS --&amp;gt;
+    &amp;lt;link href=&amp;quot;{{ asset(&#39;css/styles.css&#39;) }}&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+ 
+    &amp;lt;!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --&amp;gt;
+    &amp;lt;!--[if lt IE 9]&amp;gt;
+      &amp;lt;script src=&amp;quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+      &amp;lt;script src=&amp;quot;https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;![endif]--&amp;gt;
+  &amp;lt;/head&amp;gt;
+ 
+  &amp;lt;body&amp;gt;
+ 
+    &amp;lt;div class=&amp;quot;navbar navbar-inverse navbar-fixed-top&amp;quot; role=&amp;quot;navigation&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+        &amp;lt;div class=&amp;quot;navbar-header&amp;quot;&amp;gt;
+          &amp;lt;a class=&amp;quot;navbar-brand&amp;quot; href=&amp;quot;{{ route(&#39;messages.create&#39;) }}&amp;quot;&amp;gt;Burnmsg&amp;lt;/a&amp;gt;
+        &amp;lt;/div&amp;gt;
+       &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+ 
+    &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+        @yield(&#39;content&#39;)
+    &amp;lt;/div&amp;gt;&amp;lt;!-- /.container --&amp;gt;
+ 
+ 
+    &amp;lt;!-- Bootstrap core JavaScript
+    ================================================== --&amp;gt;
+    &amp;lt;!-- Placed at the end of the document so the pages load faster --&amp;gt;
+    &amp;lt;script src=&amp;quot;https://code.jquery.com/jquery-1.10.2.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;{{ asset(&#39;js/bootstrap.min.js&#39;) }}&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to make sure that Twitter Bootstrap is accessible. Bootstrap is installed into the &amp;lsquo;vendor&amp;rsquo; folder of our project by composer. First let&amp;rsquo;s copy the Javascript libraries.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cp vendor/twitter/bootstrap/dist/js/bootstrap.min.js public/js  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We also need the CSS stylesheet but we are going to need to tweak some of the styles. We are going to do this using LESS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ touch public/css/styles.less  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In our newly created LESS file we will import the original stylesheet and make our tweaks as needed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;@import &amp;quot;../../vendor/twitter/bootstrap/less/bootstrap&amp;quot;;
+ 
+body {
+    padding-top: 65px; /* bring body to bottom of navbar */
+}
+ 
+article {
+    white-space: pre-wrap;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LESS makes it easy to work with CSS but it needs to be &amp;ldquo;compiled&amp;rdquo; in order for the browser to understand it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ lessc public/css/styles.less &amp;gt; public/css/styles.css  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I use &amp;lsquo;lessc&amp;rsquo; which is a Ruby gem but you can use any LESS compiler. Google should bring up a handful of options.&lt;/p&gt;
+
+&lt;p&gt;Now all that is left is to create our various views which correspond to the different actions involved in our application. Let&amp;rsquo;s save these views in &amp;lsquo;app/views/messages&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;The first view &amp;lsquo;create.blade.php&amp;rsquo; will represent our message creation form. Notice that it &amp;lsquo;@extends&amp;rsquo; our default layout and renders the form within the &amp;lsquo;content&amp;rsquo; section which is referenced in the default layout.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+     
+    @section(&#39;content&#39;)
+    {{ Form::open([&#39;method&#39; =&amp;gt; &#39;post&#39;, &#39;route&#39; =&amp;gt; &#39;messages.store&#39;, &#39;class&#39; =&amp;gt; &#39;form&#39;]) }}
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        @if($errors-&amp;gt;first())
+            &amp;lt;div class=&amp;quot;alert alert-danger&amp;quot;&amp;gt;
+                {{ $errors-&amp;gt;first() }}
+            &amp;lt;/div&amp;gt;
+        @endif
+        {{ Form::label(&#39;body&#39;, &#39;Message&#39;) }}
+        {{ Form::textarea(&#39;body&#39;, null, [&#39;class&#39; =&amp;gt; &#39;form-control&#39;]) }}
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        {{ Form::submit(&#39;Submit&#39;, [&#39;class&#39; =&amp;gt; &#39;btn btn-primary&#39;]) }}
+        {{ Form::close() }}
+    &amp;lt;/div&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Once the message is submitted our &amp;lsquo;store.blade.php&amp;rsquo; view will display a link for the user to copy and give to whomever they wish for later reading.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+     
+    @section(&#39;content&#39;)
+    &amp;lt;div class=&amp;quot;alert alert-success&amp;quot;&amp;gt;
+        Your message has been saved.
+        Here is the URL &amp;lt;a href=&amp;quot;{{ route(&#39;messages.show&#39;, [$url, $key]) }}&amp;quot;&amp;gt;{{ route(&#39;messages.show&#39;, [$url, $key]) }}&amp;lt;/a&amp;gt;
+    &amp;lt;/div&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Lastly the &amp;lsquo;show.blade.php&amp;rsquo; view will display the message for the user once they decide to read it.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+     
+    @section(&#39;content&#39;)
+    &amp;lt;article&amp;gt;
+    {{{ $body }}}
+    &amp;lt;/article&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Now we should have a pretty sweet messaging app that destroys your message upon reading. Keep in mind that I am no cryptography or digital forensics expert so rely on this application at your own risk. Go ahead and modify it to make it more secure if you like. Leave any suggestions you may have in the comments.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

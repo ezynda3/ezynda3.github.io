@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aop on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/categories/aop/index.xml</link>
+    <description>Recent content in Aop on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/categories/aop/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Test The Untestable With AspectMock</title>
+      <link>http://edzynda.com/test-the-untestable-with-aspectmock/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/test-the-untestable-with-aspectmock/</guid>
+      <description>&lt;p&gt;Some of us have had the pleasure of working with someone else&amp;rsquo;s ancient codebase to either add new features or fix bugs. It&amp;rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&amp;rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design. This makes the codebase very fragile and any small change could break something if you aren&amp;rsquo;t careful. How do we test the untestable? AspectMock to the rescue!&lt;/p&gt;
+
+&lt;p&gt;Using the power of AOP and the Go! AOP framework AspectMock allows you to create test doubles for almost anything anywhere in your code from public and private methods to static methods and even system functions like time().&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look at an example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class UserCreator
+{
+    public function create(array $data)
+    {
+        $user = new User($data);
+        $user-&amp;gt;save();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have a UserCreator class that depends on a User object to save a newly created user to the database. We&amp;rsquo;ll pretend this works great but would like to have a test in place to avoid any future defects. We need to mock the User object somehow though because we don&amp;rsquo;t want to make any calls to the database during our test.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+function testUserCreate()
+{
+    $user = Test::double(&#39;User&#39;, [&#39;save&#39; =&amp;gt; null]));
+    $service = new UserCreator;
+    $service-&amp;gt;create([&#39;name&#39; =&amp;gt; &#39;Tony Stark&#39;]);
+    $user-&amp;gt;verifyInvoked(&#39;save&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now when you run your test, AspectMock basically intercepts the call to the &amp;lsquo;save&amp;rsquo; method and prevents it from touching the database.&lt;/p&gt;
+
+&lt;p&gt;You can even mock builtin PHP functions for greater flexibility.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+namespace demo;
+test::func(&#39;demo&#39;, &#39;time&#39;, &#39;now&#39;);
+$this-&amp;gt;assertEquals(&#39;now&#39;, time());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;AspectMock opens up a whole new world of possibilities when it comes to testing your legacy and even modern projects. Check out the project on &lt;a href=&#34;https://github.com/Codeception/AspectMock&#34; title=&#34;AspectMock&#34;&gt;GitHub&lt;/a&gt; for more detailed documentation and give it a try in one your projects.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>New Book: Aspect-Oriented Programming in PHP</title>
+      <link>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</link>
+      <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been looking for a way to challenge myself as well as showcase some of my knowledge to the world. After some thinking, I&amp;rsquo;ve decided that I would go ahead and write a book.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been reading a lot about aspect-oriented programming and really like what it provides to enhance object-oriented programming. There isn&amp;rsquo;t a lot of information about this in the PHP community so I figured a book would be a great way to drum up some more interest and help create a larger community around the subject of AOP.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve already got a sample of the book up on Leanpub. You can check it out at &lt;a href=&#34;http://leanpub.com/aopinphp&#34;&gt;http://leanpub.com/aopinphp&lt;/a&gt;. Feel free to read it and send me any feedback as far as what you might like to see covered in the rest of the book. I plan on pushing some more updates very soon so expect to see a minimum viable product up and available for purchase in the next few weeks.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Aspect Oriented PHP Using Go! AOP Framework</title>
+      <link>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</link>
+      <pubDate>Tue, 09 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</guid>
+      <description>
+
+&lt;p&gt;In my &lt;a href=&#34;http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern&#34;&gt;last article&lt;/a&gt;  we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&amp;rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&amp;rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide. It would much easier if there was a package we could use instead. Lucky for us, there is!&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/goaop/framework&#34;&gt;Go! AOP Framework&lt;/a&gt; for PHP was created by &lt;a href=&#34;https://github.com/lisachenko&#34;&gt;Alexander Lisachenko&lt;/a&gt; and provides a way to use AOP in PHP without installing an extension. It accomplishes this by cleverly using autoloading, reflection and some other nifty features of modern PHP.&lt;/p&gt;
+
+&lt;p&gt;###Installation&lt;/p&gt;
+
+&lt;p&gt;First we need to install the package with composer.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s created a simple compose.json file with our dependencies and also define a simple namespace for our code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;goaop/framework&amp;quot;: &amp;quot;^0.6.0&amp;quot;
+    },
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-4&amp;quot;: {
+            &amp;quot;Stark\\&amp;quot;: &amp;quot;src/&amp;quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can install from the command line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we need to create what we&amp;rsquo;ll call our AOP kernel. This is where we will register our &lt;strong&gt;aspects&lt;/strong&gt;, as we&amp;rsquo;ll see later.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Kernel.php
+&amp;lt;?php namespace Stark\AOP;
+
+use Go\Core\AspectKernel;
+use Go\Core\AspectContainer;
+
+class Kernel extends AspectKernel
+{
+    /**
+     * Configure an AspectContainer with advisors, aspects and pointcuts
+     *
+     * @param AspectContainer $container
+     *
+     * @return void
+     */
+    protected function configureAop(AspectContainer $container)
+    {
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Third we need to initialize the kernel. This should ideally be done in your application&amp;rsquo;s front controller.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// public/index.php
+&amp;lt;?php
+include __DIR__ . &#39;/../vendor/autoload.php&#39;; // use composer&#39;s autoloader
+
+// Initialize an application aspect container
+$applicationAspectKernel = \Stark\AOP\Kernel::getInstance();
+$applicationAspectKernel-&amp;gt;init([
+    &#39;debug&#39; =&amp;gt; true, // use &#39;false&#39; for production mode
+    // Cache directory
+    &#39;cacheDir&#39; =&amp;gt; __DIR__ . &#39;/../cache&#39;
+]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally we can start creating aspects to modify our code.&lt;/p&gt;
+
+&lt;h3 id=&#34;using-go-aop&#34;&gt;Using Go! AOP&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s pretend we have a little Facebook service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Service/Facebook.php
+&amp;lt;?php namespace Stark\Service;
+
+class Facebook
+{
+    public function doStuff()
+    {
+        echo &amp;quot;Facebook stuff!&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s create an aspect to intercept any method called from that class.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Aspect/Monitor.php
+&amp;lt;?php namespace Stark\AOP\Aspect;
+
+use Go\Aop\Aspect;
+use Go\Aop\Intercept\FieldAccess;
+use Go\Aop\Intercept\MethodInvocation;
+use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Before;
+use Go\Lang\Annotation\Around;
+use Go\Lang\Annotation\Pointcut;
+
+/**
+ * Monitor aspect
+ */
+class Monitor implements Aspect
+{
+
+    /**
+     * Method that will be called before real method
+     *
+     * @param MethodInvocation $invocation Invocation
+     * @Before(&amp;quot;execution(public Stark\Service\Facebook-&amp;gt;*(*))&amp;quot;)
+     */
+    public function beforeMethodExecution(MethodInvocation $invocation)
+    {
+        $obj = $invocation-&amp;gt;getThis();
+        echo &#39;Calling Before Interceptor for method: &#39;,
+        is_object($obj) ? get_class($obj) : $obj,
+        $invocation-&amp;gt;getMethod()-&amp;gt;isStatic() ? &#39;::&#39; : &#39;-&amp;gt;&#39;,
+        $invocation-&amp;gt;getMethod()-&amp;gt;getName(),
+        &#39;()&#39;,
+        &amp;quot;&amp;lt;br&amp;gt;\n&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we have to register the new aspect in our kernel.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Kernel.php
+&amp;lt;?php namespace Stark\AOP;
+
+use Go\Core\AspectKernel;
+use Go\Core\AspectContainer;
+use Stark\AOP\Aspect\Monitor;
+
+class Kernel extends AspectKernel
+{
+    /**
+     * Configure an AspectContainer with advisors, aspects and pointcuts
+     *
+     * @param AspectContainer $container
+     *
+     * @return void
+     */
+    protected function configureAop(AspectContainer $container)
+    {
+        $container-&amp;gt;registerAspect(new Monitor());
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally in our front controller we can add these few lines to run our little service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// public/index.php
+&amp;lt;?php
+$fb = new \Stark\Service\Facebook();
+$fb-&amp;gt;doStuff();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you run index.php you&amp;rsquo;ll get the following output.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Calling Before Interceptor for method: Stark\Service\Facebook-&amp;gt;doStuff()
+Facebook stuff!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Go! AOP Framework uses annotations rather than global functions to define &lt;strong&gt;jointpoints&lt;/strong&gt; and &lt;strong&gt;pointcuts&lt;/strong&gt;. &amp;lsquo;beforeMethodExecution()&amp;rsquo; is our &lt;strong&gt;advice&lt;/strong&gt; in this instance. We used the &amp;lsquo;@Before&amp;rsquo; annotation to intercept before the method is called. Similarly we can use &amp;lsquo;@After&amp;rsquo; and &amp;lsquo;@Around&amp;rsquo; as joinpoints as well.&lt;/p&gt;
+
+&lt;p&gt;The rest of the annotation defines the pointcut which is &amp;lsquo;execution&amp;rsquo; in this case. We can also use &amp;lsquo;access&amp;rsquo; for reading/writing of class properties, initialization for when a class is first created and many others.&lt;/p&gt;
+
+&lt;p&gt;One other neat trick we can use is intercepting custom annotations. Go! AOP includes Doctrine&amp;rsquo;s annotation reader package so we can create a custom annotation like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Annotation/Custom.php
+&amp;lt;?php namespace Stark\Annotation;
+
+use Doctrine\Common\Annotations\Annotation;
+
+/**
+ * @Annotation
+ * @Target(&amp;quot;METHOD&amp;quot;)
+ */
+class Custom extends Annotation
+{
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next let&amp;rsquo;s modify our Facebook service&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Service/Facebook.php
+&amp;lt;?php namespace Stark\Service;
+
+use Stark\Annotation\Custom;
+
+class Facebook
+{
+    /**
+     * @Custom
+     */
+    public function doStuff()
+    {
+        echo &amp;quot;Facebook stuff!&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip;and our aspect.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Aspect/Monitor.php
+&amp;lt;?php namespace Stark\AOP\Aspect;
+
+use Go\Aop\Aspect;
+use Go\Aop\Intercept\FieldAccess;
+use Go\Aop\Intercept\MethodInvocation;
+use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Before;
+use Go\Lang\Annotation\Around;
+use Go\Lang\Annotation\Pointcut;
+
+/**
+ * Monitor aspect
+ */
+class Monitor implements Aspect
+{
+
+    /**
+     * Method that will be called before real method
+     *
+     * @param MethodInvocation $invocation Invocation
+     * @Before(&amp;quot;@annotation(Stark\Annotation\Custom)&amp;quot;)
+     */
+    public function beforeMethodExecution(MethodInvocation $invocation)
+    {
+        $obj = $invocation-&amp;gt;getThis();
+        echo &#39;Calling Before Interceptor for method: &#39;,
+        is_object($obj) ? get_class($obj) : $obj,
+        $invocation-&amp;gt;getMethod()-&amp;gt;isStatic() ? &#39;::&#39; : &#39;-&amp;gt;&#39;,
+        $invocation-&amp;gt;getMethod()-&amp;gt;getName(),
+        &#39;()&#39;,
+        &amp;quot;&amp;lt;br&amp;gt;\n&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We should get the same result as before.&lt;/p&gt;
+
+&lt;p&gt;This framework is full of features and it opens up a lot of new possibilities in PHP. To learn more about what you can do with Go! AOP, check out the official &lt;a href=&#34;http://go.aopphp.com/docs/&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Aspect Oriented PHP And The Interceptor Pattern</title>
+      <link>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
+      <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
+      <description>
+
+&lt;p&gt;There are many ways to modify the behavior of existing code with actually changing the core logic. Some patterns you might be familiar with are the decorator pattern or the observer pattern. Both allow you to take another object and modify the behavior by wrapping your modifcations around the original code. One pattern you might not be familiar with though, is the interceptor pattern.&lt;/p&gt;
+
+&lt;p&gt;The interceptor pattern is a core concept of what is called aspect oriented programming (AOP). AOP aims to improve the modularity of your code by allowing you to separate cross-cutting concerns from the rest of your code.&lt;/p&gt;
+
+&lt;p&gt;An example of a cross-cutting concern is logging. You may want to log when a particular part of your application completes an action but where should the actual logging code go? This can get hairy if you aren&amp;rsquo;t careful. Something like a logger doesn&amp;rsquo;t really fit well into object oriented programing and may lead to code-duplication or scattering. AOP allows you keep your logging code separate from everything else. You can then attach your logger to other parts of the application by using interceptors.&lt;/p&gt;
+
+&lt;p&gt;PHP doesn&amp;rsquo;t come with a built in way for using AOP but luckily there is a very promising PECL extension that provides just that.&lt;/p&gt;
+
+&lt;h3 id=&#34;installation&#34;&gt;Installation&lt;/h3&gt;
+
+&lt;p&gt;You can find the project, which is currently in beta, on &lt;a href=&#34;https://github.com/AOP-PHP/AOP&#34;&gt;GitHub&lt;/a&gt;. You should be able to install on your favorite Linux distro by runnning:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;pecl install aop-beta
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you had issues like I did, try cloning the repo and following the install instructions in the README.&lt;/p&gt;
+
+&lt;h3 id=&#34;using-interceptors&#34;&gt;Using Interceptors&lt;/h3&gt;
+
+&lt;p&gt;An interceptor allows you to modify the behavior of a method by literally intercepting the call before, after or both (around). To do this you specify when you want to intercept the method. This is called the &lt;strong&gt;join-point&lt;/strong&gt;. Next you specify the method or methods you want to intercept. This is called the &lt;strong&gt;pointcut&lt;/strong&gt;. Finally you specify the function you want to use as your interceptor. This is known as an &lt;strong&gt;advice&lt;/strong&gt;. The combination of a pointcut and an advice is known as an &lt;strong&gt;aspect&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The AOP PHP extension provides some handy functions for creating your own interceptors. Let&amp;rsquo;s take a look at a few of them.&lt;/p&gt;
+
+&lt;p&gt;####aop_add_before
+This function will create an interceptor that executes, as the name implies, before the method you want to intercept. Check out the following example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+   
+class Admin {
+    public function showDashboard()
+    {
+        echo &#39;Welcome to the admin panel.&#39;;
+    } 
+} 
+   
+function restrictAccessAdvice()
+{
+    if ($_SESSION[&#39;user_type&#39;] !== &#39;admin&#39;) {
+        throw new Exception(&#39;Access denied!&#39;);
+    } 
+} 
+  
+aop_add_before(&#39;Admin-&amp;gt;showDashboard()&#39;, &#39;restrictAccessAdvice&#39;);
+  
+$_SESSION[&#39;user_type&#39;] = &#39;user&#39;;
+$admin = new Admin();
+  
+try {
+    $admin-&amp;gt;showDashboard();
+} catch (Exception $e) {
+    echo $e-&amp;gt;getMessage();
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In that example we have a really lame class for showing an admin dashboard. We can easily add a layer of security by intercepting method calls related to admin. As you probably can tell, the output from the above code would be this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Access denied!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can match a bunch of methods in the same class by doing something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+aop_add_before(&#39;Admin-&amp;gt;*()&#39;, &#39;restrictAccessAdvice&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####aop_add_after
+This function of course creates an interceptor that executes after the specified method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Service
+{
+    public function doSomething()
+    {
+        echo &#39;Doing something important!&#39; . PHP_EOL;
+    }
+}
+
+$loggingAdvice = function() {
+    echo &#39;Logging something important!&#39; . PHP_EOL;
+};
+
+aop_add_after(&#39;Service-&amp;gt;doSomething()&#39;, $loggingAdvice);
+
+$service = new Service();
+$service-&amp;gt;doSomething();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the output from the that example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Doing something important! 
+Logging something important!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####aop_add_around
+This function combines both before and after but the signature is a little different. The advice you specify should take an argurment. The argument passed in is an object representing the join-point. Check out the example below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class MeatFactory
+{
+    public function produceHam()
+    {
+        echo &amp;quot;Here is some ham.&amp;quot; . PHP_EOL;
+    }
+}
+
+$sandwichAdvice = function(AopJoinPoint $joinPoint)
+{
+    // before
+    echo &amp;quot;Here is some bread.&amp;quot; . PHP_EOL;
+
+    // execute
+    $joinPoint-&amp;gt;process();
+
+    // after
+    echo &amp;quot;Here is some more bread.&amp;quot; . PHP_EOL;
+};
+
+aop_add_around(&#39;MeatFactory-&amp;gt;produce*()&#39;, $sandwichAdvice);
+
+$factory = new MeatFactory();
+$factory-&amp;gt;produceHam();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not that we had to explicitly invoke the &amp;lsquo;process()&amp;rsquo; method in order to get any result from the intercepted method. If we wanted to, we could supress the behavior of the intercepted method simply by not calling &amp;lsquo;process()&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the output.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Here is some bread.
+Here is some ham.
+Here is some more bread.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####Modifying Arguments
+By passing the AopJoinPoint object to your advice, you can grab all kinds of information about the method being intercepted. You can even modify the arguments passed to the method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Greeter
+{
+    public function sayHello($name)
+    {
+        echo &amp;quot;Hello {$name}!&amp;quot;;
+    }
+}
+
+function ucAdvice(AopJoinPoint $joinPoint)
+{
+    $args = $joinPoint-&amp;gt;getArguments();
+    $args[0] = ucwords($args[0]);
+    $joinPoint-&amp;gt;setArguments($args);
+}
+
+aop_add_before(&#39;Greeter-&amp;gt;sayHello()&#39;, &#39;ucAdvice&#39;);
+
+$greeter = new Greeter();
+$greeter-&amp;gt;sayHello(&#39;dave&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Intercepting the method before it runs we can use the &amp;lsquo;getArguments()&amp;rsquo; method to grab the original arguments, modify them and then re-pass them for execution using the &amp;lsquo;setArguments()&amp;rsquo; method.&lt;/p&gt;
+
+&lt;p&gt;Here is the output.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Hello Dave!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;modifying-return-variables&#34;&gt;Modifying Return Variables&lt;/h4&gt;
+
+&lt;p&gt;Modifying return variables is somewhat the same as modifying arguments but you can only do this if you are intercepting after or around a method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Calc
+{
+    public function sum($a, $b)
+    {
+        return $a + $b;
+    }
+}
+
+function squareAdvice(AopJoinPoint $joinPoint)
+{
+    $value = $joinPoint-&amp;gt;getReturnedValue();
+    $joinPoint-&amp;gt;setReturnedValue($value * $value);
+}
+
+aop_add_after(&#39;Calc-&amp;gt;sum()&#39;, &#39;squareAdvice&#39;);
+
+$calc = new Calc();
+echo $calc-&amp;gt;sum(1, 2);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just like when we grabbed the arguments we can grab the original return value using &amp;lsquo;getReturnedValue()&amp;rsquo;. The result of this example would, of course, be 9.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s just a handful of things you can do with the AOP extension. Checkout the &lt;a href=&#34;http://www.croes.org/gerald/projects/aop/documentation_aop_extension_php.pdf&#34;&gt;documentation&lt;/a&gt; to learn how to do other things like intercept read/write actions on specific class properties.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
