@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/continuous-delivery/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/continuous-delivery/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Simple Environment Variable Based Feature Toggles</title>
+      <link>http://edzynda.com/simple-environment-variable-based-feature-toggles/</link>
+      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/simple-environment-variable-based-feature-toggles/</guid>
+      <description>
+
+&lt;p&gt;There&amp;rsquo;s a lot of talk about continuous delivery in software development these days. One core concept of continuous delivery is &amp;ldquo;Deploy early and deploy often.&amp;rdquo; Rather than deploy an entire application once it&amp;rsquo;s complete, you should be pushing many small features as they come. There are many benefits to this but it isn&amp;rsquo;t without risk.&lt;/p&gt;
+
+&lt;p&gt;Using a software version controll system like git can make working on code in teams easy but can just as easily turn into a nightmare when there are too many active branches from the master branch in the repository. What if you have some code that&amp;rsquo;s been greenlighted for production in your staging branch but some other code that isn&amp;rsquo;t. You can try and merge just the greenlighted code but more often than not you&amp;rsquo;ll have a hard time trying to cherry pick and even if you do, it becomes a mess later when new features are being brought into the mix.&lt;/p&gt;
+
+&lt;p&gt;To get around this, you could just merge everything and hope for the best or you could wrap your new code in what&amp;rsquo;s called a feature toggle. What&amp;rsquo;s a feature toggle? Simply put, it&amp;rsquo;s just a way to enable or disable your code from running given a condition. A toggle can be very complex like having your code run only if the user is coming from a block of ip addresses or very simple like running code if an environment varible is set to true. I wrote small library that does the latter.&lt;/p&gt;
+
+&lt;h3 id=&#34;installation&#34;&gt;Installation&lt;/h3&gt;
+
+&lt;p&gt;You can install using composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer require ezynda3/feature-toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
+
+&lt;p&gt;The library uses the awesome &amp;lsquo;vlucas/phpdotenv&amp;rsquo; library so to create a feature toggle first create a file called &amp;lsquo;.env&amp;rsquo; in the root of your project. Then create an environment variable prefixed with &amp;lsquo;FEATURE_&amp;rsquo; and then whatever name you would like to give it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FEATURE_SUPER_AWESOME_STUFF=true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You don&amp;rsquo;t have to use a &amp;lsquo;.env&amp;rsquo; file. You can set environment variables via the command line or in your hosting provider&amp;rsquo;s admin panel assuming they ofter setting environment variables for your deployed applications.&lt;/p&gt;
+
+&lt;p&gt;A feature is always set to false or disabled unless you specifically set it to true. Now you can use the feature toggle like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+require &#39;vendor/autoload.php&#39;;
+
+use Ezynda3\FeatureToggle\Manager;
+
+$toggle = new Manager(___DIR___);
+$feaure = $toggle-&amp;gt;feature(&#39;super_awesome_stuff&#39;);
+
+if ($feature-&amp;gt;isEnabled()) {
+	// New code
+} else {
+	// Old code
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s all there is to it. Be sure to check out the &lt;a href=&#34;https://github.com/ezynda3/feature-toggle&#34;&gt;project&lt;/a&gt; on GitHub and if there are any features you&amp;rsquo;d like to add, feel free to submit a pull-request.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

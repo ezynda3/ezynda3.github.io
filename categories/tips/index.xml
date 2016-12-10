@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/categories/tips/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/categories/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using Route/Model Binding In Laravel</title>
+      <link>http://edzynda.com/using-routemodel-binding-in-laravel/</link>
+      <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-routemodel-binding-in-laravel/</guid>
+      <description>&lt;p&gt;As I work more and more with Laravel, I keep running across some really cool time saving tricks. One of those time savers is route/model binding.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s say that you have the following route setup.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::get(&#39;books/{book}&#39;, function($book) {
+    return Book::find($book);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s pretty simple right? Basically you point your browser at /books and then pass a book id and then use the &amp;#8216;Book&amp;#8217; model to fetch that book from the database. But say we already decided that the &amp;#8216;books&amp;#8217; route should always be working with the book model and a book should be fetched automatically. Laravel gives us a method for explicitly binding the &amp;#8216;Book&amp;#8217; model to our routes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::model(&#39;book&#39;, &#39;Book&#39;);
+ 
+Route::get(&#39;books/{book}&#39;, function($book) {
+    return $book;
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now Laravel will take the id you pass to the route and automatically fetch it behind the scenes. What if we want to fetch a book by something other than it&amp;#8217;s id? What if we want to access our books using a URI similar to /books/BookTitle? Instead of Route::model we can use Route::bind like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::bind(&#39;book&#39;, function($value, $route) {
+    return Book::whereTitle($value);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is a really good way to cut down on lines of code and at the same time keep it more readable.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tip: Custom Scripts In WordPress</title>
+      <link>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</link>
+      <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</guid>
+      <description>&lt;p&gt;WordPress is a great CMS (Content Management System) is you want to get a site up and running very quickly. It&amp;#8217;s themable and within the theming framework, WordPress includes the ability to include popular assets like JQuery. All it takes is a simple command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+wp_enqueue_script(&#39;jquery&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What if you don&amp;#8217;t want to use the version of JQuery included in WordPress though? There are several reasons you would require a different version, compatibility for example.&lt;/p&gt;
+
+&lt;p&gt;In order to use a custom asset you can do something like the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+wp_deregister_script(&#39;jquery&#39;);
+wp_register_script(&#39;jquery&#39;, &#39;http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js&#39;, false);
+wp_enqueue_script(&#39;jquery&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will deregister the current jquery script which is the default included with WordPress and set it to your custom version. You can also register your own scripts like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+wp_register_script(&#39;myajaxscript&#39;, &#39;mythemedir/js/ajaxstuff.js&#39;, false);
+wp_enqueue_script(&#39;myajaxscript&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tip: Quick Test For XSS Vulnerabilities</title>
+      <link>http://edzynda.com/testing-for-xss-vulnerabilities/</link>
+      <pubDate>Mon, 29 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/testing-for-xss-vulnerabilities/</guid>
+      <description>&lt;p&gt;There are a lot of things to keep in mind when it comes to web development. Security should be at the top of your list. If you read up on web application security, you&amp;#8217;re probably familiar with cross-site scripting or XSS attacks. XSS attacks can cause serious damage but are really simple to prevent.&lt;/p&gt;
+
+&lt;p&gt;If you aren&amp;#8217;t familiar, a XSS vulnerability occurs when your application takes user data and then sends it to the web browser without proper validation. An example would be a contact form that displays a confirmation after it has been submitted. The contact form asks for your first name then displays a message like &amp;#8220;Thanks for your inquiry Bob!&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;Instead of entering &amp;#8216;Bob&amp;#8217; as a first name though, an attacker can place a string of malicious javascript into the &amp;#8220;name&amp;#8221; field that could cause havoc on your site. Possible consequences could be defacement to inserting hidden code that would redirect future users to another malicious site controlled by the attacker.&lt;/p&gt;
+
+&lt;p&gt;One easy way to check whether or not you are vulnerable is to place some javascript of your own into the various fields of your web application forms.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;alert(42)&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That single line isn&amp;#8217;t malicious but it does run unintended code if your app is vulnerable. If your app is vulnerable the confirmation page will display a pop-up window with &amp;#8220;42&amp;#8243;. A properly secured application will recognize that string as invalid and either drop any sort of tags or code or produce an error.&lt;/p&gt;
+
+&lt;p&gt;Using this quick test, you should be able to identify and prevent most if not all XSS attacks in your apps.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

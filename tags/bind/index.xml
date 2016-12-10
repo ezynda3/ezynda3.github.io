@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/bind/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/bind/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>What Is An IoC Container?</title>
+      <link>http://edzynda.com/what-is-an-ioc-container/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/what-is-an-ioc-container/</guid>
+      <description>&lt;p&gt;If you&amp;#8217;re discussing object oriented programming in PHP these days, it&amp;#8217;s likely that you&amp;#8217;ve at least heard about such topics as dependency injection or IoC containers. They&amp;#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&amp;#8217;s really not.&lt;/p&gt;
+
+&lt;p&gt;If you read my earlier post on using repositories in Laravel you might have noticed that when using dependency injection in our __construct method, we didn&amp;#8217;t have to actually instantiate our repository. Laravel&amp;#8217;s IoC container did it for us. Behind the scenes, when our controller was called, Laravel ran the App::make() method and passed it through to our constructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+use Stark\Repositories\UserRespositoryInterface as Repository;
+
+class UserController extends BaseController {
+    protected $user;
+
+    public function __construct(Repository $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;getAll();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now basic object oriented programming says we can&amp;#8217;t instantiate an interface so we have to pass an object that implements the UserRepositoryInterface such as our EloquentUserRepository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repositories\EloquentUserRepository&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remember that line of code? What we are doing is telling Laravel&amp;#8217;s IoC to respond to any request for UserRepositoryInterface with EloquentUserRepository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+$userRepo = App::make(&#39;Stark\Repositories\UserRepositoryInterface&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$userRepo is actually an EloquentUserRepository object now.&lt;/p&gt;
+
+&lt;p&gt;To understand how this works let&amp;#8217;s flesh out our own IoC.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// IoC.php
+class IoC {
+
+    protected static $bindings = [];
+
+    public static function bind($name, Callable $resolver)
+    {
+        static::$bindings[$name] = $resolver;
+    }
+
+    public static function make($name)
+    {
+        if (isset(static::$bindings[$name]))
+        {
+            $resolver = static::$registry[$name];
+
+            return $resolver();
+        }
+
+        throw new Exception(&#39;Alias does not exist in the IoC registry.&#39;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This can be used in any PHP project outside of laravel. Check out this example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+include &#39;IoC.php&#39;;
+
+class Truck {}
+
+class Garage {
+    protected $veh;
+
+    public function __construct(Vehicle $veh)
+    {
+        $this-&amp;gt;veh = $veh;
+    }
+}
+
+IoC::bind(&#39;Vehicle&#39;, &#39;Truck&#39;)
+
+$garage = new Garage(App::make(&#39;Vehicle&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So we created a class Truck and a class Garage which depends on a Vehicle object. Then we used our homebrewed IoC to bind any call for Vehicle to a call for Truck instead. So when we created a new Garage we passed IoC::bind which would pass whatever we registered with IoC::bind. That&amp;#8217;s all there is to it.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

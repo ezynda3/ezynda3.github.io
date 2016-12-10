@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/simple-environment-variable-based-feature-toggles/" title="Simple Environment Variable Based Feature Toggles">Simple Environment Variable Based Feature Toggles</a></h2>
+
+  Posted on
+  <time datetime="Jun 06, 2015">June 06, 2015</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/php">php</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/environment">environment</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/feature-toggle">feature toggle</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/continuous-delivery">continuous delivery</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/packagist">packagist</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/library">library</a></div>
+        
+    
+  
+
+      
+
+<p>There&rsquo;s a lot of talk about continuous delivery in software development these days. One core concept of continuous delivery is &ldquo;Deploy early and deploy often.&rdquo; Rather than deploy an entire application once it&rsquo;s complete, you should be pushing many small features as they come. There are many benefits to this but it isn&rsquo;t without risk.</p>
+
+<p>Using a software version controll system like git can make working on code in teams easy but can just as easily turn into a nightmare when there are too many active branches from the master branch in the repository. What if you have some code that&rsquo;s been greenlighted for production in your staging branch but some other code that isn&rsquo;t. You can try and merge just the greenlighted code but more often than not you&rsquo;ll have a hard time trying to cherry pick and even if you do, it becomes a mess later when new features are being brought into the mix.</p>
+
+<p>To get around this, you could just merge everything and hope for the best or you could wrap your new code in what&rsquo;s called a feature toggle. What&rsquo;s a feature toggle? Simply put, it&rsquo;s just a way to enable or disable your code from running given a condition. A toggle can be very complex like having your code run only if the user is coming from a block of ip addresses or very simple like running code if an environment varible is set to true. I wrote small library that does the latter.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>You can install using composer.</p>
+
+<pre><code class="language-sh">$ composer require ezynda3/feature-toggle
+</code></pre>
+
+<h3 id="usage">Usage</h3>
+
+<p>The library uses the awesome &lsquo;vlucas/phpdotenv&rsquo; library so to create a feature toggle first create a file called &lsquo;.env&rsquo; in the root of your project. Then create an environment variable prefixed with &lsquo;FEATURE_&rsquo; and then whatever name you would like to give it.</p>
+
+<pre><code class="language-sh">FEATURE_SUPER_AWESOME_STUFF=true
+</code></pre>
+
+<p>You don&rsquo;t have to use a &lsquo;.env&rsquo; file. You can set environment variables via the command line or in your hosting provider&rsquo;s admin panel assuming they ofter setting environment variables for your deployed applications.</p>
+
+<p>A feature is always set to false or disabled unless you specifically set it to true. Now you can use the feature toggle like so.</p>
+
+<pre><code class="language-php">&lt;?php
+require 'vendor/autoload.php';
+
+use Ezynda3\FeatureToggle\Manager;
+
+$toggle = new Manager(___DIR___);
+$feaure = $toggle-&gt;feature('super_awesome_stuff');
+
+if ($feature-&gt;isEnabled()) {
+	// New code
+} else {
+	// Old code
+}
+</code></pre>
+
+<p>That&rsquo;s all there is to it. Be sure to check out the <a href="https://github.com/ezynda3/feature-toggle">project</a> on GitHub and if there are any features you&rsquo;d like to add, feel free to submit a pull-request.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2fsimple-environment-variable-based-feature-toggles%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Simple%20Environment%20Variable%20Based%20Feature%20Toggles&amp;url=http%3a%2f%2fedzynda.com%2fsimple-environment-variable-based-feature-toggles%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2fsimple-environment-variable-based-feature-toggles%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2fsimple-environment-variable-based-feature-toggles%2f&title=Simple%20Environment%20Variable%20Based%20Feature%20Toggles" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/simple-environment-variable-based-feature-toggles\/';
+    var disqus_title = 'Simple Environment Variable Based Feature Toggles';
+    var disqus_url = 'http:\/\/edzynda.com\/simple-environment-variable-based-feature-toggles\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/test-the-untestable-with-aspectmock/" title="Test The Untestable With AspectMock">Test The Untestable With AspectMock</a></h2>
+
+  Posted on
+  <time datetime="Apr 04, 2016">April 04, 2016</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/php">php</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/aop">aop</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/aspect-oriented-programming">aspect oriented programming</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/framework">framework</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/tdd">tdd</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/mocking">mocking</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/testing">testing</a></div>
+        
+    
+  
+
+      <p>Some of us have had the pleasure of working with someone else&rsquo;s ancient codebase to either add new features or fix bugs. It&rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design. This makes the codebase very fragile and any small change could break something if you aren&rsquo;t careful. How do we test the untestable? AspectMock to the rescue!</p>
+
+<p>Using the power of AOP and the Go! AOP framework AspectMock allows you to create test doubles for almost anything anywhere in your code from public and private methods to static methods and even system functions like time().</p>
+
+<p>Let&rsquo;s take a look at an example.</p>
+
+<pre><code class="language-php">&lt;?php
+
+class UserCreator
+{
+    public function create(array $data)
+    {
+        $user = new User($data);
+        $user-&gt;save();
+    }
+}
+</code></pre>
+
+<p>Here we have a UserCreator class that depends on a User object to save a newly created user to the database. We&rsquo;ll pretend this works great but would like to have a test in place to avoid any future defects. We need to mock the User object somehow though because we don&rsquo;t want to make any calls to the database during our test.</p>
+
+<pre><code class="language-php">&lt;?php
+function testUserCreate()
+{
+    $user = Test::double('User', ['save' =&gt; null]));
+    $service = new UserCreator;
+    $service-&gt;create(['name' =&gt; 'Tony Stark']);
+    $user-&gt;verifyInvoked('save');
+}
+</code></pre>
+
+<p>Now when you run your test, AspectMock basically intercepts the call to the &lsquo;save&rsquo; method and prevents it from touching the database.</p>
+
+<p>You can even mock builtin PHP functions for greater flexibility.</p>
+
+<pre><code class="language-php">&lt;?php
+namespace demo;
+test::func('demo', 'time', 'now');
+$this-&gt;assertEquals('now', time());
+</code></pre>
+
+<p>AspectMock opens up a whole new world of possibilities when it comes to testing your legacy and even modern projects. Check out the project on <a href="https://github.com/Codeception/AspectMock" title="AspectMock">GitHub</a> for more detailed documentation and give it a try in one your projects.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2ftest-the-untestable-with-aspectmock%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Test%20The%20Untestable%20With%20AspectMock&amp;url=http%3a%2f%2fedzynda.com%2ftest-the-untestable-with-aspectmock%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2ftest-the-untestable-with-aspectmock%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2ftest-the-untestable-with-aspectmock%2f&title=Test%20The%20Untestable%20With%20AspectMock" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/test-the-untestable-with-aspectmock\/';
+    var disqus_title = 'Test The Untestable With AspectMock';
+    var disqus_url = 'http:\/\/edzynda.com\/test-the-untestable-with-aspectmock\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

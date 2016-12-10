@@ -1,0 +1,1375 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <lastBuildDate>Wed, 07 Dec 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://edzynda.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Single Page Web App With Go And Vue</title>
+      <link>http://edzynda.com/single-page-web-app-with-go-and-vue/</link>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/single-page-web-app-with-go-and-vue/</guid>
+      <description>&lt;p&gt;I wrote a nice little tutorial on creating a single page web application using Go and VueJS. Check it out over at &lt;a href=&#34;https://scotch.io/tutorials/create-a-single-page-app-with-go-echo-and-vue&#34;&gt;Scotch.io&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Test The Untestable With AspectMock</title>
+      <link>http://edzynda.com/test-the-untestable-with-aspectmock/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/test-the-untestable-with-aspectmock/</guid>
+      <description>&lt;p&gt;Some of us have had the pleasure of working with someone else&amp;rsquo;s ancient codebase to either add new features or fix bugs. It&amp;rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&amp;rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design. This makes the codebase very fragile and any small change could break something if you aren&amp;rsquo;t careful. How do we test the untestable? AspectMock to the rescue!&lt;/p&gt;
+
+&lt;p&gt;Using the power of AOP and the Go! AOP framework AspectMock allows you to create test doubles for almost anything anywhere in your code from public and private methods to static methods and even system functions like time().&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look at an example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class UserCreator
+{
+    public function create(array $data)
+    {
+        $user = new User($data);
+        $user-&amp;gt;save();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have a UserCreator class that depends on a User object to save a newly created user to the database. We&amp;rsquo;ll pretend this works great but would like to have a test in place to avoid any future defects. We need to mock the User object somehow though because we don&amp;rsquo;t want to make any calls to the database during our test.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+function testUserCreate()
+{
+    $user = Test::double(&#39;User&#39;, [&#39;save&#39; =&amp;gt; null]));
+    $service = new UserCreator;
+    $service-&amp;gt;create([&#39;name&#39; =&amp;gt; &#39;Tony Stark&#39;]);
+    $user-&amp;gt;verifyInvoked(&#39;save&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now when you run your test, AspectMock basically intercepts the call to the &amp;lsquo;save&amp;rsquo; method and prevents it from touching the database.&lt;/p&gt;
+
+&lt;p&gt;You can even mock builtin PHP functions for greater flexibility.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+namespace demo;
+test::func(&#39;demo&#39;, &#39;time&#39;, &#39;now&#39;);
+$this-&amp;gt;assertEquals(&#39;now&#39;, time());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;AspectMock opens up a whole new world of possibilities when it comes to testing your legacy and even modern projects. Check out the project on &lt;a href=&#34;https://github.com/Codeception/AspectMock&#34; title=&#34;AspectMock&#34;&gt;GitHub&lt;/a&gt; for more detailed documentation and give it a try in one your projects.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Simplify PHP Configs With Environment Variables</title>
+      <link>http://edzynda.com/simplify-php-configs-with-environment-variables/</link>
+      <pubDate>Wed, 13 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/simplify-php-configs-with-environment-variables/</guid>
+      <description>&lt;p&gt;Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &amp;lsquo;app/config&amp;rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.&lt;/p&gt;
+
+&lt;p&gt;In Laravel 5 and above you just create a file name &amp;lsquo;.env&amp;rsquo; and place your configuration in environment variables. The file would look something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;DB_NAME=mydatabse
+FOOBAR=baz
+SOME_API_KEY=1234abcef
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You would create this file and make sure to add &amp;lsquo;.env&amp;rsquo; to &amp;lsquo;.gitignore&amp;rsquo; in order to keep sensitive data out of your code repository. When you deploy to your different environments you can then just include a &amp;lsquo;.env&amp;rsquo; file that&amp;rsquo;s appropriate for the environment.&lt;/p&gt;
+
+&lt;p&gt;Laravel 4.2 and below doesn&amp;rsquo;t have this but fortunately, with a little bit of tweaking you can add it.&lt;/p&gt;
+
+&lt;p&gt;First we need to include a helpful package that reads &amp;lsquo;.env&amp;rsquo; files and then loads them for PHP to access.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;composer require vlucas/phpdotenv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you&amp;rsquo;re using Laravel 4.2 you next need to edit &amp;lsquo;bootstrap/start.php&amp;rsquo;. If you&amp;rsquo;re using another framework or none at all you just need to add the following code to wherever you bootstrap your application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+if (is_file(__DIR__ . &#39;/../.env&#39;)) {
+	Dotenv::load(__DIR__ . &#39;/../&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will check to see that the file exists and if so, load the data into PHP&amp;rsquo;s $_ENV superglobal array.&lt;/p&gt;
+
+&lt;p&gt;Next we&amp;rsquo;ll need a helper function to grab environment variables or use an acceptable default. If you&amp;rsquo;re using Laravel, place this in &amp;lsquo;app/helpers.php&amp;rsquo; if not you can place it wherever you keep helper functions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+if ( ! function_exists(&#39;env&#39;))
+{
+    /**
+     * Gets the value of an environment variable. Supports boolean, empty and null.
+     *
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function env($key, $default = null)
+    {
+        $value = getenv($key);
+
+        if ($value === false) return value($default);
+
+        switch (strtolower($value))
+        {
+            case &#39;true&#39;:
+            case &#39;(true)&#39;:
+                return true;
+
+            case &#39;false&#39;:
+            case &#39;(false)&#39;:
+                return false;
+
+            case &#39;null&#39;:
+            case &#39;(null)&#39;:
+                return null;
+
+            case &#39;empty&#39;:
+            case &#39;(empty)&#39;:
+                return &#39;&#39;;
+        }
+
+        return $value;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you should be able to use .env files an consolidate your configuration data. For example if you need a config file like &amp;lsquo;app/config/sendgrid.php&amp;rsquo; to handle sending mail with SendGrid you can make it look something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+return [
+    &#39;api_key&#39; =&amp;gt; env(&#39;SENDGRID_API_KEY&#39;)
+];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will greatly simplify your deployments and help avoid configuration comlexity in your older Laravel or other non-Laravel applications.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Running AJAX Requests Sequentially</title>
+      <link>http://edzynda.com/running-ajax-requests-sequentially/</link>
+      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/running-ajax-requests-sequentially/</guid>
+      <description>&lt;p&gt;Somewhat recently, I was refactoring a project that was having issues uploading and importing large CSV files. I was running into all kinds of issues from timeout errors to memory allocation exceptions. The solution was to break up the import and upload it in chunks. This alone was pretty easy but I also wanted to include the ability to display the progress of the entire import. The problem was, I was using AJAX to upload the data.&lt;/p&gt;
+
+&lt;p&gt;AJAX is pretty useful in that it allows you to make HTTP requests asynchronously without refreshing the entire page. You can update small sections of the page without reloading. This is great if you don&amp;rsquo;t care what order the requests finish. In my case I needed to upload the data in chunks but also calculate the overall progress based on how much had been uploaded vs how much was remaining. Using AJAX as intended, all of the chunks would be sent at the exact same which opens of the possibiity that a chunk that should be uploaded last would finish before an earlier chunk.&lt;/p&gt;
+
+&lt;p&gt;After banging my head against the wall dealing with Javascript promises and deferred objects, I decided to try a functional programming technique. The solution ended up being recursion. Let&amp;rsquo;s take a look at what I mean.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function recursivePost(url, data) {
+  var dfd = $.Deferred();
+  var total = data.length;
+  var chunk = data.splice(0, 10);
+  var payload = {}
+            
+  payload.data = chunk;
+  payload.remaining = total - chunk.length;
+            
+  $.post(url, payload)
+    .success(function (response) {
+                    
+      updateProgressBar(chunk.length);
+                        
+      if (response.status == &#39;complete&#39;) {
+        dfd.resolve(response);
+      } else {
+        recursivePost(url, data).done(function(response) {
+          dfd.resolve(response);
+        });
+      }
+    })
+    .fail(function (response) {
+      dfd.reject(response.responseText);
+    });
+                    
+  return dfd.promise();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The function above starts out by creating a deferred object which we use to return a promise object at the bottom of the function. This allows us to start the upload process and hold off on doing anything else until all the chunks are finished uploading. Then we take the initial data which should be an array and calculate the total. Then we shave off 10 items from the array using array_splice(). Then we construct a payload object that contains the chunk and then the number of items remaining after this upload completes. This will allow our backend code to determine when the entire process is complete in case it needs to run some additional logic after.&lt;/p&gt;
+
+&lt;p&gt;Using jQuery&amp;rsquo;s handy post() method we can upload the data to the specified URL. On success we can update our progress bar then we check whether there is more to be uploaded. In my case I let the backend decide by sending a &amp;lsquo;complete&amp;rsquo; status. We could also just check whether payload.reaining = 0. If there are still more items we call the same function from within itself. We also attach done() handler to catch the promise returned by that call. This allows the resolved promise from recursive calls to recursivePost to bubble up to the initial call and then be returned at completion.&lt;/p&gt;
+
+&lt;p&gt;If there are no more items to process, we resolve the promise object so the rest of the app knows the upload is complete.&lt;/p&gt;
+
+&lt;p&gt;Because we only run the next request after the previous request succeeds, we prevent the AJAX calls from firing at the same time. Each request is in sequential order and progress can be tracked.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>New Book: Aspect-Oriented Programming in PHP</title>
+      <link>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</link>
+      <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been looking for a way to challenge myself as well as showcase some of my knowledge to the world. After some thinking, I&amp;rsquo;ve decided that I would go ahead and write a book.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been reading a lot about aspect-oriented programming and really like what it provides to enhance object-oriented programming. There isn&amp;rsquo;t a lot of information about this in the PHP community so I figured a book would be a great way to drum up some more interest and help create a larger community around the subject of AOP.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve already got a sample of the book up on Leanpub. You can check it out at &lt;a href=&#34;http://leanpub.com/aopinphp&#34;&gt;http://leanpub.com/aopinphp&lt;/a&gt;. Feel free to read it and send me any feedback as far as what you might like to see covered in the rest of the book. I plan on pushing some more updates very soon so expect to see a minimum viable product up and available for purchase in the next few weeks.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Aspect Oriented PHP Using Go! AOP Framework</title>
+      <link>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</link>
+      <pubDate>Tue, 09 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</guid>
+      <description>
+
+&lt;p&gt;In my &lt;a href=&#34;http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern&#34;&gt;last article&lt;/a&gt;  we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&amp;rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&amp;rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide. It would much easier if there was a package we could use instead. Lucky for us, there is!&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/goaop/framework&#34;&gt;Go! AOP Framework&lt;/a&gt; for PHP was created by &lt;a href=&#34;https://github.com/lisachenko&#34;&gt;Alexander Lisachenko&lt;/a&gt; and provides a way to use AOP in PHP without installing an extension. It accomplishes this by cleverly using autoloading, reflection and some other nifty features of modern PHP.&lt;/p&gt;
+
+&lt;p&gt;###Installation&lt;/p&gt;
+
+&lt;p&gt;First we need to install the package with composer.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s created a simple compose.json file with our dependencies and also define a simple namespace for our code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;goaop/framework&amp;quot;: &amp;quot;^0.6.0&amp;quot;
+    },
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-4&amp;quot;: {
+            &amp;quot;Stark\\&amp;quot;: &amp;quot;src/&amp;quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can install from the command line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we need to create what we&amp;rsquo;ll call our AOP kernel. This is where we will register our &lt;strong&gt;aspects&lt;/strong&gt;, as we&amp;rsquo;ll see later.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Kernel.php
+&amp;lt;?php namespace Stark\AOP;
+
+use Go\Core\AspectKernel;
+use Go\Core\AspectContainer;
+
+class Kernel extends AspectKernel
+{
+    /**
+     * Configure an AspectContainer with advisors, aspects and pointcuts
+     *
+     * @param AspectContainer $container
+     *
+     * @return void
+     */
+    protected function configureAop(AspectContainer $container)
+    {
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Third we need to initialize the kernel. This should ideally be done in your application&amp;rsquo;s front controller.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// public/index.php
+&amp;lt;?php
+include __DIR__ . &#39;/../vendor/autoload.php&#39;; // use composer&#39;s autoloader
+
+// Initialize an application aspect container
+$applicationAspectKernel = \Stark\AOP\Kernel::getInstance();
+$applicationAspectKernel-&amp;gt;init([
+    &#39;debug&#39; =&amp;gt; true, // use &#39;false&#39; for production mode
+    // Cache directory
+    &#39;cacheDir&#39; =&amp;gt; __DIR__ . &#39;/../cache&#39;
+]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally we can start creating aspects to modify our code.&lt;/p&gt;
+
+&lt;h3 id=&#34;using-go-aop&#34;&gt;Using Go! AOP&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s pretend we have a little Facebook service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Service/Facebook.php
+&amp;lt;?php namespace Stark\Service;
+
+class Facebook
+{
+    public function doStuff()
+    {
+        echo &amp;quot;Facebook stuff!&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s create an aspect to intercept any method called from that class.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Aspect/Monitor.php
+&amp;lt;?php namespace Stark\AOP\Aspect;
+
+use Go\Aop\Aspect;
+use Go\Aop\Intercept\FieldAccess;
+use Go\Aop\Intercept\MethodInvocation;
+use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Before;
+use Go\Lang\Annotation\Around;
+use Go\Lang\Annotation\Pointcut;
+
+/**
+ * Monitor aspect
+ */
+class Monitor implements Aspect
+{
+
+    /**
+     * Method that will be called before real method
+     *
+     * @param MethodInvocation $invocation Invocation
+     * @Before(&amp;quot;execution(public Stark\Service\Facebook-&amp;gt;*(*))&amp;quot;)
+     */
+    public function beforeMethodExecution(MethodInvocation $invocation)
+    {
+        $obj = $invocation-&amp;gt;getThis();
+        echo &#39;Calling Before Interceptor for method: &#39;,
+        is_object($obj) ? get_class($obj) : $obj,
+        $invocation-&amp;gt;getMethod()-&amp;gt;isStatic() ? &#39;::&#39; : &#39;-&amp;gt;&#39;,
+        $invocation-&amp;gt;getMethod()-&amp;gt;getName(),
+        &#39;()&#39;,
+        &amp;quot;&amp;lt;br&amp;gt;\n&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we have to register the new aspect in our kernel.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Kernel.php
+&amp;lt;?php namespace Stark\AOP;
+
+use Go\Core\AspectKernel;
+use Go\Core\AspectContainer;
+use Stark\AOP\Aspect\Monitor;
+
+class Kernel extends AspectKernel
+{
+    /**
+     * Configure an AspectContainer with advisors, aspects and pointcuts
+     *
+     * @param AspectContainer $container
+     *
+     * @return void
+     */
+    protected function configureAop(AspectContainer $container)
+    {
+        $container-&amp;gt;registerAspect(new Monitor());
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally in our front controller we can add these few lines to run our little service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// public/index.php
+&amp;lt;?php
+$fb = new \Stark\Service\Facebook();
+$fb-&amp;gt;doStuff();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you run index.php you&amp;rsquo;ll get the following output.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Calling Before Interceptor for method: Stark\Service\Facebook-&amp;gt;doStuff()
+Facebook stuff!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Go! AOP Framework uses annotations rather than global functions to define &lt;strong&gt;jointpoints&lt;/strong&gt; and &lt;strong&gt;pointcuts&lt;/strong&gt;. &amp;lsquo;beforeMethodExecution()&amp;rsquo; is our &lt;strong&gt;advice&lt;/strong&gt; in this instance. We used the &amp;lsquo;@Before&amp;rsquo; annotation to intercept before the method is called. Similarly we can use &amp;lsquo;@After&amp;rsquo; and &amp;lsquo;@Around&amp;rsquo; as joinpoints as well.&lt;/p&gt;
+
+&lt;p&gt;The rest of the annotation defines the pointcut which is &amp;lsquo;execution&amp;rsquo; in this case. We can also use &amp;lsquo;access&amp;rsquo; for reading/writing of class properties, initialization for when a class is first created and many others.&lt;/p&gt;
+
+&lt;p&gt;One other neat trick we can use is intercepting custom annotations. Go! AOP includes Doctrine&amp;rsquo;s annotation reader package so we can create a custom annotation like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Annotation/Custom.php
+&amp;lt;?php namespace Stark\Annotation;
+
+use Doctrine\Common\Annotations\Annotation;
+
+/**
+ * @Annotation
+ * @Target(&amp;quot;METHOD&amp;quot;)
+ */
+class Custom extends Annotation
+{
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next let&amp;rsquo;s modify our Facebook service&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Service/Facebook.php
+&amp;lt;?php namespace Stark\Service;
+
+use Stark\Annotation\Custom;
+
+class Facebook
+{
+    /**
+     * @Custom
+     */
+    public function doStuff()
+    {
+        echo &amp;quot;Facebook stuff!&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip;and our aspect.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Aspect/Monitor.php
+&amp;lt;?php namespace Stark\AOP\Aspect;
+
+use Go\Aop\Aspect;
+use Go\Aop\Intercept\FieldAccess;
+use Go\Aop\Intercept\MethodInvocation;
+use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Before;
+use Go\Lang\Annotation\Around;
+use Go\Lang\Annotation\Pointcut;
+
+/**
+ * Monitor aspect
+ */
+class Monitor implements Aspect
+{
+
+    /**
+     * Method that will be called before real method
+     *
+     * @param MethodInvocation $invocation Invocation
+     * @Before(&amp;quot;@annotation(Stark\Annotation\Custom)&amp;quot;)
+     */
+    public function beforeMethodExecution(MethodInvocation $invocation)
+    {
+        $obj = $invocation-&amp;gt;getThis();
+        echo &#39;Calling Before Interceptor for method: &#39;,
+        is_object($obj) ? get_class($obj) : $obj,
+        $invocation-&amp;gt;getMethod()-&amp;gt;isStatic() ? &#39;::&#39; : &#39;-&amp;gt;&#39;,
+        $invocation-&amp;gt;getMethod()-&amp;gt;getName(),
+        &#39;()&#39;,
+        &amp;quot;&amp;lt;br&amp;gt;\n&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We should get the same result as before.&lt;/p&gt;
+
+&lt;p&gt;This framework is full of features and it opens up a lot of new possibilities in PHP. To learn more about what you can do with Go! AOP, check out the official &lt;a href=&#34;http://go.aopphp.com/docs/&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Aspect Oriented PHP And The Interceptor Pattern</title>
+      <link>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
+      <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
+      <description>
+
+&lt;p&gt;There are many ways to modify the behavior of existing code with actually changing the core logic. Some patterns you might be familiar with are the decorator pattern or the observer pattern. Both allow you to take another object and modify the behavior by wrapping your modifcations around the original code. One pattern you might not be familiar with though, is the interceptor pattern.&lt;/p&gt;
+
+&lt;p&gt;The interceptor pattern is a core concept of what is called aspect oriented programming (AOP). AOP aims to improve the modularity of your code by allowing you to separate cross-cutting concerns from the rest of your code.&lt;/p&gt;
+
+&lt;p&gt;An example of a cross-cutting concern is logging. You may want to log when a particular part of your application completes an action but where should the actual logging code go? This can get hairy if you aren&amp;rsquo;t careful. Something like a logger doesn&amp;rsquo;t really fit well into object oriented programing and may lead to code-duplication or scattering. AOP allows you keep your logging code separate from everything else. You can then attach your logger to other parts of the application by using interceptors.&lt;/p&gt;
+
+&lt;p&gt;PHP doesn&amp;rsquo;t come with a built in way for using AOP but luckily there is a very promising PECL extension that provides just that.&lt;/p&gt;
+
+&lt;h3 id=&#34;installation&#34;&gt;Installation&lt;/h3&gt;
+
+&lt;p&gt;You can find the project, which is currently in beta, on &lt;a href=&#34;https://github.com/AOP-PHP/AOP&#34;&gt;GitHub&lt;/a&gt;. You should be able to install on your favorite Linux distro by runnning:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;pecl install aop-beta
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you had issues like I did, try cloning the repo and following the install instructions in the README.&lt;/p&gt;
+
+&lt;h3 id=&#34;using-interceptors&#34;&gt;Using Interceptors&lt;/h3&gt;
+
+&lt;p&gt;An interceptor allows you to modify the behavior of a method by literally intercepting the call before, after or both (around). To do this you specify when you want to intercept the method. This is called the &lt;strong&gt;join-point&lt;/strong&gt;. Next you specify the method or methods you want to intercept. This is called the &lt;strong&gt;pointcut&lt;/strong&gt;. Finally you specify the function you want to use as your interceptor. This is known as an &lt;strong&gt;advice&lt;/strong&gt;. The combination of a pointcut and an advice is known as an &lt;strong&gt;aspect&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The AOP PHP extension provides some handy functions for creating your own interceptors. Let&amp;rsquo;s take a look at a few of them.&lt;/p&gt;
+
+&lt;p&gt;####aop_add_before
+This function will create an interceptor that executes, as the name implies, before the method you want to intercept. Check out the following example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Admin {
+    public function showDashboard()
+    {
+        echo &#39;Welcome to the admin panel.&#39;;
+    }
+}
+
+function restrictAccessAdvice()
+{
+    if ($_SESSION[&#39;user_type&#39;] !== &#39;admin&#39;) {
+        throw new Exception(&#39;Access denied!&#39;);
+    }
+}
+
+aop_add_before(&#39;Admin-&amp;gt;showDashboard()&#39;, &#39;restrictAccessAdvice&#39;);
+
+$_SESSION[&#39;user_type&#39;] = &#39;user&#39;;
+$admin = new Admin();
+
+try {
+    $admin-&amp;gt;showDashboard();
+} catch (Exception $e) {
+    echo $e-&amp;gt;getMessage();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In that example we have a really lame class for showing an admin dashboard. We can easily add a layer of security by intercepting method calls related to admin. As you probably can tell, the output from the above code would be this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Access denied!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can match a bunch of methods in the same class by doing something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+aop_add_before(&#39;Admin-&amp;gt;*()&#39;, &#39;restrictAccessAdvice&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####aop_add_after
+This function of course creates an interceptor that executes after the specified method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Service
+{
+    public function doSomething()
+    {
+        echo &#39;Doing something important!&#39; . PHP_EOL;
+    }
+}
+
+$loggingAdvice = function() {
+    echo &#39;Logging something important!&#39; . PHP_EOL;
+};
+
+aop_add_after(&#39;Service-&amp;gt;doSomething()&#39;, $loggingAdvice);
+
+$service = new Service();
+$service-&amp;gt;doSomething();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the output from the that example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Doing something important!
+Logging something important!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####aop_add_around
+This function combines both before and after but the signature is a little different. The advice you specify should take an argurment. The argument passed in is an object representing the join-point. Check out the example below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class MeatFactory
+{
+    public function produceHam()
+    {
+        echo &amp;quot;Here is some ham.&amp;quot; . PHP_EOL;
+    }
+}
+
+$sandwichAdvice = function(AopJoinPoint $joinPoint)
+{
+    // before
+    echo &amp;quot;Here is some bread.&amp;quot; . PHP_EOL;
+
+    // execute
+    $joinPoint-&amp;gt;process();
+
+    // after
+    echo &amp;quot;Here is some more bread.&amp;quot; . PHP_EOL;
+};
+
+aop_add_around(&#39;MeatFactory-&amp;gt;produce*()&#39;, $sandwichAdvice);
+
+$factory = new MeatFactory();
+$factory-&amp;gt;produceHam();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not that we had to explicitly invoke the &amp;lsquo;process()&amp;rsquo; method in order to get any result from the intercepted method. If we wanted to, we could supress the behavior of the intercepted method simply by not calling &amp;lsquo;process()&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the output.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Here is some bread.
+Here is some ham.
+Here is some more bread.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####Modifying Arguments
+By passing the AopJoinPoint object to your advice, you can grab all kinds of information about the method being intercepted. You can even modify the arguments passed to the method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Greeter
+{
+    public function sayHello($name)
+    {
+        echo &amp;quot;Hello {$name}!&amp;quot;;
+    }
+}
+
+function ucAdvice(AopJoinPoint $joinPoint)
+{
+    $args = $joinPoint-&amp;gt;getArguments();
+    $args[0] = ucwords($args[0]);
+    $joinPoint-&amp;gt;setArguments($args);
+}
+
+aop_add_before(&#39;Greeter-&amp;gt;sayHello()&#39;, &#39;ucAdvice&#39;);
+
+$greeter = new Greeter();
+$greeter-&amp;gt;sayHello(&#39;dave&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Intercepting the method before it runs we can use the &amp;lsquo;getArguments()&amp;rsquo; method to grab the original arguments, modify them and then re-pass them for execution using the &amp;lsquo;setArguments()&amp;rsquo; method.&lt;/p&gt;
+
+&lt;p&gt;Here is the output.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Hello Dave!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;modifying-return-variables&#34;&gt;Modifying Return Variables&lt;/h4&gt;
+
+&lt;p&gt;Modifying return variables is somewhat the same as modifying arguments but you can only do this if you are intercepting after or around a method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Calc
+{
+    public function sum($a, $b)
+    {
+        return $a + $b;
+    }
+}
+
+function squareAdvice(AopJoinPoint $joinPoint)
+{
+    $value = $joinPoint-&amp;gt;getReturnedValue();
+    $joinPoint-&amp;gt;setReturnedValue($value * $value);
+}
+
+aop_add_after(&#39;Calc-&amp;gt;sum()&#39;, &#39;squareAdvice&#39;);
+
+$calc = new Calc();
+echo $calc-&amp;gt;sum(1, 2);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just like when we grabbed the arguments we can grab the original return value using &amp;lsquo;getReturnedValue()&amp;rsquo;. The result of this example would, of course, be 9.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s just a handful of things you can do with the AOP extension. Checkout the &lt;a href=&#34;http://www.croes.org/gerald/projects/aop/documentation_aop_extension_php.pdf&#34;&gt;documentation&lt;/a&gt; to learn how to do other things like intercept read/write actions on specific class properties.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Simple Environment Variable Based Feature Toggles</title>
+      <link>http://edzynda.com/simple-environment-variable-based-feature-toggles/</link>
+      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/simple-environment-variable-based-feature-toggles/</guid>
+      <description>
+
+&lt;p&gt;There&amp;rsquo;s a lot of talk about continuous delivery in software development these days. One core concept of continuous delivery is &amp;ldquo;Deploy early and deploy often.&amp;rdquo; Rather than deploy an entire application once it&amp;rsquo;s complete, you should be pushing many small features as they come. There are many benefits to this but it isn&amp;rsquo;t without risk.&lt;/p&gt;
+
+&lt;p&gt;Using a software version controll system like git can make working on code in teams easy but can just as easily turn into a nightmare when there are too many active branches from the master branch in the repository. What if you have some code that&amp;rsquo;s been greenlighted for production in your staging branch but some other code that isn&amp;rsquo;t. You can try and merge just the greenlighted code but more often than not you&amp;rsquo;ll have a hard time trying to cherry pick and even if you do, it becomes a mess later when new features are being brought into the mix.&lt;/p&gt;
+
+&lt;p&gt;To get around this, you could just merge everything and hope for the best or you could wrap your new code in what&amp;rsquo;s called a feature toggle. What&amp;rsquo;s a feature toggle? Simply put, it&amp;rsquo;s just a way to enable or disable your code from running given a condition. A toggle can be very complex like having your code run only if the user is coming from a block of ip addresses or very simple like running code if an environment varible is set to true. I wrote small library that does the latter.&lt;/p&gt;
+
+&lt;h3 id=&#34;installation&#34;&gt;Installation&lt;/h3&gt;
+
+&lt;p&gt;You can install using composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer require ezynda3/feature-toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
+
+&lt;p&gt;The library uses the awesome &amp;lsquo;vlucas/phpdotenv&amp;rsquo; library so to create a feature toggle first create a file called &amp;lsquo;.env&amp;rsquo; in the root of your project. Then create an environment variable prefixed with &amp;lsquo;FEATURE_&amp;rsquo; and then whatever name you would like to give it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FEATURE_SUPER_AWESOME_STUFF=true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You don&amp;rsquo;t have to use a &amp;lsquo;.env&amp;rsquo; file. You can set environment variables via the command line or in your hosting provider&amp;rsquo;s admin panel assuming they ofter setting environment variables for your deployed applications.&lt;/p&gt;
+
+&lt;p&gt;A feature is always set to false or disabled unless you specifically set it to true. Now you can use the feature toggle like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+require &#39;vendor/autoload.php&#39;;
+
+use Ezynda3\FeatureToggle\Manager;
+
+$toggle = new Manager(___DIR___);
+$feaure = $toggle-&amp;gt;feature(&#39;super_awesome_stuff&#39;);
+
+if ($feature-&amp;gt;isEnabled()) {
+	// New code
+} else {
+	// Old code
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s all there is to it. Be sure to check out the &lt;a href=&#34;https://github.com/ezynda3/feature-toggle&#34;&gt;project&lt;/a&gt; on GitHub and if there are any features you&amp;rsquo;d like to add, feel free to submit a pull-request.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>7 Exciting Changes Coming to Magento 2</title>
+      <link>http://edzynda.com/7-exciting-changes-coming-to-magento-2/</link>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/7-exciting-changes-coming-to-magento-2/</guid>
+      <description>
+
+&lt;p&gt;E-commerce is not my favorite thing to write code for and as such, I&amp;rsquo;m no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn&amp;rsquo;t called &amp;ldquo;Magneto&amp;rdquo; which is what I originally thought when I first glanced at the name.&lt;/p&gt;
+
+&lt;p&gt;Because I was brought on at pretty much the beginning of the project I was able to learn a lot while building the site. The learning curve was steep at first but eventually I started to become familiar with the &amp;ldquo;Magento way&amp;rdquo; of doing things. To tell the truth I didn&amp;rsquo;t like it much.&lt;/p&gt;
+
+&lt;p&gt;I bursted back into the world of PHP development after a nine year stint in the US Air Force doing something totally un-related. Because I was basically a newb all over again, I dove head first into all the latest literature and video tutorials dealing with how to code &amp;ldquo;&lt;a href=&#34;http://www.phptherightway.com/&#34;&gt;PHP the right way.&lt;/a&gt;&amp;rdquo; I had become familiar with concepts like dependency injection, coding to interfaces, unit testing and a plethora of useful design patterns. Imagine my discomfort when I started writing custom code for Magento.&lt;/p&gt;
+
+&lt;p&gt;The autoloader, while very sofisticated, is terribly outdated compared to the PSR-0 and PSR-4 standards. Composer isn&amp;rsquo;t supported by default. There&amp;rsquo;s no DI container to speak of and unit tests are almost impossible to create without needing to bootstrap a database which technically makes them integration tests.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve since made my peace with Magento and it&amp;rsquo;s silly conventions. I&amp;rsquo;ve also come up with some nifty hacks to allow for modern coding practices. Those days are soon to be over though with the coming of Magento 2!&lt;/p&gt;
+
+&lt;p&gt;Magento 2 has a handful of welcome changes in store. Here are just a few of them.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-modules-are-consolidated-into-a-single-directory&#34;&gt;1. Modules are consolidated into a single directory&lt;/h3&gt;
+
+&lt;p&gt;I remember getting frustrated with the directory structure of Magento and more specifically the way a module&amp;rsquo;s code could be spread out across multiple directories. Your PHP code lived in &amp;lsquo;app/code&amp;rsquo; while templates and layouts in &amp;lsquo;app/design&amp;rsquo; but several directories deep.&lt;/p&gt;
+
+&lt;p&gt;No longer! Now everything that your module requires lives in one directory. This includes PHP code, design templates and config files.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-config-files-have-been-broken-down-into-smaller-files&#34;&gt;2. Config files have been broken down into smaller files&lt;/h3&gt;
+
+&lt;p&gt;You can do a lot with a single &amp;lsquo;config.xml&amp;rsquo; file in a Magento 1 module. Those config files can get huge and because of that, it&amp;rsquo;s sometimes very easy to get lost in them. To make matters worse, you can have a file filled with improperly formatted config data and Magento 1 won&amp;rsquo;t even complain. This makes it hard to debug.&lt;/p&gt;
+
+&lt;p&gt;Magento 2 now breaks that single &amp;lsquo;config.xml&amp;rsquo; file into many smaller files. This makes it easier to see logically where certain things should go. To prevent silent errors, Magento 2 uses XML schema files to validate config files. Now you&amp;rsquo;ll know pretty quickly if you&amp;rsquo;ve messed somthing up.&lt;/p&gt;
+
+&lt;h3 id=&#34;3-dependency-injection&#34;&gt;3. Dependency injection&lt;/h3&gt;
+
+&lt;p&gt;Magento 2 supports dependency injection and provides it&amp;rsquo;s own dependency injection container. The container is configured via and XML config file which wouldn&amp;rsquo;t be my first choice but hey I&amp;rsquo;ll take what I can get.&lt;/p&gt;
+
+&lt;h3 id=&#34;4-interception&#34;&gt;4. Interception&lt;/h3&gt;
+
+&lt;p&gt;In Magento 1, one way to extend the behavior of a core module is to &amp;ldquo;rewrite&amp;rdquo; one of the core classes, extend it and rewrite one of it&amp;rsquo;s methods with your custom code. This works great most of the time. The problem arises when there are two custom modules trying to extend the same core class. This is where collisions occur and one module could end up cancelling out the other or worse.&lt;/p&gt;
+
+&lt;p&gt;Magento 2 provides what it calls Interception. To customize a core module&amp;rsquo;s method you can simply create what is called a plugin class. In the plugin class you can modify any public methods by creating methods prefixed with &amp;lsquo;before&amp;rsquo;, &amp;lsquo;after&amp;rsquo; and &amp;lsquo;around&amp;rsquo; and the tacking on the name of the method you want to change. Then you pass an instance of the core class you are extending. If you are extending something another module is extending, the result is simply passed from one plugin to another. You can specify a sort order as well for more desireable results.&lt;/p&gt;
+
+&lt;h3 id=&#34;5-no-more-god-class&#34;&gt;5. No more god-class&lt;/h3&gt;
+
+&lt;p&gt;Yeah I&amp;rsquo;m not going to miss having to call &amp;lsquo;Mage::&lt;whatever&gt;&amp;rsquo; anymore.&lt;/p&gt;
+
+&lt;h3 id=&#34;6-semantic-versioning&#34;&gt;6. Semantic versioning&lt;/h3&gt;
+
+&lt;p&gt;Magento 2 will use semantic versioning for the core product. No more keeping track of different patches to be applied. Simply take a look at the version you are running and check against the latest &amp;ldquo;patch&amp;rdquo; version to see if you&amp;rsquo;re running the latest, most secure.&lt;/p&gt;
+
+&lt;h3 id=&#34;7-tests-tests-tests&#34;&gt;7. Tests, tests, tests!&lt;/h3&gt;
+
+&lt;p&gt;Magento 2 is very test friendly and even includes an extensive set of tests for the core code. This includes unit, integration and even javascript tests. Tests for your modules live inside the module&amp;rsquo;s directory along with everything else.&lt;/p&gt;
+
+&lt;p&gt;These just a few of the exciting changes coming to Magento 2. To find out more, checkout of the &lt;a href=&#34;https://github.com/magento/magento2&#34;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration With Jenkins Part II</title>
+      <link>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://edzynda.com/continuous-integration-with-jenkins-part-ii/&#34;&gt;first part&lt;/a&gt;  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?&lt;/p&gt;
+
+&lt;p&gt;A better options is to use another tool to automate the build process and perform certain tasks dynamically. There are quite a lot of tools out there to do this. A popular tool used in Jenkins setups is &lt;a href=&#34;http://ant.apache.org/&#34;&gt;Apache Ant&lt;/a&gt; . It&amp;rsquo;s used a lot by Java developers to automate builds of their applications but can also be used to build and run tasks for just about anything.&lt;/p&gt;
+
+&lt;p&gt;I was planning to do this article about Ant but decided against it. While Ant is a very powerful tool, it&amp;rsquo;s configuration is in XML which is just gross. Don&amp;rsquo;t get me wrong, XML has it&amp;rsquo;s uses but I prefer something more readable. Instead, I found a PHP based tool called &lt;a href=&#34;http://robo.li&#34;&gt;Robo&lt;/a&gt;  which, in my opinion, is easier on the eyes and can be just as powerful.&lt;/p&gt;
+
+&lt;p&gt;If you still want to try out Ant you can check out a great example build file &lt;a href=&#34;http://jenkins-php.org/automation.html&#34;&gt;here&lt;/a&gt;. Don&amp;rsquo;t say I didn&amp;rsquo;t warn you though.&lt;/p&gt;
+
+&lt;p&gt;So what is robo? Here is what they say on their website.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Robo is a task runner you always have been looking for. It allows you to write fully customizable tasks in common OOP PHP style. Robo has comprehensive list of built-in common tasks for development, testing, and deployment.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Installing and running robo tasks is really simple. It can be installed using Composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer require codegyre/robo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once installed just run the command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vendor/bin/robo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If it&amp;rsquo;s your first time running, it will create a file called &amp;lsquo;RoboFile.php&amp;rsquo;. This is the file we will use to define our commands and run our tasks.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create a RoboFile for building and running some tests for a project.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class RoboFile extends \Robo\Tasks
+{
+    // Run ALL the tasks
+    public function build()
+    {
+        $this-&amp;gt;setup();
+        $this-&amp;gt;test();
+        $this-&amp;gt;lint();
+        $this-&amp;gt;codesniffer();
+    }
+
+    // Setup
+    private function setup()
+    {
+        if (! is_dir(&#39;reports&#39;)) {
+            $this-&amp;gt;taskFilesystemStack()
+                -&amp;gt;mkdir(&#39;reports&#39;)
+                -&amp;gt;run();
+        }
+
+        $this-&amp;gt;_cleanDir(&#39;reports&#39;);
+    }
+
+    // Run PHPSpec tests
+    public function test()
+    {
+        $this-&amp;gt;taskPhpspec()
+            -&amp;gt;format(&#39;html&#39;)
+            -&amp;gt;arg(&#39;&amp;gt; reports/phpspec.html&#39;)
+            -&amp;gt;run();
+    }
+
+    // Check for syntax errors
+    public function lint()
+    {
+        $this-&amp;gt;taskExec(&#39;php&#39;)
+            -&amp;gt;arg(&#39;-l&#39;)
+            -&amp;gt;arg(&#39;spec/*/*&#39;)
+            -&amp;gt;run();
+
+        $this-&amp;gt;taskExec(&#39;php&#39;)
+            -&amp;gt;arg(&#39;-l&#39;)
+            -&amp;gt;arg(&#39;src/*&#39;)
+            -&amp;gt;run();
+    }
+
+    // Check coding style
+    public function codesniffer()
+    {
+        $this-&amp;gt;taskExec(&#39;vendor/bin/phpcs&#39;)
+            -&amp;gt;arg(&#39;--report=checkstyle&#39;)
+            -&amp;gt;arg(&#39;--report-file=reports/checkstyle.xml&#39;)
+            -&amp;gt;arg(&#39;--standard=PSR2&#39;)
+            -&amp;gt;arg(&#39;--extensions=php&#39;)
+            -&amp;gt;arg(&#39;src&#39;)
+            -&amp;gt;run();
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each public method in the RoboFile class is interprented as a command. For example to run the lint command, which checks our code for syntax errors, we can run this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vendor/bin/robo lint
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each command can run one or more tasks. Robo comes with a handful of built in tasks to include running PHPUnit and PHPSpec tests. If there&amp;rsquo;s a task that robo doesn&amp;rsquo;t have, you can use the &amp;lsquo;taskExec&amp;rsquo; task and just give it the command like you would on the command line. Each task has an &amp;lsquo;arg&amp;rsquo; method which just tacks on the various arguments to the command. The &amp;lsquo;run&amp;rsquo; method is pretty self explanatory.&lt;/p&gt;
+
+&lt;p&gt;Because robo runs on PHP you can add all kinds of logic to run tasks only when certain conditions are met. I find the syntax and fluent interface to be much more readable than XML as well.&lt;/p&gt;
+
+&lt;p&gt;Now that we have a sweet build script we can simplify our config in Jenkins a little bit. Under your project&amp;rsquo;s config in Jenkin&amp;rsquo;s dashboard, in our &amp;lsquo;Execute Shell&amp;rsquo; build step we can add the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/usr/local/bin/composer --prefer-source install
+vendor/bin/robo build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! The script will go ahead and create a reports directory for published reports. It will run our tests, check for syntax and even do a code standard check against PSR-2. If you want to try it for yourself, you can grab this sample project I created &lt;a href=&#34;https://github.com/ezynda3/string-calculator&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can also check out Robo&amp;rsquo;s excellent documentation &lt;a href=&#34;http://robo.li/started/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration With Jenkins Part I</title>
+      <link>http://edzynda.com/continuous-integration-with-jenkins-part-i/</link>
+      <pubDate>Mon, 09 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/continuous-integration-with-jenkins-part-i/</guid>
+      <description>&lt;p&gt;Continuous integration or CI, is all the rage these days. If you&amp;rsquo;re not familiar with what CI is, it&amp;rsquo;s basically a methodology for rapidly developing, testing and deploying applications. Using a well configured CI setup or pipeline, a developer or team of developers can make a change to their codebase, test those changes to make sure they didn&amp;rsquo;t break those changes and then push that code live in a matter of minutes. They can do this all day long and rest assured that their changes are good to go on their production servers.&lt;/p&gt;
+
+&lt;p&gt;There are many ways to do this but one of the most popular tools used these days is Jenkins. Jenkins is a web application written in Java that helps to automate building, testing and even deploying your application. Jenkins, along with a a whole slew of plugins, can do most of the heavy lifting in your CI pipeline.&lt;/p&gt;
+
+&lt;p&gt;At first glance, Jenkins looks pretty complicated to setup but after playing around with it myself, I&amp;rsquo;ve found it&amp;rsquo;s pretty simple.&lt;/p&gt;
+
+&lt;p&gt;In this first part I&amp;rsquo;m going to go over how to get Jenkins setup to build a simple PHP app, run some tests and publish the results. Most other tutorials I&amp;rsquo;ve found include fancy build scripts for a powerful tool called Ant. Those can get pretty complicated so I won&amp;rsquo;t include anything like that in this part. We just want to get something running so you can see some results.&lt;/p&gt;
+
+&lt;p&gt;###Installation
+Installation is not in the scope of this article. Please refer to the documentation on the &lt;a href=&#34;http://jenkins-ci.org&#34;&gt;Jenkins&lt;/a&gt; website or Google for instructions on installing it on your OS of choice. It should be as simple as &amp;lsquo;yum install jenkins&amp;rsquo; or &amp;lsquo;apt-get install jenkins&amp;rsquo; depending on your setup.&lt;/p&gt;
+
+&lt;p&gt;###PHP
+As we will be working with a PHP application, our Jenkins server will need it&amp;rsquo;s own instance of PHP. For this example we need version 5.4 or higher. Install based on your OS.&lt;/p&gt;
+
+&lt;p&gt;###Git
+We will need Git installed in order to fetch source code to build and run our tests. Install based on your OS.&lt;/p&gt;
+
+&lt;p&gt;###Composer
+Part of the build process will include downloading dependencies using Composer. You can install it globally like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;php -r &amp;quot;readfile(&#39;https://getcomposer.org/installer&#39;);&amp;quot; | php
+sudo chmod +x ./composer.phar
+sudo cp ./composer.phar /usr/local/bin/composer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Plugins
+Jenkins has a huge collection of useful plugins available. We&amp;rsquo;re going to need a few in order to run our build.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HTML Publisher&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can install these through the Jenkins dashboard but you can also install them through the command line like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin htmlpublisher git
+java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###The Build
+If you have Jenkins installed correctly you should be able to reach the dashboard by pointing your browser to the server it&amp;rsquo;s installed on using port 8080 (e.g. &lt;a href=&#34;http://myjenkins.com:8080&#34;&gt;http://myjenkins.com:8080&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Once there you should see a screen like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click on &amp;ldquo;Create new jobs&amp;rdquo;. We&amp;rsquo;re going to use an existing open source project called Flysystem for our build test so we&amp;rsquo;ll just call our build &amp;ldquo;Flysystem&amp;rdquo; and we&amp;rsquo;re going to create a &amp;ldquo;Freestyle&amp;rdquo; project. Click &amp;ldquo;Ok&amp;rdquo; to continue.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can give our project a description if we like.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now down in the &amp;ldquo;Source Code Management&amp;rdquo; section we&amp;rsquo;ll select &amp;ldquo;Git&amp;rdquo; and set the repository to &lt;a href=&#34;https://github.com/thephpleague/flysystem&#34;&gt;https://github.com/thephpleague/flysystem&lt;/a&gt;. You can safely leave everything else as default.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Under the &amp;ldquo;Build&amp;rdquo; section we set up the different steps for building and testing our applications. Click on &amp;ldquo;Add build step&amp;rdquo; and select &amp;ldquo;Execute shell&amp;rdquo;. This is a quick and dirty way to run various build commands without having to create a complex XML build script for use with Ant or Maven. Add the following commands in the textbox.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/usr/local/bin/composer install
+bin/phpspec run -f html &amp;gt; report.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The great thing about Jenkins is that with the right plugins you can create all kinds of useful reports for every build of your application. In our build step we&amp;rsquo;re running phpspec for tests and setting the output format as HTML and saving it to a file. Jenkins can take that HTML and publish it for viewing later.
+.
+Under &amp;ldquo;Post-build Actions&amp;rdquo; click on &amp;ldquo;Add post-build action&amp;rdquo; and select &amp;ldquo;Publish HTML Reports&amp;rdquo;. Fill out the textboxes like so.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hit save and that&amp;rsquo;s it. On the left side menu click &amp;ldquo;Build Now&amp;rdquo;. You should a little blinking dot appear under &amp;ldquo;Build History&amp;rdquo;. Click on it and then click on &amp;ldquo;Console Output&amp;rdquo;. You should see a bunch of text scrolling past as the build runs. It should look something like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It might take a few minutes if this is the first time running the build as composer is downloading dependencies from scratch.&lt;/p&gt;
+
+&lt;p&gt;Now click &amp;ldquo;Back to Project&amp;rdquo; and then click &amp;ldquo;PHPSpec Report&amp;rdquo;. This is the nice HTML report we had published. This wil list out all the tests that were run. Tests that passed will be green while any that have failed will be red and usually give a stack trace with details on why it failed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s basically all you need to get a simple build running on Jenkins. Of course there is a lot more you can do but that will be covered in a later post.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create A Simple PHP Command Line Tool</title>
+      <link>http://edzynda.com/create-a-simple-php-command-line-tool/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/create-a-simple-php-command-line-tool/</guid>
+      <description>&lt;p&gt;PHP is no doubt a great fit for building web applications but it also has the ability to create powerful command line applications. PHP has had this ability for a long time but recently there has been some excellent work done in order to improve the quality of PHP command line tools. The &lt;a href=&#34;http://symfony.com/doc/current/components/console/introduction.html&#34;&gt;Symfony\Console&lt;/a&gt; component makes it incredibly easy to create a command line application that accepts different arguments and options. Let&amp;rsquo;s see how easy it can be.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve decided to do something a little different then the standard &amp;ldquo;do stuff with Twitter&amp;rdquo; app that seems to be popular these days. Instead let&amp;rsquo;s do stuff with Marvel. More specifically let&amp;rsquo;s use data from the &lt;a href=&#34;http://developer.marvel.com/&#34;&gt;Marvel Developer&amp;rsquo;s API&lt;/a&gt; to make a command line app that searches for and displays the description of different characters from the Marvel universe. We&amp;rsquo;ll use an incomplete but usable PHP library called &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Marvel-PHP&lt;/a&gt; to help us interact with the API. To get started, create a new directory for your project and call it whatever you like.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup the Dependencies&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First we need to make sure we pull in the Symfony\Console component and the Marvel-PHP library with composer. Create a &amp;lsquo;composer.json&amp;rsquo; file at the root of your project that looks like this then run &amp;lsquo;composer install&amp;rsquo; from the command line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;symfony/console&amp;quot;: &amp;quot;~2.5&amp;quot;,
+        &amp;quot;caseysoftware/marvel-helper&amp;quot;: &amp;quot;dev-master&amp;quot;
+    },
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-4&amp;quot;: {
+            &amp;quot;Stark\\&amp;quot;: &amp;quot;app&amp;quot;
+        }
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We pulled in the our dependencies but we&amp;rsquo;ve also created a namespace for our app called &amp;lsquo;Stark&amp;rsquo; that lives in the &amp;lsquo;app&amp;rsquo; directory. That is where the meat of our command line app will live. Go ahead and create that.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bootstrap the Application&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In a normal modern web application, we would most likely have a front controller, usually index.php, as our entry point to the application. This would take care of the routing and bootstrapping of the rest of the application. A command line application isn&amp;rsquo;t much different. Let&amp;rsquo;s create shell script to bootstrap the rest of the app. First, as you&amp;rsquo;ll see in the code below, you will need to acquire credentials from Marvel to access the API. You can grab a public and private key pair &lt;a href=&#34;https://developer.marvel.com/account&#34;&gt;here&lt;/a&gt;. Once you have that, you&amp;rsquo;re ready to continue. Create a file called &amp;lsquo;marvel&amp;rsquo; at the top level of your app and paste the following code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;#!/usr/bin/env php
+&amp;lt;?php
+require_once &#39;vendor/autoload.php&#39;;
+
+use Stark\Console\Command\SearchCharacterCommand;
+use Symfony\Component\Console\Application;
+
+// API Keys
+$public_key = &#39;&amp;lt;YOUR_PUBLIC_KEY&amp;gt;&#39;;
+$private_key = &#39;&amp;lt;YOUR_PRIVATE_KEY&amp;gt;&#39;;
+
+$client = new Services_Marvel($public_key, $private_key);
+
+// Bootstrap
+$application = new Application();
+$application-&amp;gt;add(new SearchCharacterCommand($client));
+$application-&amp;gt;run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first line tells the shell or command line interface (bash, sh, zsh, etc&amp;hellip;) to use the PHP interpreter to execute the rest of the script. Then we require composer&amp;rsquo;s autoloader which gives us access to our dependencies and the &amp;lsquo;Stark&amp;rsquo; namespace we created.&lt;/p&gt;
+
+&lt;p&gt;Symfony command line applications are instantiated from the &amp;lsquo;Symfony\Component\Console\Application&amp;rsquo; class and can have a number of commands associated with them. We will create a search command called &amp;lsquo;Stark\Console\Command\SearchCharacterCommand&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;Fill out the placeholders for the API keys with the keys you acquired from Marvel. Next we pass those into a new instance of the Marvel-PHP client we included.&lt;/p&gt;
+
+&lt;p&gt;Finally we add a new instance of the &amp;lsquo;SearchCharacterCommand&amp;rsquo; to our application and call the &amp;lsquo;run()&amp;rsquo; method. Symfony takes care of the rest.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Define a Command&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we need define the actual command that should be executed when we run this from the command line. Symfony\Console applications can have multiple commands that can have various arguments and options. Let&amp;rsquo;s see what that would look like.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Console\Command;
+
+use Services_Marvel;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+
+class SearchCharacterCommand extends Command
+{
+    /**
+     * @var Services_Marvel
+     */
+    private $client;
+
+    /**
+     * Constructor
+     * @param Services_Marvel $client
+     */
+    public function __construct(Services_Marvel $client)
+    {
+        parent::__construct();
+        $this-&amp;gt;client = $client;
+    }
+
+    /**
+     * Configure the command
+     */
+    protected function configure()
+    {
+        $this
+            -&amp;gt;setName(&#39;search:character&#39;)
+            -&amp;gt;setDescription(&#39;Search for a Marvel character&#39;)
+            -&amp;gt;addArgument(
+                &#39;name&#39;,
+                InputArgument::REQUIRED,
+                &#39;Who do you want to search for?&#39;
+            )
+            -&amp;gt;addOption(
+                &#39;titles&#39;,
+                null,
+                InputOption::VALUE_NONE,
+                &#39;Display associated titles.&#39;
+            );
+    }
+
+    /**
+     * Execute the command
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $style = new OutputFormatterStyle(&#39;red&#39;, &#39;yellow&#39;, array(&#39;bold&#39;, &#39;blink&#39;));
+        $output-&amp;gt;getFormatter()-&amp;gt;setStyle(&#39;attribution&#39;, $style);
+
+        $name = $input-&amp;gt;getArgument(&#39;name&#39;);
+
+        $text = &#39;&#39;;
+
+        $characters = $this-&amp;gt;client-&amp;gt;characters-&amp;gt;index(1, 25, [&#39;name&#39; =&amp;gt; $name]);
+
+        if (! $characters) {
+            $text = &#39;&amp;lt;error&amp;gt;No results found for &#39; . $name . &#39;.&amp;lt;/error&amp;gt;&#39; .PHP_EOL;
+        }
+
+        foreach ($characters as $character) {
+            $text .= $character-&amp;gt;name . PHP_EOL . PHP_EOL
+                . &#39;&amp;lt;info&amp;gt;Description:&amp;lt;/info&amp;gt;&#39; . PHP_EOL . PHP_EOL
+                . $character-&amp;gt;description . PHP_EOL . PHP_EOL;
+
+            // --title
+            if ($input-&amp;gt;getOption(&#39;titles&#39;)) {
+                $text .= &#39;&amp;lt;info&amp;gt;Titles:&amp;lt;/info&amp;gt;&#39; . PHP_EOL . PHP_EOL
+                    . $this-&amp;gt;getSeries($character) . PHP_EOL;
+            }
+
+            $text .= &#39;&amp;lt;attribution&amp;gt;Data provided by Marvel. © 2014 Marvel&amp;lt;/attribution&amp;gt;&#39;;
+        }
+
+        $output-&amp;gt;writeln($text);
+    }
+
+    /**
+     * Get the comic book titles for the characters
+     * @param $character
+     * @return string
+     */
+    private function getSeries($character)
+    {
+        $titles = &#39;&#39;;
+        foreach ($character-&amp;gt;series-&amp;gt;items as $series) {
+            $titles .= $series-&amp;gt;name . PHP_EOL;
+        }
+
+        return $titles;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All commands extend &amp;lsquo;Symfony\Component\Console\Command\Command&amp;rsquo;. The &amp;lsquo;configure()&amp;rsquo; method is used to tell Symfony how to invoke the command. In this case it&amp;rsquo;s&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character &amp;lt;name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can create other commands if we want to but we&amp;rsquo;ll stick with one for now. We also define arguments and options to accept. In this case the &amp;lsquo;name&amp;rsquo; argument is required but the &amp;lsquo;titles&amp;rsquo; option is not. So to run a character search you would need to do something like.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character Thor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To display the associated comic book titles, add the &amp;lsquo;titles&amp;rsquo; option like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./marvel search:character --titles Thor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The output looks something like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &amp;lsquo;execute()&amp;rsquo; method tells Symfony what logic to run when our command is invoked. I won&amp;rsquo;t get too much into how the API client works but you can check out some of the examples in the library&amp;rsquo;s &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This should give you a taste of what kind of cool command line tools you can create. For more information and to learn what else the Symfony\Console component can do, check out the &lt;a href=&#34;http://symfony.com/doc/current/components/console/introduction.html&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Easily Post To Twitter Using Codebird</title>
+      <link>http://edzynda.com/easily-post-to-twitter-using-codebird/</link>
+      <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/easily-post-to-twitter-using-codebird/</guid>
+      <description>&lt;p&gt;Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&amp;#8217;t as hard as you might think.&lt;/p&gt;
+
+&lt;p&gt;The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;ve successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &amp;#8220;modify app permissions&amp;#8221; and change it to read and write.&lt;/p&gt;
+
+&lt;p&gt;Last you will need to create an access token. This is what will allow your app to post on your Twitter account&amp;#8217;s behalf. Click &amp;#8220;Generate my Access Token&amp;#8221; and then copy down the Access token and Access token secret.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that we have an app registered with Twitter we can get to the code.&lt;/p&gt;
+
+&lt;p&gt;In this example we will use a library called Codebird. This is an excellent library with excellent documentation. You can check out the project on &lt;a href=&#34;https://github.com/jublonet/codebird-php&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use composer to install Codebird&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer require jublonet/codebird-php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When prompted enter 2.4.1 for the version.&lt;/p&gt;
+
+&lt;p&gt;Now we can create a simple twitter class.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+require &#39;vendor/autoload.php&#39;;
+
+use Codebird\Codebird;
+
+class Twitter
+{
+    protected $consumer_key = &amp;lt;API_KEY&amp;gt;;
+    protected $consumer_secret = &amp;lt;API_SECRET&amp;gt;;
+    protected $access_token = &amp;lt;ACCESS_TOKEN&amp;gt;;
+    protected $access_secret = &amp;lt;ACCESS_SECRET&amp;gt;;
+    protected $twitter;
+
+    public function __construct()
+    {
+        // Fetch new Twitter Instance
+        Codebird::setConsumerKey($this-&amp;gt;consumer_key, $this-&amp;gt;consumer_secret);
+        $this-&amp;gt;twitter = Codebird::getInstance();
+
+        // Set access token
+        $this-&amp;gt;twitter-&amp;gt;setToken($this-&amp;gt;access_token, $this-&amp;gt;access_secret);
+    }
+
+    public function tweet($message)
+    {
+        return $this-&amp;gt;twitter-&amp;gt;statuses_update([&#39;status&#39; =&amp;gt; $message]);
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Replace the protected variables in &amp;#8216;&amp;lt; &amp;gt;&amp;#8216; brackets with your own app&amp;#8217;s information. In the constructor we simply set our consumer key then fetch an instance of Codebird. Once we have a fresh instance we can set our access token.&lt;/p&gt;
+
+&lt;p&gt;Next we create a simple method with accepts a single argument which is simply the message you would like to tweet.&lt;/p&gt;
+
+&lt;p&gt;Now when we want to tweet we can do something like the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+require &#39;Twitter.php&#39;;
+
+$twtr = new Twitter;
+
+$twtr-&amp;gt;tweet(&#39;Hello World!&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s really that simple. Of course there is a lot more you can do with this like post images for example but this is just to show you how easy it can be. For more features just check out the documentation on the Codebird &lt;a href=&#34;https://github.com/jublonet/codebird-php&#34;&gt;Github&lt;/a&gt; page.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</title>
+      <link>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
+      <description>&lt;p&gt;For a lot of HTML forms you really don&amp;rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&amp;rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
+You can grab WYSIHTML5 from &lt;a href=&#34;https://github.com/xing/wysihtml5&#34;&gt;Github&lt;/a&gt;. To add a little style we&amp;rsquo;ll use Twitter&amp;rsquo;s &lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; framework and &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt; icon fonts.
+Copy the WYSIHTML5 files into the correct directories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;├── css
+├── fonts
+└── js
+    ├── advanced.js
+    └── wysihtml5-0.3.0.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lsquo;wysihtml5-0.3.0.js&amp;rsquo; can be found in the &amp;lsquo;dist&amp;rsquo; directory and &amp;lsquo;advanced.js&amp;rsquo; in the &amp;lsquo;parser_rules&amp;rsquo; directory.
+Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;link href=&amp;quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+    &amp;lt;script src=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/wysihtml5-0.3.0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;/js/advanced.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;form method=&amp;quot;POST&amp;quot; action=&amp;quot;/&amp;quot; &amp;gt;
+&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-3&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div id=&amp;quot;toolbar&amp;quot; class=&amp;quot;wysihtml5-toolbar btn-toolbar col-md-9&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;bold&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Bold&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;italic&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;Italic&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;btn-group&amp;quot;&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertUnorderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ul&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+				&amp;lt;a data-wysihtml5-command=&amp;quot;insertOrderedList&amp;quot; class=&amp;quot;btn btn-default&amp;quot;&amp;gt;
+					&amp;lt;i class=&amp;quot;fa fa-list-ol&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+				&amp;lt;/a&amp;gt;
+			&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group row&amp;quot;&amp;gt;
+		&amp;lt;label for=&amp;quot;editor&amp;quot; class=&amp;quot;col-md-3 control-label&amp;quot;&amp;gt;Job description&amp;lt;/label&amp;gt;
+&amp;lt;div class=&amp;quot;col-md-9&amp;quot;&amp;gt;
+			&amp;lt;textarea id=&amp;quot;editor&amp;quot; class=&amp;quot;form-control &amp;quot; name=&amp;quot;description&amp;quot; cols=&amp;quot;50&amp;quot; rows=&amp;quot;10&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+		&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;
+		&amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot;&amp;gt;
+	&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The &amp;lsquo;data-wysihtml5-command&amp;rsquo; directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the &amp;lsquo;btn btn-default&amp;rsquo; classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
+Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+(function() {
+    	var editor = new wysihtml5.Editor(&amp;quot;editor&amp;quot;, { // id of textarea element
+        	toolbar:      &amp;quot;toolbar&amp;quot;, // id of toolbar element
+        	parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    	});
+})();
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should now have a nice clean but functional editor that looks like this.
+&lt;a href=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34;&gt;&lt;img src=&#34;http://www.edzynda.com/media/wysihtml5_screenshot.png&#34; alt=&#34;wysihtml5_screenshot&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My Personal Laravel Application Starter</title>
+      <link>http://edzynda.com/my-personal-laravel-application-starter/</link>
+      <pubDate>Fri, 27 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/my-personal-laravel-application-starter/</guid>
+      <description>&lt;p&gt;Frameworks make it easy to hit the ground running when writing web apps. The one hurdle I run into consistently when starting any app though is creating a base user authentication system. It&amp;rsquo;s pretty simple to do with most modern frameworks like Laravel but it&amp;rsquo;s also just an annoying boilerplate task. This is just one of many boilerplate tasks that I&amp;rsquo;ve decided to eliminate by creating a basic starter app that I can pull from GitHub and modify from there.&lt;/p&gt;
+
+&lt;p&gt;To grab a copy of my repo you can simply run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone https://github.com/ezynda3/app-starter.git  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Right now it only has basic user authentication without any way to add users except manually through mysql or through a seeder file.&lt;/p&gt;
+
+&lt;p&gt;If you are familiar with Grunt, I&amp;rsquo;ve setup a Gruntfile which will monitor the assets in the &amp;lsquo;app/assets&amp;rsquo; folder. Simply open an empty terminal an run &amp;lsquo;grunt&amp;rsquo; inside the top level of your app directory.&lt;/p&gt;
+
+&lt;p&gt;I plan to improve upon this with other boilerplate items like simple 404 pages and the like in the future. Feel free to send a pull request if you have something useful to contribute.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/categories/laravel/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/categories/laravel/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using Faker To Populate Your Laravel Projects During Development</title>
+      <link>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</link>
+      <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m a very visual person so when I&amp;rsquo;m developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don&amp;rsquo;t have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there&amp;rsquo;s still some manual data entry involved. We can eliminate this with a cool library called &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;Faker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Faker takes all the manual entry out of database seeding. It can generate anything from usernames, email addresses and city names to dates and fake credit card numbers. This saves loads of time when creating your database seeder. If you&amp;rsquo;re new to Laravel or have no idea how to seed your database, check out the awesome Laravel &lt;a href=&#34;http://laravel.com/docs/migrations#database-seeding&#34; title=&#34;Laravel - Database Seeding&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on the subject.&lt;/p&gt;
+
+&lt;p&gt;To get started just add Faker using composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer require fzaninotto/faker  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When prompted for the version I entered &amp;lsquo;1.4.*@dev&amp;rsquo; which is the latest at the time of this writing. This will add faker to &amp;lsquo;comoposer.json&amp;rsquo; and download the library. Laravel will autoload the library for you.&lt;/p&gt;
+
+&lt;p&gt;I have a travel buddy meetup site, that I&amp;rsquo;m creating. Users can sign-up and then create trips. Other users can see these trips and then propose a meetup or just give helpful tips and advice. Let&amp;rsquo;s see what my seeders will look like using Faker.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the user seeder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserTableSeeder extends Seeder
+{
+
+    public function run()  
+    {  
+        $faker = Faker\Factory::create();
+
+        User::truncate();
+
+        foreach(range(1,30) as $index)  
+        {  
+            User::create([  
+                &#39;username&#39; =&amp;gt; str_replace(&#39;.&#39;, &#39;_&#39;, $faker-&amp;gt;unique()-&amp;gt;userName),  
+                &#39;email&#39; =&amp;gt; $faker-&amp;gt;email,  
+                &#39;password&#39; =&amp;gt; &#39;password&#39;,  
+                &#39;confirmation&#39; =&amp;gt; str_random(64),  
+                &#39;confirmed&#39; =&amp;gt; true  
+            ]);  
+        }
+    }
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First I created a new instance of Faker using &amp;lsquo;$faker = Faker\Factory::create();&amp;lsquo;. &amp;lsquo;User::truncate();&amp;rsquo; just clears the database out so we can reseed it. Next I create a loop that will create 30 new users. For any field that requires fake data just call the Faker instance we created up top and the type of data we need (e.g &amp;lsquo;$faker-&amp;gt;userName). Faker likes to add a &amp;lsquo;.&amp;rsquo; to some usernames which doesn&amp;rsquo;t play nice with my app which is why I used &amp;lsquo;str_replace()&amp;rsquo; to get rid of those. You can even use the &amp;lsquo;unique()&amp;rsquo; modifier to make sure usernames aren&amp;rsquo;t repeated.&lt;/p&gt;
+
+&lt;p&gt;As you can see, it&amp;rsquo;s pretty straight forward. Let&amp;rsquo;s look at another example. Here I have my trip seeder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class TripTableSeeder extends Seeder
+{
+
+    public function run()  
+    {
+
+        $faker = Faker\Factory::create();
+
+        Trip::truncate();
+
+        foreach(range(1,10) as $index)  
+        {  
+            Trip::create([  
+                &#39;user_id&#39; =&amp;gt; rand(1,30),  
+                &#39;location&#39; =&amp;gt; $faker-&amp;gt;city . &#39;, &#39; . $faker-&amp;gt;country,  
+                &#39;from&#39; =&amp;gt; $from = $faker-&amp;gt;dateTimeBetween(&#39;+1 days&#39;, &#39;+2 years&#39;)-&amp;gt;format(&#39;m/d/Y&#39;),  
+                &#39;to&#39; =&amp;gt; $faker-&amp;gt;dateTimeBetween($from, $from . &#39; +3 months&#39;)-&amp;gt;format(&#39;m/d/Y&#39;),  
+                &#39;note&#39; =&amp;gt; $faker-&amp;gt;paragraph(1)  
+            ]);  
+        }  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Same principle as before. Faker can create dates in a specific range, words, sentences and even paragraphs using the popular &amp;lsquo;lorem ipsum&amp;rsquo; filler.&lt;/p&gt;
+
+&lt;p&gt;This is a great tool for projects that will be working with a lot of users and data. For more information on Faker&amp;rsquo;s features, check out the &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create A Self-destructing, Encrypted Message App In Laravel Part 2</title>
+      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
+      <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+    &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;author&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
+
+    &amp;lt;title&amp;gt;Burnmsg - Self-desctructing, encrypted messages&amp;lt;/title&amp;gt;
+
+    &amp;lt;!-- Bootstrap core CSS --&amp;gt;
+    &amp;lt;link href=&amp;quot;{{ asset(&#39;css/styles.css&#39;) }}&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+
+    &amp;lt;!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --&amp;gt;
+    &amp;lt;!--[if lt IE 9]&amp;gt;
+      &amp;lt;script src=&amp;quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+      &amp;lt;script src=&amp;quot;https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;![endif]--&amp;gt;
+  &amp;lt;/head&amp;gt;
+
+  &amp;lt;body&amp;gt;
+
+    &amp;lt;div class=&amp;quot;navbar navbar-inverse navbar-fixed-top&amp;quot; role=&amp;quot;navigation&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+        &amp;lt;div class=&amp;quot;navbar-header&amp;quot;&amp;gt;
+          &amp;lt;a class=&amp;quot;navbar-brand&amp;quot; href=&amp;quot;{{ route(&#39;messages.create&#39;) }}&amp;quot;&amp;gt;Burnmsg&amp;lt;/a&amp;gt;
+        &amp;lt;/div&amp;gt;
+       &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+        @yield(&#39;content&#39;)
+    &amp;lt;/div&amp;gt;&amp;lt;!-- /.container --&amp;gt;
+
+
+    &amp;lt;!-- Bootstrap core JavaScript
+    ================================================== --&amp;gt;
+    &amp;lt;!-- Placed at the end of the document so the pages load faster --&amp;gt;
+    &amp;lt;script src=&amp;quot;https://code.jquery.com/jquery-1.10.2.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;{{ asset(&#39;js/bootstrap.min.js&#39;) }}&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to make sure that Twitter Bootstrap is accessible. Bootstrap is installed into the &amp;lsquo;vendor&amp;rsquo; folder of our project by composer. First let&amp;rsquo;s copy the Javascript libraries.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cp vendor/twitter/bootstrap/dist/js/bootstrap.min.js public/js  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We also need the CSS stylesheet but we are going to need to tweak some of the styles. We are going to do this using LESS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ touch public/css/styles.less  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In our newly created LESS file we will import the original stylesheet and make our tweaks as needed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;@import &amp;quot;../../vendor/twitter/bootstrap/less/bootstrap&amp;quot;;
+
+body {
+    padding-top: 65px; /* bring body to bottom of navbar */
+}
+
+article {
+    white-space: pre-wrap;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LESS makes it easy to work with CSS but it needs to be &amp;ldquo;compiled&amp;rdquo; in order for the browser to understand it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ lessc public/css/styles.less &amp;gt; public/css/styles.css  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I use &amp;lsquo;lessc&amp;rsquo; which is a Ruby gem but you can use any LESS compiler. Google should bring up a handful of options.&lt;/p&gt;
+
+&lt;p&gt;Now all that is left is to create our various views which correspond to the different actions involved in our application. Let&amp;rsquo;s save these views in &amp;lsquo;app/views/messages&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;The first view &amp;lsquo;create.blade.php&amp;rsquo; will represent our message creation form. Notice that it &amp;lsquo;@extends&amp;rsquo; our default layout and renders the form within the &amp;lsquo;content&amp;rsquo; section which is referenced in the default layout.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+
+    @section(&#39;content&#39;)
+    {{ Form::open([&#39;method&#39; =&amp;gt; &#39;post&#39;, &#39;route&#39; =&amp;gt; &#39;messages.store&#39;, &#39;class&#39; =&amp;gt; &#39;form&#39;]) }}
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        @if($errors-&amp;gt;first())
+            &amp;lt;div class=&amp;quot;alert alert-danger&amp;quot;&amp;gt;
+                {{ $errors-&amp;gt;first() }}
+            &amp;lt;/div&amp;gt;
+        @endif
+        {{ Form::label(&#39;body&#39;, &#39;Message&#39;) }}
+        {{ Form::textarea(&#39;body&#39;, null, [&#39;class&#39; =&amp;gt; &#39;form-control&#39;]) }}
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        {{ Form::submit(&#39;Submit&#39;, [&#39;class&#39; =&amp;gt; &#39;btn btn-primary&#39;]) }}
+        {{ Form::close() }}
+    &amp;lt;/div&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Once the message is submitted our &amp;lsquo;store.blade.php&amp;rsquo; view will display a link for the user to copy and give to whomever they wish for later reading.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+
+    @section(&#39;content&#39;)
+    &amp;lt;div class=&amp;quot;alert alert-success&amp;quot;&amp;gt;
+        Your message has been saved.
+        Here is the URL &amp;lt;a href=&amp;quot;{{ route(&#39;messages.show&#39;, [$url, $key]) }}&amp;quot;&amp;gt;{{ route(&#39;messages.show&#39;, [$url, $key]) }}&amp;lt;/a&amp;gt;
+    &amp;lt;/div&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Lastly the &amp;lsquo;show.blade.php&amp;rsquo; view will display the message for the user once they decide to read it.&lt;/p&gt;
+
+&lt;p&gt;{% raw %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+
+    @section(&#39;content&#39;)
+    &amp;lt;article&amp;gt;
+    {{{ $body }}}
+    &amp;lt;/article&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Now we should have a pretty sweet messaging app that destroys your message upon reading. Keep in mind that I am no cryptography or digital forensics expert so rely on this application at your own risk. Go ahead and modify it to make it more secure if you like. Leave any suggestions you may have in the comments.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create A Self-destructing, Encrypted Message App In Laravel Part 1</title>
+      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
+      <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
+      <description>&lt;p&gt;The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn&amp;rsquo;t say that I fall into the paranoid category but security, anonymity and cryptography fascinate me.&lt;/p&gt;
+
+&lt;p&gt;While brain storming one day, I decided to go ahead and build a self-destructing, encrypted messaging application in Laravel, using PHP&amp;rsquo;s built-in mcrypt library to see how hard it would be. Turns out it isn&amp;rsquo;t very hard at all.&lt;/p&gt;
+
+&lt;p&gt;First we need to download Laravel and setup the base of our project. We&amp;rsquo;ll call it &amp;lsquo;Burnmsg&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer create-project laravel/laravel burnmsg  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s setup our composer.json file to fetch some dependencies. We&amp;rsquo;ll use Twitter&amp;rsquo;s bootstrap for styling and Jeffrey Way&amp;rsquo;s time-saving artisan generators.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;laravel/laravel&amp;quot;,
+    &amp;quot;description&amp;quot;: &amp;quot;The Laravel Framework.&amp;quot;,
+    &amp;quot;keywords&amp;quot;: [&amp;quot;framework&amp;quot;, &amp;quot;laravel&amp;quot;],
+    &amp;quot;license&amp;quot;: &amp;quot;MIT&amp;quot;,
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;laravel/framework&amp;quot;: &amp;quot;4.0.*&amp;quot;,
+        &amp;quot;twitter/bootstrap&amp;quot;: &amp;quot;3.0.*&amp;quot;
+        &amp;quot;way/generators&amp;quot;: &amp;quot;dev-master&amp;quot;
+    },
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;classmap&amp;quot;: [
+            &amp;quot;app/commands&amp;quot;,
+            &amp;quot;app/controllers&amp;quot;,
+            &amp;quot;app/models&amp;quot;,
+            &amp;quot;app/database/migrations&amp;quot;,
+            &amp;quot;app/database/seeds&amp;quot;,
+            &amp;quot;app/tests/TestCase.php&amp;quot;
+        ]
+    },
+    &amp;quot;scripts&amp;quot;: {
+        &amp;quot;post-install-cmd&amp;quot;: [
+            &amp;quot;php artisan optimize&amp;quot;
+        ],
+        &amp;quot;post-update-cmd&amp;quot;: [
+            &amp;quot;php artisan clear-compiled&amp;quot;,
+            &amp;quot;php artisan optimize&amp;quot;
+        ],
+        &amp;quot;post-create-project-cmd&amp;quot;: [
+            &amp;quot;php artisan key:generate&amp;quot;
+        ]
+    },
+    &amp;quot;config&amp;quot;: {
+        &amp;quot;preferred-install&amp;quot;: &amp;quot;dist&amp;quot;
+    },
+    &amp;quot;minimum-stability&amp;quot;: &amp;quot;dev&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure you add the generators service provider to &amp;lsquo;app/config/app.php&amp;rsquo; in the &amp;lsquo;providers&amp;rsquo; array.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+&#39;providers&#39; = array(
+    &#39;...&#39;,
+    &#39;Way\Generators\GeneratorsServiceProvider&#39;
+),
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Change your database configuration in &amp;lsquo;app/config/database.php&amp;rsquo;. Once that&amp;rsquo;s done we can generate our model, controller and views all in one command using the useful generators tool.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php artisan generate:resource --fields=&amp;quot;body:binary,url:string,iv:binary,destroyed:boolean&amp;quot; messages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can run our migration to create the messages table.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php artisan migrate  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next let&amp;rsquo;s set up our routes. We only need a few. One for the message form. One to post the data and one to view our message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::get(&#39;/&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.create&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@create&#39;]);
+Route::post(&#39;/&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.store&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@store&#39;]);
+Route::get(&#39;/{key}/{value}&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.show&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@show&#39;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In our controller we will only need a create, store and show method. The create method will return the view for displaying our form.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+public function create()
+{
+      return View::make(&#39;messages.create&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The store method will take the input and validate it. In this case we only care that the message isn&amp;rsquo;t left blank. Next we will generate a random key. Then we will generate an IV or initialization vector. This is used to improve the randomization of our encryption. In this case we will use the Blowfish algorithm. The last steps are to encrypt the message and then save the encrypted message and the IV for decryption later. We will also create a random identifier. The key will not be saved though. Instead it will be part of the URL for retrieving the message later. Because the key is part of the URL the message creator needs to keep this as safe as possible. This also prevents the person running the server from being able to read any of the messages. Plausible-deniability. Finally we return the view which displays the URL for our message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php  
+public function store()
+{
+        // Validate input
+        $v = Message::validate(Input::all());
+
+        if ($v !== true) {
+            return Redirect::route(&#39;messages.create&#39;)
+                -&amp;gt;withErrors($v-&amp;gt;errors());
+        }
+
+        $msg = new Message;
+
+        // Generate a key
+        $key = sha1(microtime(true).mt_rand(10000,90000));
+
+        // Generate an IV
+        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_CFB);
+        $iv = mcrypt_create_iv($iv_size, MCRYPT_DEV_URANDOM);
+
+        // Encrypt the message
+        $body = mcrypt_encrypt(MCRYPT_BLOWFISH, $key, Input::get(&#39;body&#39;), MCRYPT_MODE_CFB, $iv);
+
+        // Save the message to the database
+        $msg-&amp;gt;body = $body;
+        $msg-&amp;gt;url = Message::get_unique_url();
+        $msg-&amp;gt;iv = $iv;
+        $msg-&amp;gt;save();
+
+        // Return the view
+        return View::make(&#39;messages.store&#39;, [&#39;url&#39; =&amp;gt; $msg-&amp;gt;url, &#39;key&#39; =&amp;gt; $key]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The show method will take the random identifier and the key and decrypt the message. Once decrypted it will overwrite the message with &amp;lsquo;null&amp;rsquo; in the database and return the view displaying the one-time-viewable message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+public function show($url, $key)
+{
+        // Fetch our message
+        $msg = Message::where(&#39;url&#39;, &#39;=&#39;, $url)-&amp;gt;first();
+
+        if ($msg-&amp;gt;destroyed) {
+            $body = &amp;quot;This message has been destroyed&amp;quot;;
+        } else {
+            // Decrypt it
+            $iv = $msg-&amp;gt;iv;
+            $body = mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $msg-&amp;gt;body, MCRYPT_MODE_CFB, $iv);
+
+            // Destroy the message
+            $msg-&amp;gt;body = null;
+            $msg-&amp;gt;destroyed = true;
+            $msg-&amp;gt;save();
+        }
+
+        return View::make(&#39;messages.show&#39;, [&#39;body&#39; =&amp;gt; $body]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s take care of our model. The model will handle the validation as well as generating the random url identifier saved in the store method above.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Message extends Eloquent {
+    protected $guarded = [&#39;id&#39;, &#39;created_at&#39;, &#39;updated_at&#39;];
+
+    public static $rules = [&#39;body&#39; =&amp;gt; &#39;required&#39;];
+
+    public static function validate($input)
+    {
+        $v = Validator::make($input, static::$rules);
+        return $v-&amp;gt;fails() ? $v : true;
+    }
+
+    public static function  get_unique_url() {
+
+         // set a random number
+        $number = rand(10000, 9999999);
+
+                // character list for generating a random string
+        $charlist = &amp;quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;quot;;
+
+        $decimal = intval($number);
+
+        //get the list of valid characters
+        $charlist = substr($charlist, 0, 62);
+
+        $converted = &#39;&#39;;
+
+        while($number &amp;gt; 0) {
+            $converted = $charlist{($number % 62)} . $converted;
+            $number = floor($number / 62);
+        }
+
+        if( static::whereUrl($converted)-&amp;gt;first() ) {
+            static::get_unique_url();
+        }
+
+                return $converted;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we have most of the hard part out of the way. All that is left is to create and style the various views using Twitter Bootstrap which will be covered in part 2.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What Is An IoC Container?</title>
+      <link>http://edzynda.com/what-is-an-ioc-container/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/what-is-an-ioc-container/</guid>
+      <description>&lt;p&gt;If you&amp;#8217;re discussing object oriented programming in PHP these days, it&amp;#8217;s likely that you&amp;#8217;ve at least heard about such topics as dependency injection or IoC containers. They&amp;#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&amp;#8217;s really not.&lt;/p&gt;
+
+&lt;p&gt;If you read my earlier post on using repositories in Laravel you might have noticed that when using dependency injection in our __construct method, we didn&amp;#8217;t have to actually instantiate our repository. Laravel&amp;#8217;s IoC container did it for us. Behind the scenes, when our controller was called, Laravel ran the App::make() method and passed it through to our constructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+use Stark\Repositories\UserRespositoryInterface as Repository;
+
+class UserController extends BaseController {
+    protected $user;
+
+    public function __construct(Repository $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;getAll();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now basic object oriented programming says we can&amp;#8217;t instantiate an interface so we have to pass an object that implements the UserRepositoryInterface such as our EloquentUserRepository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repositories\EloquentUserRepository&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remember that line of code? What we are doing is telling Laravel&amp;#8217;s IoC to respond to any request for UserRepositoryInterface with EloquentUserRepository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+$userRepo = App::make(&#39;Stark\Repositories\UserRepositoryInterface&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$userRepo is actually an EloquentUserRepository object now.&lt;/p&gt;
+
+&lt;p&gt;To understand how this works let&amp;#8217;s flesh out our own IoC.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// IoC.php
+class IoC {
+
+    protected static $bindings = [];
+
+    public static function bind($name, Callable $resolver)
+    {
+        static::$bindings[$name] = $resolver;
+    }
+
+    public static function make($name)
+    {
+        if (isset(static::$bindings[$name]))
+        {
+            $resolver = static::$registry[$name];
+
+            return $resolver();
+        }
+
+        throw new Exception(&#39;Alias does not exist in the IoC registry.&#39;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This can be used in any PHP project outside of laravel. Check out this example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+include &#39;IoC.php&#39;;
+
+class Truck {}
+
+class Garage {
+    protected $veh;
+
+    public function __construct(Vehicle $veh)
+    {
+        $this-&amp;gt;veh = $veh;
+    }
+}
+
+IoC::bind(&#39;Vehicle&#39;, &#39;Truck&#39;)
+
+$garage = new Garage(App::make(&#39;Vehicle&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So we created a class Truck and a class Garage which depends on a Vehicle object. Then we used our homebrewed IoC to bind any call for Vehicle to a call for Truck instead. So when we created a new Garage we passed IoC::bind which would pass whatever we registered with IoC::bind. That&amp;#8217;s all there is to it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using Repositories In Laravel</title>
+      <link>http://edzynda.com/using-repositories-in-laravel/</link>
+      <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-repositories-in-laravel/</guid>
+      <description>&lt;p&gt;The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.&lt;/p&gt;
+
+&lt;p&gt;One technique I&amp;#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&amp;#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&amp;#8217;s powerful IoC container.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#8217;ve frequented web development forums or IRC channels lately, you might hear seasoned veterans blabbing about the merits of TDD or Test Driven Development. It&amp;#8217;s another concept that sounds scary at first but really isn&amp;#8217;t once you start digging into it. Basically TDD preaches that you should write automated tests for your code &lt;strong&gt;before&lt;/strong&gt; you even write a single line of production code. Not only that, you should be writing tests that work with a single component at a time, in isolation. If you follow the single responsibility principle when writing code, this shouldn&amp;#8217;t be too hard.&lt;/p&gt;
+
+&lt;p&gt;What if your class or controller methods depend on another class that has it&amp;#8217;s own responsibilities? Theoretically those classes should have their own tests and should be isolated from your own tests. How do we do this though? The answer is dependency injection.&lt;/p&gt;
+
+&lt;p&gt;Dependency injection is simply passing the classes your current class depends on through the constructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+    protected $dependency;
+
+    public function __construct(Dependency $dependency)
+    {
+        $this-&amp;gt;dependency = $dependency;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s it. Not too scary right? This way, when you write your automated tests, you can now &amp;#8216;mock&amp;#8217; those classes with a tool like Mockery and inject them from inside your test code. If those dependencies accessed a database or live filesystem you can rest assured your tests will not because those dependencies are now mocked or stubbed.&lt;/p&gt;
+
+&lt;p&gt;So dependency injection is great for testing but it has other benefits. Let&amp;#8217;s say in laravel you have a UserController. That controller has a method that fetches all users and sends them to a view.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+
+    public function index()
+    {
+        $users = User::all();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s very simple to call our User model and just call methods from within the controller. But this will create a nightmare for testing and isn&amp;rsquo;t very flexible. Why not inject the User model?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;all();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Okay that&amp;#8217;s great but say one day you decide to go with a different implementation of your users like MongoDB or a flatfile database? You&amp;#8217;ll have to go through your code and clean out and refactor anything that references the Laravel models because they extend Eloquent which uses an SQL database. This is where the idea of using repositories comes in.&lt;/p&gt;
+
+&lt;p&gt;First let&amp;#8217;s create an interface. Think of an interface as a contract. Any class that implements this interface must also implement its methods.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Repositories;
+
+interface UserRepositoryInterface {
+    public function getAll();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll store it in a custom directory called &amp;lsquo;Stark/Repositories&amp;rsquo;. Notice that the namespace goes along with the directory structure. Now let&amp;rsquo;s create a class that implements this interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Repositories;
+
+use User;
+
+class EloquentUserRepository implements UserRepositoryInterface {
+    public function getAll()
+    {
+        return User::all();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Cool. Now let&amp;rsquo;s just refactor our controller to use our interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+use Stark\Repositories\UserRespositoryInterface as Repository;
+
+class UserController extends BaseController {
+    protected $user;
+
+    public function __construct(Repository $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;getAll();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now remember that interfaces are cannot be instantiated but Laravel is smart enough to inject a proper class in it&amp;#8217;s place if you give it some hints. First we have to make sure our &amp;#8216;Stark&amp;#8217; namespace is autoloaded. For that we edit our composer.json file and add the namespace and it&amp;#8217;s location under &amp;#8220;psr-0&amp;#8243;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-0&amp;quot;: {
+            &amp;quot;Stark&amp;quot;: &amp;quot;app/&amp;quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we tell Laravel that anytime we reference UserRepositoryInterface we really want EloquentUserRepository. We can do that in our &amp;#8216;app/routes.php&amp;#8217; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repositories\EloquentUserRepository&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if we decide to use some other storage method we can simply code another repository that implements the UserRepositoryInterface and change that one line in the routes file to reflect the change. The rest of your app couldn&amp;#8217;t care less.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using Route/Model Binding In Laravel</title>
+      <link>http://edzynda.com/using-routemodel-binding-in-laravel/</link>
+      <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-routemodel-binding-in-laravel/</guid>
+      <description>&lt;p&gt;As I work more and more with Laravel, I keep running across some really cool time saving tricks. One of those time savers is route/model binding.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s say that you have the following route setup.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::get(&#39;books/{book}&#39;, function($book) {
+    return Book::find($book);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s pretty simple right? Basically you point your browser at /books and then pass a book id and then use the &amp;#8216;Book&amp;#8217; model to fetch that book from the database. But say we already decided that the &amp;#8216;books&amp;#8217; route should always be working with the book model and a book should be fetched automatically. Laravel gives us a method for explicitly binding the &amp;#8216;Book&amp;#8217; model to our routes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::model(&#39;book&#39;, &#39;Book&#39;);
+ 
+Route::get(&#39;books/{book}&#39;, function($book) {
+    return $book;
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now Laravel will take the id you pass to the route and automatically fetch it behind the scenes. What if we want to fetch a book by something other than it&amp;#8217;s id? What if we want to access our books using a URI similar to /books/BookTitle? Instead of Route::model we can use Route::bind like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::bind(&#39;book&#39;, function($value, $route) {
+    return Book::whereTitle($value);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is a really good way to cut down on lines of code and at the same time keep it more readable.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Simple Image Manipulation With Intervention Image</title>
+      <link>http://edzynda.com/simple-image-manipulation-with-intervention-image/</link>
+      <pubDate>Fri, 27 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/simple-image-manipulation-with-intervention-image/</guid>
+      <description>&lt;p&gt;A lot of web applications include some sort of photo uploading functionality. Whether it&amp;#8217;s allowing a user to upload a personal avatar or to create and manage an entire photo gallery with watermarking features, it&amp;#8217;s somewhat of a pain to code. PHP includes several built-in functions for accomplishing this using the GD library but they&amp;#8217;re cumbersome at best. Luckily someone else feels your pain and has written a class that makes it a snap to work with images. &amp;#8216;&lt;a title=&#34;Intervention\Image&#34; href=&#34;http://intervention.olivervogel.net/&#34; target=&#34;_blank&#34;&gt;Intervention\Image&lt;/a&gt;&amp;#8216; is written by &lt;a title=&#34;Oliver Vogel&#34; href=&#34;http://olivervogel.net/&#34; target=&#34;_blank&#34;&gt;Oliver Vogel&lt;/a&gt; and it integrates brilliantly with our favorite framework Laravel!&lt;/p&gt;
+
+&lt;p&gt;Installation like anything that uses Composer is a snap. Add this to the &amp;#8220;require&amp;#8221; section of your composer.json file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;intervention/image&amp;quot;: &amp;quot;dev-master&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer install  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To add use it in Laravel open the &amp;#8216;config/app.php&amp;#8217; file. Add this to the $providers array.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+&#39;Intervention\Image\ImageServiceProvider&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next add this to the $aliases array.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+&#39;Image&#39; =&amp;gt; &#39;Intervention\Image\Facades\Image&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will allow you to reference the class as &amp;#8216;Image&amp;#8217; and use all of it&amp;#8217;s static methods.&lt;/p&gt;
+
+&lt;p&gt;One great feature of the &amp;#8216;&lt;a title=&#34;Intervention\Image&#34; href=&#34;http://intervention.olivervogel.net/&#34; target=&#34;_blank&#34;&gt;Intervention\Image&lt;/a&gt;&amp;#8216; class is that it&amp;#8217;s methods are chainable just like most Laravel classes. Uploading, resizing and saving an image to an new location can be accomplished in a single line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// resizing an uploaded file
+Image::make(Input::file(&#39;photo&#39;)-&amp;gt;getRealPath())-&amp;gt;resize(300, 200)-&amp;gt;save(&#39;foo.jpg&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more information on &amp;#8216;&lt;a title=&#34;Intervention\Image&#34; href=&#34;http://intervention.olivervogel.net/&#34; target=&#34;_blank&#34;&gt;Intervention\Image&lt;/a&gt;&amp;#8216; and how it can be used, check out the &lt;a title=&#34;Intervention\Image&#34; href=&#34;http://intervention.olivervogel.net/&#34; target=&#34;_blank&#34;&gt;official website&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Use Laravel&amp;#8217;s Eloquent ORM Outside Of Laravel</title>
+      <link>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
+      <description>&lt;p&gt;Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;#8217;s code, however, I&amp;#8217;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;#8217;s key components can be used as stand-alone modules.&lt;/p&gt;
+
+&lt;p&gt;Using Laravel&amp;#8217;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&amp;#8217;s codename is &amp;#8220;Illuminate&amp;#8221;. It&amp;#8217;s database component is therefore called &amp;#8220;Illuminate\Database&amp;#8221;. The easiest way to grab &amp;#8220;Illuminate\Database&amp;#8221; and it&amp;#8217;s dependencies is to use &lt;a title=&#34;Composer&#34; href=&#34;http://getcomposer.org/&#34; target=&#34;_blank&#34;&gt;Composer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Make sure there is file called &amp;#8216;composer.json&amp;#8217; in your project that contains the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;illuminate/database&amp;quot;: &amp;quot;*&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer install  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to start using Eloquent let&amp;#8217;s create a file called database.php to include in our various project files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php  
+require &#39;vendor/autoload.php&#39;;  
+
+use Illuminate\Database\Capsule\Manager as Capsule;  
+
+$capsule = new Capsule;
+
+$capsule-&amp;gt;addConnection(array(
+    &#39;driver&#39;    =&amp;gt; &#39;mysql&#39;,
+    &#39;host&#39;      =&amp;gt; &#39;localhost&#39;,
+    &#39;database&#39;  =&amp;gt; &#39;test&#39;,
+    &#39;username&#39;  =&amp;gt; &#39;test&#39;,
+    &#39;password&#39;  =&amp;gt; &#39;l4m3p455w0rd!&#39;,
+    &#39;charset&#39;   =&amp;gt; &#39;utf8&#39;,
+    &#39;collation&#39; =&amp;gt; &#39;utf8_unicode_ci&#39;,
+    &#39;prefix&#39;    =&amp;gt; &#39;&#39;
+));
+
+$capsule-&amp;gt;bootEloquent();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can start working with database tables just like we would if we were using Laravel!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+include &#39;database.php&#39;;
+
+// Create the Books model
+class Books extends Illuminate\Database\Eloquent\Model {
+    public $timestamps = false;
+}
+
+// Grab a book with an id of 1
+$book = Books::find(1);
+
+// Change some stuff
+$book-&amp;gt;name = &amp;quot;The Best Book in the World&amp;quot;;
+$book-&amp;gt;author = &amp;quot;Ed Zynda&amp;quot;;
+
+// Save it to the database
+$book-&amp;gt;save();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check out the Laravel &lt;a title=&#34;Laravel Eloquent documentation&#34; href=&#34;http://laravel.com/docs/eloquent&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; for more information on working with Eloquent.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting Started With Laravel 4 and Vagrant</title>
+      <link>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.&lt;/p&gt;
+
+&lt;p&gt;I came across Laravel while randomly browsing the web. I don&amp;rsquo;t even remember what I was looking for but after reading more about Laravel and how simple it was to setup, I was hooked. In this article I&amp;rsquo;ll take you through setting up a PHP development environment for Laravel 4.&lt;/p&gt;
+
+&lt;p&gt;In this tutorial, I will also be introducing you to a utility called Vagrant. Vagrant makes it ridiculously easy to create a virtual machine in which to run and test your web applications. It uses VirtualBox as a backend and is pretty straightforward once you get into it. No more fussing with WAMP, XAMP, or MAMP environments. You can easily create a small virtual machine that more closely resembles your production environment with a just few commands.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Install VirtualBox and Vagrant&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;On a standard Debian or Ubuntu box you should be able to run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install virtualbox  
+$ sudo apt-get install vagrant  
+$ sudo apt-get install linux-headers-$(uname -r)  
+$ sudo dpkg-reconfigure virtualbox-dkms  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This installs VirtualBox, Vagrant and it&amp;rsquo;s dependencies. It also compiles the various kernel modules needed for VirtualBox to run correctly.&lt;/p&gt;
+
+&lt;p&gt;On my Gentoo box, I run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ emerge virtualbox  
+$ emerge virtualbox-modules  
+$ emerge vagrant  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Setup The Vagrant Environment&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Vagrant&amp;rsquo;s virtual machines instances are based on prebuilt configurations called &amp;lsquo;boxes&amp;rsquo;. The following command will download a box based on Ubuntu Precise Pangolin (32bit) and name it &amp;lsquo;precise32&amp;#8242;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vagrant box add precise32 http://files.vagrantup.com/precise32.box  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You now no longer have to download that box and can create any number of VM instances based on this build.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir my_dev_env
+$ cd my_dev_env
+$ vagrant init precise32
+$ vagrant up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! You now have a fully functioning Ubuntu VM ready to play around with. To work with the VM run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vagrant ssh  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you will notice that the VM doesn&amp;rsquo;t automatically have a webserver or mysql or really anything needed for a development environment installed. You can go ahead and install everything you need manually but fortunately, Vagrant is scriptable. You can go ahead and write a script to install everything you need after running &amp;lsquo;vagrant up&amp;rsquo; but why do that when it can be done for you?&lt;/p&gt;
+
+&lt;p&gt;Head on over to PuPHPet to see what I mean.&lt;/p&gt;
+
+&lt;p&gt;This handy GUI will take you through configuring a Vagrant environment that&amp;rsquo;s functional as soon as it boots up.&lt;/p&gt;
+
+&lt;p&gt;First select &amp;lsquo;Create Locally&amp;rsquo;. Next, for this tutorial we&amp;rsquo;ll select Debian Wheezy as our base. There&amp;rsquo;s no reason to change the vagrant box name but you can change the &amp;lsquo;Name Your Box&amp;rsquo; section if you wish. You can also change the ip address that this VM will be accessed from.&lt;/p&gt;
+
+&lt;p&gt;One final thing I do in this section is change the default sync folder to &amp;lsquo;./work&amp;rsquo;. I&amp;rsquo;ll explain why later.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-1-.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-259&#34; alt=&#34;PuPHPet-step-1-&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-1-.png&#34; width=&#34;680&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On the Server Basics section you can safely leave everything as default. If you want to add things like your own personal aliases file, you can add that here.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-2.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-260&#34; alt=&#34;PuPHPet-step-2&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-2.png&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For the HTTP Server I choose Nginx because it&amp;rsquo;s awesome. Choose the host name you want to use for you dev environment. We&amp;rsquo;ll add that to our /etc/hosts file later for easy access. Everything else can safely stay the same.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-3.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-263&#34; alt=&#34;PuPHPet-step-3&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-3.png&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I keep everything here as default as well. Make sure &amp;lsquo;Install Composer&amp;rsquo; is checked. We&amp;rsquo;ll need that to install Laravel later. You can add any other PHP modules you want if you wish.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-4.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-264&#34; alt=&#34;PuPHPet-step-4&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-4.png&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The Database section should be pretty straightforward. Just create a root password and setup a non-root user.&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-5.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-265&#34; alt=&#34;PuPHPet-step-5&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-5.png&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally you can hit &amp;lsquo;Create My Manifest&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/PuPHPet-step-6.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-266&#34; alt=&#34;PuPHPet-step-6&#34; src=&#34;http://www.edzynda.com/media/PuPHPet-step-6.png&#34; width=&#34;640&#34; height=&#34;280&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Once the .zip file has finished downloading run the following&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ unzip wheezy64.zip  
+$ mv wheezy64 laravel_dev  
+$ cd laravel_dev  
+$ ls  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You&amp;rsquo;ll notice that this directory is cluttered with stuff. Normally Vagrant uses the top level directory of your environment to sync with a folder on the VM. In this case it will sync with &amp;lsquo;/var/www&amp;rsquo;. This comes in handy for developing on the local machine. Remember that we chose &amp;lsquo;./work&amp;rsquo; as our local sync directory back in the GUI. It&amp;rsquo;s not created by default, so we have to create it ourselves. After that we can start Vagrant as normal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir work  
+$ vagrant up  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To test to make sure everything is working run the following&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo echo &#39;192.168.56.101 laravel.dev&#39; &amp;gt;&amp;gt; /etc/hosts  
+$ cd work  
+$ echo &#39;&amp;lt;?php phpinfo(); ?&amp;gt;&#39; &amp;gt; index.php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that &amp;lsquo;laravel.dev&amp;rsquo; should be replaced with whatever you named your virtualhost back in the GUI. Open your web browser of choice and go to &amp;lsquo;&lt;a href=&#34;http://laravel.dev&#39;&#34;&gt;http://laravel.dev&#39;&lt;/a&gt; and you should see the familiar PHP Info page.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3. Install Laravel&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now to install Laravel we are going to use Composer which is an easy utility for installing various PHP related software such as the Laravel framework.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vagrant ssh  
+$ cd /var/www  
+$ composer create-project laravel/laravel your-project-name --prefer-dist  
+$ exit  
+$ chmod -R 777 my-project/app/storage  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now point your web browser to &amp;lsquo;&lt;a href=&#34;http://laravel.dev/my-project/public&#39;&#34;&gt;http://laravel.dev/my-project/public&#39;&lt;/a&gt;. You may have to &amp;lsquo;chmod -R 777&amp;#8242; the storage directory one more time as Laravel creates a &amp;lsquo;session&amp;rsquo; directory that needs to be writeable.&lt;/p&gt;
+
+&lt;p&gt;If all goes well you should see the Laravel welcome screen stating that &amp;#8220;You Have Arrived.&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.edzynda.com/media/laravel-success.jpg&#34;&gt;&lt;img class=&#34;alignnone size-medium wp-image-270&#34; alt=&#34;laravel-success&#34; src=&#34;http://www.edzynda.com/media/laravel-success-300x168.jpg&#34; width=&#34;300&#34; height=&#34;168&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Congratulations! You should now have a functioning Laravel 4 development environment.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

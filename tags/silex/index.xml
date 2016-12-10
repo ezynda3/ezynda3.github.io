@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/silex/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/silex/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>What Is A Microframework? Getting Started With Silex</title>
+      <link>http://edzynda.com/what-is-a-microframework-getting-started-with-silex/</link>
+      <pubDate>Wed, 13 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/what-is-a-microframework-getting-started-with-silex/</guid>
+      <description>&lt;p&gt;There is no shortage of coding frameworks these days. I can&amp;rsquo;t scroll through my twitter and facebook feeds or my favorite dev forums without stumbling upon something new. Like a hungry barracuda, I&amp;rsquo;m instantly attracted to new shiny things. While browsing reddit.com/r/php I came across a mention of a microframework called &lt;a href=&#34;http://silex.sensiolabs.org/&#34; title=&#34;Silex&#34; target=&#34;_blank&#34;&gt;Silex&lt;/a&gt;. Now you may be wondering what a microframework is. I was wondering the same thing, so I took a look at the project&amp;rsquo;s website to figure out for myself.&lt;/p&gt;
+
+&lt;p&gt;It turns out that a microframework, just like the name implies, is just a barebones framework meant to give the developer access to powerful tools without the bulk of a full-on framework. Silex is a microframework which utilizes components from the popular &lt;a href=&#34;http://symfony.com/&#34; title=&#34;Symfony2&#34; target=&#34;_blank&#34;&gt;Symfony2&lt;/a&gt; framework. In fact it&amp;rsquo;s written and maintained by the same people at Sensiolabs. It&amp;rsquo;s meant for applications consisting of usually one php file but you can definitely build something much bigger. Installing and using Silex is pretty straight-forward especially if you are familiar with other modern PHP frameworks.&lt;/p&gt;
+
+&lt;p&gt;Like all modern PHP projects you start with a composer.json file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;silex/silex&amp;quot;: &amp;quot;~1.1&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer install  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now create a public facing directory with an index.php file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir public  
+$ touch index.php  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you should end up with the following directory structure.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;├── composer.json  
+├── composer.lock  
+├── vendor  
+│ └── ...  
+└── public  
+└── index.php  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to bootstrap Silex so we can start using it in our index.php file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// public/index.php
+ 
+require_once __DIR__.&#39;/../vendor/autoload.php&#39;;
+ 
+$app = new Silex\Application;
+ 
+// definitions
+ 
+$app-&amp;gt;run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above snippet, we&amp;rsquo;ve created an instance of Silex called &amp;lsquo;$app&amp;rsquo;. Now we can use &amp;lsquo;$app&amp;rsquo; to define things like routes and service providers before calling &amp;lsquo;$app-&amp;gt;run()&amp;rsquo; which will load our application.&lt;/p&gt;
+
+&lt;p&gt;Defining routes is pretty simple. For each route you need to know the method (e.g. GET or POST), the URI pattern you want to match and method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// public/index.php
+ 
+require_once __DIR__.&#39;/../vendor/autoload.php&#39;;
+ 
+use Symfony\Component\HttpFoundation\Request;
+ 
+$app = new Silex\Application;
+ 
+// definitions
+$app-&amp;gt;get(&#39;/&#39;, function()
+{
+    return &#39;&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;/&amp;quot;&amp;gt;Enter your name: &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; /&amp;gt;&amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot; /&amp;gt;&amp;lt;/form&amp;gt;&#39;;
+});
+ 
+$app-&amp;gt;post(&#39;/&#39;, function(Request $request)
+{
+    $name = $request-&amp;gt;get(&#39;name&#39;);
+    return &amp;quot;Hello! Welcome &amp;quot; . $name . &amp;quot;!&amp;quot;;
+});
+ 
+$app-&amp;gt;run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above example, we defined two routes. The GET request returns a form which is then handled by our POST route once it is submitted. To access the variables passed in our POST request we use Symfony&amp;rsquo;s HttpFoundation\Request component and the &amp;lsquo;get()&amp;rsquo; method. An instance of of Request is automatically injected into our route closure by Silex using type-hinting or what I like to call magic.&lt;/p&gt;
+
+&lt;p&gt;Hopefully from this tutorial you can get an idea for how to create a small yet powerful app using Silex.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

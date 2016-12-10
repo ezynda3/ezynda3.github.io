@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/server/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/server/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using The PHP Built-in Webserver</title>
+      <link>http://edzynda.com/using-the-php-built-in-webserver/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-the-php-built-in-webserver/</guid>
+      <description>&lt;p&gt;For years Ruby and Python have been stealing the show with innovative features and functionality to help developers get their projects off the ground. PHP was left in the dust for quite a while. One simple but invaluable feature that PHP had been lacking was it&amp;rsquo;s own webserver. Since version 5.4 however, PHP developers can now enjoy this modern convenience.&lt;/p&gt;
+
+&lt;p&gt;Not all backend developers are system administrators. They know how to code and code well. That doesn&amp;rsquo;t mean they know how to optimally configure an Apache or Nginx webserver. Depending on the project they work on, their code can live on any number of server configurations. Rather than worry about setting up Apache, developers should be making sure their code works. Leave the configuration to the sys admins.&lt;/p&gt;
+
+&lt;p&gt;Using the PHP built-in web server is simple. Simply &amp;lsquo;cd&amp;rsquo; into the directory you want served and run php with the &amp;lsquo;-S&amp;rsquo; option.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/public_html  
+$ php -S localhost:8000  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Most people will bind it to localhost for development but you can also bind it to any interface like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ php -S 0.0.0.0:8000  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you need to handle special filetypes you can use a routes file like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// router.php
+$path = pathinfo($_SERVER[&amp;quot;SCRIPT_FILENAME&amp;quot;]);
+if ($path[&amp;quot;extension&amp;quot;] == &amp;quot;el&amp;quot;) {
+    // Handle .el files
+    header(&amp;quot;Content-Type: text/x-script.elisp&amp;quot;);
+    readfile($_SERVER[&amp;quot;SCRIPT_FILENAME&amp;quot;]);
+}
+else {
+    return false; // serve files normally
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then run the server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php -S localhost:8000 router.php  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What if you want your scripts to have slightly different behavior when running under the PHP server rather than production? Just use the php_sapi_name() function like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+// router.php
+if (php_sapi_name() == &#39;cli-server&#39;) {
+    /* route static assets and return false */
+}
+/* go on with normal index.php operations */
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this nifty feature it&amp;rsquo;s possible to speed up development and cut down dependencies on special development servers or VMs in most cases.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

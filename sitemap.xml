@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://edzynda.com/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/single-page-web-app-with-go-and-vue/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/test-the-untestable-with-aspectmock/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/simplify-php-configs-with-environment-variables/</loc>
+    <lastmod>2016-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/running-ajax-requests-sequentially/</loc>
+    <lastmod>2016-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</loc>
+    <lastmod>2015-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</loc>
+    <lastmod>2015-06-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</loc>
+    <lastmod>2015-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/simple-environment-variable-based-feature-toggles/</loc>
+    <lastmod>2015-06-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/7-exciting-changes-coming-to-magento-2/</loc>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</loc>
+    <lastmod>2015-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/continuous-integration-with-jenkins-part-i/</loc>
+    <lastmod>2015-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/create-a-simple-php-command-line-tool/</loc>
+    <lastmod>2014-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/easily-post-to-twitter-using-codebird/</loc>
+    <lastmod>2014-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</loc>
+    <lastmod>2014-01-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/my-personal-laravel-application-starter/</loc>
+    <lastmod>2013-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</loc>
+    <lastmod>2013-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/javascript-promises-explained/</loc>
+    <lastmod>2013-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/working-with-queues-using-php-and-beanstalkd/</loc>
+    <lastmod>2013-11-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</loc>
+    <lastmod>2013-11-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</loc>
+    <lastmod>2013-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/what-is-a-microframework-getting-started-with-silex/</loc>
+    <lastmod>2013-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/using-the-php-built-in-webserver/</loc>
+    <lastmod>2013-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/the-php-renaissance-fig-and-psrs/</loc>
+    <lastmod>2013-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/what-is-an-ioc-container/</loc>
+    <lastmod>2013-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/using-hooks-in-wordpress/</loc>
+    <lastmod>2013-11-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/using-repositories-in-laravel/</loc>
+    <lastmod>2013-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/using-routemodel-binding-in-laravel/</loc>
+    <lastmod>2013-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/simple-image-manipulation-with-intervention-image/</loc>
+    <lastmod>2013-09-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</loc>
+    <lastmod>2013-09-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</loc>
+    <lastmod>2013-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</loc>
+    <lastmod>2013-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</loc>
+    <lastmod>2013-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/testing-for-xss-vulnerabilities/</loc>
+    <lastmod>2013-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+</urlset>

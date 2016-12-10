@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/7-exciting-changes-coming-to-magento-2/" title="7 Exciting Changes Coming to Magento 2">7 Exciting Changes Coming to Magento 2</a></h2>
+
+  Posted on
+  <time datetime="Jun 06, 2015">June 06, 2015</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/php">php</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/magento">magento</a></div>
+        
+    
+  
+
+      
+
+<p>E-commerce is not my favorite thing to write code for and as such, I&rsquo;m no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn&rsquo;t called &ldquo;Magneto&rdquo; which is what I originally thought when I first glanced at the name.</p>
+
+<p>Because I was brought on at pretty much the beginning of the project I was able to learn a lot while building the site. The learning curve was steep at first but eventually I started to become familiar with the &ldquo;Magento way&rdquo; of doing things. To tell the truth I didn&rsquo;t like it much.</p>
+
+<p>I bursted back into the world of PHP development after a nine year stint in the US Air Force doing something totally un-related. Because I was basically a newb all over again, I dove head first into all the latest literature and video tutorials dealing with how to code &ldquo;<a href="http://www.phptherightway.com/">PHP the right way.</a>&rdquo; I had become familiar with concepts like dependency injection, coding to interfaces, unit testing and a plethora of useful design patterns. Imagine my discomfort when I started writing custom code for Magento.</p>
+
+<p>The autoloader, while very sofisticated, is terribly outdated compared to the PSR-0 and PSR-4 standards. Composer isn&rsquo;t supported by default. There&rsquo;s no DI container to speak of and unit tests are almost impossible to create without needing to bootstrap a database which technically makes them integration tests.</p>
+
+<p>I&rsquo;ve since made my peace with Magento and it&rsquo;s silly conventions. I&rsquo;ve also come up with some nifty hacks to allow for modern coding practices. Those days are soon to be over though with the coming of Magento 2!</p>
+
+<p>Magento 2 has a handful of welcome changes in store. Here are just a few of them.</p>
+
+<h3 id="1-modules-are-consolidated-into-a-single-directory">1. Modules are consolidated into a single directory</h3>
+
+<p>I remember getting frustrated with the directory structure of Magento and more specifically the way a module&rsquo;s code could be spread out across multiple directories. Your PHP code lived in &lsquo;app/code&rsquo; while templates and layouts in &lsquo;app/design&rsquo; but several directories deep.</p>
+
+<p>No longer! Now everything that your module requires lives in one directory. This includes PHP code, design templates and config files.</p>
+
+<h3 id="2-config-files-have-been-broken-down-into-smaller-files">2. Config files have been broken down into smaller files</h3>
+
+<p>You can do a lot with a single &lsquo;config.xml&rsquo; file in a Magento 1 module. Those config files can get huge and because of that, it&rsquo;s sometimes very easy to get lost in them. To make matters worse, you can have a file filled with improperly formatted config data and Magento 1 won&rsquo;t even complain. This makes it hard to debug.</p>
+
+<p>Magento 2 now breaks that single &lsquo;config.xml&rsquo; file into many smaller files. This makes it easier to see logically where certain things should go. To prevent silent errors, Magento 2 uses XML schema files to validate config files. Now you&rsquo;ll know pretty quickly if you&rsquo;ve messed somthing up.</p>
+
+<h3 id="3-dependency-injection">3. Dependency injection</h3>
+
+<p>Magento 2 supports dependency injection and provides it&rsquo;s own dependency injection container. The container is configured via and XML config file which wouldn&rsquo;t be my first choice but hey I&rsquo;ll take what I can get.</p>
+
+<h3 id="4-interception">4. Interception</h3>
+
+<p>In Magento 1, one way to extend the behavior of a core module is to &ldquo;rewrite&rdquo; one of the core classes, extend it and rewrite one of it&rsquo;s methods with your custom code. This works great most of the time. The problem arises when there are two custom modules trying to extend the same core class. This is where collisions occur and one module could end up cancelling out the other or worse.</p>
+
+<p>Magento 2 provides what it calls Interception. To customize a core module&rsquo;s method you can simply create what is called a plugin class. In the plugin class you can modify any public methods by creating methods prefixed with &lsquo;before&rsquo;, &lsquo;after&rsquo; and &lsquo;around&rsquo; and the tacking on the name of the method you want to change. Then you pass an instance of the core class you are extending. If you are extending something another module is extending, the result is simply passed from one plugin to another. You can specify a sort order as well for more desireable results.</p>
+
+<h3 id="5-no-more-god-class">5. No more god-class</h3>
+
+<p>Yeah I&rsquo;m not going to miss having to call &lsquo;Mage::<whatever>&rsquo; anymore.</p>
+
+<h3 id="6-semantic-versioning">6. Semantic versioning</h3>
+
+<p>Magento 2 will use semantic versioning for the core product. No more keeping track of different patches to be applied. Simply take a look at the version you are running and check against the latest &ldquo;patch&rdquo; version to see if you&rsquo;re running the latest, most secure.</p>
+
+<h3 id="7-tests-tests-tests">7. Tests, tests, tests!</h3>
+
+<p>Magento 2 is very test friendly and even includes an extensive set of tests for the core code. This includes unit, integration and even javascript tests. Tests for your modules live inside the module&rsquo;s directory along with everything else.</p>
+
+<p>These just a few of the exciting changes coming to Magento 2. To find out more, checkout of the <a href="https://github.com/magento/magento2">GitHub repo</a>.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2f7-exciting-changes-coming-to-magento-2%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=7%20Exciting%20Changes%20Coming%20to%20Magento%202&amp;url=http%3a%2f%2fedzynda.com%2f7-exciting-changes-coming-to-magento-2%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2f7-exciting-changes-coming-to-magento-2%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2f7-exciting-changes-coming-to-magento-2%2f&title=7%20Exciting%20Changes%20Coming%20to%20Magento%202" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/7-exciting-changes-coming-to-magento-2\/';
+    var disqus_title = '7 Exciting Changes Coming to Magento 2';
+    var disqus_url = 'http:\/\/edzynda.com\/7-exciting-changes-coming-to-magento-2\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

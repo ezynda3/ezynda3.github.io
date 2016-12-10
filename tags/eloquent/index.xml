@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/eloquent/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/eloquent/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Use Laravel&amp;#8217;s Eloquent ORM Outside Of Laravel</title>
+      <link>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
+      <description>&lt;p&gt;Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;#8217;s code, however, I&amp;#8217;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;#8217;s key components can be used as stand-alone modules.&lt;/p&gt;
+
+&lt;p&gt;Using Laravel&amp;#8217;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&amp;#8217;s codename is &amp;#8220;Illuminate&amp;#8221;. It&amp;#8217;s database component is therefore called &amp;#8220;Illuminate\Database&amp;#8221;. The easiest way to grab &amp;#8220;Illuminate\Database&amp;#8221; and it&amp;#8217;s dependencies is to use &lt;a title=&#34;Composer&#34; href=&#34;http://getcomposer.org/&#34; target=&#34;_blank&#34;&gt;Composer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Make sure there is file called &amp;#8216;composer.json&amp;#8217; in your project that contains the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;illuminate/database&amp;quot;: &amp;quot;*&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer install  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to start using Eloquent let&amp;#8217;s create a file called database.php to include in our various project files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php  
+require &#39;vendor/autoload.php&#39;;  
+
+use Illuminate\Database\Capsule\Manager as Capsule;  
+
+$capsule = new Capsule;
+
+$capsule-&amp;gt;addConnection(array(
+    &#39;driver&#39;    =&amp;gt; &#39;mysql&#39;,
+    &#39;host&#39;      =&amp;gt; &#39;localhost&#39;,
+    &#39;database&#39;  =&amp;gt; &#39;test&#39;,
+    &#39;username&#39;  =&amp;gt; &#39;test&#39;,
+    &#39;password&#39;  =&amp;gt; &#39;l4m3p455w0rd!&#39;,
+    &#39;charset&#39;   =&amp;gt; &#39;utf8&#39;,
+    &#39;collation&#39; =&amp;gt; &#39;utf8_unicode_ci&#39;,
+    &#39;prefix&#39;    =&amp;gt; &#39;&#39;
+));
+
+$capsule-&amp;gt;bootEloquent();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can start working with database tables just like we would if we were using Laravel!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+include &#39;database.php&#39;;
+
+// Create the Books model
+class Books extends Illuminate\Database\Eloquent\Model {
+    public $timestamps = false;
+}
+
+// Grab a book with an id of 1
+$book = Books::find(1);
+
+// Change some stuff
+$book-&amp;gt;name = &amp;quot;The Best Book in the World&amp;quot;;
+$book-&amp;gt;author = &amp;quot;Ed Zynda&amp;quot;;
+
+// Save it to the database
+$book-&amp;gt;save();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check out the Laravel &lt;a title=&#34;Laravel Eloquent documentation&#34; href=&#34;http://laravel.com/docs/eloquent&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; for more information on working with Eloquent.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/" title="Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5">Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</a></h2>
+
+  Posted on
+  <time datetime="Jan 01, 2014">January 01, 2014</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/bootstrap">bootstrap</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/font-awesome">font awesome</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/html5">html5</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/javascript">javascript</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/wysihtml5">wysihtml5</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/wysiwyg">wysiwyg</a></div>
+        
+    
+  
+
+      <p>For a lot of HTML forms you really don&rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
+You can grab WYSIHTML5 from <a href="https://github.com/xing/wysihtml5">Github</a>. To add a little style we&rsquo;ll use Twitter&rsquo;s <a href="http://getbootstrap.com/">Bootstrap</a> framework and <a href="http://fontawesome.io/">Font Awesome</a> icon fonts.
+Copy the WYSIHTML5 files into the correct directories.</p>
+
+<pre><code class="language-bash">├── css
+├── fonts
+└── js
+    ├── advanced.js
+    └── wysihtml5-0.3.0.js
+</code></pre>
+
+<p>&lsquo;wysihtml5-0.3.0.js&rsquo; can be found in the &lsquo;dist&rsquo; directory and &lsquo;advanced.js&rsquo; in the &lsquo;parser_rules&rsquo; directory.
+Now to integrate WYSIHTML5 all you need to do is include it in our page along with Bootsrap and Font Awesome.</p>
+
+<pre><code class="language-html">&lt;link href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;script src=&quot;//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/js/wysihtml5-0.3.0.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/js/advanced.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Now we can build the form with our editor. There is slightly more coding involved with integrating WYSIHTML5 than some other editors but this allows us to be more flexible.</p>
+
+<pre><code class="language-html">&lt;form method=&quot;POST&quot; action=&quot;/&quot; &gt;
+&lt;div class=&quot;row&quot;&gt;
+&lt;div class=&quot;col-md-3&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;toolbar&quot; class=&quot;wysihtml5-toolbar btn-toolbar col-md-9&quot;&gt;
+&lt;div class=&quot;btn-group&quot;&gt;
+				&lt;a data-wysihtml5-command=&quot;bold&quot; class=&quot;btn btn-default&quot;&gt;Bold&lt;/a&gt;
+				&lt;a data-wysihtml5-command=&quot;italic&quot; class=&quot;btn btn-default&quot;&gt;Italic&lt;/a&gt;
+			&lt;/div&gt;
+&lt;div class=&quot;btn-group&quot;&gt;
+				&lt;a data-wysihtml5-command=&quot;insertUnorderedList&quot; class=&quot;btn btn-default&quot;&gt;
+					&lt;i class=&quot;fa fa-list-ul&quot;&gt;&lt;/i&gt;
+				&lt;/a&gt;
+				&lt;a data-wysihtml5-command=&quot;insertOrderedList&quot; class=&quot;btn btn-default&quot;&gt;
+					&lt;i class=&quot;fa fa-list-ol&quot;&gt;&lt;/i&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group row&quot;&gt;
+		&lt;label for=&quot;editor&quot; class=&quot;col-md-3 control-label&quot;&gt;Job description&lt;/label&gt;
+&lt;div class=&quot;col-md-9&quot;&gt;
+			&lt;textarea id=&quot;editor&quot; class=&quot;form-control &quot; name=&quot;description&quot; cols=&quot;50&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;
+		&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+		&lt;input class=&quot;btn btn-primary&quot; type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>The form with a textarea is simple enough. To use WYSIHTML5 we create our own toolbar in HTML5. The &lsquo;data-wysihtml5-command&rsquo; directive is what WYSIHTML5 will hook into to add functionality to our plain textarea. We added the &lsquo;btn btn-default&rsquo; classes to our links to give it a button styling. Then within our anchor tag we put some nifty little icons provided by Font Awesome.
+Now the last part we need is some Javascript to point WYSIHTML5 at our textarea field.</p>
+
+<pre><code class="language-html">&lt;script&gt;
+(function() {
+    	var editor = new wysihtml5.Editor(&quot;editor&quot;, { // id of textarea element
+        	toolbar:      &quot;toolbar&quot;, // id of toolbar element
+        	parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    	});
+})();
+&lt;/script&gt;
+</code></pre>
+
+<p>You should now have a nice clean but functional editor that looks like this.
+<a href="http://www.edzynda.com/media/wysihtml5_screenshot.png"><img src="http://www.edzynda.com/media/wysihtml5_screenshot.png" alt="wysihtml5_screenshot"/></a></p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2fbuild-a-minimalist-wysiwyg-html-editor-with-wysihtml5%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Build%20a%20Minimalist%20WYSIWYG%20HTML%20Editor%20With%20WYSIHTML5&amp;url=http%3a%2f%2fedzynda.com%2fbuild-a-minimalist-wysiwyg-html-editor-with-wysihtml5%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2fbuild-a-minimalist-wysiwyg-html-editor-with-wysihtml5%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2fbuild-a-minimalist-wysiwyg-html-editor-with-wysihtml5%2f&title=Build%20a%20Minimalist%20WYSIWYG%20HTML%20Editor%20With%20WYSIHTML5" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5\/';
+    var disqus_title = 'Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5';
+    var disqus_url = 'http:\/\/edzynda.com\/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

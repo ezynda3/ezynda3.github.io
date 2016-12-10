@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/aspect-oriented-php-using-go-aop-framework/" title="Aspect Oriented PHP Using Go! AOP Framework">Aspect Oriented PHP Using Go! AOP Framework</a></h2>
+
+  Posted on
+  <time datetime="Jun 06, 2015">June 06, 2015</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/php">php</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/aop">aop</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/aspect-oriented-programming">aspect oriented programming</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/framework">framework</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/interceptors">interceptors</a></div>
+        
+    
+  
+
+      
+
+<p>In my <a href="/aspect-oriented-php-and-the-interceptor-pattern">last article</a>  we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide. It would much easier if there was a package we could use instead. Lucky for us, there is!</p>
+
+<p>The <a href="https://github.com/goaop/framework">Go! AOP Framework</a> for PHP was created by <a href="https://github.com/lisachenko">Alexander Lisachenko</a> and provides a way to use AOP in PHP without installing an extension. It accomplishes this by cleverly using autoloading, reflection and some other nifty features of modern PHP.</p>
+
+<p>###Installation</p>
+
+<p>First we need to install the package with composer.</p>
+
+<p>Let&rsquo;s created a simple compose.json file with our dependencies and also define a simple namespace for our code.</p>
+
+<pre><code class="language-json">{
+    &quot;require&quot;: {
+        &quot;goaop/framework&quot;: &quot;^0.6.0&quot;
+    },
+    &quot;autoload&quot;: {
+        &quot;psr-4&quot;: {
+            &quot;Stark\\&quot;: &quot;src/&quot;
+        }
+    }
+}
+</code></pre>
+
+<p>Now we can install from the command line.</p>
+
+<pre><code class="language-sh">$ composer install
+</code></pre>
+
+<p>Next we need to create what we&rsquo;ll call our AOP kernel. This is where we will register our <strong>aspects</strong>, as we&rsquo;ll see later.</p>
+
+<pre><code class="language-php">// src/AOP/Kernel.php
+&lt;?php namespace Stark\AOP;
+
+use Go\Core\AspectKernel;
+use Go\Core\AspectContainer;
+
+class Kernel extends AspectKernel
+{
+    /**
+     * Configure an AspectContainer with advisors, aspects and pointcuts
+     *
+     * @param AspectContainer $container
+     *
+     * @return void
+     */
+    protected function configureAop(AspectContainer $container)
+    {
+    }
+}
+</code></pre>
+
+<p>Third we need to initialize the kernel. This should ideally be done in your application&rsquo;s front controller.</p>
+
+<pre><code class="language-php">// public/index.php
+&lt;?php
+include __DIR__ . '/../vendor/autoload.php'; // use composer's autoloader
+
+// Initialize an application aspect container
+$applicationAspectKernel = \Stark\AOP\Kernel::getInstance();
+$applicationAspectKernel-&gt;init([
+    'debug' =&gt; true, // use 'false' for production mode
+    // Cache directory
+    'cacheDir' =&gt; __DIR__ . '/../cache'
+]);
+</code></pre>
+
+<p>Finally we can start creating aspects to modify our code.</p>
+
+<h3 id="using-go-aop">Using Go! AOP</h3>
+
+<p>Let&rsquo;s pretend we have a little Facebook service.</p>
+
+<pre><code class="language-php">// src/Service/Facebook.php
+&lt;?php namespace Stark\Service;
+
+class Facebook
+{
+    public function doStuff()
+    {
+        echo &quot;Facebook stuff!&quot;;
+    }
+}
+</code></pre>
+
+<p>Now let&rsquo;s create an aspect to intercept any method called from that class.</p>
+
+<pre><code class="language-php">// src/AOP/Aspect/Monitor.php
+&lt;?php namespace Stark\AOP\Aspect;
+
+use Go\Aop\Aspect;
+use Go\Aop\Intercept\FieldAccess;
+use Go\Aop\Intercept\MethodInvocation;
+use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Before;
+use Go\Lang\Annotation\Around;
+use Go\Lang\Annotation\Pointcut;
+
+/**
+ * Monitor aspect
+ */
+class Monitor implements Aspect
+{
+
+    /**
+     * Method that will be called before real method
+     *
+     * @param MethodInvocation $invocation Invocation
+     * @Before(&quot;execution(public Stark\Service\Facebook-&gt;*(*))&quot;)
+     */
+    public function beforeMethodExecution(MethodInvocation $invocation)
+    {
+        $obj = $invocation-&gt;getThis();
+        echo 'Calling Before Interceptor for method: ',
+        is_object($obj) ? get_class($obj) : $obj,
+        $invocation-&gt;getMethod()-&gt;isStatic() ? '::' : '-&gt;',
+        $invocation-&gt;getMethod()-&gt;getName(),
+        '()',
+        &quot;&lt;br&gt;\n&quot;;
+    }
+}
+</code></pre>
+
+<p>Next we have to register the new aspect in our kernel.</p>
+
+<pre><code class="language-php">// src/AOP/Kernel.php
+&lt;?php namespace Stark\AOP;
+
+use Go\Core\AspectKernel;
+use Go\Core\AspectContainer;
+use Stark\AOP\Aspect\Monitor;
+
+class Kernel extends AspectKernel
+{
+    /**
+     * Configure an AspectContainer with advisors, aspects and pointcuts
+     *
+     * @param AspectContainer $container
+     *
+     * @return void
+     */
+    protected function configureAop(AspectContainer $container)
+    {
+        $container-&gt;registerAspect(new Monitor());
+    }
+}
+
+</code></pre>
+
+<p>Finally in our front controller we can add these few lines to run our little service.</p>
+
+<pre><code class="language-php">// public/index.php
+&lt;?php
+$fb = new \Stark\Service\Facebook();
+$fb-&gt;doStuff();
+</code></pre>
+
+<p>If you run index.php you&rsquo;ll get the following output.</p>
+
+<pre><code>Calling Before Interceptor for method: Stark\Service\Facebook-&gt;doStuff()
+Facebook stuff!
+</code></pre>
+
+<p>The Go! AOP Framework uses annotations rather than global functions to define <strong>jointpoints</strong> and <strong>pointcuts</strong>. &lsquo;beforeMethodExecution()&rsquo; is our <strong>advice</strong> in this instance. We used the &lsquo;@Before&rsquo; annotation to intercept before the method is called. Similarly we can use &lsquo;@After&rsquo; and &lsquo;@Around&rsquo; as joinpoints as well.</p>
+
+<p>The rest of the annotation defines the pointcut which is &lsquo;execution&rsquo; in this case. We can also use &lsquo;access&rsquo; for reading/writing of class properties, initialization for when a class is first created and many others.</p>
+
+<p>One other neat trick we can use is intercepting custom annotations. Go! AOP includes Doctrine&rsquo;s annotation reader package so we can create a custom annotation like so.</p>
+
+<pre><code class="language-php">// src/Annotation/Custom.php
+&lt;?php namespace Stark\Annotation;
+
+use Doctrine\Common\Annotations\Annotation;
+
+/**
+ * @Annotation
+ * @Target(&quot;METHOD&quot;)
+ */
+class Custom extends Annotation
+{
+}
+</code></pre>
+
+<p>Next let&rsquo;s modify our Facebook service&hellip;</p>
+
+<pre><code class="language-php">// src/Service/Facebook.php
+&lt;?php namespace Stark\Service;
+
+use Stark\Annotation\Custom;
+
+class Facebook
+{
+    /**
+     * @Custom
+     */
+    public function doStuff()
+    {
+        echo &quot;Facebook stuff!&quot;;
+    }
+}
+</code></pre>
+
+<p>&hellip;and our aspect.</p>
+
+<pre><code class="language-php">// src/AOP/Aspect/Monitor.php
+&lt;?php namespace Stark\AOP\Aspect;
+
+use Go\Aop\Aspect;
+use Go\Aop\Intercept\FieldAccess;
+use Go\Aop\Intercept\MethodInvocation;
+use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Before;
+use Go\Lang\Annotation\Around;
+use Go\Lang\Annotation\Pointcut;
+
+/**
+ * Monitor aspect
+ */
+class Monitor implements Aspect
+{
+
+    /**
+     * Method that will be called before real method
+     *
+     * @param MethodInvocation $invocation Invocation
+     * @Before(&quot;@annotation(Stark\Annotation\Custom)&quot;)
+     */
+    public function beforeMethodExecution(MethodInvocation $invocation)
+    {
+        $obj = $invocation-&gt;getThis();
+        echo 'Calling Before Interceptor for method: ',
+        is_object($obj) ? get_class($obj) : $obj,
+        $invocation-&gt;getMethod()-&gt;isStatic() ? '::' : '-&gt;',
+        $invocation-&gt;getMethod()-&gt;getName(),
+        '()',
+        &quot;&lt;br&gt;\n&quot;;
+    }
+}
+</code></pre>
+
+<p>We should get the same result as before.</p>
+
+<p>This framework is full of features and it opens up a lot of new possibilities in PHP. To learn more about what you can do with Go! AOP, check out the official <a href="http://go.aopphp.com/docs/">documentation</a>.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2faspect-oriented-php-using-go-aop-framework%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Aspect%20Oriented%20PHP%20Using%20Go%21%20AOP%20Framework&amp;url=http%3a%2f%2fedzynda.com%2faspect-oriented-php-using-go-aop-framework%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2faspect-oriented-php-using-go-aop-framework%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2faspect-oriented-php-using-go-aop-framework%2f&title=Aspect%20Oriented%20PHP%20Using%20Go%21%20AOP%20Framework" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/aspect-oriented-php-using-go-aop-framework\/';
+    var disqus_title = 'Aspect Oriented PHP Using Go! AOP Framework';
+    var disqus_url = 'http:\/\/edzynda.com\/aspect-oriented-php-using-go-aop-framework\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/running-ajax-requests-sequentially/" title="Running AJAX Requests Sequentially">Running AJAX Requests Sequentially</a></h2>
+
+  Posted on
+  <time datetime="Jan 01, 2016">January 01, 2016</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/javascript">javascript</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/jquery">jquery</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/ajax">ajax</a></div>
+        
+    
+  
+
+      <p>Somewhat recently, I was refactoring a project that was having issues uploading and importing large CSV files. I was running into all kinds of issues from timeout errors to memory allocation exceptions. The solution was to break up the import and upload it in chunks. This alone was pretty easy but I also wanted to include the ability to display the progress of the entire import. The problem was, I was using AJAX to upload the data.</p>
+
+<p>AJAX is pretty useful in that it allows you to make HTTP requests asynchronously without refreshing the entire page. You can update small sections of the page without reloading. This is great if you don&rsquo;t care what order the requests finish. In my case I needed to upload the data in chunks but also calculate the overall progress based on how much had been uploaded vs how much was remaining. Using AJAX as intended, all of the chunks would be sent at the exact same which opens of the possibiity that a chunk that should be uploaded last would finish before an earlier chunk.</p>
+
+<p>After banging my head against the wall dealing with Javascript promises and deferred objects, I decided to try a functional programming technique. The solution ended up being recursion. Let&rsquo;s take a look at what I mean.</p>
+
+<pre><code class="language-javascript">function recursivePost(url, data) {
+  var dfd = $.Deferred();
+  var total = data.length;
+  var chunk = data.splice(0, 10);
+  var payload = {}
+            
+  payload.data = chunk;
+  payload.remaining = total - chunk.length;
+            
+  $.post(url, payload)
+    .success(function (response) {
+                    
+      updateProgressBar(chunk.length);
+                        
+      if (response.status == 'complete') {
+        dfd.resolve(response);
+      } else {
+        recursivePost(url, data).done(function(response) {
+          dfd.resolve(response);
+        });
+      }
+    })
+    .fail(function (response) {
+      dfd.reject(response.responseText);
+    });
+                    
+  return dfd.promise();
+}
+</code></pre>
+
+<p>The function above starts out by creating a deferred object which we use to return a promise object at the bottom of the function. This allows us to start the upload process and hold off on doing anything else until all the chunks are finished uploading. Then we take the initial data which should be an array and calculate the total. Then we shave off 10 items from the array using array_splice(). Then we construct a payload object that contains the chunk and then the number of items remaining after this upload completes. This will allow our backend code to determine when the entire process is complete in case it needs to run some additional logic after.</p>
+
+<p>Using jQuery&rsquo;s handy post() method we can upload the data to the specified URL. On success we can update our progress bar then we check whether there is more to be uploaded. In my case I let the backend decide by sending a &lsquo;complete&rsquo; status. We could also just check whether payload.reaining = 0. If there are still more items we call the same function from within itself. We also attach done() handler to catch the promise returned by that call. This allows the resolved promise from recursive calls to recursivePost to bubble up to the initial call and then be returned at completion.</p>
+
+<p>If there are no more items to process, we resolve the promise object so the rest of the app knows the upload is complete.</p>
+
+<p>Because we only run the next request after the previous request succeeds, we prevent the AJAX calls from firing at the same time. Each request is in sequential order and progress can be tracked.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2frunning-ajax-requests-sequentially%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Running%20AJAX%20Requests%20Sequentially&amp;url=http%3a%2f%2fedzynda.com%2frunning-ajax-requests-sequentially%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2frunning-ajax-requests-sequentially%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2frunning-ajax-requests-sequentially%2f&title=Running%20AJAX%20Requests%20Sequentially" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/running-ajax-requests-sequentially\/';
+    var disqus_title = 'Running AJAX Requests Sequentially';
+    var disqus_url = 'http:\/\/edzynda.com\/running-ajax-requests-sequentially\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/getting-started-with-laravel-4-and-vagrant/" title="Getting Started With Laravel 4 and Vagrant">Getting Started With Laravel 4 and Vagrant</a></h2>
+
+  Posted on
+  <time datetime="Aug 08, 2013">August 08, 2013</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/framework">framework</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/laravel">laravel</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/php">php</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/vagrant">vagrant</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/virtual-machine">virtual machine</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/virtualbox">virtualbox</a></div>
+        
+    
+  
+
+      <p>I&rsquo;ve worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.</p>
+
+<p>I came across Laravel while randomly browsing the web. I don&rsquo;t even remember what I was looking for but after reading more about Laravel and how simple it was to setup, I was hooked. In this article I&rsquo;ll take you through setting up a PHP development environment for Laravel 4.</p>
+
+<p>In this tutorial, I will also be introducing you to a utility called Vagrant. Vagrant makes it ridiculously easy to create a virtual machine in which to run and test your web applications. It uses VirtualBox as a backend and is pretty straightforward once you get into it. No more fussing with WAMP, XAMP, or MAMP environments. You can easily create a small virtual machine that more closely resembles your production environment with a just few commands.</p>
+
+<p><strong>1. Install VirtualBox and Vagrant</strong></p>
+
+<p>On a standard Debian or Ubuntu box you should be able to run</p>
+
+<pre><code class="language-bash">$ sudo apt-get install virtualbox  
+$ sudo apt-get install vagrant  
+$ sudo apt-get install linux-headers-$(uname -r)  
+$ sudo dpkg-reconfigure virtualbox-dkms  
+</code></pre>
+
+<p>This installs VirtualBox, Vagrant and it&rsquo;s dependencies. It also compiles the various kernel modules needed for VirtualBox to run correctly.</p>
+
+<p>On my Gentoo box, I run</p>
+
+<pre><code class="language-bash">$ emerge virtualbox  
+$ emerge virtualbox-modules  
+$ emerge vagrant  
+</code></pre>
+
+<p><strong>2. Setup The Vagrant Environment</strong></p>
+
+<p>Vagrant&rsquo;s virtual machines instances are based on prebuilt configurations called &lsquo;boxes&rsquo;. The following command will download a box based on Ubuntu Precise Pangolin (32bit) and name it &lsquo;precise32&#8242;.</p>
+
+<pre><code class="language-bash">$ vagrant box add precise32 http://files.vagrantup.com/precise32.box  
+</code></pre>
+
+<p>You now no longer have to download that box and can create any number of VM instances based on this build.</p>
+
+<pre><code class="language-bash">$ mkdir my_dev_env
+$ cd my_dev_env
+$ vagrant init precise32
+$ vagrant up
+</code></pre>
+
+<p>That&rsquo;s it! You now have a fully functioning Ubuntu VM ready to play around with. To work with the VM run</p>
+
+<pre><code class="language-bash">$ vagrant ssh  
+</code></pre>
+
+<p>Now you will notice that the VM doesn&rsquo;t automatically have a webserver or mysql or really anything needed for a development environment installed. You can go ahead and install everything you need manually but fortunately, Vagrant is scriptable. You can go ahead and write a script to install everything you need after running &lsquo;vagrant up&rsquo; but why do that when it can be done for you?</p>
+
+<p>Head on over to PuPHPet to see what I mean.</p>
+
+<p>This handy GUI will take you through configuring a Vagrant environment that&rsquo;s functional as soon as it boots up.</p>
+
+<p>First select &lsquo;Create Locally&rsquo;. Next, for this tutorial we&rsquo;ll select Debian Wheezy as our base. There&rsquo;s no reason to change the vagrant box name but you can change the &lsquo;Name Your Box&rsquo; section if you wish. You can also change the ip address that this VM will be accessed from.</p>
+
+<p>One final thing I do in this section is change the default sync folder to &lsquo;./work&rsquo;. I&rsquo;ll explain why later.</p>
+
+<p><a href="http://www.edzynda.com/media/PuPHPet-step-1-.png"><img class="alignnone size-full wp-image-259" alt="PuPHPet-step-1-" src="http://www.edzynda.com/media/PuPHPet-step-1-.png" width="680" height="400" /></a></p>
+
+<p>On the Server Basics section you can safely leave everything as default. If you want to add things like your own personal aliases file, you can add that here.</p>
+
+<p><a href="http://www.edzynda.com/media/PuPHPet-step-2.png"><img class="alignnone size-full wp-image-260" alt="PuPHPet-step-2" src="http://www.edzynda.com/media/PuPHPet-step-2.png" width="640" height="400" /></a></p>
+
+<p>For the HTTP Server I choose Nginx because it&rsquo;s awesome. Choose the host name you want to use for you dev environment. We&rsquo;ll add that to our /etc/hosts file later for easy access. Everything else can safely stay the same.</p>
+
+<p><a href="http://www.edzynda.com/media/PuPHPet-step-3.png"><img class="alignnone size-full wp-image-263" alt="PuPHPet-step-3" src="http://www.edzynda.com/media/PuPHPet-step-3.png" width="640" height="400" /></a></p>
+
+<p>I keep everything here as default as well. Make sure &lsquo;Install Composer&rsquo; is checked. We&rsquo;ll need that to install Laravel later. You can add any other PHP modules you want if you wish.</p>
+
+<p><a href="http://www.edzynda.com/media/PuPHPet-step-4.png"><img class="alignnone size-full wp-image-264" alt="PuPHPet-step-4" src="http://www.edzynda.com/media/PuPHPet-step-4.png" width="640" height="400" /></a></p>
+
+<p>The Database section should be pretty straightforward. Just create a root password and setup a non-root user.<a href="http://www.edzynda.com/media/PuPHPet-step-5.png"><img class="alignnone size-full wp-image-265" alt="PuPHPet-step-5" src="http://www.edzynda.com/media/PuPHPet-step-5.png" width="640" height="400" /></a></p>
+
+<p>Finally you can hit &lsquo;Create My Manifest&rsquo;.</p>
+
+<p><a href="http://www.edzynda.com/media/PuPHPet-step-6.png"><img class="alignnone size-full wp-image-266" alt="PuPHPet-step-6" src="http://www.edzynda.com/media/PuPHPet-step-6.png" width="640" height="280" /></a></p>
+
+<p>Once the .zip file has finished downloading run the following</p>
+
+<pre><code class="language-bash">$ unzip wheezy64.zip  
+$ mv wheezy64 laravel_dev  
+$ cd laravel_dev  
+$ ls  
+</code></pre>
+
+<p>You&rsquo;ll notice that this directory is cluttered with stuff. Normally Vagrant uses the top level directory of your environment to sync with a folder on the VM. In this case it will sync with &lsquo;/var/www&rsquo;. This comes in handy for developing on the local machine. Remember that we chose &lsquo;./work&rsquo; as our local sync directory back in the GUI. It&rsquo;s not created by default, so we have to create it ourselves. After that we can start Vagrant as normal.</p>
+
+<pre><code class="language-bash">$ mkdir work  
+$ vagrant up  
+</code></pre>
+
+<p>To test to make sure everything is working run the following</p>
+
+<pre><code class="language-bash">$ sudo echo '192.168.56.101 laravel.dev' &gt;&gt; /etc/hosts  
+$ cd work  
+$ echo '&lt;?php phpinfo(); ?&gt;' &gt; index.php
+</code></pre>
+
+<p>Note that &lsquo;laravel.dev&rsquo; should be replaced with whatever you named your virtualhost back in the GUI. Open your web browser of choice and go to &lsquo;<a href="http://laravel.dev'">http://laravel.dev'</a> and you should see the familiar PHP Info page.</p>
+
+<p><strong>3. Install Laravel</strong></p>
+
+<p>Now to install Laravel we are going to use Composer which is an easy utility for installing various PHP related software such as the Laravel framework.</p>
+
+<pre><code class="language-bash">$ vagrant ssh  
+$ cd /var/www  
+$ composer create-project laravel/laravel your-project-name --prefer-dist  
+$ exit  
+$ chmod -R 777 my-project/app/storage  
+</code></pre>
+
+<p>Now point your web browser to &lsquo;<a href="http://laravel.dev/my-project/public'">http://laravel.dev/my-project/public'</a>. You may have to &lsquo;chmod -R 777&#8242; the storage directory one more time as Laravel creates a &lsquo;session&rsquo; directory that needs to be writeable.</p>
+
+<p>If all goes well you should see the Laravel welcome screen stating that &#8220;You Have Arrived.&#8221;</p>
+
+<p><a href="http://www.edzynda.com/media/laravel-success.jpg"><img class="alignnone size-medium wp-image-270" alt="laravel-success" src="http://www.edzynda.com/media/laravel-success-300x168.jpg" width="300" height="168" /></a></p>
+
+<p>Congratulations! You should now have a functioning Laravel 4 development environment.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2fgetting-started-with-laravel-4-and-vagrant%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Getting%20Started%20With%20Laravel%204%20and%20Vagrant&amp;url=http%3a%2f%2fedzynda.com%2fgetting-started-with-laravel-4-and-vagrant%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2fgetting-started-with-laravel-4-and-vagrant%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2fgetting-started-with-laravel-4-and-vagrant%2f&title=Getting%20Started%20With%20Laravel%204%20and%20Vagrant" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/getting-started-with-laravel-4-and-vagrant\/';
+    var disqus_title = 'Getting Started With Laravel 4 and Vagrant';
+    var disqus_url = 'http:\/\/edzynda.com\/getting-started-with-laravel-4-and-vagrant\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/simplify-php-configs-with-environment-variables/" title="Simplify PHP Configs With Environment Variables">Simplify PHP Configs With Environment Variables</a></h2>
+
+  Posted on
+  <time datetime="Apr 04, 2016">April 04, 2016</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/php">php</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/environment-variables">environment variables</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/twelve-factor-app">twelve factor app</a></div>
+        
+    
+  
+
+      <p>Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &lsquo;app/config&rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.</p>
+
+<p>In Laravel 5 and above you just create a file name &lsquo;.env&rsquo; and place your configuration in environment variables. The file would look something like this.</p>
+
+<pre><code class="language-sh">DB_NAME=mydatabse
+FOOBAR=baz
+SOME_API_KEY=1234abcef
+</code></pre>
+
+<p>You would create this file and make sure to add &lsquo;.env&rsquo; to &lsquo;.gitignore&rsquo; in order to keep sensitive data out of your code repository. When you deploy to your different environments you can then just include a &lsquo;.env&rsquo; file that&rsquo;s appropriate for the environment.</p>
+
+<p>Laravel 4.2 and below doesn&rsquo;t have this but fortunately, with a little bit of tweaking you can add it.</p>
+
+<p>First we need to include a helpful package that reads &lsquo;.env&rsquo; files and then loads them for PHP to access.</p>
+
+<pre><code class="language-sh">composer require vlucas/phpdotenv
+</code></pre>
+
+<p>If you&rsquo;re using Laravel 4.2 you next need to edit &lsquo;bootstrap/start.php&rsquo;. If you&rsquo;re using another framework or none at all you just need to add the following code to wherever you bootstrap your application.</p>
+
+<pre><code class="language-php">&lt;?php
+if (is_file(__DIR__ . '/../.env')) {
+	Dotenv::load(__DIR__ . '/../');
+}
+</code></pre>
+
+<p>This will check to see that the file exists and if so, load the data into PHP&rsquo;s $_ENV superglobal array.</p>
+
+<p>Next we&rsquo;ll need a helper function to grab environment variables or use an acceptable default. If you&rsquo;re using Laravel, place this in &lsquo;app/helpers.php&rsquo; if not you can place it wherever you keep helper functions.</p>
+
+<pre><code class="language-php">&lt;?php
+if ( ! function_exists('env'))
+{
+    /**
+     * Gets the value of an environment variable. Supports boolean, empty and null.
+     *
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function env($key, $default = null)
+    {
+        $value = getenv($key);
+
+        if ($value === false) return value($default);
+
+        switch (strtolower($value))
+        {
+            case 'true':
+            case '(true)':
+                return true;
+
+            case 'false':
+            case '(false)':
+                return false;
+
+            case 'null':
+            case '(null)':
+                return null;
+
+            case 'empty':
+            case '(empty)':
+                return '';
+        }
+
+        return $value;
+    }
+}
+</code></pre>
+
+<p>Now you should be able to use .env files an consolidate your configuration data. For example if you need a config file like &lsquo;app/config/sendgrid.php&rsquo; to handle sending mail with SendGrid you can make it look something like this.</p>
+
+<pre><code class="language-php">&lt;?php
+return [
+    'api_key' =&gt; env('SENDGRID_API_KEY')
+];
+</code></pre>
+
+<p>This will greatly simplify your deployments and help avoid configuration comlexity in your older Laravel or other non-Laravel applications.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2fsimplify-php-configs-with-environment-variables%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Simplify%20PHP%20Configs%20With%20Environment%20Variables&amp;url=http%3a%2f%2fedzynda.com%2fsimplify-php-configs-with-environment-variables%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2fsimplify-php-configs-with-environment-variables%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2fsimplify-php-configs-with-environment-variables%2f&title=Simplify%20PHP%20Configs%20With%20Environment%20Variables" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/simplify-php-configs-with-environment-variables\/';
+    var disqus_title = 'Simplify PHP Configs With Environment Variables';
+    var disqus_url = 'http:\/\/edzynda.com\/simplify-php-configs-with-environment-variables\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

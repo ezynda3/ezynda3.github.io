@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/leanpub/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/leanpub/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>New Book: Aspect-Oriented Programming in PHP</title>
+      <link>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</link>
+      <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been looking for a way to challenge myself as well as showcase some of my knowledge to the world. After some thinking, I&amp;rsquo;ve decided that I would go ahead and write a book.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been reading a lot about aspect-oriented programming and really like what it provides to enhance object-oriented programming. There isn&amp;rsquo;t a lot of information about this in the PHP community so I figured a book would be a great way to drum up some more interest and help create a larger community around the subject of AOP.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve already got a sample of the book up on Leanpub. You can check it out at &lt;a href=&#34;http://leanpub.com/aopinphp&#34;&gt;http://leanpub.com/aopinphp&lt;/a&gt;. Feel free to read it and send me any feedback as far as what you might like to see covered in the rest of the book. I plan on pushing some more updates very soon so expect to see a minimum viable product up and available for purchase in the next few weeks.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

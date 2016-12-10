@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/tdd/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Test The Untestable With AspectMock</title>
+      <link>http://edzynda.com/test-the-untestable-with-aspectmock/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/test-the-untestable-with-aspectmock/</guid>
+      <description>&lt;p&gt;Some of us have had the pleasure of working with someone else&amp;rsquo;s ancient codebase to either add new features or fix bugs. It&amp;rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&amp;rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design. This makes the codebase very fragile and any small change could break something if you aren&amp;rsquo;t careful. How do we test the untestable? AspectMock to the rescue!&lt;/p&gt;
+
+&lt;p&gt;Using the power of AOP and the Go! AOP framework AspectMock allows you to create test doubles for almost anything anywhere in your code from public and private methods to static methods and even system functions like time().&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look at an example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class UserCreator
+{
+    public function create(array $data)
+    {
+        $user = new User($data);
+        $user-&amp;gt;save();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have a UserCreator class that depends on a User object to save a newly created user to the database. We&amp;rsquo;ll pretend this works great but would like to have a test in place to avoid any future defects. We need to mock the User object somehow though because we don&amp;rsquo;t want to make any calls to the database during our test.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+function testUserCreate()
+{
+    $user = Test::double(&#39;User&#39;, [&#39;save&#39; =&amp;gt; null]));
+    $service = new UserCreator;
+    $service-&amp;gt;create([&#39;name&#39; =&amp;gt; &#39;Tony Stark&#39;]);
+    $user-&amp;gt;verifyInvoked(&#39;save&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now when you run your test, AspectMock basically intercepts the call to the &amp;lsquo;save&amp;rsquo; method and prevents it from touching the database.&lt;/p&gt;
+
+&lt;p&gt;You can even mock builtin PHP functions for greater flexibility.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+namespace demo;
+test::func(&#39;demo&#39;, &#39;time&#39;, &#39;now&#39;);
+$this-&amp;gt;assertEquals(&#39;now&#39;, time());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;AspectMock opens up a whole new world of possibilities when it comes to testing your legacy and even modern projects. Check out the project on &lt;a href=&#34;https://github.com/Codeception/AspectMock&#34; title=&#34;AspectMock&#34;&gt;GitHub&lt;/a&gt; for more detailed documentation and give it a try in one your projects.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using Repositories In Laravel</title>
+      <link>http://edzynda.com/using-repositories-in-laravel/</link>
+      <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/using-repositories-in-laravel/</guid>
+      <description>&lt;p&gt;The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.&lt;/p&gt;
+
+&lt;p&gt;One technique I&amp;#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&amp;#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&amp;#8217;s powerful IoC container.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#8217;ve frequented web development forums or IRC channels lately, you might hear seasoned veterans blabbing about the merits of TDD or Test Driven Development. It&amp;#8217;s another concept that sounds scary at first but really isn&amp;#8217;t once you start digging into it. Basically TDD preaches that you should write automated tests for your code &lt;strong&gt;before&lt;/strong&gt; you even write a single line of production code. Not only that, you should be writing tests that work with a single component at a time, in isolation. If you follow the single responsibility principle when writing code, this shouldn&amp;#8217;t be too hard.&lt;/p&gt;
+
+&lt;p&gt;What if your class or controller methods depend on another class that has it&amp;#8217;s own responsibilities? Theoretically those classes should have their own tests and should be isolated from your own tests. How do we do this though? The answer is dependency injection.&lt;/p&gt;
+
+&lt;p&gt;Dependency injection is simply passing the classes your current class depends on through the constructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+    protected $dependency;
+
+    public function __construct(Dependency $dependency)
+    {
+        $this-&amp;gt;dependency = $dependency;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s it. Not too scary right? This way, when you write your automated tests, you can now &amp;#8216;mock&amp;#8217; those classes with a tool like Mockery and inject them from inside your test code. If those dependencies accessed a database or live filesystem you can rest assured your tests will not because those dependencies are now mocked or stubbed.&lt;/p&gt;
+
+&lt;p&gt;So dependency injection is great for testing but it has other benefits. Let&amp;#8217;s say in laravel you have a UserController. That controller has a method that fetches all users and sends them to a view.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+
+    public function index()
+    {
+        $users = User::all();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s very simple to call our User model and just call methods from within the controller. But this will create a nightmare for testing and isn&amp;rsquo;t very flexible. Why not inject the User model?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class UserController extends BaseController {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;all();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Okay that&amp;#8217;s great but say one day you decide to go with a different implementation of your users like MongoDB or a flatfile database? You&amp;#8217;ll have to go through your code and clean out and refactor anything that references the Laravel models because they extend Eloquent which uses an SQL database. This is where the idea of using repositories comes in.&lt;/p&gt;
+
+&lt;p&gt;First let&amp;#8217;s create an interface. Think of an interface as a contract. Any class that implements this interface must also implement its methods.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Repositories;
+
+interface UserRepositoryInterface {
+    public function getAll();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll store it in a custom directory called &amp;lsquo;Stark/Repositories&amp;rsquo;. Notice that the namespace goes along with the directory structure. Now let&amp;rsquo;s create a class that implements this interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php namespace Stark\Repositories;
+
+use User;
+
+class EloquentUserRepository implements UserRepositoryInterface {
+    public function getAll()
+    {
+        return User::all();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Cool. Now let&amp;rsquo;s just refactor our controller to use our interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+use Stark\Repositories\UserRespositoryInterface as Repository;
+
+class UserController extends BaseController {
+    protected $user;
+
+    public function __construct(Repository $user)
+    {
+        $this-&amp;gt;user = $user;
+    }
+    public function index()
+    {
+        $users $this-&amp;gt;user-&amp;gt;getAll();
+        return View::make(&#39;users.list&#39;, compact($users));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now remember that interfaces are cannot be instantiated but Laravel is smart enough to inject a proper class in it&amp;#8217;s place if you give it some hints. First we have to make sure our &amp;#8216;Stark&amp;#8217; namespace is autoloaded. For that we edit our composer.json file and add the namespace and it&amp;#8217;s location under &amp;#8220;psr-0&amp;#8243;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;psr-0&amp;quot;: {
+            &amp;quot;Stark&amp;quot;: &amp;quot;app/&amp;quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we tell Laravel that anytime we reference UserRepositoryInterface we really want EloquentUserRepository. We can do that in our &amp;#8216;app/routes.php&amp;#8217; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repositories\EloquentUserRepository&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if we decide to use some other storage method we can simply code another repository that implements the UserRepositoryInterface and change that one line in the routes file to reflect the change. The rest of your app couldn&amp;#8217;t care less.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

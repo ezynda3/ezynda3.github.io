@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/continuous-integration-with-jenkins-part-i/" title="Continuous Integration With Jenkins Part I">Continuous Integration With Jenkins Part I</a></h2>
+
+  Posted on
+  <time datetime="Feb 02, 2015">February 02, 2015</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/php">php</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/ci">ci</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/jenkins">jenkins</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/phpspec">phpspec</a></div>
+        
+    
+  
+
+      <p>Continuous integration or CI, is all the rage these days. If you&rsquo;re not familiar with what CI is, it&rsquo;s basically a methodology for rapidly developing, testing and deploying applications. Using a well configured CI setup or pipeline, a developer or team of developers can make a change to their codebase, test those changes to make sure they didn&rsquo;t break those changes and then push that code live in a matter of minutes. They can do this all day long and rest assured that their changes are good to go on their production servers.</p>
+
+<p>There are many ways to do this but one of the most popular tools used these days is Jenkins. Jenkins is a web application written in Java that helps to automate building, testing and even deploying your application. Jenkins, along with a a whole slew of plugins, can do most of the heavy lifting in your CI pipeline.</p>
+
+<p>At first glance, Jenkins looks pretty complicated to setup but after playing around with it myself, I&rsquo;ve found it&rsquo;s pretty simple.</p>
+
+<p>In this first part I&rsquo;m going to go over how to get Jenkins setup to build a simple PHP app, run some tests and publish the results. Most other tutorials I&rsquo;ve found include fancy build scripts for a powerful tool called Ant. Those can get pretty complicated so I won&rsquo;t include anything like that in this part. We just want to get something running so you can see some results.</p>
+
+<p>###Installation
+Installation is not in the scope of this article. Please refer to the documentation on the <a href="http://jenkins-ci.org">Jenkins</a> website or Google for instructions on installing it on your OS of choice. It should be as simple as &lsquo;yum install jenkins&rsquo; or &lsquo;apt-get install jenkins&rsquo; depending on your setup.</p>
+
+<p>###PHP
+As we will be working with a PHP application, our Jenkins server will need it&rsquo;s own instance of PHP. For this example we need version 5.4 or higher. Install based on your OS.</p>
+
+<p>###Git
+We will need Git installed in order to fetch source code to build and run our tests. Install based on your OS.</p>
+
+<p>###Composer
+Part of the build process will include downloading dependencies using Composer. You can install it globally like so.</p>
+
+<pre><code class="language-bash">php -r &quot;readfile('https://getcomposer.org/installer');&quot; | php
+sudo chmod +x ./composer.phar
+sudo cp ./composer.phar /usr/local/bin/composer
+</code></pre>
+
+<p>###Plugins
+Jenkins has a huge collection of useful plugins available. We&rsquo;re going to need a few in order to run our build.</p>
+
+<ul>
+<li>HTML Publisher</li>
+<li>Git</li>
+</ul>
+
+<p>You can install these through the Jenkins dashboard but you can also install them through the command line like this.</p>
+
+<pre><code class="language-bash">wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin htmlpublisher git
+java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart
+</code></pre>
+
+<p>###The Build
+If you have Jenkins installed correctly you should be able to reach the dashboard by pointing your browser to the server it&rsquo;s installed on using port 8080 (e.g. <a href="http://myjenkins.com:8080">http://myjenkins.com:8080</a>).</p>
+
+<p>Once there you should see a screen like this.</p>
+
+<p><img src="/images/jenkins-1-1.png" alt="" /></p>
+
+<p>Click on &ldquo;Create new jobs&rdquo;. We&rsquo;re going to use an existing open source project called Flysystem for our build test so we&rsquo;ll just call our build &ldquo;Flysystem&rdquo; and we&rsquo;re going to create a &ldquo;Freestyle&rdquo; project. Click &ldquo;Ok&rdquo; to continue.</p>
+
+<p><img src="/images/jenkins-1-2.png" alt="" /></p>
+
+<p>We can give our project a description if we like.</p>
+
+<p><img src="/images/jenkins-1-3.png" alt="" /></p>
+
+<p>Now down in the &ldquo;Source Code Management&rdquo; section we&rsquo;ll select &ldquo;Git&rdquo; and set the repository to <a href="https://github.com/thephpleague/flysystem">https://github.com/thephpleague/flysystem</a>. You can safely leave everything else as default.</p>
+
+<p><img src="/images/jenkins-1-4.png" alt="" /></p>
+
+<p>Under the &ldquo;Build&rdquo; section we set up the different steps for building and testing our applications. Click on &ldquo;Add build step&rdquo; and select &ldquo;Execute shell&rdquo;. This is a quick and dirty way to run various build commands without having to create a complex XML build script for use with Ant or Maven. Add the following commands in the textbox.</p>
+
+<pre><code class="language-bash">/usr/local/bin/composer install
+bin/phpspec run -f html &gt; report.html
+</code></pre>
+
+<p><img src="/images/jenkins-1-5.png" alt="" /></p>
+
+<p>The great thing about Jenkins is that with the right plugins you can create all kinds of useful reports for every build of your application. In our build step we&rsquo;re running phpspec for tests and setting the output format as HTML and saving it to a file. Jenkins can take that HTML and publish it for viewing later.
+.
+Under &ldquo;Post-build Actions&rdquo; click on &ldquo;Add post-build action&rdquo; and select &ldquo;Publish HTML Reports&rdquo;. Fill out the textboxes like so.</p>
+
+<p><img src="/images/jenkins-1-6.png" alt="" /></p>
+
+<p>Hit save and that&rsquo;s it. On the left side menu click &ldquo;Build Now&rdquo;. You should a little blinking dot appear under &ldquo;Build History&rdquo;. Click on it and then click on &ldquo;Console Output&rdquo;. You should see a bunch of text scrolling past as the build runs. It should look something like this.</p>
+
+<p><img src="/images/jenkins-1-7.png" alt="" /></p>
+
+<p>It might take a few minutes if this is the first time running the build as composer is downloading dependencies from scratch.</p>
+
+<p>Now click &ldquo;Back to Project&rdquo; and then click &ldquo;PHPSpec Report&rdquo;. This is the nice HTML report we had published. This wil list out all the tests that were run. Tests that passed will be green while any that have failed will be red and usually give a stack trace with details on why it failed.</p>
+
+<p><img src="/images/jenkins-1-8.png" alt="" /></p>
+
+<p>That&rsquo;s basically all you need to get a simple build running on Jenkins. Of course there is a lot more you can do but that will be covered in a later post.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2fcontinuous-integration-with-jenkins-part-i%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Continuous%20Integration%20With%20Jenkins%20Part%20I&amp;url=http%3a%2f%2fedzynda.com%2fcontinuous-integration-with-jenkins-part-i%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2fcontinuous-integration-with-jenkins-part-i%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2fcontinuous-integration-with-jenkins-part-i%2f&title=Continuous%20Integration%20With%20Jenkins%20Part%20I" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/continuous-integration-with-jenkins-part-i\/';
+    var disqus_title = 'Continuous Integration With Jenkins Part I';
+    var disqus_url = 'http:\/\/edzynda.com\/continuous-integration-with-jenkins-part-i\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+

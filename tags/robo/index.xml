@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://edzynda.com/tags/robo/index.xml</link>
+    <description>Recent content on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](http://gohugo.io).</copyright>
+    <atom:link href="http://edzynda.com/tags/robo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Continuous Integration With Jenkins Part II</title>
+      <link>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://edzynda.com/continuous-integration-with-jenkins-part-ii/&#34;&gt;first part&lt;/a&gt;  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?&lt;/p&gt;
+
+&lt;p&gt;A better options is to use another tool to automate the build process and perform certain tasks dynamically. There are quite a lot of tools out there to do this. A popular tool used in Jenkins setups is &lt;a href=&#34;http://ant.apache.org/&#34;&gt;Apache Ant&lt;/a&gt; . It&amp;rsquo;s used a lot by Java developers to automate builds of their applications but can also be used to build and run tasks for just about anything.&lt;/p&gt;
+
+&lt;p&gt;I was planning to do this article about Ant but decided against it. While Ant is a very powerful tool, it&amp;rsquo;s configuration is in XML which is just gross. Don&amp;rsquo;t get me wrong, XML has it&amp;rsquo;s uses but I prefer something more readable. Instead, I found a PHP based tool called &lt;a href=&#34;http://robo.li&#34;&gt;Robo&lt;/a&gt;  which, in my opinion, is easier on the eyes and can be just as powerful.&lt;/p&gt;
+
+&lt;p&gt;If you still want to try out Ant you can check out a great example build file &lt;a href=&#34;http://jenkins-php.org/automation.html&#34;&gt;here&lt;/a&gt;. Don&amp;rsquo;t say I didn&amp;rsquo;t warn you though.&lt;/p&gt;
+
+&lt;p&gt;So what is robo? Here is what they say on their website.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Robo is a task runner you always have been looking for. It allows you to write fully customizable tasks in common OOP PHP style. Robo has comprehensive list of built-in common tasks for development, testing, and deployment.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Installing and running robo tasks is really simple. It can be installed using Composer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer require codegyre/robo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once installed just run the command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vendor/bin/robo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If it&amp;rsquo;s your first time running, it will create a file called &amp;lsquo;RoboFile.php&amp;rsquo;. This is the file we will use to define our commands and run our tasks.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create a RoboFile for building and running some tests for a project.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+class RoboFile extends \Robo\Tasks
+{
+    // Run ALL the tasks
+    public function build()
+    {
+        $this-&amp;gt;setup();
+        $this-&amp;gt;test();
+        $this-&amp;gt;lint();
+        $this-&amp;gt;codesniffer();
+    }
+
+    // Setup
+    private function setup()
+    {
+        if (! is_dir(&#39;reports&#39;)) {
+            $this-&amp;gt;taskFilesystemStack()
+                -&amp;gt;mkdir(&#39;reports&#39;)
+                -&amp;gt;run();
+        }
+
+        $this-&amp;gt;_cleanDir(&#39;reports&#39;);
+    }
+
+    // Run PHPSpec tests
+    public function test()
+    {
+        $this-&amp;gt;taskPhpspec()
+            -&amp;gt;format(&#39;html&#39;)
+            -&amp;gt;arg(&#39;&amp;gt; reports/phpspec.html&#39;)
+            -&amp;gt;run();
+    }
+
+    // Check for syntax errors
+    public function lint()
+    {
+        $this-&amp;gt;taskExec(&#39;php&#39;)
+            -&amp;gt;arg(&#39;-l&#39;)
+            -&amp;gt;arg(&#39;spec/*/*&#39;)
+            -&amp;gt;run();
+
+        $this-&amp;gt;taskExec(&#39;php&#39;)
+            -&amp;gt;arg(&#39;-l&#39;)
+            -&amp;gt;arg(&#39;src/*&#39;)
+            -&amp;gt;run();
+    }
+
+    // Check coding style
+    public function codesniffer()
+    {
+        $this-&amp;gt;taskExec(&#39;vendor/bin/phpcs&#39;)
+            -&amp;gt;arg(&#39;--report=checkstyle&#39;)
+            -&amp;gt;arg(&#39;--report-file=reports/checkstyle.xml&#39;)
+            -&amp;gt;arg(&#39;--standard=PSR2&#39;)
+            -&amp;gt;arg(&#39;--extensions=php&#39;)
+            -&amp;gt;arg(&#39;src&#39;)
+            -&amp;gt;run();
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each public method in the RoboFile class is interprented as a command. For example to run the lint command, which checks our code for syntax errors, we can run this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ vendor/bin/robo lint
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each command can run one or more tasks. Robo comes with a handful of built in tasks to include running PHPUnit and PHPSpec tests. If there&amp;rsquo;s a task that robo doesn&amp;rsquo;t have, you can use the &amp;lsquo;taskExec&amp;rsquo; task and just give it the command like you would on the command line. Each task has an &amp;lsquo;arg&amp;rsquo; method which just tacks on the various arguments to the command. The &amp;lsquo;run&amp;rsquo; method is pretty self explanatory.&lt;/p&gt;
+
+&lt;p&gt;Because robo runs on PHP you can add all kinds of logic to run tasks only when certain conditions are met. I find the syntax and fluent interface to be much more readable than XML as well.&lt;/p&gt;
+
+&lt;p&gt;Now that we have a sweet build script we can simplify our config in Jenkins a little bit. Under your project&amp;rsquo;s config in Jenkin&amp;rsquo;s dashboard, in our &amp;lsquo;Execute Shell&amp;rsquo; build step we can add the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/usr/local/bin/composer --prefer-source install
+vendor/bin/robo build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! The script will go ahead and create a reports directory for published reports. It will run our tests, check for syntax and even do a code standard check against PSR-2. If you want to try it for yourself, you can grab this sample project I created &lt;a href=&#34;https://github.com/ezynda3/string-calculator&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can also check out Robo&amp;rsquo;s excellent documentation &lt;a href=&#34;http://robo.li/started/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

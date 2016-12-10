@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ed Zynda - Coder, Hacker, Superhero</title>
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/agate.min.css">
+</head>
+<body>
+  <nav class="red accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="large material-icons">home</i></a>
+    </div>
+  </nav>
+  <div class="parallax-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="header center white-text text-lighten-2">Ed Zynda - Coder, Hacker, Superhero</h1>
+    <div class="parallax"><img src="/images/parallax.png"></div>
+  </div>
+
+
+<div class="section white container">
+  <div class="row">
+    <div class="col s8">
+      
+  
+  <h2><a href="http://edzynda.com/3-reasons-to-use-nginx-instead-of-apache/" title="3 Reasons To Use Nginx Instead Of Apache">3 Reasons To Use Nginx Instead Of Apache</a></h2>
+
+  Posted on
+  <time datetime="Aug 08, 2013">August 08, 2013</time>
+  
+    &middot; Tagged in
+        
+        <div class="chip"><a href="http://edzynda.com/tags/apache">apache</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/linode">linode</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/nginx">nginx</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/vps">vps</a></div>
+        
+        <div class="chip"><a href="http://edzynda.com/tags/web-server">web server</a></div>
+        
+    
+  
+
+      <p>If you&#8217;ve been working with the web for the past decade, you&#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&#8217;s free, functional and very modular. I&#8217;ve been using Apache for years as it&#8217;s the default on many hosting solutions.</p>
+
+<p>As great as Apache is, it&#8217;s not a one size fits all solution. In fact it may even be overkill for some projects. About six months ago, I traded in my old hosting provider for a Virtual Private Server (VPS) at<a title="Xen VPS Hosting" href="http://www.linode.com/?r=e023858b4fde04bffe508bb43c30bad4ee47a9f0" target="_blank"> Linode</a>. Around the same time, I started reading about a new web server called <a title="Nginx" href="http://nginx.org/" target="_blank">Nginx</a>. While not the most popular sever, it was gaining in popularity. At first I wasn&#8217;t sure about switching but after some research, I decided to take the plunge. Here are 3 reasons you should consider trying out Nginx for yourself.</p>
+
+<p><strong>1. It&#8217;s Lightweight</strong></p>
+
+<p>If you&#8217;ve ever worked with Apache&#8217;s configuration files you&#8217;re familiar with how long and cluttered they are. Apache has a lot of features and options. You really don&#8217;t need all of those features for most projects though.</p>
+
+<p>Nginx is very simple in that it just serves static web pages while adding support for essential things like virtual hosts and URL rewrites. There are no modules for PHP or JSP. Instead those requests are passed efficiently to third party processors. This leaves Nginx&#8217;s memory footprint small.</p>
+
+<p><strong>2. It Serves Static Files FAST</strong></p>
+
+<p>Like I mentioned before, Nginx really only serves static web pages. Being less memory and CPU hungry than Apache, it serves them up much faster.</p>
+
+<p><strong>3. Proxying Makes It Scalable</strong></p>
+
+<p>Most projects aren&#8217;t full of static content but rather dynamic. If you want to incorporate Python or Ruby on Rails into your project, it&#8217;s as simple as adding a proxy directive to your configuration.</p>
+
+<p>Start a Python or Rails server on a particular port like 8000 and add something like this.</p>
+
+<pre><code class="language-nginx">location /railsapp {  
+    proxy_pass http://127.0.0.1:8000;  
+    proxy_redirect off;  
+}  
+</code></pre>
+
+<p>The Python or Rails server can do all the heavy lifting when it needs to and Nginx can do what it does best.</p>
+
+<p>Apache is great for a lot of things and I&#8217;m not saying it&#8217;s no longer needed but if your project doesn&#8217;t require everything under the sun, you might want to consider giving Nginx a try.</p>
+
+      <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2f3-reasons-to-use-nginx-instead-of-apache%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=3%20Reasons%20To%20Use%20Nginx%20Instead%20Of%20Apache&amp;url=http%3a%2f%2fedzynda.com%2f3-reasons-to-use-nginx-instead-of-apache%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2f3-reasons-to-use-nginx-instead-of-apache%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2f3-reasons-to-use-nginx-instead-of-apache%2f&title=3%20Reasons%20To%20Use%20Nginx%20Instead%20Of%20Apache" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+      <h3>Comments</h3>
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/edzynda.com\/3-reasons-to-use-nginx-instead-of-apache\/';
+    var disqus_title = '3 Reasons To Use Nginx Instead Of Apache';
+    var disqus_url = 'http:\/\/edzynda.com\/3-reasons-to-use-nginx-instead-of-apache\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+    <div class="col s2 offset-l2">
+      <iframe width="100%" height="400" src="https://leanpub.com/aopinphp/embed" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer red accent-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="http://www.gravatar.com/avatar/6f0ca2846bbe006ad4bc12a583387c6a.png?size=200" class="circle responsive-img">
+            </div>
+            <div class="col s8">
+              <h5 class="white-text">About Me</h5>
+              <p class="grey-text text-lighten-4">
+                I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 s12 offset-l3">
+          <h5 class="white-text">Connect</h5>
+          <ul class="share-buttons">
+            <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
+            <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
+            <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Ed Zynda
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+  </body>
+</html>
+
