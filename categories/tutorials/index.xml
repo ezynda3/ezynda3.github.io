@@ -899,8 +899,6 @@ article {
 
 &lt;p&gt;The first view &amp;lsquo;create.blade.php&amp;rsquo; will represent our message creation form. Notice that it &amp;lsquo;@extends&amp;rsquo; our default layout and renders the form within the &amp;lsquo;content&amp;rsquo; section which is referenced in the default layout.&lt;/p&gt;
 
-&lt;p&gt;{% raw %}&lt;/p&gt;
-
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
 
     @section(&#39;content&#39;)
@@ -921,11 +919,7 @@ article {
     @stop
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;{% endraw %}&lt;/p&gt;
-
 &lt;p&gt;Once the message is submitted our &amp;lsquo;store.blade.php&amp;rsquo; view will display a link for the user to copy and give to whomever they wish for later reading.&lt;/p&gt;
-
-&lt;p&gt;{% raw %}&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
 
@@ -937,11 +931,7 @@ article {
     @stop
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;{% endraw %}&lt;/p&gt;
-
 &lt;p&gt;Lastly the &amp;lsquo;show.blade.php&amp;rsquo; view will display the message for the user once they decide to read it.&lt;/p&gt;
-
-&lt;p&gt;{% raw %}&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
 
@@ -951,8 +941,6 @@ article {
     &amp;lt;/article&amp;gt;
     @stop
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;{% endraw %}&lt;/p&gt;
 
 &lt;p&gt;Now we should have a pretty sweet messaging app that destroys your message upon reading. Keep in mind that I am no cryptography or digital forensics expert so rely on this application at your own risk. Go ahead and modify it to make it more secure if you like. Leave any suggestions you may have in the comments.&lt;/p&gt;
 </description>

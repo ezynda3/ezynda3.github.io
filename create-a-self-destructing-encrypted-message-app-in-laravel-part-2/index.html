@@ -147,8 +147,6 @@ article {
 
 <p>The first view &lsquo;create.blade.php&rsquo; will represent our message creation form. Notice that it &lsquo;@extends&rsquo; our default layout and renders the form within the &lsquo;content&rsquo; section which is referenced in the default layout.</p>
 
-<p>{% raw %}</p>
-
 <pre><code class="language-html">    @extends('layouts.default')
 
     @section('content')
@@ -169,11 +167,7 @@ article {
     @stop
 </code></pre>
 
-<p>{% endraw %}</p>
-
 <p>Once the message is submitted our &lsquo;store.blade.php&rsquo; view will display a link for the user to copy and give to whomever they wish for later reading.</p>
-
-<p>{% raw %}</p>
 
 <pre><code class="language-html">    @extends('layouts.default')
 
@@ -185,11 +179,7 @@ article {
     @stop
 </code></pre>
 
-<p>{% endraw %}</p>
-
 <p>Lastly the &lsquo;show.blade.php&rsquo; view will display the message for the user once they decide to read it.</p>
-
-<p>{% raw %}</p>
 
 <pre><code class="language-html">    @extends('layouts.default')
 
@@ -199,8 +189,6 @@ article {
     &lt;/article&gt;
     @stop
 </code></pre>
-
-<p>{% endraw %}</p>
 
 <p>Now we should have a pretty sweet messaging app that destroys your message upon reading. Keep in mind that I am no cryptography or digital forensics expert so rely on this application at your own risk. Go ahead and modify it to make it more secure if you like. Leave any suggestions you may have in the comments.</p>
 
