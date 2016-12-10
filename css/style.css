@@ -19,6 +19,9 @@ ul.share-buttons li {
 
 h1.header {
   font-size: 6em;
+}
+
+.header {
   text-shadow: 1px 1px 4px rgba(34,34,34,.6);
 }
 
