@@ -10,16 +10,16 @@
     <atom:link href="http://edzynda.com/tags/orm/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Use Laravel&amp;#8217;s Eloquent ORM Outside Of Laravel</title>
+      <title>Use Laravel&#39;s Eloquent ORM Outside Of Laravel</title>
       <link>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</link>
       <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
       
       <guid>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
-      <description>&lt;p&gt;Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;#8217;s code, however, I&amp;#8217;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;#8217;s key components can be used as stand-alone modules.&lt;/p&gt;
+      <description>&lt;p&gt;Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;rsquo;s code, however, I&amp;rsquo;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;rsquo;s key components can be used as stand-alone modules.&lt;/p&gt;
 
-&lt;p&gt;Using Laravel&amp;#8217;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&amp;#8217;s codename is &amp;#8220;Illuminate&amp;#8221;. It&amp;#8217;s database component is therefore called &amp;#8220;Illuminate\Database&amp;#8221;. The easiest way to grab &amp;#8220;Illuminate\Database&amp;#8221; and it&amp;#8217;s dependencies is to use &lt;a title=&#34;Composer&#34; href=&#34;http://getcomposer.org/&#34; target=&#34;_blank&#34;&gt;Composer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Using Laravel&amp;rsquo;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&amp;rsquo;s codename is &amp;ldquo;Illuminate&amp;rdquo;. It&amp;rsquo;s database component is therefore called &amp;ldquo;Illuminate\Database&amp;rdquo;. The easiest way to grab &amp;ldquo;Illuminate\Database&amp;rdquo; and it&amp;rsquo;s dependencies is to use &lt;a title=&#34;Composer&#34; href=&#34;http://getcomposer.org/&#34; target=&#34;_blank&#34;&gt;Composer&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Make sure there is file called &amp;#8216;composer.json&amp;#8217; in your project that contains the following:&lt;/p&gt;
+&lt;p&gt;Make sure there is file called &amp;lsquo;composer.json&amp;rsquo; in your project that contains the following:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
     &amp;quot;require&amp;quot;: {
@@ -33,7 +33,7 @@
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer install  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In order to start using Eloquent let&amp;#8217;s create a file called database.php to include in our various project files.&lt;/p&gt;
+&lt;p&gt;In order to start using Eloquent let&amp;rsquo;s create a file called database.php to include in our various project files.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php  
 require &#39;vendor/autoload.php&#39;;  

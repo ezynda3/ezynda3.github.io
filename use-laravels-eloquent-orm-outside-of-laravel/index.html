@@ -23,6 +23,7 @@
   ga('send', 'pageview');
   </script>
 
+
 </head>
 <body>
   <div class="navbar-fixed">
@@ -31,7 +32,7 @@
         <a href="/" class="brand-logo">edzynda.com</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="/">Home</a></li>
-          <li><a href="https://leanpub.com/u/anonymous0KWqBbeC1178r-jrlQOcux">Books</a></li>
+          <li><a href="https://leanpub.com/aopinphp">Books</a></li>
           <li><a href="//twitter.com/edzynda" class="icon-twitter white-text" target="_blank" title="Twitter"></a></li>
           <li><a href="//github.com/ezynda3" class="icon-github white-text" target="_blank" title="Github"></a></li>
           <li><a href="//instagram.com/yungzee83" class="icon-instagram white-text" target="_blank" title="Instagram"></a></li>
@@ -55,7 +56,7 @@
     <div class="col s8">
       
   
-  <h2><a href="http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/" title="Use Laravel&amp;#8217;s Eloquent ORM Outside Of Laravel">Use Laravel&amp;#8217;s Eloquent ORM Outside Of Laravel</a></h2>
+  <h3><a href="http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/" title="Use Laravel&#39;s Eloquent ORM Outside Of Laravel">Use Laravel&#39;s Eloquent ORM Outside Of Laravel</a></h3>
 
   Posted on
   <time datetime="Sep 09, 2013">September 09, 2013</time>
@@ -77,11 +78,11 @@
     
   
 
-      <p>Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&#8217;s code, however, I&#8217;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&#8217;s key components can be used as stand-alone modules.</p>
+      <p>Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&rsquo;s code, however, I&rsquo;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&rsquo;s key components can be used as stand-alone modules.</p>
 
-<p>Using Laravel&#8217;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&#8217;s codename is &#8220;Illuminate&#8221;. It&#8217;s database component is therefore called &#8220;Illuminate\Database&#8221;. The easiest way to grab &#8220;Illuminate\Database&#8221; and it&#8217;s dependencies is to use <a title="Composer" href="http://getcomposer.org/" target="_blank">Composer</a>.</p>
+<p>Using Laravel&rsquo;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&rsquo;s codename is &ldquo;Illuminate&rdquo;. It&rsquo;s database component is therefore called &ldquo;Illuminate\Database&rdquo;. The easiest way to grab &ldquo;Illuminate\Database&rdquo; and it&rsquo;s dependencies is to use <a title="Composer" href="http://getcomposer.org/" target="_blank">Composer</a>.</p>
 
-<p>Make sure there is file called &#8216;composer.json&#8217; in your project that contains the following:</p>
+<p>Make sure there is file called &lsquo;composer.json&rsquo; in your project that contains the following:</p>
 
 <pre><code class="language-json">{
     &quot;require&quot;: {
@@ -95,7 +96,7 @@
 <pre><code class="language-bash">$ composer install  
 </code></pre>
 
-<p>In order to start using Eloquent let&#8217;s create a file called database.php to include in our various project files.</p>
+<p>In order to start using Eloquent let&rsquo;s create a file called database.php to include in our various project files.</p>
 
 <pre><code class="language-php">&lt;?php  
 require 'vendor/autoload.php';  
@@ -147,13 +148,13 @@ $book-&gt;save();
         <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fedzynda.com%2fuse-laravels-eloquent-orm-outside-of-laravel%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
     </li>
     <li>
-        <a class="icon-twitter" href="https://twitter.com/share?text=Use%20Laravel%26%238217%3bs%20Eloquent%20ORM%20Outside%20Of%20Laravel&amp;url=http%3a%2f%2fedzynda.com%2fuse-laravels-eloquent-orm-outside-of-laravel%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Use%20Laravel%27s%20Eloquent%20ORM%20Outside%20Of%20Laravel&amp;url=http%3a%2f%2fedzynda.com%2fuse-laravels-eloquent-orm-outside-of-laravel%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
     </li>
     <li>
         <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fedzynda.com%2fuse-laravels-eloquent-orm-outside-of-laravel%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
     </li>
     <li>
-        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2fuse-laravels-eloquent-orm-outside-of-laravel%2f&title=Use%20Laravel%26%238217%3bs%20Eloquent%20ORM%20Outside%20Of%20Laravel" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fedzynda.com%2fuse-laravels-eloquent-orm-outside-of-laravel%2f&title=Use%20Laravel%27s%20Eloquent%20ORM%20Outside%20Of%20Laravel" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
     </li>
 </ul>
 
@@ -162,7 +163,7 @@ $book-&gt;save();
 <script type="text/javascript">
     var disqus_shortname = 'edzynda';
     var disqus_identifier = 'http:\/\/edzynda.com\/use-laravels-eloquent-orm-outside-of-laravel\/';
-    var disqus_title = 'Use Laravel\x26#8217;s Eloquent ORM Outside Of Laravel';
+    var disqus_title = 'Use Laravel\x27s Eloquent ORM Outside Of Laravel';
     var disqus_url = 'http:\/\/edzynda.com\/use-laravels-eloquent-orm-outside-of-laravel\/';
 
     (function() {
