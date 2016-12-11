@@ -193,7 +193,7 @@ class SearchCharacterCommand extends Command
 
 &lt;p&gt;The output looks something like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The &amp;lsquo;execute()&amp;rsquo; method tells Symfony what logic to run when our command is invoked. I won&amp;rsquo;t get too much into how the API client works but you can check out some of the examples in the library&amp;rsquo;s &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
 

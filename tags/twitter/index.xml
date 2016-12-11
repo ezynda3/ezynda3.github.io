@@ -19,13 +19,13 @@
 
 &lt;p&gt;The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Once you&amp;rsquo;ve successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &amp;#8220;modify app permissions&amp;#8221; and change it to read and write.&lt;/p&gt;
 
 &lt;p&gt;Last you will need to create an access token. This is what will allow your app to post on your Twitter account&amp;#8217;s behalf. Click &amp;#8220;Generate my Access Token&amp;#8221; and then copy down the Access token and Access token secret.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now that we have an app registered with Twitter we can get to the code.&lt;/p&gt;
 

@@ -957,19 +957,19 @@ If you have Jenkins installed correctly you should be able to reach the dashboar
 
 &lt;p&gt;Once there you should see a screen like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Click on &amp;ldquo;Create new jobs&amp;rdquo;. We&amp;rsquo;re going to use an existing open source project called Flysystem for our build test so we&amp;rsquo;ll just call our build &amp;ldquo;Flysystem&amp;rdquo; and we&amp;rsquo;re going to create a &amp;ldquo;Freestyle&amp;rdquo; project. Click &amp;ldquo;Ok&amp;rdquo; to continue.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can give our project a description if we like.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now down in the &amp;ldquo;Source Code Management&amp;rdquo; section we&amp;rsquo;ll select &amp;ldquo;Git&amp;rdquo; and set the repository to &lt;a href=&#34;https://github.com/thephpleague/flysystem&#34;&gt;https://github.com/thephpleague/flysystem&lt;/a&gt;. You can safely leave everything else as default.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Under the &amp;ldquo;Build&amp;rdquo; section we set up the different steps for building and testing our applications. Click on &amp;ldquo;Add build step&amp;rdquo; and select &amp;ldquo;Execute shell&amp;rdquo;. This is a quick and dirty way to run various build commands without having to create a complex XML build script for use with Ant or Maven. Add the following commands in the textbox.&lt;/p&gt;
 
@@ -977,23 +977,23 @@ If you have Jenkins installed correctly you should be able to reach the dashboar
 bin/phpspec run -f html &amp;gt; report.html
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The great thing about Jenkins is that with the right plugins you can create all kinds of useful reports for every build of your application. In our build step we&amp;rsquo;re running phpspec for tests and setting the output format as HTML and saving it to a file. Jenkins can take that HTML and publish it for viewing later.
 .
 Under &amp;ldquo;Post-build Actions&amp;rdquo; click on &amp;ldquo;Add post-build action&amp;rdquo; and select &amp;ldquo;Publish HTML Reports&amp;rdquo;. Fill out the textboxes like so.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Hit save and that&amp;rsquo;s it. On the left side menu click &amp;ldquo;Build Now&amp;rdquo;. You should a little blinking dot appear under &amp;ldquo;Build History&amp;rdquo;. Click on it and then click on &amp;ldquo;Console Output&amp;rdquo;. You should see a bunch of text scrolling past as the build runs. It should look something like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It might take a few minutes if this is the first time running the build as composer is downloading dependencies from scratch.&lt;/p&gt;
 
 &lt;p&gt;Now click &amp;ldquo;Back to Project&amp;rdquo; and then click &amp;ldquo;PHPSpec Report&amp;rdquo;. This is the nice HTML report we had published. This wil list out all the tests that were run. Tests that passed will be green while any that have failed will be red and usually give a stack trace with details on why it failed.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/jenkins-1-8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s basically all you need to get a simple build running on Jenkins. Of course there is a lot more you can do but that will be covered in a later post.&lt;/p&gt;
 </description>
@@ -1183,7 +1183,7 @@ class SearchCharacterCommand extends Command
 
 &lt;p&gt;The output looks something like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/images/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The &amp;lsquo;execute()&amp;rsquo; method tells Symfony what logic to run when our command is invoked. I won&amp;rsquo;t get too much into how the API client works but you can check out some of the examples in the library&amp;rsquo;s &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
 
@@ -1201,13 +1201,13 @@ class SearchCharacterCommand extends Command
 
 &lt;p&gt;The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Once you&amp;rsquo;ve successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &amp;#8220;modify app permissions&amp;#8221; and change it to read and write.&lt;/p&gt;
 
 &lt;p&gt;Last you will need to create an access token. This is what will allow your app to post on your Twitter account&amp;#8217;s behalf. Click &amp;#8220;Generate my Access Token&amp;#8221; and then copy down the Access token and Access token secret.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now that we have an app registered with Twitter we can get to the code.&lt;/p&gt;
 
