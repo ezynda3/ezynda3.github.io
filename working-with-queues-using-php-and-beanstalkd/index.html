@@ -52,7 +52,7 @@
 
 <div class="section white container">
     <div class="row">
-        <div class="col s8">
+        <div class="col s12 m8">
             
   
   <h3><a href="http://edzynda.com/working-with-queues-using-php-and-beanstalkd/" title="Working With Queues Using PHP And Beanstalkd">Working With Queues Using PHP And Beanstalkd</a></h3>
@@ -73,7 +73,8 @@
     
   
 
-            <p>PHP is often considered the glue of the Internet because it&rsquo;s can be used for a lot of different things. There are so many built in functions and features that you are unlikely to use close to all of them if you work with PHP the rest of your life. This is great because we can solve various problems in our web apps without resorting to bringing in another language. Sometimes though, our application logic can get quite large or resource intensive. This translates into slow response times for the users of our apps if certain operations are tied into user events.</p>
+            <div class="flow-text">
+                <p>PHP is often considered the glue of the Internet because it&rsquo;s can be used for a lot of different things. There are so many built in functions and features that you are unlikely to use close to all of them if you work with PHP the rest of your life. This is great because we can solve various problems in our web apps without resorting to bringing in another language. Sometimes though, our application logic can get quite large or resource intensive. This translates into slow response times for the users of our apps if certain operations are tied into user events.</p>
 
 <p>Let&rsquo;s say we&rsquo;re running dating site. Users are asked to enter a bunch of information at sign-up. This information will then be used by our application to match the new user with existing users and then email or send them a message with their new matches. This can potentially be a lengthy operation. If we run this as soon as the user hits submit they could be greeted by a long wait for the page or even worse a timeout error. To prevent this we can use a queue.</p>
 
@@ -157,6 +158,7 @@ while (true) {
 
 <p>This is just a simple example but hopefully it gives you an idea of what you can accomplish with queues.</p>
 
+            </div>
             <ul class="share-buttons">
     <li>Share this article:</li>
     <li>
