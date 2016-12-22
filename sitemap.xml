@@ -2,11 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://edzynda.com/</loc>
-    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://edzynda.com/single-page-web-app-with-go-and-vue/</loc>
     <lastmod>2016-12-07T00:00:00+00:00</lastmod>
   </url>
@@ -169,6 +164,712 @@
   <url>
     <loc>http://edzynda.com/testing-for-xss-vulnerabilities/</loc>
     <lastmod>2013-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/5/index.4/</loc>
+    <lastmod>2013-11-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/ajax/</loc>
+    <lastmod>2016-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/aop/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/aop/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/apache/</loc>
+    <lastmod>2013-11-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/api/</loc>
+    <lastmod>2014-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/aspect-oriented-programming/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/assets/</loc>
+    <lastmod>2013-09-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/beanstalkd/</loc>
+    <lastmod>2013-11-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/bind/</loc>
+    <lastmod>2013-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/binding/</loc>
+    <lastmod>2013-10-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/blade/</loc>
+    <lastmod>2013-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/blowfish/</loc>
+    <lastmod>2013-11-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/book/</loc>
+    <lastmod>2015-06-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/books/</loc>
+    <lastmod>2015-06-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/bootstrap/</loc>
+    <lastmod>2014-01-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/callback/</loc>
+    <lastmod>2013-11-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/ci/</loc>
+    <lastmod>2015-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/cli/</loc>
+    <lastmod>2014-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/codebird-php/</loc>
+    <lastmod>2014-02-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/command-line/</loc>
+    <lastmod>2014-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/composer/</loc>
+    <lastmod>2014-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/continuous-delivery/</loc>
+    <lastmod>2015-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/continuous-delivery/</loc>
+    <lastmod>2015-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/continuous-integration/</loc>
+    <lastmod>2015-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/css/</loc>
+    <lastmod>2013-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/database/</loc>
+    <lastmod>2013-12-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/deferred/</loc>
+    <lastmod>2013-11-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/dependency-injection/</loc>
+    <lastmod>2013-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/eloquent/</loc>
+    <lastmod>2013-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/encryption/</loc>
+    <lastmod>2013-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/environment/</loc>
+    <lastmod>2015-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/environment-variables/</loc>
+    <lastmod>2016-04-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/extensions/</loc>
+    <lastmod>2015-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/faker/</loc>
+    <lastmod>2013-12-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/feature-toggle/</loc>
+    <lastmod>2015-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/fig/</loc>
+    <lastmod>2013-11-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/filters/</loc>
+    <lastmod>2013-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/font-awesome/</loc>
+    <lastmod>2014-01-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/framework/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/frameworks/</loc>
+    <lastmod>2013-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/gd/</loc>
+    <lastmod>2013-09-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/golang/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/golang/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/hooks/</loc>
+    <lastmod>2013-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/html/</loc>
+    <lastmod>2014-01-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/html5/</loc>
+    <lastmod>2014-01-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/image-manipulation/</loc>
+    <lastmod>2013-09-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/interceptors/</loc>
+    <lastmod>2015-06-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/interface/</loc>
+    <lastmod>2013-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/interoperability/</loc>
+    <lastmod>2013-11-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/ioc/</loc>
+    <lastmod>2013-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/javascript/</loc>
+    <lastmod>2016-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/javascript/</loc>
+    <lastmod>2016-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/jenkins/</loc>
+    <lastmod>2015-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/jquery/</loc>
+    <lastmod>2016-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/jquery/</loc>
+    <lastmod>2016-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/laravel/</loc>
+    <lastmod>2013-12-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/laravel/</loc>
+    <lastmod>2013-12-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/leanpub/</loc>
+    <lastmod>2015-06-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/less/</loc>
+    <lastmod>2013-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/library/</loc>
+    <lastmod>2015-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/linode/</loc>
+    <lastmod>2013-08-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/magento/</loc>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/magento/</loc>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/marvel/</loc>
+    <lastmod>2014-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/mcrypt/</loc>
+    <lastmod>2013-11-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/microframework/</loc>
+    <lastmod>2013-11-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/mocking/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/models/</loc>
+    <lastmod>2013-10-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/nginx/</loc>
+    <lastmod>2013-11-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/nsa/</loc>
+    <lastmod>2013-11-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/oop-php/</loc>
+    <lastmod>2013-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/orm/</loc>
+    <lastmod>2013-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/packagist/</loc>
+    <lastmod>2015-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/pecl/</loc>
+    <lastmod>2015-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/pheanstalk/</loc>
+    <lastmod>2013-11-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/php/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/php/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/phpspec/</loc>
+    <lastmod>2015-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/post/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/promises/</loc>
+    <lastmod>2013-11-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/psr/</loc>
+    <lastmod>2013-11-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/python/</loc>
+    <lastmod>2013-11-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/queues/</loc>
+    <lastmod>2013-11-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/renaissance/</loc>
+    <lastmod>2013-11-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/repository/</loc>
+    <lastmod>2013-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/robo/</loc>
+    <lastmod>2015-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/routes/</loc>
+    <lastmod>2013-10-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/ruby/</loc>
+    <lastmod>2013-11-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/seeder/</loc>
+    <lastmod>2013-12-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/self-destruct/</loc>
+    <lastmod>2013-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/server/</loc>
+    <lastmod>2013-11-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/silex/</loc>
+    <lastmod>2013-11-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/standards/</loc>
+    <lastmod>2013-11-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/symfony/</loc>
+    <lastmod>2014-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/tdd/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/testing/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/testing/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/tips/</loc>
+    <lastmod>2013-10-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/tutorials/</loc>
+    <lastmod>2015-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/twelve-factor-app/</loc>
+    <lastmod>2016-04-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/twitter/</loc>
+    <lastmod>2014-02-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/uncategorized/</loc>
+    <lastmod>2013-12-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/vagrant/</loc>
+    <lastmod>2013-08-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/virtual-machine/</loc>
+    <lastmod>2013-08-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/virtualbox/</loc>
+    <lastmod>2013-08-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/vps/</loc>
+    <lastmod>2013-08-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/web-development/</loc>
+    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/web-server/</loc>
+    <lastmod>2013-08-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/categories/wordpress/</loc>
+    <lastmod>2013-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/wordpress/</loc>
+    <lastmod>2013-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/wysihtml5/</loc>
+    <lastmod>2014-01-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/wysiwyg/</loc>
+    <lastmod>2014-01-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/xss/</loc>
+    <lastmod>2013-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>
