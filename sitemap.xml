@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://edzynda.com/post/how-easy-is-it-to-containerize-a-go-app/</loc>
+    <lastmod>2016-12-27T09:18:06-08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://edzynda.com/single-page-web-app-with-go-and-vue/</loc>
     <lastmod>2016-12-07T00:00:00+00:00</lastmod>
   </url>
@@ -304,6 +309,12 @@
   </url>
   
   <url>
+    <loc>http://edzynda.com/tags/containers/</loc>
+    <lastmod>2016-12-27T09:18:06-08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://edzynda.com/tags/continuous-delivery/</loc>
     <lastmod>2015-06-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -346,8 +357,14 @@
   </url>
   
   <url>
+    <loc>http://edzynda.com/tags/docker/</loc>
+    <lastmod>2016-12-27T09:18:06-08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://edzynda.com/</loc>
-    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <lastmod>2016-12-27T09:18:06-08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -431,7 +448,7 @@
   
   <url>
     <loc>http://edzynda.com/tags/golang/</loc>
-    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <lastmod>2016-12-27T09:18:06-08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -659,7 +676,7 @@
   
   <url>
     <loc>http://edzynda.com/post/</loc>
-    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <lastmod>2016-12-27T09:18:06-08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -839,6 +856,12 @@
   <url>
     <loc>http://edzynda.com/tags/web-server/</loc>
     <lastmod>2013-08-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edzynda.com/tags/websockets/</loc>
+    <lastmod>2016-12-27T09:18:06-08:00</lastmod>
     <priority>0</priority>
   </url>
   
