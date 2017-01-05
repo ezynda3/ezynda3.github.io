@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Packagist on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/packagist/index.xml</link>
+    <link>http://www.edzynda.com/tags/packagist/index.xml</link>
     <description>Recent content in Packagist on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/packagist/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/packagist/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Simple Environment Variable Based Feature Toggles</title>
-      <link>http://edzynda.com/simple-environment-variable-based-feature-toggles/</link>
+      <link>http://www.edzynda.com/simple-environment-variable-based-feature-toggles/</link>
       <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/simple-environment-variable-based-feature-toggles/</guid>
+      <guid>http://www.edzynda.com/simple-environment-variable-based-feature-toggles/</guid>
       <description>
 
 &lt;p&gt;There&amp;rsquo;s a lot of talk about continuous delivery in software development these days. One core concept of continuous delivery is &amp;ldquo;Deploy early and deploy often.&amp;rdquo; Rather than deploy an entire application once it&amp;rsquo;s complete, you should be pushing many small features as they come. There are many benefits to this but it isn&amp;rsquo;t without risk.&lt;/p&gt;

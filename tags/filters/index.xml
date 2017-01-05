@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Filters on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/filters/index.xml</link>
+    <link>http://www.edzynda.com/tags/filters/index.xml</link>
     <description>Recent content in Filters on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/filters/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/filters/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Using Hooks In WordPress</title>
-      <link>http://edzynda.com/using-hooks-in-wordpress/</link>
+      <link>http://www.edzynda.com/using-hooks-in-wordpress/</link>
       <pubDate>Mon, 04 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-hooks-in-wordpress/</guid>
+      <guid>http://www.edzynda.com/using-hooks-in-wordpress/</guid>
       <description>&lt;p&gt;Every so often I have clients who want me to work on WordPress sites or plugins. I honestly hate working with WordPress. While it&amp;#8217;s one of the most popular CMS products in the world with a massive developer base, I find that anything coded for WordPress tends to follow a tacky and poorly organized form of coding. Coding styles vary wildly from developer to developer and there really is no standard. This makes doing modifications a nightmare.&lt;/p&gt;
 
 &lt;p&gt;As crazy as WordPress development is, it makes up for it with some very helpful features for developers. In the early days of WordPress, if you wanted to add or modify functionality you had to modify the core of WordPress. This is dangerous because as soon as an update comes out, your modification might get wiped out. WordPress then introduced theming and plugin functionality. Along with those features, they allowed for developers to &amp;#8216;hook&amp;#8217; into actual WordPress processes without modifying the core source code.&lt;/p&gt;

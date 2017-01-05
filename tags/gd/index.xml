@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gd on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/gd/index.xml</link>
+    <link>http://www.edzynda.com/tags/gd/index.xml</link>
     <description>Recent content in Gd on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/gd/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/gd/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Simple Image Manipulation With Intervention Image</title>
-      <link>http://edzynda.com/simple-image-manipulation-with-intervention-image/</link>
+      <link>http://www.edzynda.com/simple-image-manipulation-with-intervention-image/</link>
       <pubDate>Fri, 27 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/simple-image-manipulation-with-intervention-image/</guid>
+      <guid>http://www.edzynda.com/simple-image-manipulation-with-intervention-image/</guid>
       <description>&lt;p&gt;A lot of web applications include some sort of photo uploading functionality. Whether it&amp;#8217;s allowing a user to upload a personal avatar or to create and manage an entire photo gallery with watermarking features, it&amp;#8217;s somewhat of a pain to code. PHP includes several built-in functions for accomplishing this using the GD library but they&amp;#8217;re cumbersome at best. Luckily someone else feels your pain and has written a class that makes it a snap to work with images. &amp;#8216;&lt;a title=&#34;Intervention\Image&#34; href=&#34;http://intervention.olivervogel.net/&#34; target=&#34;_blank&#34;&gt;Intervention\Image&lt;/a&gt;&amp;#8216; is written by &lt;a title=&#34;Oliver Vogel&#34; href=&#34;http://olivervogel.net/&#34; target=&#34;_blank&#34;&gt;Oliver Vogel&lt;/a&gt; and it integrates brilliantly with our favorite framework Laravel!&lt;/p&gt;
 
 &lt;p&gt;Installation like anything that uses Composer is a snap. Add this to the &amp;#8220;require&amp;#8221; section of your composer.json file.&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Self Destruct on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/self-destruct/index.xml</link>
+    <link>http://www.edzynda.com/tags/self-destruct/index.xml</link>
     <description>Recent content in Self Destruct on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/self-destruct/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/self-destruct/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Create A Self-destructing, Encrypted Message App In Laravel Part 2</title>
-      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
       <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
       <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.
 &lt;/p&gt;
 
@@ -145,10 +145,10 @@ article {
     
     <item>
       <title>Create A Self-destructing, Encrypted Message App In Laravel Part 1</title>
-      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
       <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
       <description>&lt;p&gt;The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn&amp;rsquo;t say that I fall into the paranoid category but security, anonymity and cryptography fascinate me.&lt;/p&gt;
 
 &lt;p&gt;While brain storming one day, I decided to go ahead and build a self-destructing, encrypted messaging application in Laravel, using PHP&amp;rsquo;s built-in mcrypt library to see how hard it would be. Turns out it isn&amp;rsquo;t very hard at all.&lt;/p&gt;

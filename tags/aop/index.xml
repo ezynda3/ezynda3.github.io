@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aop on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/aop/index.xml</link>
+    <link>http://www.edzynda.com/tags/aop/index.xml</link>
     <description>Recent content in Aop on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/aop/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/aop/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Test The Untestable With AspectMock</title>
-      <link>http://edzynda.com/test-the-untestable-with-aspectmock/</link>
+      <link>http://www.edzynda.com/test-the-untestable-with-aspectmock/</link>
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/test-the-untestable-with-aspectmock/</guid>
+      <guid>http://www.edzynda.com/test-the-untestable-with-aspectmock/</guid>
       <description>&lt;p&gt;Some of us have had the pleasure of working with someone else&amp;rsquo;s ancient codebase to either add new features or fix bugs. It&amp;rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&amp;rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design. This makes the codebase very fragile and any small change could break something if you aren&amp;rsquo;t careful. How do we test the untestable? AspectMock to the rescue!&lt;/p&gt;
 
 &lt;p&gt;Using the power of AOP and the Go! AOP framework AspectMock allows you to create test doubles for almost anything anywhere in your code from public and private methods to static methods and even system functions like time().&lt;/p&gt;
@@ -61,10 +61,10 @@ $this-&amp;gt;assertEquals(&#39;now&#39;, time());
     
     <item>
       <title>New Book: Aspect-Oriented Programming in PHP</title>
-      <link>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</link>
+      <link>http://www.edzynda.com/new-book-aspect-oriented-programming-in-php/</link>
       <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</guid>
+      <guid>http://www.edzynda.com/new-book-aspect-oriented-programming-in-php/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been looking for a way to challenge myself as well as showcase some of my knowledge to the world. After some thinking, I&amp;rsquo;ve decided that I would go ahead and write a book.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;ve been reading a lot about aspect-oriented programming and really like what it provides to enhance object-oriented programming. There isn&amp;rsquo;t a lot of information about this in the PHP community so I figured a book would be a great way to drum up some more interest and help create a larger community around the subject of AOP.&lt;/p&gt;
@@ -75,13 +75,13 @@ $this-&amp;gt;assertEquals(&#39;now&#39;, time());
     
     <item>
       <title>Aspect Oriented PHP Using Go! AOP Framework</title>
-      <link>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</link>
+      <link>http://www.edzynda.com/aspect-oriented-php-using-go-aop-framework/</link>
       <pubDate>Tue, 09 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</guid>
+      <guid>http://www.edzynda.com/aspect-oriented-php-using-go-aop-framework/</guid>
       <description>
 
-&lt;p&gt;In my &lt;a href=&#34;http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern&#34;&gt;last article&lt;/a&gt;  we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&amp;rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&amp;rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide. It would much easier if there was a package we could use instead. Lucky for us, there is!&lt;/p&gt;
+&lt;p&gt;In my &lt;a href=&#34;http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern&#34;&gt;last article&lt;/a&gt;  we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&amp;rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&amp;rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide. It would much easier if there was a package we could use instead. Lucky for us, there is!&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href=&#34;https://github.com/goaop/framework&#34;&gt;Go! AOP Framework&lt;/a&gt; for PHP was created by &lt;a href=&#34;https://github.com/lisachenko&#34;&gt;Alexander Lisachenko&lt;/a&gt; and provides a way to use AOP in PHP without installing an extension. It accomplishes this by cleverly using autoloading, reflection and some other nifty features of modern PHP.&lt;/p&gt;
 
@@ -327,10 +327,10 @@ class Monitor implements Aspect
     
     <item>
       <title>Aspect Oriented PHP And The Interceptor Pattern</title>
-      <link>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
+      <link>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
       <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
+      <guid>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
       <description>
 
 &lt;p&gt;There are many ways to modify the behavior of existing code with actually changing the core logic. Some patterns you might be familiar with are the decorator pattern or the observer pattern. Both allow you to take another object and modify the behavior by wrapping your modifcations around the original code. One pattern you might not be familiar with though, is the interceptor pattern.&lt;/p&gt;

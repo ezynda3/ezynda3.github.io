@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Extensions on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/extensions/index.xml</link>
+    <link>http://www.edzynda.com/tags/extensions/index.xml</link>
     <description>Recent content in Extensions on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/extensions/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/extensions/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Aspect Oriented PHP And The Interceptor Pattern</title>
-      <link>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
+      <link>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
       <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
+      <guid>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
       <description>
 
 &lt;p&gt;There are many ways to modify the behavior of existing code with actually changing the core logic. Some patterns you might be familiar with are the decorator pattern or the observer pattern. Both allow you to take another object and modify the behavior by wrapping your modifcations around the original code. One pattern you might not be familiar with though, is the interceptor pattern.&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Frameworks on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/categories/frameworks/index.xml</link>
+    <link>http://www.edzynda.com/categories/frameworks/index.xml</link>
     <description>Recent content in Frameworks on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/categories/frameworks/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/categories/frameworks/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Create A Self-destructing, Encrypted Message App In Laravel Part 2</title>
-      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
       <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
       <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.
 &lt;/p&gt;
 
@@ -145,10 +145,10 @@ article {
     
     <item>
       <title>Create A Self-destructing, Encrypted Message App In Laravel Part 1</title>
-      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
       <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
       <description>&lt;p&gt;The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn&amp;rsquo;t say that I fall into the paranoid category but security, anonymity and cryptography fascinate me.&lt;/p&gt;
 
 &lt;p&gt;While brain storming one day, I decided to go ahead and build a self-destructing, encrypted messaging application in Laravel, using PHP&amp;rsquo;s built-in mcrypt library to see how hard it would be. Turns out it isn&amp;rsquo;t very hard at all.&lt;/p&gt;
@@ -346,10 +346,10 @@ class Message extends Eloquent {
     
     <item>
       <title>What Is A Microframework? Getting Started With Silex</title>
-      <link>http://edzynda.com/what-is-a-microframework-getting-started-with-silex/</link>
+      <link>http://www.edzynda.com/what-is-a-microframework-getting-started-with-silex/</link>
       <pubDate>Wed, 13 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/what-is-a-microframework-getting-started-with-silex/</guid>
+      <guid>http://www.edzynda.com/what-is-a-microframework-getting-started-with-silex/</guid>
       <description>&lt;p&gt;There is no shortage of coding frameworks these days. I can&amp;rsquo;t scroll through my twitter and facebook feeds or my favorite dev forums without stumbling upon something new. Like a hungry barracuda, I&amp;rsquo;m instantly attracted to new shiny things. While browsing reddit.com/r/php I came across a mention of a microframework called &lt;a href=&#34;http://silex.sensiolabs.org/&#34; title=&#34;Silex&#34; target=&#34;_blank&#34;&gt;Silex&lt;/a&gt;. Now you may be wondering what a microframework is. I was wondering the same thing, so I took a look at the project&amp;rsquo;s website to figure out for myself.&lt;/p&gt;
 
 &lt;p&gt;It turns out that a microframework, just like the name implies, is just a barebones framework meant to give the developer access to powerful tools without the bulk of a full-on framework. Silex is a microframework which utilizes components from the popular &lt;a href=&#34;http://symfony.com/&#34; title=&#34;Symfony2&#34; target=&#34;_blank&#34;&gt;Symfony2&lt;/a&gt; framework. In fact it&amp;rsquo;s written and maintained by the same people at Sensiolabs. It&amp;rsquo;s meant for applications consisting of usually one php file but you can definitely build something much bigger. Installing and using Silex is pretty straight-forward especially if you are familiar with other modern PHP frameworks.&lt;/p&gt;
@@ -434,10 +434,10 @@ $app-&amp;gt;run();
     
     <item>
       <title>Using Repositories In Laravel</title>
-      <link>http://edzynda.com/using-repositories-in-laravel/</link>
+      <link>http://www.edzynda.com/using-repositories-in-laravel/</link>
       <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-repositories-in-laravel/</guid>
+      <guid>http://www.edzynda.com/using-repositories-in-laravel/</guid>
       <description>&lt;p&gt;The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.&lt;/p&gt;
 
 &lt;p&gt;One technique I&amp;#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&amp;#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&amp;#8217;s powerful IoC container.&lt;/p&gt;
@@ -561,10 +561,10 @@ App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repos
     
     <item>
       <title>Getting Started With Laravel 4 and Vagrant</title>
-      <link>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
+      <link>http://www.edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
       <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
+      <guid>http://www.edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.&lt;/p&gt;
 
 &lt;p&gt;I came across Laravel while randomly browsing the web. I don&amp;rsquo;t even remember what I was looking for but after reading more about Laravel and how simple it was to setup, I was hooked. In this article I&amp;rsquo;ll take you through setting up a PHP development environment for Laravel 4.&lt;/p&gt;

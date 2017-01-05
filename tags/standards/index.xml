@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Standards on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/standards/index.xml</link>
+    <link>http://www.edzynda.com/tags/standards/index.xml</link>
     <description>Recent content in Standards on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/standards/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/standards/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The PHP Renaissance: FIG and PSRs</title>
-      <link>http://edzynda.com/the-php-renaissance-fig-and-psrs/</link>
+      <link>http://www.edzynda.com/the-php-renaissance-fig-and-psrs/</link>
       <pubDate>Fri, 08 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/the-php-renaissance-fig-and-psrs/</guid>
+      <guid>http://www.edzynda.com/the-php-renaissance-fig-and-psrs/</guid>
       <description>&lt;p&gt;If you worked with PHP in the early days or even if you are a newcomer, you are probably familiar with how messy and painful working with another developer&amp;#8217;s code can be. PHP has a low barrier to entry which is great for getting things done. At the same time though, it creates a culture of lazy developers. Even those developers with years of experience have coding styles that are hard to wade through. Like some people&amp;#8217;s handwriting, it only makes sense to them. This is fine if they don&amp;#8217;t plan on sharing the code or expect someone else to have to maintain it later. In reality though, a lot of code these days is opensource or will eventually become someone else&amp;#8217;s responsibility to maintain. Some top PHP developers have realized this and come together to try and shape the PHP community for the better.&lt;/p&gt;
 
 &lt;p&gt;A lot of large PHP projects are built on frameworks because why re-invent the wheel. There are a handful of popular frameworks in active development today and they all have their pros and cons. It would be nice for a developer if he/she could use one framework for a project one week and start another project using a different framework the next week with minimal time spent learning the intricacies of the new framework. It would also be nice if the source code to these frameworks could be readable by anyone with a basic knowledge of PHP.&lt;/p&gt;

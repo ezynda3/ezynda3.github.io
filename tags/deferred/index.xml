@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Deferred on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/deferred/index.xml</link>
+    <link>http://www.edzynda.com/tags/deferred/index.xml</link>
     <description>Recent content in Deferred on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/deferred/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/deferred/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Javascript Promises Explained</title>
-      <link>http://edzynda.com/javascript-promises-explained/</link>
+      <link>http://www.edzynda.com/javascript-promises-explained/</link>
       <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/javascript-promises-explained/</guid>
+      <guid>http://www.edzynda.com/javascript-promises-explained/</guid>
       <description>&lt;p&gt;While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called &amp;lsquo;promises&amp;rsquo;. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn&amp;rsquo;t really as difficult as I thought.&lt;/p&gt;
 
 &lt;p&gt;Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns. You can pass a function name as the parameter like in this jquery example.&lt;/p&gt;

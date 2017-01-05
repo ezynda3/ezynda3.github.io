@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Robo on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/robo/index.xml</link>
+    <link>http://www.edzynda.com/tags/robo/index.xml</link>
     <description>Recent content in Robo on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/robo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/robo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Continuous Integration With Jenkins Part II</title>
-      <link>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</link>
+      <link>http://www.edzynda.com/continuous-integration-with-jenkins-part-ii/</link>
       <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</guid>
-      <description>&lt;p&gt;In the &lt;a href=&#34;http://edzynda.com/continuous-integration-with-jenkins-part-ii/&#34;&gt;first part&lt;/a&gt;  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?&lt;/p&gt;
+      <guid>http://www.edzynda.com/continuous-integration-with-jenkins-part-ii/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://www.edzynda.com/continuous-integration-with-jenkins-part-ii/&#34;&gt;first part&lt;/a&gt;  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?&lt;/p&gt;
 
 &lt;p&gt;A better options is to use another tool to automate the build process and perform certain tasks dynamically. There are quite a lot of tools out there to do this. A popular tool used in Jenkins setups is &lt;a href=&#34;http://ant.apache.org/&#34;&gt;Apache Ant&lt;/a&gt; . It&amp;rsquo;s used a lot by Java developers to automate builds of their applications but can also be used to build and run tasks for just about anything.&lt;/p&gt;
 

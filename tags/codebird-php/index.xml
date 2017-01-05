@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Codebird Php on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/codebird-php/index.xml</link>
+    <link>http://www.edzynda.com/tags/codebird-php/index.xml</link>
     <description>Recent content in Codebird Php on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/codebird-php/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/codebird-php/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Easily Post To Twitter Using Codebird</title>
-      <link>http://edzynda.com/easily-post-to-twitter-using-codebird/</link>
+      <link>http://www.edzynda.com/easily-post-to-twitter-using-codebird/</link>
       <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/easily-post-to-twitter-using-codebird/</guid>
+      <guid>http://www.edzynda.com/easily-post-to-twitter-using-codebird/</guid>
       <description>&lt;p&gt;Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&amp;#8217;t as hard as you might think.&lt;/p&gt;
 
 &lt;p&gt;The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Once you&amp;rsquo;ve successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &amp;#8220;modify app permissions&amp;#8221; and change it to read and write.&lt;/p&gt;
 
 &lt;p&gt;Last you will need to create an access token. This is what will allow your app to post on your Twitter account&amp;#8217;s behalf. Click &amp;#8220;Generate my Access Token&amp;#8221; and then copy down the Access token and Access token secret.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now that we have an app registered with Twitter we can get to the code.&lt;/p&gt;
 

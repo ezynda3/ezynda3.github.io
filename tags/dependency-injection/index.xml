@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dependency Injection on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/dependency-injection/index.xml</link>
+    <link>http://www.edzynda.com/tags/dependency-injection/index.xml</link>
     <description>Recent content in Dependency Injection on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/dependency-injection/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/dependency-injection/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>What Is An IoC Container?</title>
-      <link>http://edzynda.com/what-is-an-ioc-container/</link>
+      <link>http://www.edzynda.com/what-is-an-ioc-container/</link>
       <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/what-is-an-ioc-container/</guid>
+      <guid>http://www.edzynda.com/what-is-an-ioc-container/</guid>
       <description>&lt;p&gt;If you&amp;#8217;re discussing object oriented programming in PHP these days, it&amp;#8217;s likely that you&amp;#8217;ve at least heard about such topics as dependency injection or IoC containers. They&amp;#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&amp;#8217;s really not.&lt;/p&gt;
 
 &lt;p&gt;If you read my earlier post on using repositories in Laravel you might have noticed that when using dependency injection in our __construct method, we didn&amp;#8217;t have to actually instantiate our repository. Laravel&amp;#8217;s IoC container did it for us. Behind the scenes, when our controller was called, Laravel ran the App::make() method and passed it through to our constructor.&lt;/p&gt;
@@ -107,10 +107,10 @@ $garage = new Garage(App::make(&#39;Vehicle&#39;));
     
     <item>
       <title>Using Repositories In Laravel</title>
-      <link>http://edzynda.com/using-repositories-in-laravel/</link>
+      <link>http://www.edzynda.com/using-repositories-in-laravel/</link>
       <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-repositories-in-laravel/</guid>
+      <guid>http://www.edzynda.com/using-repositories-in-laravel/</guid>
       <description>&lt;p&gt;The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.&lt;/p&gt;
 
 &lt;p&gt;One technique I&amp;#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&amp;#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&amp;#8217;s powerful IoC container.&lt;/p&gt;

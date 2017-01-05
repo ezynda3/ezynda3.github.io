@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Command Line on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/categories/command-line/index.xml</link>
+    <link>http://www.edzynda.com/categories/command-line/index.xml</link>
     <description>Recent content in Command Line on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/categories/command-line/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/categories/command-line/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Create A Simple PHP Command Line Tool</title>
-      <link>http://edzynda.com/create-a-simple-php-command-line-tool/</link>
+      <link>http://www.edzynda.com/create-a-simple-php-command-line-tool/</link>
       <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-simple-php-command-line-tool/</guid>
+      <guid>http://www.edzynda.com/create-a-simple-php-command-line-tool/</guid>
       <description>&lt;p&gt;PHP is no doubt a great fit for building web applications but it also has the ability to create powerful command line applications. PHP has had this ability for a long time but recently there has been some excellent work done in order to improve the quality of PHP command line tools. The &lt;a href=&#34;http://symfony.com/doc/current/components/console/introduction.html&#34;&gt;Symfony\Console&lt;/a&gt; component makes it incredibly easy to create a command line application that accepts different arguments and options. Let&amp;rsquo;s see how easy it can be.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;ve decided to do something a little different then the standard &amp;ldquo;do stuff with Twitter&amp;rdquo; app that seems to be popular these days. Instead let&amp;rsquo;s do stuff with Marvel. More specifically let&amp;rsquo;s use data from the &lt;a href=&#34;http://developer.marvel.com/&#34;&gt;Marvel Developer&amp;rsquo;s API&lt;/a&gt; to make a command line app that searches for and displays the description of different characters from the Marvel universe. We&amp;rsquo;ll use an incomplete but usable PHP library called &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Marvel-PHP&lt;/a&gt; to help us interact with the API. To get started, create a new directory for your project and call it whatever you like.&lt;/p&gt;
@@ -193,7 +193,7 @@ class SearchCharacterCommand extends Command
 
 &lt;p&gt;The output looks something like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The &amp;lsquo;execute()&amp;rsquo; method tells Symfony what logic to run when our command is invoked. I won&amp;rsquo;t get too much into how the API client works but you can check out some of the examples in the library&amp;rsquo;s &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
 

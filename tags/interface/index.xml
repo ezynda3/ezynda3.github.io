@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Interface on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/interface/index.xml</link>
+    <link>http://www.edzynda.com/tags/interface/index.xml</link>
     <description>Recent content in Interface on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/interface/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/interface/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Using Repositories In Laravel</title>
-      <link>http://edzynda.com/using-repositories-in-laravel/</link>
+      <link>http://www.edzynda.com/using-repositories-in-laravel/</link>
       <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-repositories-in-laravel/</guid>
+      <guid>http://www.edzynda.com/using-repositories-in-laravel/</guid>
       <description>&lt;p&gt;The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.&lt;/p&gt;
 
 &lt;p&gt;One technique I&amp;#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&amp;#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&amp;#8217;s powerful IoC container.&lt;/p&gt;

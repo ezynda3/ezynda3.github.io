@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/javascript/index.xml</link>
+    <link>http://www.edzynda.com/tags/javascript/index.xml</link>
     <description>Recent content in Javascript on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Running AJAX Requests Sequentially</title>
-      <link>http://edzynda.com/running-ajax-requests-sequentially/</link>
+      <link>http://www.edzynda.com/running-ajax-requests-sequentially/</link>
       <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/running-ajax-requests-sequentially/</guid>
+      <guid>http://www.edzynda.com/running-ajax-requests-sequentially/</guid>
       <description>&lt;p&gt;Somewhat recently, I was refactoring a project that was having issues uploading and importing large CSV files. I was running into all kinds of issues from timeout errors to memory allocation exceptions. The solution was to break up the import and upload it in chunks. This alone was pretty easy but I also wanted to include the ability to display the progress of the entire import. The problem was, I was using AJAX to upload the data.&lt;/p&gt;
 
 &lt;p&gt;AJAX is pretty useful in that it allows you to make HTTP requests asynchronously without refreshing the entire page. You can update small sections of the page without reloading. This is great if you don&amp;rsquo;t care what order the requests finish. In my case I needed to upload the data in chunks but also calculate the overall progress based on how much had been uploaded vs how much was remaining. Using AJAX as intended, all of the chunks would be sent at the exact same which opens of the possibiity that a chunk that should be uploaded last would finish before an earlier chunk.&lt;/p&gt;
@@ -63,10 +63,10 @@
     
     <item>
       <title>Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</title>
-      <link>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
+      <link>http://www.edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
       <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
+      <guid>http://www.edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
       <description>&lt;p&gt;For a lot of HTML forms you really don&amp;rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&amp;rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
 You can grab WYSIHTML5 from &lt;a href=&#34;https://github.com/xing/wysihtml5&#34;&gt;Github&lt;/a&gt;. To add a little style we&amp;rsquo;ll use Twitter&amp;rsquo;s &lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; framework and &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt; icon fonts.
 Copy the WYSIHTML5 files into the correct directories.&lt;/p&gt;
@@ -140,10 +140,10 @@ Now the last part we need is some Javascript to point WYSIHTML5 at our textarea 
     
     <item>
       <title>Javascript Promises Explained</title>
-      <link>http://edzynda.com/javascript-promises-explained/</link>
+      <link>http://www.edzynda.com/javascript-promises-explained/</link>
       <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/javascript-promises-explained/</guid>
+      <guid>http://www.edzynda.com/javascript-promises-explained/</guid>
       <description>&lt;p&gt;While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called &amp;lsquo;promises&amp;rsquo;. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn&amp;rsquo;t really as difficult as I thought.&lt;/p&gt;
 
 &lt;p&gt;Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns. You can pass a function name as the parameter like in this jquery example.&lt;/p&gt;
@@ -212,10 +212,10 @@ myFunc().done(function() {
     
     <item>
       <title>Create A Self-destructing, Encrypted Message App In Laravel Part 2</title>
-      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
       <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
       <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.
 &lt;/p&gt;
 
@@ -346,10 +346,10 @@ article {
     
     <item>
       <title>Tip: Custom Scripts In WordPress</title>
-      <link>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</link>
+      <link>http://www.edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</link>
       <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</guid>
+      <guid>http://www.edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</guid>
       <description>&lt;p&gt;WordPress is a great CMS (Content Management System) is you want to get a site up and running very quickly. It&amp;#8217;s themable and within the theming framework, WordPress includes the ability to include popular assets like JQuery. All it takes is a simple command.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
@@ -377,10 +377,10 @@ wp_enqueue_script(&#39;myajaxscript&#39;);
     
     <item>
       <title>Tip: Quick Test For XSS Vulnerabilities</title>
-      <link>http://edzynda.com/testing-for-xss-vulnerabilities/</link>
+      <link>http://www.edzynda.com/testing-for-xss-vulnerabilities/</link>
       <pubDate>Mon, 29 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/testing-for-xss-vulnerabilities/</guid>
+      <guid>http://www.edzynda.com/testing-for-xss-vulnerabilities/</guid>
       <description>&lt;p&gt;There are a lot of things to keep in mind when it comes to web development. Security should be at the top of your list. If you read up on web application security, you&amp;#8217;re probably familiar with cross-site scripting or XSS attacks. XSS attacks can cause serious damage but are really simple to prevent.&lt;/p&gt;
 
 &lt;p&gt;If you aren&amp;#8217;t familiar, a XSS vulnerability occurs when your application takes user data and then sends it to the web browser without proper validation. An example would be a contact form that displays a confirmation after it has been submitted. The contact form asks for your first name then displays a message like &amp;#8220;Thanks for your inquiry Bob!&amp;#8221;&lt;/p&gt;

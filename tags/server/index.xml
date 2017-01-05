@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Server on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/server/index.xml</link>
+    <link>http://www.edzynda.com/tags/server/index.xml</link>
     <description>Recent content in Server on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/server/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/server/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Using The PHP Built-in Webserver</title>
-      <link>http://edzynda.com/using-the-php-built-in-webserver/</link>
+      <link>http://www.edzynda.com/using-the-php-built-in-webserver/</link>
       <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-the-php-built-in-webserver/</guid>
+      <guid>http://www.edzynda.com/using-the-php-built-in-webserver/</guid>
       <description>&lt;p&gt;For years Ruby and Python have been stealing the show with innovative features and functionality to help developers get their projects off the ground. PHP was left in the dust for quite a while. One simple but invaluable feature that PHP had been lacking was it&amp;rsquo;s own webserver. Since version 5.4 however, PHP developers can now enjoy this modern convenience.&lt;/p&gt;
 
 &lt;p&gt;Not all backend developers are system administrators. They know how to code and code well. That doesn&amp;rsquo;t mean they know how to optimally configure an Apache or Nginx webserver. Depending on the project they work on, their code can live on any number of server configurations. Rather than worry about setting up Apache, developers should be making sure their code works. Leave the configuration to the sys admins.&lt;/p&gt;

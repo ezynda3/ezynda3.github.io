@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Twelve Factor App on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/twelve-factor-app/index.xml</link>
+    <link>http://www.edzynda.com/tags/twelve-factor-app/index.xml</link>
     <description>Recent content in Twelve Factor App on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/twelve-factor-app/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/twelve-factor-app/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Simplify PHP Configs With Environment Variables</title>
-      <link>http://edzynda.com/simplify-php-configs-with-environment-variables/</link>
+      <link>http://www.edzynda.com/simplify-php-configs-with-environment-variables/</link>
       <pubDate>Wed, 13 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/simplify-php-configs-with-environment-variables/</guid>
+      <guid>http://www.edzynda.com/simplify-php-configs-with-environment-variables/</guid>
       <description>&lt;p&gt;Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &amp;lsquo;app/config&amp;rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.&lt;/p&gt;
 
 &lt;p&gt;In Laravel 5 and above you just create a file name &amp;lsquo;.env&amp;rsquo; and place your configuration in environment variables. The file would look something like this.&lt;/p&gt;

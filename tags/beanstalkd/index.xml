@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Beanstalkd on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/beanstalkd/index.xml</link>
+    <link>http://www.edzynda.com/tags/beanstalkd/index.xml</link>
     <description>Recent content in Beanstalkd on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/beanstalkd/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/beanstalkd/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Working With Queues Using PHP And Beanstalkd</title>
-      <link>http://edzynda.com/working-with-queues-using-php-and-beanstalkd/</link>
+      <link>http://www.edzynda.com/working-with-queues-using-php-and-beanstalkd/</link>
       <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/working-with-queues-using-php-and-beanstalkd/</guid>
+      <guid>http://www.edzynda.com/working-with-queues-using-php-and-beanstalkd/</guid>
       <description>&lt;p&gt;PHP is often considered the glue of the Internet because it&amp;rsquo;s can be used for a lot of different things. There are so many built in functions and features that you are unlikely to use close to all of them if you work with PHP the rest of your life. This is great because we can solve various problems in our web apps without resorting to bringing in another language. Sometimes though, our application logic can get quite large or resource intensive. This translates into slow response times for the users of our apps if certain operations are tied into user events.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s say we&amp;rsquo;re running dating site. Users are asked to enter a bunch of information at sign-up. This information will then be used by our application to match the new user with existing users and then email or send them a message with their new matches. This can potentially be a lengthy operation. If we run this as soon as the user hits submit they could be greeted by a long wait for the page or even worse a timeout error. To prevent this we can use a queue.&lt;/p&gt;

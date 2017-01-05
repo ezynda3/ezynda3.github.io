@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Binding on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/binding/index.xml</link>
+    <link>http://www.edzynda.com/tags/binding/index.xml</link>
     <description>Recent content in Binding on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/binding/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/binding/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Using Route/Model Binding In Laravel</title>
-      <link>http://edzynda.com/using-routemodel-binding-in-laravel/</link>
+      <link>http://www.edzynda.com/using-routemodel-binding-in-laravel/</link>
       <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-routemodel-binding-in-laravel/</guid>
+      <guid>http://www.edzynda.com/using-routemodel-binding-in-laravel/</guid>
       <description>&lt;p&gt;As I work more and more with Laravel, I keep running across some really cool time saving tricks. One of those time savers is route/model binding.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s say that you have the following route setup.&lt;/p&gt;

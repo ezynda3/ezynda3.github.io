@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Magento on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/magento/index.xml</link>
+    <link>http://www.edzynda.com/tags/magento/index.xml</link>
     <description>Recent content in Magento on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/magento/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/magento/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>7 Exciting Changes Coming to Magento 2</title>
-      <link>http://edzynda.com/7-exciting-changes-coming-to-magento-2/</link>
+      <link>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</link>
       <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/7-exciting-changes-coming-to-magento-2/</guid>
+      <guid>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</guid>
       <description>
 
 &lt;p&gt;E-commerce is not my favorite thing to write code for and as such, I&amp;rsquo;m no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn&amp;rsquo;t called &amp;ldquo;Magneto&amp;rdquo; which is what I originally thought when I first glanced at the name.&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Orm on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/orm/index.xml</link>
+    <link>http://www.edzynda.com/tags/orm/index.xml</link>
     <description>Recent content in Orm on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/orm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/orm/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Use Laravel&#39;s Eloquent ORM Outside Of Laravel</title>
-      <link>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</link>
+      <link>http://www.edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</link>
       <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
+      <guid>http://www.edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
       <description>&lt;p&gt;Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;rsquo;s code, however, I&amp;rsquo;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;rsquo;s key components can be used as stand-alone modules.&lt;/p&gt;
 
 &lt;p&gt;Using Laravel&amp;rsquo;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&amp;rsquo;s codename is &amp;ldquo;Illuminate&amp;rdquo;. It&amp;rsquo;s database component is therefore called &amp;ldquo;Illuminate\Database&amp;rdquo;. The easiest way to grab &amp;ldquo;Illuminate\Database&amp;rdquo; and it&amp;rsquo;s dependencies is to use &lt;a title=&#34;Composer&#34; href=&#34;http://getcomposer.org/&#34; target=&#34;_blank&#34;&gt;Composer&lt;/a&gt;.&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Virtual Machine on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/virtual-machine/index.xml</link>
+    <link>http://www.edzynda.com/tags/virtual-machine/index.xml</link>
     <description>Recent content in Virtual Machine on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/virtual-machine/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/virtual-machine/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Getting Started With Laravel 4 and Vagrant</title>
-      <link>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
+      <link>http://www.edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
       <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
+      <guid>http://www.edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.&lt;/p&gt;
 
 &lt;p&gt;I came across Laravel while randomly browsing the web. I don&amp;rsquo;t even remember what I was looking for but after reading more about Laravel and how simple it was to setup, I was hooked. In this article I&amp;rsquo;ll take you through setting up a PHP development environment for Laravel 4.&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web Server on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/web-server/index.xml</link>
+    <link>http://www.edzynda.com/tags/web-server/index.xml</link>
     <description>Recent content in Web Server on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/web-server/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/web-server/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>3 Reasons To Use Nginx Instead Of Apache</title>
-      <link>http://edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</link>
+      <link>http://www.edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</link>
       <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</guid>
+      <guid>http://www.edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</guid>
       <description>&lt;p&gt;If you&amp;#8217;ve been working with the web for the past decade, you&amp;#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&amp;#8217;s free, functional and very modular. I&amp;#8217;ve been using Apache for years as it&amp;#8217;s the default on many hosting solutions.&lt;/p&gt;
 
 &lt;p&gt;As great as Apache is, it&amp;#8217;s not a one size fits all solution. In fact it may even be overkill for some projects. About six months ago, I traded in my old hosting provider for a Virtual Private Server (VPS) at&lt;a title=&#34;Xen VPS Hosting&#34; href=&#34;http://www.linode.com/?r=e023858b4fde04bffe508bb43c30bad4ee47a9f0&#34; target=&#34;_blank&#34;&gt; Linode&lt;/a&gt;. Around the same time, I started reading about a new web server called &lt;a title=&#34;Nginx&#34; href=&#34;http://nginx.org/&#34; target=&#34;_blank&#34;&gt;Nginx&lt;/a&gt;. While not the most popular sever, it was gaining in popularity. At first I wasn&amp;#8217;t sure about switching but after some research, I decided to take the plunge. Here are 3 reasons you should consider trying out Nginx for yourself.&lt;/p&gt;

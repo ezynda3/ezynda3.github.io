@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web Development on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/categories/web-development/index.xml</link>
+    <link>http://www.edzynda.com/categories/web-development/index.xml</link>
     <description>Recent content in Web Development on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/categories/web-development/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/categories/web-development/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Single Page Web App With Go And Vue</title>
-      <link>http://edzynda.com/single-page-web-app-with-go-and-vue/</link>
+      <link>http://www.edzynda.com/single-page-web-app-with-go-and-vue/</link>
       <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/single-page-web-app-with-go-and-vue/</guid>
+      <guid>http://www.edzynda.com/single-page-web-app-with-go-and-vue/</guid>
       <description>&lt;p&gt;I wrote a nice little tutorial on creating a single page web application using Go and VueJS. Check it out over at &lt;a href=&#34;https://scotch.io/tutorials/create-a-single-page-app-with-go-echo-and-vue&#34;&gt;Scotch.io&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Test The Untestable With AspectMock</title>
-      <link>http://edzynda.com/test-the-untestable-with-aspectmock/</link>
+      <link>http://www.edzynda.com/test-the-untestable-with-aspectmock/</link>
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/test-the-untestable-with-aspectmock/</guid>
+      <guid>http://www.edzynda.com/test-the-untestable-with-aspectmock/</guid>
       <description>&lt;p&gt;Some of us have had the pleasure of working with someone else&amp;rsquo;s ancient codebase to either add new features or fix bugs. It&amp;rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&amp;rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design. This makes the codebase very fragile and any small change could break something if you aren&amp;rsquo;t careful. How do we test the untestable? AspectMock to the rescue!&lt;/p&gt;
 
 &lt;p&gt;Using the power of AOP and the Go! AOP framework AspectMock allows you to create test doubles for almost anything anywhere in your code from public and private methods to static methods and even system functions like time().&lt;/p&gt;
@@ -71,10 +71,10 @@ $this-&amp;gt;assertEquals(&#39;now&#39;, time());
     
     <item>
       <title>Simplify PHP Configs With Environment Variables</title>
-      <link>http://edzynda.com/simplify-php-configs-with-environment-variables/</link>
+      <link>http://www.edzynda.com/simplify-php-configs-with-environment-variables/</link>
       <pubDate>Wed, 13 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/simplify-php-configs-with-environment-variables/</guid>
+      <guid>http://www.edzynda.com/simplify-php-configs-with-environment-variables/</guid>
       <description>&lt;p&gt;Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &amp;lsquo;app/config&amp;rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.&lt;/p&gt;
 
 &lt;p&gt;In Laravel 5 and above you just create a file name &amp;lsquo;.env&amp;rsquo; and place your configuration in environment variables. The file would look something like this.&lt;/p&gt;
@@ -159,10 +159,10 @@ return [
     
     <item>
       <title>Running AJAX Requests Sequentially</title>
-      <link>http://edzynda.com/running-ajax-requests-sequentially/</link>
+      <link>http://www.edzynda.com/running-ajax-requests-sequentially/</link>
       <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/running-ajax-requests-sequentially/</guid>
+      <guid>http://www.edzynda.com/running-ajax-requests-sequentially/</guid>
       <description>&lt;p&gt;Somewhat recently, I was refactoring a project that was having issues uploading and importing large CSV files. I was running into all kinds of issues from timeout errors to memory allocation exceptions. The solution was to break up the import and upload it in chunks. This alone was pretty easy but I also wanted to include the ability to display the progress of the entire import. The problem was, I was using AJAX to upload the data.&lt;/p&gt;
 
 &lt;p&gt;AJAX is pretty useful in that it allows you to make HTTP requests asynchronously without refreshing the entire page. You can update small sections of the page without reloading. This is great if you don&amp;rsquo;t care what order the requests finish. In my case I needed to upload the data in chunks but also calculate the overall progress based on how much had been uploaded vs how much was remaining. Using AJAX as intended, all of the chunks would be sent at the exact same which opens of the possibiity that a chunk that should be uploaded last would finish before an earlier chunk.&lt;/p&gt;
@@ -211,10 +211,10 @@ return [
     
     <item>
       <title>New Book: Aspect-Oriented Programming in PHP</title>
-      <link>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</link>
+      <link>http://www.edzynda.com/new-book-aspect-oriented-programming-in-php/</link>
       <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/new-book-aspect-oriented-programming-in-php/</guid>
+      <guid>http://www.edzynda.com/new-book-aspect-oriented-programming-in-php/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been looking for a way to challenge myself as well as showcase some of my knowledge to the world. After some thinking, I&amp;rsquo;ve decided that I would go ahead and write a book.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;ve been reading a lot about aspect-oriented programming and really like what it provides to enhance object-oriented programming. There isn&amp;rsquo;t a lot of information about this in the PHP community so I figured a book would be a great way to drum up some more interest and help create a larger community around the subject of AOP.&lt;/p&gt;
@@ -225,13 +225,13 @@ return [
     
     <item>
       <title>Aspect Oriented PHP Using Go! AOP Framework</title>
-      <link>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</link>
+      <link>http://www.edzynda.com/aspect-oriented-php-using-go-aop-framework/</link>
       <pubDate>Tue, 09 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/aspect-oriented-php-using-go-aop-framework/</guid>
+      <guid>http://www.edzynda.com/aspect-oriented-php-using-go-aop-framework/</guid>
       <description>
 
-&lt;p&gt;In my &lt;a href=&#34;http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern&#34;&gt;last article&lt;/a&gt;  we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&amp;rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&amp;rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide. It would much easier if there was a package we could use instead. Lucky for us, there is!&lt;/p&gt;
+&lt;p&gt;In my &lt;a href=&#34;http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern&#34;&gt;last article&lt;/a&gt;  we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&amp;rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&amp;rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide. It would much easier if there was a package we could use instead. Lucky for us, there is!&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href=&#34;https://github.com/goaop/framework&#34;&gt;Go! AOP Framework&lt;/a&gt; for PHP was created by &lt;a href=&#34;https://github.com/lisachenko&#34;&gt;Alexander Lisachenko&lt;/a&gt; and provides a way to use AOP in PHP without installing an extension. It accomplishes this by cleverly using autoloading, reflection and some other nifty features of modern PHP.&lt;/p&gt;
 
@@ -477,10 +477,10 @@ class Monitor implements Aspect
     
     <item>
       <title>Aspect Oriented PHP And The Interceptor Pattern</title>
-      <link>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
+      <link>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
       <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
+      <guid>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
       <description>
 
 &lt;p&gt;There are many ways to modify the behavior of existing code with actually changing the core logic. Some patterns you might be familiar with are the decorator pattern or the observer pattern. Both allow you to take another object and modify the behavior by wrapping your modifcations around the original code. One pattern you might not be familiar with though, is the interceptor pattern.&lt;/p&gt;
@@ -684,10 +684,10 @@ echo $calc-&amp;gt;sum(1, 2);
     
     <item>
       <title>Simple Environment Variable Based Feature Toggles</title>
-      <link>http://edzynda.com/simple-environment-variable-based-feature-toggles/</link>
+      <link>http://www.edzynda.com/simple-environment-variable-based-feature-toggles/</link>
       <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/simple-environment-variable-based-feature-toggles/</guid>
+      <guid>http://www.edzynda.com/simple-environment-variable-based-feature-toggles/</guid>
       <description>
 
 &lt;p&gt;There&amp;rsquo;s a lot of talk about continuous delivery in software development these days. One core concept of continuous delivery is &amp;ldquo;Deploy early and deploy often.&amp;rdquo; Rather than deploy an entire application once it&amp;rsquo;s complete, you should be pushing many small features as they come. There are many benefits to this but it isn&amp;rsquo;t without risk.&lt;/p&gt;
@@ -735,10 +735,10 @@ if ($feature-&amp;gt;isEnabled()) {
     
     <item>
       <title>7 Exciting Changes Coming to Magento 2</title>
-      <link>http://edzynda.com/7-exciting-changes-coming-to-magento-2/</link>
+      <link>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</link>
       <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/7-exciting-changes-coming-to-magento-2/</guid>
+      <guid>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</guid>
       <description>
 
 &lt;p&gt;E-commerce is not my favorite thing to write code for and as such, I&amp;rsquo;m no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn&amp;rsquo;t called &amp;ldquo;Magneto&amp;rdquo; which is what I originally thought when I first glanced at the name.&lt;/p&gt;
@@ -793,11 +793,11 @@ if ($feature-&amp;gt;isEnabled()) {
     
     <item>
       <title>Continuous Integration With Jenkins Part II</title>
-      <link>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</link>
+      <link>http://www.edzynda.com/continuous-integration-with-jenkins-part-ii/</link>
       <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/continuous-integration-with-jenkins-part-ii/</guid>
-      <description>&lt;p&gt;In the &lt;a href=&#34;http://edzynda.com/continuous-integration-with-jenkins-part-ii/&#34;&gt;first part&lt;/a&gt;  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?&lt;/p&gt;
+      <guid>http://www.edzynda.com/continuous-integration-with-jenkins-part-ii/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://www.edzynda.com/continuous-integration-with-jenkins-part-ii/&#34;&gt;first part&lt;/a&gt;  of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?&lt;/p&gt;
 
 &lt;p&gt;A better options is to use another tool to automate the build process and perform certain tasks dynamically. There are quite a lot of tools out there to do this. A popular tool used in Jenkins setups is &lt;a href=&#34;http://ant.apache.org/&#34;&gt;Apache Ant&lt;/a&gt; . It&amp;rsquo;s used a lot by Java developers to automate builds of their applications but can also be used to build and run tasks for just about anything.&lt;/p&gt;
 
@@ -908,10 +908,10 @@ vendor/bin/robo build
     
     <item>
       <title>Continuous Integration With Jenkins Part I</title>
-      <link>http://edzynda.com/continuous-integration-with-jenkins-part-i/</link>
+      <link>http://www.edzynda.com/continuous-integration-with-jenkins-part-i/</link>
       <pubDate>Mon, 09 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/continuous-integration-with-jenkins-part-i/</guid>
+      <guid>http://www.edzynda.com/continuous-integration-with-jenkins-part-i/</guid>
       <description>&lt;p&gt;Continuous integration or CI, is all the rage these days. If you&amp;rsquo;re not familiar with what CI is, it&amp;rsquo;s basically a methodology for rapidly developing, testing and deploying applications. Using a well configured CI setup or pipeline, a developer or team of developers can make a change to their codebase, test those changes to make sure they didn&amp;rsquo;t break those changes and then push that code live in a matter of minutes. They can do this all day long and rest assured that their changes are good to go on their production servers.&lt;/p&gt;
 
 &lt;p&gt;There are many ways to do this but one of the most popular tools used these days is Jenkins. Jenkins is a web application written in Java that helps to automate building, testing and even deploying your application. Jenkins, along with a a whole slew of plugins, can do most of the heavy lifting in your CI pipeline.&lt;/p&gt;
@@ -957,19 +957,19 @@ If you have Jenkins installed correctly you should be able to reach the dashboar
 
 &lt;p&gt;Once there you should see a screen like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Click on &amp;ldquo;Create new jobs&amp;rdquo;. We&amp;rsquo;re going to use an existing open source project called Flysystem for our build test so we&amp;rsquo;ll just call our build &amp;ldquo;Flysystem&amp;rdquo; and we&amp;rsquo;re going to create a &amp;ldquo;Freestyle&amp;rdquo; project. Click &amp;ldquo;Ok&amp;rdquo; to continue.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can give our project a description if we like.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now down in the &amp;ldquo;Source Code Management&amp;rdquo; section we&amp;rsquo;ll select &amp;ldquo;Git&amp;rdquo; and set the repository to &lt;a href=&#34;https://github.com/thephpleague/flysystem&#34;&gt;https://github.com/thephpleague/flysystem&lt;/a&gt;. You can safely leave everything else as default.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Under the &amp;ldquo;Build&amp;rdquo; section we set up the different steps for building and testing our applications. Click on &amp;ldquo;Add build step&amp;rdquo; and select &amp;ldquo;Execute shell&amp;rdquo;. This is a quick and dirty way to run various build commands without having to create a complex XML build script for use with Ant or Maven. Add the following commands in the textbox.&lt;/p&gt;
 
@@ -977,23 +977,23 @@ If you have Jenkins installed correctly you should be able to reach the dashboar
 bin/phpspec run -f html &amp;gt; report.html
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The great thing about Jenkins is that with the right plugins you can create all kinds of useful reports for every build of your application. In our build step we&amp;rsquo;re running phpspec for tests and setting the output format as HTML and saving it to a file. Jenkins can take that HTML and publish it for viewing later.
 .
 Under &amp;ldquo;Post-build Actions&amp;rdquo; click on &amp;ldquo;Add post-build action&amp;rdquo; and select &amp;ldquo;Publish HTML Reports&amp;rdquo;. Fill out the textboxes like so.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Hit save and that&amp;rsquo;s it. On the left side menu click &amp;ldquo;Build Now&amp;rdquo;. You should a little blinking dot appear under &amp;ldquo;Build History&amp;rdquo;. Click on it and then click on &amp;ldquo;Console Output&amp;rdquo;. You should see a bunch of text scrolling past as the build runs. It should look something like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It might take a few minutes if this is the first time running the build as composer is downloading dependencies from scratch.&lt;/p&gt;
 
 &lt;p&gt;Now click &amp;ldquo;Back to Project&amp;rdquo; and then click &amp;ldquo;PHPSpec Report&amp;rdquo;. This is the nice HTML report we had published. This wil list out all the tests that were run. Tests that passed will be green while any that have failed will be red and usually give a stack trace with details on why it failed.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/jenkins-1-8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s basically all you need to get a simple build running on Jenkins. Of course there is a lot more you can do but that will be covered in a later post.&lt;/p&gt;
 </description>
@@ -1001,10 +1001,10 @@ Under &amp;ldquo;Post-build Actions&amp;rdquo; click on &amp;ldquo;Add post-buil
     
     <item>
       <title>Create A Simple PHP Command Line Tool</title>
-      <link>http://edzynda.com/create-a-simple-php-command-line-tool/</link>
+      <link>http://www.edzynda.com/create-a-simple-php-command-line-tool/</link>
       <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-simple-php-command-line-tool/</guid>
+      <guid>http://www.edzynda.com/create-a-simple-php-command-line-tool/</guid>
       <description>&lt;p&gt;PHP is no doubt a great fit for building web applications but it also has the ability to create powerful command line applications. PHP has had this ability for a long time but recently there has been some excellent work done in order to improve the quality of PHP command line tools. The &lt;a href=&#34;http://symfony.com/doc/current/components/console/introduction.html&#34;&gt;Symfony\Console&lt;/a&gt; component makes it incredibly easy to create a command line application that accepts different arguments and options. Let&amp;rsquo;s see how easy it can be.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;ve decided to do something a little different then the standard &amp;ldquo;do stuff with Twitter&amp;rdquo; app that seems to be popular these days. Instead let&amp;rsquo;s do stuff with Marvel. More specifically let&amp;rsquo;s use data from the &lt;a href=&#34;http://developer.marvel.com/&#34;&gt;Marvel Developer&amp;rsquo;s API&lt;/a&gt; to make a command line app that searches for and displays the description of different characters from the Marvel universe. We&amp;rsquo;ll use an incomplete but usable PHP library called &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Marvel-PHP&lt;/a&gt; to help us interact with the API. To get started, create a new directory for your project and call it whatever you like.&lt;/p&gt;
@@ -1183,7 +1183,7 @@ class SearchCharacterCommand extends Command
 
 &lt;p&gt;The output looks something like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/marvel-search-output.png&#34; alt=&#34;Output&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The &amp;lsquo;execute()&amp;rsquo; method tells Symfony what logic to run when our command is invoked. I won&amp;rsquo;t get too much into how the API client works but you can check out some of the examples in the library&amp;rsquo;s &lt;a href=&#34;https://github.com/caseysoftware/marvel-php&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
 
@@ -1193,21 +1193,21 @@ class SearchCharacterCommand extends Command
     
     <item>
       <title>Easily Post To Twitter Using Codebird</title>
-      <link>http://edzynda.com/easily-post-to-twitter-using-codebird/</link>
+      <link>http://www.edzynda.com/easily-post-to-twitter-using-codebird/</link>
       <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/easily-post-to-twitter-using-codebird/</guid>
+      <guid>http://www.edzynda.com/easily-post-to-twitter-using-codebird/</guid>
       <description>&lt;p&gt;Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&amp;#8217;t as hard as you might think.&lt;/p&gt;
 
 &lt;p&gt;The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Once you&amp;rsquo;ve successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &amp;#8220;modify app permissions&amp;#8221; and change it to read and write.&lt;/p&gt;
 
 &lt;p&gt;Last you will need to create an access token. This is what will allow your app to post on your Twitter account&amp;#8217;s behalf. Click &amp;#8220;Generate my Access Token&amp;#8221; and then copy down the Access token and Access token secret.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now that we have an app registered with Twitter we can get to the code.&lt;/p&gt;
 
@@ -1274,10 +1274,10 @@ $twtr-&amp;gt;tweet(&#39;Hello World!&#39;);
     
     <item>
       <title>Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</title>
-      <link>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
+      <link>http://www.edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
       <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
+      <guid>http://www.edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
       <description>&lt;p&gt;For a lot of HTML forms you really don&amp;rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&amp;rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill. What if you simply want bold, or italic features and maybe ordered and un-ordered lists? WYSIHTML5 makes it pretty simple.
 You can grab WYSIHTML5 from &lt;a href=&#34;https://github.com/xing/wysihtml5&#34;&gt;Github&lt;/a&gt;. To add a little style we&amp;rsquo;ll use Twitter&amp;rsquo;s &lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; framework and &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt; icon fonts.
 Copy the WYSIHTML5 files into the correct directories.&lt;/p&gt;
@@ -1351,10 +1351,10 @@ Now the last part we need is some Javascript to point WYSIHTML5 at our textarea 
     
     <item>
       <title>Using Faker To Populate Your Laravel Projects During Development</title>
-      <link>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</link>
+      <link>http://www.edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</link>
       <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
+      <guid>http://www.edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m a very visual person so when I&amp;rsquo;m developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don&amp;rsquo;t have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there&amp;rsquo;s still some manual data entry involved. We can eliminate this with a cool library called &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;Faker&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Faker takes all the manual entry out of database seeding. It can generate anything from usernames, email addresses and city names to dates and fake credit card numbers. This saves loads of time when creating your database seeder. If you&amp;rsquo;re new to Laravel or have no idea how to seed your database, check out the awesome Laravel &lt;a href=&#34;http://laravel.com/docs/migrations#database-seeding&#34; title=&#34;Laravel - Database Seeding&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on the subject.&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Laravel on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/laravel/index.xml</link>
+    <link>http://www.edzynda.com/tags/laravel/index.xml</link>
     <description>Recent content in Laravel on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Using Faker To Populate Your Laravel Projects During Development</title>
-      <link>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</link>
+      <link>http://www.edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</link>
       <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
+      <guid>http://www.edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m a very visual person so when I&amp;rsquo;m developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don&amp;rsquo;t have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there&amp;rsquo;s still some manual data entry involved. We can eliminate this with a cool library called &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;Faker&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Faker takes all the manual entry out of database seeding. It can generate anything from usernames, email addresses and city names to dates and fake credit card numbers. This saves loads of time when creating your database seeder. If you&amp;rsquo;re new to Laravel or have no idea how to seed your database, check out the awesome Laravel &lt;a href=&#34;http://laravel.com/docs/migrations#database-seeding&#34; title=&#34;Laravel - Database Seeding&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on the subject.&lt;/p&gt;
@@ -92,10 +92,10 @@ class TripTableSeeder extends Seeder
     
     <item>
       <title>Create A Self-destructing, Encrypted Message App In Laravel Part 2</title>
-      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
       <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
       <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.
 &lt;/p&gt;
 
@@ -226,10 +226,10 @@ article {
     
     <item>
       <title>Create A Self-destructing, Encrypted Message App In Laravel Part 1</title>
-      <link>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
       <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
       <description>&lt;p&gt;The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn&amp;rsquo;t say that I fall into the paranoid category but security, anonymity and cryptography fascinate me.&lt;/p&gt;
 
 &lt;p&gt;While brain storming one day, I decided to go ahead and build a self-destructing, encrypted messaging application in Laravel, using PHP&amp;rsquo;s built-in mcrypt library to see how hard it would be. Turns out it isn&amp;rsquo;t very hard at all.&lt;/p&gt;
@@ -427,10 +427,10 @@ class Message extends Eloquent {
     
     <item>
       <title>What Is An IoC Container?</title>
-      <link>http://edzynda.com/what-is-an-ioc-container/</link>
+      <link>http://www.edzynda.com/what-is-an-ioc-container/</link>
       <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/what-is-an-ioc-container/</guid>
+      <guid>http://www.edzynda.com/what-is-an-ioc-container/</guid>
       <description>&lt;p&gt;If you&amp;#8217;re discussing object oriented programming in PHP these days, it&amp;#8217;s likely that you&amp;#8217;ve at least heard about such topics as dependency injection or IoC containers. They&amp;#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&amp;#8217;s really not.&lt;/p&gt;
 
 &lt;p&gt;If you read my earlier post on using repositories in Laravel you might have noticed that when using dependency injection in our __construct method, we didn&amp;#8217;t have to actually instantiate our repository. Laravel&amp;#8217;s IoC container did it for us. Behind the scenes, when our controller was called, Laravel ran the App::make() method and passed it through to our constructor.&lt;/p&gt;
@@ -523,10 +523,10 @@ $garage = new Garage(App::make(&#39;Vehicle&#39;));
     
     <item>
       <title>Using Repositories In Laravel</title>
-      <link>http://edzynda.com/using-repositories-in-laravel/</link>
+      <link>http://www.edzynda.com/using-repositories-in-laravel/</link>
       <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-repositories-in-laravel/</guid>
+      <guid>http://www.edzynda.com/using-repositories-in-laravel/</guid>
       <description>&lt;p&gt;The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.&lt;/p&gt;
 
 &lt;p&gt;One technique I&amp;#8217;m starting to better understand is that of dependency injection. Dependency injection sounds scary at first but it&amp;#8217;s really a simple concept and has the potential to improve the flexibility of your projects. Laravel allows you to take dependency injection a step further with it&amp;#8217;s powerful IoC container.&lt;/p&gt;
@@ -650,10 +650,10 @@ App::bind(&#39;Stark\Repositories\UserRepositoryInterface&#39;, &#39;Stark\Repos
     
     <item>
       <title>Using Route/Model Binding In Laravel</title>
-      <link>http://edzynda.com/using-routemodel-binding-in-laravel/</link>
+      <link>http://www.edzynda.com/using-routemodel-binding-in-laravel/</link>
       <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/using-routemodel-binding-in-laravel/</guid>
+      <guid>http://www.edzynda.com/using-routemodel-binding-in-laravel/</guid>
       <description>&lt;p&gt;As I work more and more with Laravel, I keep running across some really cool time saving tricks. One of those time savers is route/model binding.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s say that you have the following route setup.&lt;/p&gt;
@@ -688,10 +688,10 @@ Route::bind(&#39;book&#39;, function($value, $route) {
     
     <item>
       <title>Simple Image Manipulation With Intervention Image</title>
-      <link>http://edzynda.com/simple-image-manipulation-with-intervention-image/</link>
+      <link>http://www.edzynda.com/simple-image-manipulation-with-intervention-image/</link>
       <pubDate>Fri, 27 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/simple-image-manipulation-with-intervention-image/</guid>
+      <guid>http://www.edzynda.com/simple-image-manipulation-with-intervention-image/</guid>
       <description>&lt;p&gt;A lot of web applications include some sort of photo uploading functionality. Whether it&amp;#8217;s allowing a user to upload a personal avatar or to create and manage an entire photo gallery with watermarking features, it&amp;#8217;s somewhat of a pain to code. PHP includes several built-in functions for accomplishing this using the GD library but they&amp;#8217;re cumbersome at best. Luckily someone else feels your pain and has written a class that makes it a snap to work with images. &amp;#8216;&lt;a title=&#34;Intervention\Image&#34; href=&#34;http://intervention.olivervogel.net/&#34; target=&#34;_blank&#34;&gt;Intervention\Image&lt;/a&gt;&amp;#8216; is written by &lt;a title=&#34;Oliver Vogel&#34; href=&#34;http://olivervogel.net/&#34; target=&#34;_blank&#34;&gt;Oliver Vogel&lt;/a&gt; and it integrates brilliantly with our favorite framework Laravel!&lt;/p&gt;
 
 &lt;p&gt;Installation like anything that uses Composer is a snap. Add this to the &amp;#8220;require&amp;#8221; section of your composer.json file.&lt;/p&gt;
@@ -735,10 +735,10 @@ Image::make(Input::file(&#39;photo&#39;)-&amp;gt;getRealPath())-&amp;gt;resize(3
     
     <item>
       <title>Use Laravel&#39;s Eloquent ORM Outside Of Laravel</title>
-      <link>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</link>
+      <link>http://www.edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</link>
       <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
+      <guid>http://www.edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
       <description>&lt;p&gt;Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;rsquo;s code, however, I&amp;rsquo;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;rsquo;s key components can be used as stand-alone modules.&lt;/p&gt;
 
 &lt;p&gt;Using Laravel&amp;rsquo;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&amp;rsquo;s codename is &amp;ldquo;Illuminate&amp;rdquo;. It&amp;rsquo;s database component is therefore called &amp;ldquo;Illuminate\Database&amp;rdquo;. The easiest way to grab &amp;ldquo;Illuminate\Database&amp;rdquo; and it&amp;rsquo;s dependencies is to use &lt;a title=&#34;Composer&#34; href=&#34;http://getcomposer.org/&#34; target=&#34;_blank&#34;&gt;Composer&lt;/a&gt;.&lt;/p&gt;
@@ -807,10 +807,10 @@ $book-&amp;gt;save();
     
     <item>
       <title>Getting Started With Laravel 4 and Vagrant</title>
-      <link>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
+      <link>http://www.edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
       <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
+      <guid>http://www.edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.&lt;/p&gt;
 
 &lt;p&gt;I came across Laravel while randomly browsing the web. I don&amp;rsquo;t even remember what I was looking for but after reading more about Laravel and how simple it was to setup, I was hooked. In this article I&amp;rsquo;ll take you through setting up a PHP development environment for Laravel 4.&lt;/p&gt;

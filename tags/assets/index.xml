@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Assets on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://edzynda.com/tags/assets/index.xml</link>
+    <link>http://www.edzynda.com/tags/assets/index.xml</link>
     <description>Recent content in Assets on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://edzynda.com/tags/assets/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.edzynda.com/tags/assets/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Tip: Custom Scripts In WordPress</title>
-      <link>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</link>
+      <link>http://www.edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</link>
       <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</guid>
+      <guid>http://www.edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</guid>
       <description>&lt;p&gt;WordPress is a great CMS (Content Management System) is you want to get a site up and running very quickly. It&amp;#8217;s themable and within the theming framework, WordPress includes the ability to include popular assets like JQuery. All it takes is a simple command.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
