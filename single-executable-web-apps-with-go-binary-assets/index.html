@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.19-DEV" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Ed Zynda - Coder, Hacker, Superhero</title>
 
   <meta name="description" content="I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!" />
-<meta property="og:url"                content="http://www.edzynda.com/" />
+<meta property="og:url"                content="http://www.edzynda.com/single-executable-web-apps-with-go-binary-assets/" />
 
-<meta property="og:type"               content="website" />
+<meta property="og:type"               content="article" />
 
-<meta property="og:title"              content="Ed Zynda - Coder, Hacker, Superhero" />
-
-
-<meta property="og:description"        content="I’m a nine year Air Force veteran and web software engineer with a passion for what makes the Internet tick. I code, I travel, I eat and I'm hungry for more!">
+<meta property="og:title"              content="Single Executable Web Apps With Go Binary Assets" />
 
 
+<meta property="og:description"        content="Go is becoming increasingly popular with building web applications. It&rsquo;s fast, lightweight and easy to learn. Another great feature is to compile your applications into a single redistributable binary. A lot of web applications depend on external assets, however. For the application to work you still need to package your css, JavaScript and image files along with the executable. Let&rsquo;s see if we can fix this.
 
-<meta property="og:image"              content="/images/parallax.png" />
+" />
+
+
+
+<meta property="og:image"              content="/images/go-binary-assets.png" />
 
 
 
@@ -63,21 +64,17 @@
     <br>
     <br>
     
-    <h1 class="header center white-text text-lighten-2">Ed Zynda</h1>
-    <h3 class="header center white-text text-lighten-2">Coder | Hacker | Superhero</h3>
+    <h1 class="header center white-text text-lighten-2">Single Executable Web Apps With Go Binary Assets</h1>
     
     
-    <div class="parallax"><img src="/images/parallax.png"></div>
+    <div class="parallax"><img src="/images/go-binary-assets.png"></div>
     
   </div>
 
-  <div class="section white container">
+<div class="section white container">
     <div class="row">
         <div class="col s12 m9">
-            
-            <div>
-    <h3><a href="http://www.edzynda.com/single-executable-web-apps-with-go-binary-assets/" title="Single Executable Web Apps With Go Binary Assets">Single Executable Web Apps With Go Binary Assets</a></h3>
-Posted on
+            Posted on
 <time datetime="Jan 01, 2017">January 01, 2017</time>
 
 &middot; Tagged in
@@ -89,152 +86,98 @@ Posted on
 
 
 
-    <p class="flow-text">Go is becoming increasingly popular with building web applications. It&rsquo;s fast, lightweight and easy to learn. Another great feature is to compile your applications into a single redistributable binary. A lot of web applications depend on external assets, however. For the application to work you still need to package your css, JavaScript and image files along with the executable. Let&rsquo;s see if we can fix this.</p>
+            <div class="flow-text">
+                <p>Go is becoming increasingly popular with building web applications. It&rsquo;s fast, lightweight and easy to learn. Another great feature is to compile your applications into a single redistributable binary. A lot of web applications depend on external assets, however. For the application to work you still need to package your css, JavaScript and image files along with the executable. Let&rsquo;s see if we can fix this.</p>
 
-<p>&hellip;</p>
-    <a href="http://www.edzynda.com/single-executable-web-apps-with-go-binary-assets/" title="Single Executable Web Apps With Go Binary Assets">Read more &raquo;</a>
-</div>
-            
-            <div>
-    <h3><a href="http://www.edzynda.com/how-easy-is-it-to-containerize-a-go-app/" title="How Easy Is It To Containerize A Go App?">How Easy Is It To Containerize A Go App?</a></h3>
-Posted on
-<time datetime="Dec 12, 2016">December 12, 2016</time>
+<p></p>
 
-&middot; Tagged in
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/golang">golang</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/docker">docker</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/containers">containers</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/websockets">websockets</a></div>
-    
+<p>Imagine you have a single page web application. Your application code is saved in <code>main.go</code>. Your frontend code is saved in a folder called <code>assets</code> and called <code>app.js</code>. You also have a <code>style.css</code> and a few images. Normally you need to make sure that assets folder exists along side your <code>main</code> executable wherever you have it deployed. If not your application will complain with a bunch of <code>404 not found</code> errors.</p>
 
+<p>In Go, it&rsquo;s possible to convert all of those files to pure Go code and then serve them up like they were sitting on the filesystem. We can accomplish this with two packages <code>jteeuwen/go-bindata</code> and <code>elazarl/go-bindata-assetfs</code>.</p>
 
+<p>The first thing we need to do is install the packages.</p>
 
-    <p class="flow-text">Recently, I wrote an article on how to create a simple chat server using WebSockets and Go. I made the source code available and it&rsquo;s pretty simple to get the example up and running if you have a basic familiarization with Go. I wanted to see if I could make it easier for people to try out though. For this, I looked to the very popular Docker project.
-Docker has been around for quite some time but, I only recently began toying around with it more seriously.&hellip;</p>
-    <a href="http://www.edzynda.com/how-easy-is-it-to-containerize-a-go-app/" title="How Easy Is It To Containerize A Go App?">Read more &raquo;</a>
-</div>
-            
-            <div>
-    <h3><a href="http://www.edzynda.com/single-page-web-app-with-go-and-vue/" title="Single Page Web App With Go And Vue">Single Page Web App With Go And Vue</a></h3>
-Posted on
-<time datetime="Dec 12, 2016">December 12, 2016</time>
+<pre><code class="language-bash">$ go get github.com/jteeuwen/go-bindata/...
+$ go get github.com/elazarl/go-bindata-assetfs/...
+</code></pre>
 
-&middot; Tagged in
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/golang">golang</a></div>
-    
+<p>Now we can convert our assets to Go code using the <code>go-bindata</code> CLI tool.</p>
 
+<pre><code class="language-bash">$ go-bindata assets/
+</code></pre>
 
+<p>This will create a file called <code>bindata.go</code> in your current directory. All the code in that file will be scoped to the <code>main</code> package. To access any of our files we can use the <code>Asset(string) ([]byte, error)</code> function. Calling <code>Asset(&quot;assets/app.js&quot;)</code> will return a <code>[]byte</code> slice of the <code>app.js</code> file which we can echo through our web application manually if we wish. An easier method would be to create an endpoint that serves all of those assets as if they were on a fileserver. This is where <code>go-bindata-assetfs</code> comes in.</p>
 
-    <p class="flow-text">I wrote a nice little tutorial on creating a single page web application using Go and VueJS. Check it out over at Scotch.io.&hellip;</p>
-    <a href="http://www.edzynda.com/single-page-web-app-with-go-and-vue/" title="Single Page Web App With Go And Vue">Read more &raquo;</a>
-</div>
-            
-            <div>
-    <h3><a href="http://www.edzynda.com/test-the-untestable-with-aspectmock/" title="Test The Untestable With AspectMock">Test The Untestable With AspectMock</a></h3>
-Posted on
-<time datetime="Apr 04, 2016">April 04, 2016</time>
+<p>Here is an example.</p>
 
-&middot; Tagged in
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/php">php</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/aop">aop</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/aspect-oriented-programming">aspect oriented programming</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/framework">framework</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/tdd">tdd</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/mocking">mocking</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/testing">testing</a></div>
-    
+<pre><code>package main
 
+import (
+	&quot;log&quot;
+	&quot;net/http&quot;
 
+	&quot;github.com/elazarl/go-bindata-assetfs&quot;
+)
 
-    <p class="flow-text">Some of us have had the pleasure of working with someone else&rsquo;s ancient codebase to either add new features or fix bugs. It&rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design.&hellip;</p>
-    <a href="http://www.edzynda.com/test-the-untestable-with-aspectmock/" title="Test The Untestable With AspectMock">Read more &raquo;</a>
-</div>
-            
-            <div>
-    <h3><a href="http://www.edzynda.com/simplify-php-configs-with-environment-variables/" title="Simplify PHP Configs With Environment Variables">Simplify PHP Configs With Environment Variables</a></h3>
-Posted on
-<time datetime="Apr 04, 2016">April 04, 2016</time>
+func main() {
+	// Use binary asset FileServer
+	http.Handle(&quot;/&quot;,
+		http.FileServer(
+			&amp;assetfs.AssetFS{Asset: Asset, AssetDir: AssetDir, AssetInfo: AssetInfo, Prefix: &quot;assets&quot;}))
 
-&middot; Tagged in
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/php">php</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/environment-variables">environment variables</a></div>
-    
-    <div class="chip"><a href="http://www.edzynda.com/tags/twelve-factor-app">twelve factor app</a></div>
-    
+	log.Println(&quot;http server started on :8000&quot;)
+	err := http.ListenAndServe(&quot;:8000&quot;, nil)
+	if err != nil {
+		log.Fatal(&quot;ListenAndServe: &quot;, err)
+	}
+}
+</code></pre>
 
+<p>The <code>go-bindata-assetfs</code> package includes a <code>Struct</code> type called <code>AssetFS</code> that implements the <code>http.Filesystem</code> interface which looks like this.</p>
 
+<pre><code>type FileSystem interface {
+        Open(name string) (File, error)
+}
+</code></pre>
 
-    <p class="flow-text">Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &lsquo;app/config&rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.&hellip;</p>
-    <a href="http://www.edzynda.com/simplify-php-configs-with-environment-variables/" title="Simplify PHP Configs With Environment Variables">Read more &raquo;</a>
-</div>
-            
-            <ul class="pagination">
-    
-    <li class="disabled"><a href="i#!"><i class="material-icons">chevron_left</i></a></li>
-    
-    
-    
-      
-        <li class="active">
-      
-        <a href="/">1</a>
-      </li>
-    
-      
-        <li class="waves-effect">
-      
-        <a href="/page/2/">2</a>
-      </li>
-    
-      
-        <li class="waves-effect">
-      
-        <a href="/page/3/">3</a>
-      </li>
-    
-      
-        <li class="waves-effect">
-      
-        <a href="/page/4/">4</a>
-      </li>
-    
-      
-        <li class="waves-effect">
-      
-        <a href="/page/5/">5</a>
-      </li>
-    
-      
-        <li class="waves-effect">
-      
-        <a href="/page/6/">6</a>
-      </li>
-    
-      
-        <li class="waves-effect">
-      
-        <a href="/page/7/">7</a>
-      </li>
-    
-    
-    <li class="waves-effect"><a href="/page/2/"><i class="material-icons">chevron_right</i></a></li>
-    
+<p>To initialize a new <code>AssetFS</code> we need to pass a few of the helper functions generated by <code>go-bindata</code>. The final property is <code>Prefix</code> which sets the root of the <code>FileServer</code> as whatever we specify.</p>
+
+<p>In this example we are now serving files at <code>/</code> and any files that were in <code>assets/</code> are now accessible from that path. It would be simple to place an <code>index.html</code> file to use as an entrypoint for a single page application.</p>
+
+<p>Now we no longer have to distribute our assets along with the final executable. This makes our deployments just a little bit easier and more managable.</p>
+            </div>
+            <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.edzynda.com%2fsingle-executable-web-apps-with-go-binary-assets%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Single%20Executable%20Web%20Apps%20With%20Go%20Binary%20Assets&amp;url=http%3a%2f%2fwww.edzynda.com%2fsingle-executable-web-apps-with-go-binary-assets%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fwww.edzynda.com%2fsingle-executable-web-apps-with-go-binary-assets%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fwww.edzynda.com%2fsingle-executable-web-apps-with-go-binary-assets%2f&title=Single%20Executable%20Web%20Apps%20With%20Go%20Binary%20Assets" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
 </ul>
 
+            <h3>Comments</h3>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'edzynda';
+    var disqus_identifier = 'http:\/\/www.edzynda.com\/single-executable-web-apps-with-go-binary-assets\/';
+    var disqus_title = 'Single Executable Web Apps With Go Binary Assets';
+    var disqus_url = 'http:\/\/www.edzynda.com\/single-executable-web-apps-with-go-binary-assets\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         </div>
         <div class="col s12 m3">
   <div class="row center">
@@ -321,7 +264,6 @@ Posted on
 
     </div>
 </div>
-
 <footer class="page-footer red accent-3">
     <div class="container">
       <div class="row">
