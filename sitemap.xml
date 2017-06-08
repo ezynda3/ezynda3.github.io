@@ -181,7 +181,7 @@
   </url>
   
   <url>
-    <loc>http://www.edzynda.com/tags/5/index.4/</loc>
+    <loc>http://www.edzynda.com/tags/5.4/</loc>
     <lastmod>2013-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -284,6 +284,7 @@
   
   <url>
     <loc>http://www.edzynda.com/categories/</loc>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -781,6 +782,7 @@
   
   <url>
     <loc>http://www.edzynda.com/tags/</loc>
+    <lastmod>2013-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

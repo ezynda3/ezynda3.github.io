@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vps on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/tags/vps/index.xml</link>
+    <link>http://www.edzynda.com/tags/vps/</link>
     <description>Recent content in Vps on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://www.edzynda.com/tags/vps/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Aug 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.edzynda.com/tags/vps/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>3 Reasons To Use Nginx Instead Of Apache</title>
@@ -15,36 +18,8 @@
       <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</guid>
-      <description>&lt;p&gt;If you&amp;#8217;ve been working with the web for the past decade, you&amp;#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&amp;#8217;s free, functional and very modular. I&amp;#8217;ve been using Apache for years as it&amp;#8217;s the default on many hosting solutions.&lt;/p&gt;
-
-&lt;p&gt;As great as Apache is, it&amp;#8217;s not a one size fits all solution. In fact it may even be overkill for some projects. About six months ago, I traded in my old hosting provider for a Virtual Private Server (VPS) at&lt;a title=&#34;Xen VPS Hosting&#34; href=&#34;http://www.linode.com/?r=e023858b4fde04bffe508bb43c30bad4ee47a9f0&#34; target=&#34;_blank&#34;&gt; Linode&lt;/a&gt;. Around the same time, I started reading about a new web server called &lt;a title=&#34;Nginx&#34; href=&#34;http://nginx.org/&#34; target=&#34;_blank&#34;&gt;Nginx&lt;/a&gt;. While not the most popular sever, it was gaining in popularity. At first I wasn&amp;#8217;t sure about switching but after some research, I decided to take the plunge. Here are 3 reasons you should consider trying out Nginx for yourself.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;1. It&amp;#8217;s Lightweight&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;If you&amp;#8217;ve ever worked with Apache&amp;#8217;s configuration files you&amp;#8217;re familiar with how long and cluttered they are. Apache has a lot of features and options. You really don&amp;#8217;t need all of those features for most projects though.&lt;/p&gt;
-
-&lt;p&gt;Nginx is very simple in that it just serves static web pages while adding support for essential things like virtual hosts and URL rewrites. There are no modules for PHP or JSP. Instead those requests are passed efficiently to third party processors. This leaves Nginx&amp;#8217;s memory footprint small.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;2. It Serves Static Files FAST&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Like I mentioned before, Nginx really only serves static web pages. Being less memory and CPU hungry than Apache, it serves them up much faster.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;3. Proxying Makes It Scalable&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Most projects aren&amp;#8217;t full of static content but rather dynamic. If you want to incorporate Python or Ruby on Rails into your project, it&amp;#8217;s as simple as adding a proxy directive to your configuration.&lt;/p&gt;
-
-&lt;p&gt;Start a Python or Rails server on a particular port like 8000 and add something like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;location /railsapp {  
-    proxy_pass http://127.0.0.1:8000;  
-    proxy_redirect off;  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The Python or Rails server can do all the heavy lifting when it needs to and Nginx can do what it does best.&lt;/p&gt;
-
-&lt;p&gt;Apache is great for a lot of things and I&amp;#8217;m not saying it&amp;#8217;s no longer needed but if your project doesn&amp;#8217;t require everything under the sun, you might want to consider giving Nginx a try.&lt;/p&gt;
-</description>
+      <description>If you&amp;#8217;ve been working with the web for the past decade, you&amp;#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&amp;#8217;s free, functional and very modular. I&amp;#8217;ve been using Apache for years as it&amp;#8217;s the default on many hosting solutions.
+As great as Apache is, it&amp;#8217;s not a one size fits all solution. In fact it may even be overkill for some projects.</description>
     </item>
     
   </channel>

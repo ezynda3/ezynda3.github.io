@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pecl on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/tags/pecl/index.xml</link>
+    <link>http://www.edzynda.com/tags/pecl/</link>
     <description>Recent content in Pecl on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://www.edzynda.com/tags/pecl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Jun 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.edzynda.com/tags/pecl/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Aspect Oriented PHP And The Interceptor Pattern</title>
@@ -15,205 +18,8 @@
       <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
-      <description>
-
-&lt;p&gt;There are many ways to modify the behavior of existing code with actually changing the core logic. Some patterns you might be familiar with are the decorator pattern or the observer pattern. Both allow you to take another object and modify the behavior by wrapping your modifcations around the original code. One pattern you might not be familiar with though, is the interceptor pattern.&lt;/p&gt;
-
-&lt;p&gt;The interceptor pattern is a core concept of what is called aspect oriented programming (AOP). AOP aims to improve the modularity of your code by allowing you to separate cross-cutting concerns from the rest of your code.&lt;/p&gt;
-
-&lt;p&gt;An example of a cross-cutting concern is logging. You may want to log when a particular part of your application completes an action but where should the actual logging code go? This can get hairy if you aren&amp;rsquo;t careful. Something like a logger doesn&amp;rsquo;t really fit well into object oriented programing and may lead to code-duplication or scattering. AOP allows you keep your logging code separate from everything else. You can then attach your logger to other parts of the application by using interceptors.&lt;/p&gt;
-
-&lt;p&gt;PHP doesn&amp;rsquo;t come with a built in way for using AOP but luckily there is a very promising PECL extension that provides just that.&lt;/p&gt;
-
-&lt;h3 id=&#34;installation&#34;&gt;Installation&lt;/h3&gt;
-
-&lt;p&gt;You can find the project, which is currently in beta, on &lt;a href=&#34;https://github.com/AOP-PHP/AOP&#34;&gt;GitHub&lt;/a&gt;. You should be able to install on your favorite Linux distro by runnning:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;pecl install aop-beta
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you had issues like I did, try cloning the repo and following the install instructions in the README.&lt;/p&gt;
-
-&lt;h3 id=&#34;using-interceptors&#34;&gt;Using Interceptors&lt;/h3&gt;
-
-&lt;p&gt;An interceptor allows you to modify the behavior of a method by literally intercepting the call before, after or both (around). To do this you specify when you want to intercept the method. This is called the &lt;strong&gt;join-point&lt;/strong&gt;. Next you specify the method or methods you want to intercept. This is called the &lt;strong&gt;pointcut&lt;/strong&gt;. Finally you specify the function you want to use as your interceptor. This is known as an &lt;strong&gt;advice&lt;/strong&gt;. The combination of a pointcut and an advice is known as an &lt;strong&gt;aspect&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;The AOP PHP extension provides some handy functions for creating your own interceptors. Let&amp;rsquo;s take a look at a few of them.&lt;/p&gt;
-
-&lt;p&gt;####aop_add_before
-This function will create an interceptor that executes, as the name implies, before the method you want to intercept. Check out the following example.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-
-class Admin {
-    public function showDashboard()
-    {
-        echo &#39;Welcome to the admin panel.&#39;;
-    }
-}
-
-function restrictAccessAdvice()
-{
-    if ($_SESSION[&#39;user_type&#39;] !== &#39;admin&#39;) {
-        throw new Exception(&#39;Access denied!&#39;);
-    }
-}
-
-aop_add_before(&#39;Admin-&amp;gt;showDashboard()&#39;, &#39;restrictAccessAdvice&#39;);
-
-$_SESSION[&#39;user_type&#39;] = &#39;user&#39;;
-$admin = new Admin();
-
-try {
-    $admin-&amp;gt;showDashboard();
-} catch (Exception $e) {
-    echo $e-&amp;gt;getMessage();
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In that example we have a really lame class for showing an admin dashboard. We can easily add a layer of security by intercepting method calls related to admin. As you probably can tell, the output from the above code would be this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Access denied!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can match a bunch of methods in the same class by doing something like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-aop_add_before(&#39;Admin-&amp;gt;*()&#39;, &#39;restrictAccessAdvice&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;####aop_add_after
-This function of course creates an interceptor that executes after the specified method.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-
-class Service
-{
-    public function doSomething()
-    {
-        echo &#39;Doing something important!&#39; . PHP_EOL;
-    }
-}
-
-$loggingAdvice = function() {
-    echo &#39;Logging something important!&#39; . PHP_EOL;
-};
-
-aop_add_after(&#39;Service-&amp;gt;doSomething()&#39;, $loggingAdvice);
-
-$service = new Service();
-$service-&amp;gt;doSomething();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here&amp;rsquo;s the output from the that example.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Doing something important!
-Logging something important!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;####aop_add_around
-This function combines both before and after but the signature is a little different. The advice you specify should take an argurment. The argument passed in is an object representing the join-point. Check out the example below.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-
-class MeatFactory
-{
-    public function produceHam()
-    {
-        echo &amp;quot;Here is some ham.&amp;quot; . PHP_EOL;
-    }
-}
-
-$sandwichAdvice = function(AopJoinPoint $joinPoint)
-{
-    // before
-    echo &amp;quot;Here is some bread.&amp;quot; . PHP_EOL;
-
-    // execute
-    $joinPoint-&amp;gt;process();
-
-    // after
-    echo &amp;quot;Here is some more bread.&amp;quot; . PHP_EOL;
-};
-
-aop_add_around(&#39;MeatFactory-&amp;gt;produce*()&#39;, $sandwichAdvice);
-
-$factory = new MeatFactory();
-$factory-&amp;gt;produceHam();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Not that we had to explicitly invoke the &amp;lsquo;process()&amp;rsquo; method in order to get any result from the intercepted method. If we wanted to, we could supress the behavior of the intercepted method simply by not calling &amp;lsquo;process()&amp;rsquo;.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s the output.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Here is some bread.
-Here is some ham.
-Here is some more bread.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;####Modifying Arguments
-By passing the AopJoinPoint object to your advice, you can grab all kinds of information about the method being intercepted. You can even modify the arguments passed to the method.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-
-class Greeter
-{
-    public function sayHello($name)
-    {
-        echo &amp;quot;Hello {$name}!&amp;quot;;
-    }
-}
-
-function ucAdvice(AopJoinPoint $joinPoint)
-{
-    $args = $joinPoint-&amp;gt;getArguments();
-    $args[0] = ucwords($args[0]);
-    $joinPoint-&amp;gt;setArguments($args);
-}
-
-aop_add_before(&#39;Greeter-&amp;gt;sayHello()&#39;, &#39;ucAdvice&#39;);
-
-$greeter = new Greeter();
-$greeter-&amp;gt;sayHello(&#39;dave&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Intercepting the method before it runs we can use the &amp;lsquo;getArguments()&amp;rsquo; method to grab the original arguments, modify them and then re-pass them for execution using the &amp;lsquo;setArguments()&amp;rsquo; method.&lt;/p&gt;
-
-&lt;p&gt;Here is the output.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;Hello Dave!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;modifying-return-variables&#34;&gt;Modifying Return Variables&lt;/h4&gt;
-
-&lt;p&gt;Modifying return variables is somewhat the same as modifying arguments but you can only do this if you are intercepting after or around a method.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-
-class Calc
-{
-    public function sum($a, $b)
-    {
-        return $a + $b;
-    }
-}
-
-function squareAdvice(AopJoinPoint $joinPoint)
-{
-    $value = $joinPoint-&amp;gt;getReturnedValue();
-    $joinPoint-&amp;gt;setReturnedValue($value * $value);
-}
-
-aop_add_after(&#39;Calc-&amp;gt;sum()&#39;, &#39;squareAdvice&#39;);
-
-$calc = new Calc();
-echo $calc-&amp;gt;sum(1, 2);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Just like when we grabbed the arguments we can grab the original return value using &amp;lsquo;getReturnedValue()&amp;rsquo;. The result of this example would, of course, be 9.&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s just a handful of things you can do with the AOP extension. Checkout the &lt;a href=&#34;http://www.croes.org/gerald/projects/aop/documentation_aop_extension_php.pdf&#34;&gt;documentation&lt;/a&gt; to learn how to do other things like intercept read/write actions on specific class properties.&lt;/p&gt;
-</description>
+      <description>There are many ways to modify the behavior of existing code with actually changing the core logic. Some patterns you might be familiar with are the decorator pattern or the observer pattern. Both allow you to take another object and modify the behavior by wrapping your modifcations around the original code. One pattern you might not be familiar with though, is the interceptor pattern.
+The interceptor pattern is a core concept of what is called aspect oriented programming (AOP).</description>
     </item>
     
   </channel>

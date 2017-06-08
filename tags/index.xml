@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://www.edzynda.com/tags/</link>
+    <description>Recent content in Tags on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2016 Ed Zynda.</copyright>
+    <lastBuildDate>Mon, 11 Nov 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.edzynda.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>5.4</title>
+      <link>http://www.edzynda.com/tags/5.4/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/5.4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ajax</title>
+      <link>http://www.edzynda.com/tags/ajax/</link>
+      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/ajax/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Aop</title>
+      <link>http://www.edzynda.com/tags/aop/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/aop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Apache</title>
+      <link>http://www.edzynda.com/tags/apache/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/apache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Api</title>
+      <link>http://www.edzynda.com/tags/api/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Aspect Oriented Programming</title>
+      <link>http://www.edzynda.com/tags/aspect-oriented-programming/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/aspect-oriented-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Assets</title>
+      <link>http://www.edzynda.com/tags/assets/</link>
+      <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/assets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Beanstalkd</title>
+      <link>http://www.edzynda.com/tags/beanstalkd/</link>
+      <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/beanstalkd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bind</title>
+      <link>http://www.edzynda.com/tags/bind/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/bind/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Binding</title>
+      <link>http://www.edzynda.com/tags/binding/</link>
+      <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/binding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blade</title>
+      <link>http://www.edzynda.com/tags/blade/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/blade/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blowfish</title>
+      <link>http://www.edzynda.com/tags/blowfish/</link>
+      <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/blowfish/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Book</title>
+      <link>http://www.edzynda.com/tags/book/</link>
+      <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/book/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bootstrap</title>
+      <link>http://www.edzynda.com/tags/bootstrap/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/bootstrap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Callback</title>
+      <link>http://www.edzynda.com/tags/callback/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/callback/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ci</title>
+      <link>http://www.edzynda.com/tags/ci/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cli</title>
+      <link>http://www.edzynda.com/tags/cli/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/cli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Codebird Php</title>
+      <link>http://www.edzynda.com/tags/codebird-php/</link>
+      <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/codebird-php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Composer</title>
+      <link>http://www.edzynda.com/tags/composer/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/composer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Containers</title>
+      <link>http://www.edzynda.com/tags/containers/</link>
+      <pubDate>Tue, 27 Dec 2016 09:18:06 -0800</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/containers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Continuous Delivery</title>
+      <link>http://www.edzynda.com/tags/continuous-delivery/</link>
+      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/continuous-delivery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Css</title>
+      <link>http://www.edzynda.com/tags/css/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>http://www.edzynda.com/tags/database/</link>
+      <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deferred</title>
+      <link>http://www.edzynda.com/tags/deferred/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/deferred/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dependency Injection</title>
+      <link>http://www.edzynda.com/tags/dependency-injection/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/dependency-injection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://www.edzynda.com/tags/docker/</link>
+      <pubDate>Tue, 27 Dec 2016 09:18:06 -0800</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Eloquent</title>
+      <link>http://www.edzynda.com/tags/eloquent/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/eloquent/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Encryption</title>
+      <link>http://www.edzynda.com/tags/encryption/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/encryption/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Environment</title>
+      <link>http://www.edzynda.com/tags/environment/</link>
+      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/environment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Environment Variables</title>
+      <link>http://www.edzynda.com/tags/environment-variables/</link>
+      <pubDate>Wed, 13 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/environment-variables/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Extensions</title>
+      <link>http://www.edzynda.com/tags/extensions/</link>
+      <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/extensions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Faker</title>
+      <link>http://www.edzynda.com/tags/faker/</link>
+      <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/faker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Feature Toggle</title>
+      <link>http://www.edzynda.com/tags/feature-toggle/</link>
+      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/feature-toggle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fig</title>
+      <link>http://www.edzynda.com/tags/fig/</link>
+      <pubDate>Fri, 08 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/fig/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Filters</title>
+      <link>http://www.edzynda.com/tags/filters/</link>
+      <pubDate>Mon, 04 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/filters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Font Awesome</title>
+      <link>http://www.edzynda.com/tags/font-awesome/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/font-awesome/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Framework</title>
+      <link>http://www.edzynda.com/tags/framework/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/framework/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gd</title>
+      <link>http://www.edzynda.com/tags/gd/</link>
+      <pubDate>Fri, 27 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/gd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>http://www.edzynda.com/tags/golang/</link>
+      <pubDate>Thu, 05 Jan 2017 07:52:54 -0800</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hooks</title>
+      <link>http://www.edzynda.com/tags/hooks/</link>
+      <pubDate>Mon, 04 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/hooks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Html5</title>
+      <link>http://www.edzynda.com/tags/html5/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/html5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Image Manipulation</title>
+      <link>http://www.edzynda.com/tags/image-manipulation/</link>
+      <pubDate>Fri, 27 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/image-manipulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interceptors</title>
+      <link>http://www.edzynda.com/tags/interceptors/</link>
+      <pubDate>Tue, 09 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/interceptors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interface</title>
+      <link>http://www.edzynda.com/tags/interface/</link>
+      <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/interface/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interoperability</title>
+      <link>http://www.edzynda.com/tags/interoperability/</link>
+      <pubDate>Fri, 08 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/interoperability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ioc</title>
+      <link>http://www.edzynda.com/tags/ioc/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/ioc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>http://www.edzynda.com/tags/javascript/</link>
+      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jenkins</title>
+      <link>http://www.edzynda.com/tags/jenkins/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jquery</title>
+      <link>http://www.edzynda.com/tags/jquery/</link>
+      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/jquery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Laravel</title>
+      <link>http://www.edzynda.com/tags/laravel/</link>
+      <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/laravel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Leanpub</title>
+      <link>http://www.edzynda.com/tags/leanpub/</link>
+      <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/leanpub/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Less</title>
+      <link>http://www.edzynda.com/tags/less/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/less/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Library</title>
+      <link>http://www.edzynda.com/tags/library/</link>
+      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/library/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linode</title>
+      <link>http://www.edzynda.com/tags/linode/</link>
+      <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/linode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Magento</title>
+      <link>http://www.edzynda.com/tags/magento/</link>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/magento/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Marvel</title>
+      <link>http://www.edzynda.com/tags/marvel/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/marvel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mcrypt</title>
+      <link>http://www.edzynda.com/tags/mcrypt/</link>
+      <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/mcrypt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microframework</title>
+      <link>http://www.edzynda.com/tags/microframework/</link>
+      <pubDate>Wed, 13 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/microframework/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mocking</title>
+      <link>http://www.edzynda.com/tags/mocking/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/mocking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Models</title>
+      <link>http://www.edzynda.com/tags/models/</link>
+      <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/models/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>http://www.edzynda.com/tags/nginx/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nsa</title>
+      <link>http://www.edzynda.com/tags/nsa/</link>
+      <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/nsa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oop Php</title>
+      <link>http://www.edzynda.com/tags/oop-php/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/oop-php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Orm</title>
+      <link>http://www.edzynda.com/tags/orm/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/orm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Packagist</title>
+      <link>http://www.edzynda.com/tags/packagist/</link>
+      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/packagist/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pecl</title>
+      <link>http://www.edzynda.com/tags/pecl/</link>
+      <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/pecl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pheanstalk</title>
+      <link>http://www.edzynda.com/tags/pheanstalk/</link>
+      <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/pheanstalk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Php</title>
+      <link>http://www.edzynda.com/tags/php/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Phpspec</title>
+      <link>http://www.edzynda.com/tags/phpspec/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/phpspec/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Promises</title>
+      <link>http://www.edzynda.com/tags/promises/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/promises/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Psr</title>
+      <link>http://www.edzynda.com/tags/psr/</link>
+      <pubDate>Fri, 08 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/psr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>http://www.edzynda.com/tags/python/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Queues</title>
+      <link>http://www.edzynda.com/tags/queues/</link>
+      <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/queues/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Renaissance</title>
+      <link>http://www.edzynda.com/tags/renaissance/</link>
+      <pubDate>Fri, 08 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/renaissance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Repository</title>
+      <link>http://www.edzynda.com/tags/repository/</link>
+      <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/repository/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Robo</title>
+      <link>http://www.edzynda.com/tags/robo/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/robo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Routes</title>
+      <link>http://www.edzynda.com/tags/routes/</link>
+      <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/routes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ruby</title>
+      <link>http://www.edzynda.com/tags/ruby/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/ruby/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Seeder</title>
+      <link>http://www.edzynda.com/tags/seeder/</link>
+      <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/seeder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Self Destruct</title>
+      <link>http://www.edzynda.com/tags/self-destruct/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/self-destruct/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Server</title>
+      <link>http://www.edzynda.com/tags/server/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Silex</title>
+      <link>http://www.edzynda.com/tags/silex/</link>
+      <pubDate>Wed, 13 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/silex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Standards</title>
+      <link>http://www.edzynda.com/tags/standards/</link>
+      <pubDate>Fri, 08 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/standards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Symfony</title>
+      <link>http://www.edzynda.com/tags/symfony/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/symfony/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tdd</title>
+      <link>http://www.edzynda.com/tags/tdd/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/tdd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>http://www.edzynda.com/tags/testing/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Twelve Factor App</title>
+      <link>http://www.edzynda.com/tags/twelve-factor-app/</link>
+      <pubDate>Wed, 13 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/twelve-factor-app/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Twitter</title>
+      <link>http://www.edzynda.com/tags/twitter/</link>
+      <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/twitter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vagrant</title>
+      <link>http://www.edzynda.com/tags/vagrant/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/vagrant/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtual Machine</title>
+      <link>http://www.edzynda.com/tags/virtual-machine/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/virtual-machine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtualbox</title>
+      <link>http://www.edzynda.com/tags/virtualbox/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/virtualbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vps</title>
+      <link>http://www.edzynda.com/tags/vps/</link>
+      <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/vps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Apps</title>
+      <link>http://www.edzynda.com/tags/web-apps/</link>
+      <pubDate>Thu, 05 Jan 2017 07:52:54 -0800</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/web-apps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Server</title>
+      <link>http://www.edzynda.com/tags/web-server/</link>
+      <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/web-server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Websockets</title>
+      <link>http://www.edzynda.com/tags/websockets/</link>
+      <pubDate>Tue, 27 Dec 2016 09:18:06 -0800</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/websockets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wordpress</title>
+      <link>http://www.edzynda.com/tags/wordpress/</link>
+      <pubDate>Mon, 04 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/wordpress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wysihtml5</title>
+      <link>http://www.edzynda.com/tags/wysihtml5/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/wysihtml5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wysiwyg</title>
+      <link>http://www.edzynda.com/tags/wysiwyg/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/wysiwyg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xss</title>
+      <link>http://www.edzynda.com/tags/xss/</link>
+      <pubDate>Mon, 29 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tags/xss/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
