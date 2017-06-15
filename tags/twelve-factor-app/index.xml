@@ -2,15 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Twelve Factor App on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/tags/twelve-factor-app/</link>
+    <link>http://www.edzynda.com/tags/twelve-factor-app/index.xml</link>
     <description>Recent content in Twelve Factor App on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <lastBuildDate>Wed, 13 Apr 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://www.edzynda.com/tags/twelve-factor-app/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://www.edzynda.com/tags/twelve-factor-app/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Simplify PHP Configs With Environment Variables</title>
@@ -18,7 +15,86 @@
       <pubDate>Wed, 13 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/simplify-php-configs-with-environment-variables/</guid>
-      <description>Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &amp;lsquo;app/config&amp;rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.</description>
+      <description>&lt;p&gt;Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &amp;lsquo;app/config&amp;rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.&lt;/p&gt;
+
+&lt;p&gt;In Laravel 5 and above you just create a file name &amp;lsquo;.env&amp;rsquo; and place your configuration in environment variables. The file would look something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;DB_NAME=mydatabse
+FOOBAR=baz
+SOME_API_KEY=1234abcef
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You would create this file and make sure to add &amp;lsquo;.env&amp;rsquo; to &amp;lsquo;.gitignore&amp;rsquo; in order to keep sensitive data out of your code repository. When you deploy to your different environments you can then just include a &amp;lsquo;.env&amp;rsquo; file that&amp;rsquo;s appropriate for the environment.&lt;/p&gt;
+
+&lt;p&gt;Laravel 4.2 and below doesn&amp;rsquo;t have this but fortunately, with a little bit of tweaking you can add it.&lt;/p&gt;
+
+&lt;p&gt;First we need to include a helpful package that reads &amp;lsquo;.env&amp;rsquo; files and then loads them for PHP to access.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;composer require vlucas/phpdotenv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you&amp;rsquo;re using Laravel 4.2 you next need to edit &amp;lsquo;bootstrap/start.php&amp;rsquo;. If you&amp;rsquo;re using another framework or none at all you just need to add the following code to wherever you bootstrap your application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+if (is_file(__DIR__ . &#39;/../.env&#39;)) {
+	Dotenv::load(__DIR__ . &#39;/../&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will check to see that the file exists and if so, load the data into PHP&amp;rsquo;s $_ENV superglobal array.&lt;/p&gt;
+
+&lt;p&gt;Next we&amp;rsquo;ll need a helper function to grab environment variables or use an acceptable default. If you&amp;rsquo;re using Laravel, place this in &amp;lsquo;app/helpers.php&amp;rsquo; if not you can place it wherever you keep helper functions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+if ( ! function_exists(&#39;env&#39;))
+{
+    /**
+     * Gets the value of an environment variable. Supports boolean, empty and null.
+     *
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function env($key, $default = null)
+    {
+        $value = getenv($key);
+
+        if ($value === false) return value($default);
+
+        switch (strtolower($value))
+        {
+            case &#39;true&#39;:
+            case &#39;(true)&#39;:
+                return true;
+
+            case &#39;false&#39;:
+            case &#39;(false)&#39;:
+                return false;
+
+            case &#39;null&#39;:
+            case &#39;(null)&#39;:
+                return null;
+
+            case &#39;empty&#39;:
+            case &#39;(empty)&#39;:
+                return &#39;&#39;;
+        }
+
+        return $value;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you should be able to use .env files an consolidate your configuration data. For example if you need a config file like &amp;lsquo;app/config/sendgrid.php&amp;rsquo; to handle sending mail with SendGrid you can make it look something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+return [
+    &#39;api_key&#39; =&amp;gt; env(&#39;SENDGRID_API_KEY&#39;)
+];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will greatly simplify your deployments and help avoid configuration comlexity in your older Laravel or other non-Laravel applications.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

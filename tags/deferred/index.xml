@@ -2,15 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Deferred on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/tags/deferred/</link>
+    <link>http://www.edzynda.com/tags/deferred/index.xml</link>
     <description>Recent content in Deferred on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <lastBuildDate>Wed, 27 Nov 2013 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://www.edzynda.com/tags/deferred/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://www.edzynda.com/tags/deferred/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Javascript Promises Explained</title>
@@ -18,8 +15,70 @@
       <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/javascript-promises-explained/</guid>
-      <description>While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called &amp;lsquo;promises&amp;rsquo;. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn&amp;rsquo;t really as difficult as I thought.
-Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns.</description>
+      <description>&lt;p&gt;While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called &amp;lsquo;promises&amp;rsquo;. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn&amp;rsquo;t really as difficult as I thought.&lt;/p&gt;
+
+&lt;p&gt;Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns. You can pass a function name as the parameter like in this jquery example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$( &amp;quot;#target&amp;quot; ).submit(myCallback);
+
+myCallback = function ( event ) {  
+    alert( &amp;quot;Handler for .submit() called.&amp;quot; );  
+    event.preventDefault();  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or you can use an anonymous function.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$( &amp;quot;#target&amp;quot; ).submit(function( event ) {  
+    alert( &amp;quot;Handler for .submit() called.&amp;quot; );  
+    event.preventDefault();  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is all fine and dandy. A problem arises though when you start using various functions or features in Javascript that run asynchronously. That means they don&amp;rsquo;t run in sequence but run concurrently with other functions. Take this small example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;setTimeout(function() {  
+    // do some stuff  
+    var myVar = &#39;Some value&#39;;  
+}, 2000);
+
+console.log(myVar);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What happens when you run it? Well the setTimeout function takes a function as the first argument and a time in milliseconds as the second. The function passed as the first argument will then execute in the time you passed in the second. setTimeout itself is executed immediately though and then console.log right after that. Because of this myVar doesn&amp;rsquo;t actually contain a value and you get an error. Two seconds later myVar is assigned &amp;lsquo;Some value&amp;rsquo; but then it&amp;rsquo;s too late. How do we access myVar only once our function has run? Well you can do this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;setTimeout(function() {  
+    // do some stuff  
+    var myVar = &#39;Some value&#39;;  
+    console.log(myVar);  
+}, 2000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By placing console.log inside our anonymous function we tell it only to execute when our function executes. Great! But this presents a problem. If you are writing a large application, it&amp;rsquo;s possible you are going to have more than one function called within a function. You might even have multiple callbacks with even more nested functions. This can get messy. To solve this problem, members of the Javascript community came up with the idea of &lt;a href=&#34;http://wiki.commonjs.org/wiki/Promises/A&#34; title=&#34;Promises/A Specification&#34; target=&#34;_blank&#34;&gt;promises&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Promises are a specification only and it is left up to developers to implement it. JQuery has it&amp;rsquo;s own implementation of promises. A promise is just an object. This object is returned by a function instead of an actual value. It&amp;rsquo;s basically an IOU for any other part of your script saying it will give you an actual value when it&amp;rsquo;s done doing what it&amp;rsquo;s doing.&lt;/p&gt;
+
+&lt;p&gt;JQuery uses what it calls a &amp;lsquo;deferred&amp;rsquo; object. A deferred has a resolve message that is run once your promise is fulfilled. It also has a reject method that is run if an error or something occurs. Take a look at this example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var myFunc = function() {  
+    var deferred = new $.Deferred();  
+    setTimeout(function() {  
+        // do some stuff  
+        var myVar = &#39;Some value&#39;;  
+        deferred.resolve();  
+    }, 2000);  
+    return deferred.promise();  
+};
+
+myFunc().done(function() {  
+    console.log(&#39;Finished: &#39; + myVar);  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ve wrapped everything in a function called myFunc and created a new Deferred object. Our return value is a promise which belongs to Deferred. Now we can take that returned promise and use a method called &amp;lsquo;done&amp;rsquo;. &amp;lsquo;done&amp;rsquo; is only executed when the Deferred object is resolved or when the &amp;lsquo;resolve&amp;rsquo; method is called. There are two more methods called &amp;lsquo;fail&amp;rsquo; and &amp;lsquo;always&amp;rsquo;. Fail is executed when the &amp;lsquo;reject&amp;rsquo; method is called. You can probably guess when the &amp;lsquo;always&amp;rsquo; method is executed. There is a fourth method called &amp;lsquo;then&amp;rsquo; which takes three functions as arguments. These functions would be the same that you would use for &amp;lsquo;done&amp;rsquo;, &amp;lsquo;fail&amp;rsquo; and &amp;lsquo;always&amp;rsquo; in that order.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s only the basics of what you can do with promises but even that is pretty powerful.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
