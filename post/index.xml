@@ -7,8 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <lastBuildDate>Thu, 15 Jun 2017 19:06:10 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 16 Jun 2017 18:57:30 -0700</lastBuildDate>
     <atom:link href="http://www.edzynda.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ethereum Smart Contracts In Solidity Part 2</title>
+      <link>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-2/</link>
+      <pubDate>Fri, 16 Jun 2017 18:57:30 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-2/</guid>
+      <description>&lt;p&gt;In this video I go over how you can accept funds through your contract using &amp;ldquo;payable&amp;rdquo; functions. I also cover how to destroy a contract and transfer its balance once it is no longer useful to exist on the blockchain.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/js319cgJvrQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Ethereum Smart Contracts In Solidity Part 1</title>
@@ -1103,99 +1121,6 @@ vendor/bin/robo build
 &lt;p&gt;That&amp;rsquo;s it! The script will go ahead and create a reports directory for published reports. It will run our tests, check for syntax and even do a code standard check against PSR-2. If you want to try it for yourself, you can grab this sample project I created &lt;a href=&#34;https://github.com/ezynda3/string-calculator&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;You can also check out Robo&amp;rsquo;s excellent documentation &lt;a href=&#34;http://robo.li/started/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Continuous Integration With Jenkins Part I</title>
-      <link>http://www.edzynda.com/continuous-integration-with-jenkins-part-i/</link>
-      <pubDate>Mon, 09 Feb 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.edzynda.com/continuous-integration-with-jenkins-part-i/</guid>
-      <description>&lt;p&gt;Continuous integration or CI, is all the rage these days. If you&amp;rsquo;re not familiar with what CI is, it&amp;rsquo;s basically a methodology for rapidly developing, testing and deploying applications. Using a well configured CI setup or pipeline, a developer or team of developers can make a change to their codebase, test those changes to make sure they didn&amp;rsquo;t break those changes and then push that code live in a matter of minutes. They can do this all day long and rest assured that their changes are good to go on their production servers.&lt;/p&gt;
-
-&lt;p&gt;There are many ways to do this but one of the most popular tools used these days is Jenkins. Jenkins is a web application written in Java that helps to automate building, testing and even deploying your application. Jenkins, along with a a whole slew of plugins, can do most of the heavy lifting in your CI pipeline.&lt;/p&gt;
-
-&lt;p&gt;At first glance, Jenkins looks pretty complicated to setup but after playing around with it myself, I&amp;rsquo;ve found it&amp;rsquo;s pretty simple.&lt;/p&gt;
-
-&lt;p&gt;In this first part I&amp;rsquo;m going to go over how to get Jenkins setup to build a simple PHP app, run some tests and publish the results. Most other tutorials I&amp;rsquo;ve found include fancy build scripts for a powerful tool called Ant. Those can get pretty complicated so I won&amp;rsquo;t include anything like that in this part. We just want to get something running so you can see some results.&lt;/p&gt;
-
-&lt;p&gt;###Installation
-Installation is not in the scope of this article. Please refer to the documentation on the &lt;a href=&#34;http://jenkins-ci.org&#34;&gt;Jenkins&lt;/a&gt; website or Google for instructions on installing it on your OS of choice. It should be as simple as &amp;lsquo;yum install jenkins&amp;rsquo; or &amp;lsquo;apt-get install jenkins&amp;rsquo; depending on your setup.&lt;/p&gt;
-
-&lt;p&gt;###PHP
-As we will be working with a PHP application, our Jenkins server will need it&amp;rsquo;s own instance of PHP. For this example we need version 5.4 or higher. Install based on your OS.&lt;/p&gt;
-
-&lt;p&gt;###Git
-We will need Git installed in order to fetch source code to build and run our tests. Install based on your OS.&lt;/p&gt;
-
-&lt;p&gt;###Composer
-Part of the build process will include downloading dependencies using Composer. You can install it globally like so.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;php -r &amp;quot;readfile(&#39;https://getcomposer.org/installer&#39;);&amp;quot; | php
-sudo chmod +x ./composer.phar
-sudo cp ./composer.phar /usr/local/bin/composer
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;###Plugins
-Jenkins has a huge collection of useful plugins available. We&amp;rsquo;re going to need a few in order to run our build.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;HTML Publisher&lt;/li&gt;
-&lt;li&gt;Git&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can install these through the Jenkins dashboard but you can also install them through the command line like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://localhost:8080/jnlpJars/jenkins-cli.jar
-java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin htmlpublisher git
-java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;###The Build
-If you have Jenkins installed correctly you should be able to reach the dashboard by pointing your browser to the server it&amp;rsquo;s installed on using port 8080 (e.g. &lt;a href=&#34;http://myjenkins.com:8080&#34;&gt;http://myjenkins.com:8080&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;Once there you should see a screen like this.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on &amp;ldquo;Create new jobs&amp;rdquo;. We&amp;rsquo;re going to use an existing open source project called Flysystem for our build test so we&amp;rsquo;ll just call our build &amp;ldquo;Flysystem&amp;rdquo; and we&amp;rsquo;re going to create a &amp;ldquo;Freestyle&amp;rdquo; project. Click &amp;ldquo;Ok&amp;rdquo; to continue.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can give our project a description if we like.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now down in the &amp;ldquo;Source Code Management&amp;rdquo; section we&amp;rsquo;ll select &amp;ldquo;Git&amp;rdquo; and set the repository to &lt;a href=&#34;https://github.com/thephpleague/flysystem&#34;&gt;https://github.com/thephpleague/flysystem&lt;/a&gt;. You can safely leave everything else as default.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Under the &amp;ldquo;Build&amp;rdquo; section we set up the different steps for building and testing our applications. Click on &amp;ldquo;Add build step&amp;rdquo; and select &amp;ldquo;Execute shell&amp;rdquo;. This is a quick and dirty way to run various build commands without having to create a complex XML build script for use with Ant or Maven. Add the following commands in the textbox.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/usr/local/bin/composer install
-bin/phpspec run -f html &amp;gt; report.html
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The great thing about Jenkins is that with the right plugins you can create all kinds of useful reports for every build of your application. In our build step we&amp;rsquo;re running phpspec for tests and setting the output format as HTML and saving it to a file. Jenkins can take that HTML and publish it for viewing later.
-.
-Under &amp;ldquo;Post-build Actions&amp;rdquo; click on &amp;ldquo;Add post-build action&amp;rdquo; and select &amp;ldquo;Publish HTML Reports&amp;rdquo;. Fill out the textboxes like so.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Hit save and that&amp;rsquo;s it. On the left side menu click &amp;ldquo;Build Now&amp;rdquo;. You should a little blinking dot appear under &amp;ldquo;Build History&amp;rdquo;. Click on it and then click on &amp;ldquo;Console Output&amp;rdquo;. You should see a bunch of text scrolling past as the build runs. It should look something like this.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It might take a few minutes if this is the first time running the build as composer is downloading dependencies from scratch.&lt;/p&gt;
-
-&lt;p&gt;Now click &amp;ldquo;Back to Project&amp;rdquo; and then click &amp;ldquo;PHPSpec Report&amp;rdquo;. This is the nice HTML report we had published. This wil list out all the tests that were run. Tests that passed will be green while any that have failed will be red and usually give a stack trace with details on why it failed.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/jenkins-1-8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s basically all you need to get a simple build running on Jenkins. Of course there is a lot more you can do but that will be covered in a later post.&lt;/p&gt;
 </description>
     </item>
     
