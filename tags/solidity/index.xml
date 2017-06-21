@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Solidity on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://www.edzynda.com/tags/solidity/index.xml</link>
+    <description>Recent content in Solidity on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2016 Ed Zynda.</copyright>
+    <atom:link href="http://www.edzynda.com/tags/solidity/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ethereum Smart Contracts In Solidity Part 4</title>
+      <link>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-4/</link>
+      <pubDate>Tue, 20 Jun 2017 19:19:17 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-4/</guid>
+      <description>&lt;p&gt;In this video I show you how to make Ethereum contracts talk to other contracts.&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/8BlK80eQwMA&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Ethereum Smart Contracts In Solidity Part 3</title>
+      <link>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-3/</link>
+      <pubDate>Sun, 18 Jun 2017 16:10:59 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-3/</guid>
+      <description>&lt;p&gt;In this video I go over the concept of contract inheritance and how we can build upon an existing contract to create entirely new contracts. I also discuss abstract functions and interfaces.&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/kOBet0BPKzg&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Ethereum Smart Contracts In Solidity Part 2</title>
+      <link>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-2/</link>
+      <pubDate>Fri, 16 Jun 2017 18:57:30 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-2/</guid>
+      <description>&lt;p&gt;In this video I go over how you can accept funds through your contract using &amp;ldquo;payable&amp;rdquo; functions. I also cover how to destroy a contract and transfer its balance once it is no longer useful to exist on the blockchain.&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/js319cgJvrQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Ethereum Smart Contracts In Solidity Part 1</title>
+      <link>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-1/</link>
+      <pubDate>Thu, 15 Jun 2017 19:06:10 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-1/</guid>
+      <description>&lt;p&gt;In this tutorial, I show you the basics of Ethereum smart contracts and explain state variables, functions, modifiers and events.&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/xWKq86PWG0o&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
+    
+  </channel>
+</rss>

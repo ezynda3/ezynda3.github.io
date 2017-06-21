@@ -7,8 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <lastBuildDate>Sun, 18 Jun 2017 16:10:59 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 20 Jun 2017 19:26:44 -0700</lastBuildDate>
     <atom:link href="http://www.edzynda.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Getting Started With Vue Router</title>
+      <link>http://www.edzynda.com/getting-started-with-vue-router/</link>
+      <pubDate>Tue, 20 Jun 2017 19:26:44 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/getting-started-with-vue-router/</guid>
+      <description>&lt;p&gt;I wrote a nice little tutorial on getting started with Vue Router. Check it out over at &lt;a href=&#34;https://scotch.io/tutorials/getting-started-with-vue-router&#34;&gt;Scotch.io&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ethereum Smart Contracts In Solidity Part 4</title>
+      <link>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-4/</link>
+      <pubDate>Tue, 20 Jun 2017 19:19:17 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-4/</guid>
+      <description>&lt;p&gt;In this video I show you how to make Ethereum contracts talk to other contracts.&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/8BlK80eQwMA&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Ethereum Smart Contracts In Solidity Part 3</title>
@@ -17,8 +43,6 @@
       
       <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-3/</guid>
       <description>&lt;p&gt;In this video I go over the concept of contract inheritance and how we can build upon an existing contract to create entirely new contracts. I also discuss abstract functions and interfaces.&lt;/p&gt;
-
-&lt;!-- more --&gt;
 
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
@@ -36,8 +60,6 @@
       <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-2/</guid>
       <description>&lt;p&gt;In this video I go over how you can accept funds through your contract using &amp;ldquo;payable&amp;rdquo; functions. I also cover how to destroy a contract and transfer its balance once it is no longer useful to exist on the blockchain.&lt;/p&gt;
 
-&lt;!-- more --&gt;
-
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
   &lt;iframe src=&#34;//www.youtube.com/embed/js319cgJvrQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
@@ -53,8 +75,6 @@
       
       <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-1/</guid>
       <description>&lt;p&gt;In this tutorial, I show you the basics of Ethereum smart contracts and explain state variables, functions, modifiers and events.&lt;/p&gt;
-
-&lt;!-- more --&gt;
 
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
@@ -915,115 +935,6 @@ echo $calc-&amp;gt;sum(1, 2);
 &lt;p&gt;Just like when we grabbed the arguments we can grab the original return value using &amp;lsquo;getReturnedValue()&amp;rsquo;. The result of this example would, of course, be 9.&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s just a handful of things you can do with the AOP extension. Checkout the &lt;a href=&#34;http://www.croes.org/gerald/projects/aop/documentation_aop_extension_php.pdf&#34;&gt;documentation&lt;/a&gt; to learn how to do other things like intercept read/write actions on specific class properties.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Simple Environment Variable Based Feature Toggles</title>
-      <link>http://www.edzynda.com/simple-environment-variable-based-feature-toggles/</link>
-      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.edzynda.com/simple-environment-variable-based-feature-toggles/</guid>
-      <description>
-
-&lt;p&gt;There&amp;rsquo;s a lot of talk about continuous delivery in software development these days. One core concept of continuous delivery is &amp;ldquo;Deploy early and deploy often.&amp;rdquo; Rather than deploy an entire application once it&amp;rsquo;s complete, you should be pushing many small features as they come. There are many benefits to this but it isn&amp;rsquo;t without risk.&lt;/p&gt;
-
-&lt;p&gt;Using a software version controll system like git can make working on code in teams easy but can just as easily turn into a nightmare when there are too many active branches from the master branch in the repository. What if you have some code that&amp;rsquo;s been greenlighted for production in your staging branch but some other code that isn&amp;rsquo;t. You can try and merge just the greenlighted code but more often than not you&amp;rsquo;ll have a hard time trying to cherry pick and even if you do, it becomes a mess later when new features are being brought into the mix.&lt;/p&gt;
-
-&lt;p&gt;To get around this, you could just merge everything and hope for the best or you could wrap your new code in what&amp;rsquo;s called a feature toggle. What&amp;rsquo;s a feature toggle? Simply put, it&amp;rsquo;s just a way to enable or disable your code from running given a condition. A toggle can be very complex like having your code run only if the user is coming from a block of ip addresses or very simple like running code if an environment varible is set to true. I wrote small library that does the latter.&lt;/p&gt;
-
-&lt;h3 id=&#34;installation&#34;&gt;Installation&lt;/h3&gt;
-
-&lt;p&gt;You can install using composer.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer require ezynda3/feature-toggle
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;The library uses the awesome &amp;lsquo;vlucas/phpdotenv&amp;rsquo; library so to create a feature toggle first create a file called &amp;lsquo;.env&amp;rsquo; in the root of your project. Then create an environment variable prefixed with &amp;lsquo;FEATURE_&amp;rsquo; and then whatever name you would like to give it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FEATURE_SUPER_AWESOME_STUFF=true
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You don&amp;rsquo;t have to use a &amp;lsquo;.env&amp;rsquo; file. You can set environment variables via the command line or in your hosting provider&amp;rsquo;s admin panel assuming they ofter setting environment variables for your deployed applications.&lt;/p&gt;
-
-&lt;p&gt;A feature is always set to false or disabled unless you specifically set it to true. Now you can use the feature toggle like so.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-require &#39;vendor/autoload.php&#39;;
-
-use Ezynda3\FeatureToggle\Manager;
-
-$toggle = new Manager(___DIR___);
-$feaure = $toggle-&amp;gt;feature(&#39;super_awesome_stuff&#39;);
-
-if ($feature-&amp;gt;isEnabled()) {
-	// New code
-} else {
-	// Old code
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That&amp;rsquo;s all there is to it. Be sure to check out the &lt;a href=&#34;https://github.com/ezynda3/feature-toggle&#34;&gt;project&lt;/a&gt; on GitHub and if there are any features you&amp;rsquo;d like to add, feel free to submit a pull-request.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>7 Exciting Changes Coming to Magento 2</title>
-      <link>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</link>
-      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</guid>
-      <description>
-
-&lt;p&gt;E-commerce is not my favorite thing to write code for and as such, I&amp;rsquo;m no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn&amp;rsquo;t called &amp;ldquo;Magneto&amp;rdquo; which is what I originally thought when I first glanced at the name.&lt;/p&gt;
-
-&lt;p&gt;Because I was brought on at pretty much the beginning of the project I was able to learn a lot while building the site. The learning curve was steep at first but eventually I started to become familiar with the &amp;ldquo;Magento way&amp;rdquo; of doing things. To tell the truth I didn&amp;rsquo;t like it much.&lt;/p&gt;
-
-&lt;p&gt;I bursted back into the world of PHP development after a nine year stint in the US Air Force doing something totally un-related. Because I was basically a newb all over again, I dove head first into all the latest literature and video tutorials dealing with how to code &amp;ldquo;&lt;a href=&#34;http://www.phptherightway.com/&#34;&gt;PHP the right way.&lt;/a&gt;&amp;rdquo; I had become familiar with concepts like dependency injection, coding to interfaces, unit testing and a plethora of useful design patterns. Imagine my discomfort when I started writing custom code for Magento.&lt;/p&gt;
-
-&lt;p&gt;The autoloader, while very sofisticated, is terribly outdated compared to the PSR-0 and PSR-4 standards. Composer isn&amp;rsquo;t supported by default. There&amp;rsquo;s no DI container to speak of and unit tests are almost impossible to create without needing to bootstrap a database which technically makes them integration tests.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve since made my peace with Magento and it&amp;rsquo;s silly conventions. I&amp;rsquo;ve also come up with some nifty hacks to allow for modern coding practices. Those days are soon to be over though with the coming of Magento 2!&lt;/p&gt;
-
-&lt;p&gt;Magento 2 has a handful of welcome changes in store. Here are just a few of them.&lt;/p&gt;
-
-&lt;h3 id=&#34;1-modules-are-consolidated-into-a-single-directory&#34;&gt;1. Modules are consolidated into a single directory&lt;/h3&gt;
-
-&lt;p&gt;I remember getting frustrated with the directory structure of Magento and more specifically the way a module&amp;rsquo;s code could be spread out across multiple directories. Your PHP code lived in &amp;lsquo;app/code&amp;rsquo; while templates and layouts in &amp;lsquo;app/design&amp;rsquo; but several directories deep.&lt;/p&gt;
-
-&lt;p&gt;No longer! Now everything that your module requires lives in one directory. This includes PHP code, design templates and config files.&lt;/p&gt;
-
-&lt;h3 id=&#34;2-config-files-have-been-broken-down-into-smaller-files&#34;&gt;2. Config files have been broken down into smaller files&lt;/h3&gt;
-
-&lt;p&gt;You can do a lot with a single &amp;lsquo;config.xml&amp;rsquo; file in a Magento 1 module. Those config files can get huge and because of that, it&amp;rsquo;s sometimes very easy to get lost in them. To make matters worse, you can have a file filled with improperly formatted config data and Magento 1 won&amp;rsquo;t even complain. This makes it hard to debug.&lt;/p&gt;
-
-&lt;p&gt;Magento 2 now breaks that single &amp;lsquo;config.xml&amp;rsquo; file into many smaller files. This makes it easier to see logically where certain things should go. To prevent silent errors, Magento 2 uses XML schema files to validate config files. Now you&amp;rsquo;ll know pretty quickly if you&amp;rsquo;ve messed somthing up.&lt;/p&gt;
-
-&lt;h3 id=&#34;3-dependency-injection&#34;&gt;3. Dependency injection&lt;/h3&gt;
-
-&lt;p&gt;Magento 2 supports dependency injection and provides it&amp;rsquo;s own dependency injection container. The container is configured via and XML config file which wouldn&amp;rsquo;t be my first choice but hey I&amp;rsquo;ll take what I can get.&lt;/p&gt;
-
-&lt;h3 id=&#34;4-interception&#34;&gt;4. Interception&lt;/h3&gt;
-
-&lt;p&gt;In Magento 1, one way to extend the behavior of a core module is to &amp;ldquo;rewrite&amp;rdquo; one of the core classes, extend it and rewrite one of it&amp;rsquo;s methods with your custom code. This works great most of the time. The problem arises when there are two custom modules trying to extend the same core class. This is where collisions occur and one module could end up cancelling out the other or worse.&lt;/p&gt;
-
-&lt;p&gt;Magento 2 provides what it calls Interception. To customize a core module&amp;rsquo;s method you can simply create what is called a plugin class. In the plugin class you can modify any public methods by creating methods prefixed with &amp;lsquo;before&amp;rsquo;, &amp;lsquo;after&amp;rsquo; and &amp;lsquo;around&amp;rsquo; and the tacking on the name of the method you want to change. Then you pass an instance of the core class you are extending. If you are extending something another module is extending, the result is simply passed from one plugin to another. You can specify a sort order as well for more desireable results.&lt;/p&gt;
-
-&lt;h3 id=&#34;5-no-more-god-class&#34;&gt;5. No more god-class&lt;/h3&gt;
-
-&lt;p&gt;Yeah I&amp;rsquo;m not going to miss having to call &amp;lsquo;Mage::&lt;whatever&gt;&amp;rsquo; anymore.&lt;/p&gt;
-
-&lt;h3 id=&#34;6-semantic-versioning&#34;&gt;6. Semantic versioning&lt;/h3&gt;
-
-&lt;p&gt;Magento 2 will use semantic versioning for the core product. No more keeping track of different patches to be applied. Simply take a look at the version you are running and check against the latest &amp;ldquo;patch&amp;rdquo; version to see if you&amp;rsquo;re running the latest, most secure.&lt;/p&gt;
-
-&lt;h3 id=&#34;7-tests-tests-tests&#34;&gt;7. Tests, tests, tests!&lt;/h3&gt;
-
-&lt;p&gt;Magento 2 is very test friendly and even includes an extensive set of tests for the core code. This includes unit, integration and even javascript tests. Tests for your modules live inside the module&amp;rsquo;s directory along with everything else.&lt;/p&gt;
-
-&lt;p&gt;These just a few of the exciting changes coming to Magento 2. To find out more, checkout of the &lt;a href=&#34;https://github.com/magento/magento2&#34;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

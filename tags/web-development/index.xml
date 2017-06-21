@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Development on Ed Zynda - Coder, Hacker, Superhero</title>
+    <link>http://www.edzynda.com/tags/web-development/index.xml</link>
+    <description>Recent content in Web Development on Ed Zynda - Coder, Hacker, Superhero</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2016 Ed Zynda.</copyright>
+    <atom:link href="http://www.edzynda.com/tags/web-development/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Getting Started With Vue Router</title>
+      <link>http://www.edzynda.com/getting-started-with-vue-router/</link>
+      <pubDate>Tue, 20 Jun 2017 19:26:44 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/getting-started-with-vue-router/</guid>
+      <description>&lt;p&gt;I wrote a nice little tutorial on getting started with Vue Router. Check it out over at &lt;a href=&#34;https://scotch.io/tutorials/getting-started-with-vue-router&#34;&gt;Scotch.io&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Single Page Web App With Go And Vue</title>
+      <link>http://www.edzynda.com/single-page-web-app-with-go-and-vue/</link>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/single-page-web-app-with-go-and-vue/</guid>
+      <description>&lt;p&gt;I wrote a nice little tutorial on creating a single page web application using Go and VueJS. Check it out over at &lt;a href=&#34;https://scotch.io/tutorials/create-a-single-page-app-with-go-echo-and-vue&#34;&gt;Scotch.io&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.edzynda.com/getting-started-with-vue-router/</loc>
+    <lastmod>2017-06-20T19:26:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-4/</loc>
+    <lastmod>2017-06-20T19:19:17-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-3/</loc>
     <lastmod>2017-06-18T16:10:59-07:00</lastmod>
   </url>
@@ -273,6 +283,12 @@
   </url>
   
   <url>
+    <loc>http://www.edzynda.com/tags/blockchain/</loc>
+    <lastmod>2017-06-20T19:19:17-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.edzynda.com/tags/blowfish/</loc>
     <lastmod>2013-11-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -393,7 +409,7 @@
   
   <url>
     <loc>http://www.edzynda.com/</loc>
-    <lastmod>2017-06-18T16:10:59-07:00</lastmod>
+    <lastmod>2017-06-20T19:26:44-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -418,6 +434,12 @@
   <url>
     <loc>http://www.edzynda.com/tags/environment-variables/</loc>
     <lastmod>2016-04-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.edzynda.com/tags/ethereum/</loc>
+    <lastmod>2017-06-20T19:19:17-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -478,12 +500,6 @@
   <url>
     <loc>http://www.edzynda.com/tags/golang/</loc>
     <lastmod>2017-01-05T07:52:54-08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.edzynda.com/categories/golang/</loc>
-    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -705,7 +721,7 @@
   
   <url>
     <loc>http://www.edzynda.com/post/</loc>
-    <lastmod>2017-06-18T16:10:59-07:00</lastmod>
+    <lastmod>2017-06-20T19:26:44-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -788,6 +804,12 @@
   </url>
   
   <url>
+    <loc>http://www.edzynda.com/tags/solidity/</loc>
+    <lastmod>2017-06-20T19:19:17-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.edzynda.com/tags/standards/</loc>
     <lastmod>2013-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -859,6 +881,12 @@
   </url>
   
   <url>
+    <loc>http://www.edzynda.com/tags/video/</loc>
+    <lastmod>2017-06-20T19:19:17-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.edzynda.com/tags/virtual-machine/</loc>
     <lastmod>2013-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -883,8 +911,14 @@
   </url>
   
   <url>
+    <loc>http://www.edzynda.com/tags/web-development/</loc>
+    <lastmod>2017-06-20T19:26:44-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.edzynda.com/categories/web-development/</loc>
-    <lastmod>2016-12-07T00:00:00+00:00</lastmod>
+    <lastmod>2016-04-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
