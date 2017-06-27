@@ -10,6 +10,22 @@
     <atom:link href="http://www.edzynda.com/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Ethereum Smart Contracts In Solidity Part 5</title>
+      <link>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-5/</link>
+      <pubDate>Mon, 26 Jun 2017 19:34:00 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-5/</guid>
+      <description>&lt;p&gt;In this video I go over using external libraries in Solidity.&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/g_dVNEW_x4I&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
       <title>Ethereum Smart Contracts In Solidity Part 4</title>
       <link>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-4/</link>
       <pubDate>Tue, 20 Jun 2017 19:19:17 -0700</pubDate>
