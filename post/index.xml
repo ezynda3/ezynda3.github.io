@@ -7,8 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <lastBuildDate>Mon, 26 Jun 2017 19:34:00 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jun 2017 20:36:00 -0700</lastBuildDate>
     <atom:link href="http://www.edzynda.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Create Your Own Cryptcurrency On Ethereum Part 1</title>
+      <link>http://www.edzynda.com/create-your-own-cryptcurrency-on-ethereum-part-1/</link>
+      <pubDate>Wed, 28 Jun 2017 20:36:00 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/create-your-own-cryptcurrency-on-ethereum-part-1/</guid>
+      <description>&lt;p&gt;In this video, I show you just how easy it is to create your own custom token on the Ethereum blockchain. I also explain ERC20, the standard that most custom tokens follow.&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/JHrQ3l2tT78&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Ethereum Smart Contracts In Solidity Part 5</title>
@@ -492,258 +508,6 @@ return [
 &lt;p&gt;I&amp;rsquo;ve been reading a lot about aspect-oriented programming and really like what it provides to enhance object-oriented programming. There isn&amp;rsquo;t a lot of information about this in the PHP community so I figured a book would be a great way to drum up some more interest and help create a larger community around the subject of AOP.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;ve already got a sample of the book up on Leanpub. You can check it out at &lt;a href=&#34;http://leanpub.com/aopinphp&#34;&gt;http://leanpub.com/aopinphp&lt;/a&gt;. Feel free to read it and send me any feedback as far as what you might like to see covered in the rest of the book. I plan on pushing some more updates very soon so expect to see a minimum viable product up and available for purchase in the next few weeks.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Aspect Oriented PHP Using Go! AOP Framework</title>
-      <link>http://www.edzynda.com/aspect-oriented-php-using-go-aop-framework/</link>
-      <pubDate>Tue, 09 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.edzynda.com/aspect-oriented-php-using-go-aop-framework/</guid>
-      <description>
-
-&lt;p&gt;In my &lt;a href=&#34;http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern&#34;&gt;last article&lt;/a&gt;  we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&amp;rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&amp;rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide. It would much easier if there was a package we could use instead. Lucky for us, there is!&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/goaop/framework&#34;&gt;Go! AOP Framework&lt;/a&gt; for PHP was created by &lt;a href=&#34;https://github.com/lisachenko&#34;&gt;Alexander Lisachenko&lt;/a&gt; and provides a way to use AOP in PHP without installing an extension. It accomplishes this by cleverly using autoloading, reflection and some other nifty features of modern PHP.&lt;/p&gt;
-
-&lt;p&gt;###Installation&lt;/p&gt;
-
-&lt;p&gt;First we need to install the package with composer.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s created a simple compose.json file with our dependencies and also define a simple namespace for our code.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
-    &amp;quot;require&amp;quot;: {
-        &amp;quot;goaop/framework&amp;quot;: &amp;quot;^0.6.0&amp;quot;
-    },
-    &amp;quot;autoload&amp;quot;: {
-        &amp;quot;psr-4&amp;quot;: {
-            &amp;quot;Stark\\&amp;quot;: &amp;quot;src/&amp;quot;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we can install from the command line.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ composer install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Next we need to create what we&amp;rsquo;ll call our AOP kernel. This is where we will register our &lt;strong&gt;aspects&lt;/strong&gt;, as we&amp;rsquo;ll see later.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Kernel.php
-&amp;lt;?php namespace Stark\AOP;
-
-use Go\Core\AspectKernel;
-use Go\Core\AspectContainer;
-
-class Kernel extends AspectKernel
-{
-    /**
-     * Configure an AspectContainer with advisors, aspects and pointcuts
-     *
-     * @param AspectContainer $container
-     *
-     * @return void
-     */
-    protected function configureAop(AspectContainer $container)
-    {
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Third we need to initialize the kernel. This should ideally be done in your application&amp;rsquo;s front controller.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// public/index.php
-&amp;lt;?php
-include __DIR__ . &#39;/../vendor/autoload.php&#39;; // use composer&#39;s autoloader
-
-// Initialize an application aspect container
-$applicationAspectKernel = \Stark\AOP\Kernel::getInstance();
-$applicationAspectKernel-&amp;gt;init([
-    &#39;debug&#39; =&amp;gt; true, // use &#39;false&#39; for production mode
-    // Cache directory
-    &#39;cacheDir&#39; =&amp;gt; __DIR__ . &#39;/../cache&#39;
-]);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finally we can start creating aspects to modify our code.&lt;/p&gt;
-
-&lt;h3 id=&#34;using-go-aop&#34;&gt;Using Go! AOP&lt;/h3&gt;
-
-&lt;p&gt;Let&amp;rsquo;s pretend we have a little Facebook service.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Service/Facebook.php
-&amp;lt;?php namespace Stark\Service;
-
-class Facebook
-{
-    public function doStuff()
-    {
-        echo &amp;quot;Facebook stuff!&amp;quot;;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s create an aspect to intercept any method called from that class.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Aspect/Monitor.php
-&amp;lt;?php namespace Stark\AOP\Aspect;
-
-use Go\Aop\Aspect;
-use Go\Aop\Intercept\FieldAccess;
-use Go\Aop\Intercept\MethodInvocation;
-use Go\Lang\Annotation\After;
-use Go\Lang\Annotation\Before;
-use Go\Lang\Annotation\Around;
-use Go\Lang\Annotation\Pointcut;
-
-/**
- * Monitor aspect
- */
-class Monitor implements Aspect
-{
-
-    /**
-     * Method that will be called before real method
-     *
-     * @param MethodInvocation $invocation Invocation
-     * @Before(&amp;quot;execution(public Stark\Service\Facebook-&amp;gt;*(*))&amp;quot;)
-     */
-    public function beforeMethodExecution(MethodInvocation $invocation)
-    {
-        $obj = $invocation-&amp;gt;getThis();
-        echo &#39;Calling Before Interceptor for method: &#39;,
-        is_object($obj) ? get_class($obj) : $obj,
-        $invocation-&amp;gt;getMethod()-&amp;gt;isStatic() ? &#39;::&#39; : &#39;-&amp;gt;&#39;,
-        $invocation-&amp;gt;getMethod()-&amp;gt;getName(),
-        &#39;()&#39;,
-        &amp;quot;&amp;lt;br&amp;gt;\n&amp;quot;;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Next we have to register the new aspect in our kernel.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Kernel.php
-&amp;lt;?php namespace Stark\AOP;
-
-use Go\Core\AspectKernel;
-use Go\Core\AspectContainer;
-use Stark\AOP\Aspect\Monitor;
-
-class Kernel extends AspectKernel
-{
-    /**
-     * Configure an AspectContainer with advisors, aspects and pointcuts
-     *
-     * @param AspectContainer $container
-     *
-     * @return void
-     */
-    protected function configureAop(AspectContainer $container)
-    {
-        $container-&amp;gt;registerAspect(new Monitor());
-    }
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finally in our front controller we can add these few lines to run our little service.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// public/index.php
-&amp;lt;?php
-$fb = new \Stark\Service\Facebook();
-$fb-&amp;gt;doStuff();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you run index.php you&amp;rsquo;ll get the following output.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Calling Before Interceptor for method: Stark\Service\Facebook-&amp;gt;doStuff()
-Facebook stuff!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The Go! AOP Framework uses annotations rather than global functions to define &lt;strong&gt;jointpoints&lt;/strong&gt; and &lt;strong&gt;pointcuts&lt;/strong&gt;. &amp;lsquo;beforeMethodExecution()&amp;rsquo; is our &lt;strong&gt;advice&lt;/strong&gt; in this instance. We used the &amp;lsquo;@Before&amp;rsquo; annotation to intercept before the method is called. Similarly we can use &amp;lsquo;@After&amp;rsquo; and &amp;lsquo;@Around&amp;rsquo; as joinpoints as well.&lt;/p&gt;
-
-&lt;p&gt;The rest of the annotation defines the pointcut which is &amp;lsquo;execution&amp;rsquo; in this case. We can also use &amp;lsquo;access&amp;rsquo; for reading/writing of class properties, initialization for when a class is first created and many others.&lt;/p&gt;
-
-&lt;p&gt;One other neat trick we can use is intercepting custom annotations. Go! AOP includes Doctrine&amp;rsquo;s annotation reader package so we can create a custom annotation like so.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Annotation/Custom.php
-&amp;lt;?php namespace Stark\Annotation;
-
-use Doctrine\Common\Annotations\Annotation;
-
-/**
- * @Annotation
- * @Target(&amp;quot;METHOD&amp;quot;)
- */
-class Custom extends Annotation
-{
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Next let&amp;rsquo;s modify our Facebook service&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/Service/Facebook.php
-&amp;lt;?php namespace Stark\Service;
-
-use Stark\Annotation\Custom;
-
-class Facebook
-{
-    /**
-     * @Custom
-     */
-    public function doStuff()
-    {
-        echo &amp;quot;Facebook stuff!&amp;quot;;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&amp;hellip;and our aspect.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// src/AOP/Aspect/Monitor.php
-&amp;lt;?php namespace Stark\AOP\Aspect;
-
-use Go\Aop\Aspect;
-use Go\Aop\Intercept\FieldAccess;
-use Go\Aop\Intercept\MethodInvocation;
-use Go\Lang\Annotation\After;
-use Go\Lang\Annotation\Before;
-use Go\Lang\Annotation\Around;
-use Go\Lang\Annotation\Pointcut;
-
-/**
- * Monitor aspect
- */
-class Monitor implements Aspect
-{
-
-    /**
-     * Method that will be called before real method
-     *
-     * @param MethodInvocation $invocation Invocation
-     * @Before(&amp;quot;@annotation(Stark\Annotation\Custom)&amp;quot;)
-     */
-    public function beforeMethodExecution(MethodInvocation $invocation)
-    {
-        $obj = $invocation-&amp;gt;getThis();
-        echo &#39;Calling Before Interceptor for method: &#39;,
-        is_object($obj) ? get_class($obj) : $obj,
-        $invocation-&amp;gt;getMethod()-&amp;gt;isStatic() ? &#39;::&#39; : &#39;-&amp;gt;&#39;,
-        $invocation-&amp;gt;getMethod()-&amp;gt;getName(),
-        &#39;()&#39;,
-        &amp;quot;&amp;lt;br&amp;gt;\n&amp;quot;;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We should get the same result as before.&lt;/p&gt;
-
-&lt;p&gt;This framework is full of features and it opens up a lot of new possibilities in PHP. To learn more about what you can do with Go! AOP, check out the official &lt;a href=&#34;http://go.aopphp.com/docs/&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
