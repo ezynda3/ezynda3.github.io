@@ -2,13 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/post/index.xml</link>
+    <link>http://www.edzynda.com/post/</link>
     <description>Recent content in Posts on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
     <lastBuildDate>Wed, 28 Jun 2017 20:36:00 -0700</lastBuildDate>
-    <atom:link href="http://www.edzynda.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://www.edzynda.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Create Your Own Cryptcurrency On Ethereum Part 1</title>
@@ -16,14 +18,8 @@
       <pubDate>Wed, 28 Jun 2017 20:36:00 -0700</pubDate>
       
       <guid>http://www.edzynda.com/create-your-own-cryptcurrency-on-ethereum-part-1/</guid>
-      <description>&lt;p&gt;In this video, I show you just how easy it is to create your own custom token on the Ethereum blockchain. I also explain ERC20, the standard that most custom tokens follow.&lt;/p&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/JHrQ3l2tT78&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-</description>
+      <description>In this video, I show you just how easy it is to create your own custom token on the Ethereum blockchain. I also explain ERC20, the standard that most custom tokens follow.
+  </description>
     </item>
     
     <item>
@@ -32,14 +28,8 @@
       <pubDate>Mon, 26 Jun 2017 19:34:00 -0700</pubDate>
       
       <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-5/</guid>
-      <description>&lt;p&gt;In this video I go over using external libraries in Solidity.&lt;/p&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/g_dVNEW_x4I&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-</description>
+      <description>In this video I go over using external libraries in Solidity.
+  </description>
     </item>
     
     <item>
@@ -48,8 +38,7 @@
       <pubDate>Tue, 20 Jun 2017 19:26:44 -0700</pubDate>
       
       <guid>http://www.edzynda.com/getting-started-with-vue-router/</guid>
-      <description>&lt;p&gt;I wrote a nice little tutorial on getting started with Vue Router. Check it out over at &lt;a href=&#34;https://scotch.io/tutorials/getting-started-with-vue-router&#34;&gt;Scotch.io&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>I wrote a nice little tutorial on getting started with Vue Router. Check it out over at Scotch.io.</description>
     </item>
     
     <item>
@@ -58,14 +47,8 @@
       <pubDate>Tue, 20 Jun 2017 19:19:17 -0700</pubDate>
       
       <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-4/</guid>
-      <description>&lt;p&gt;In this video I show you how to make Ethereum contracts talk to other contracts.&lt;/p&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/8BlK80eQwMA&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-</description>
+      <description>In this video I show you how to make Ethereum contracts talk to other contracts.
+  </description>
     </item>
     
     <item>
@@ -74,14 +57,8 @@
       <pubDate>Sun, 18 Jun 2017 16:10:59 -0700</pubDate>
       
       <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-3/</guid>
-      <description>&lt;p&gt;In this video I go over the concept of contract inheritance and how we can build upon an existing contract to create entirely new contracts. I also discuss abstract functions and interfaces.&lt;/p&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/kOBet0BPKzg&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-</description>
+      <description>In this video I go over the concept of contract inheritance and how we can build upon an existing contract to create entirely new contracts. I also discuss abstract functions and interfaces.
+  </description>
     </item>
     
     <item>
@@ -90,14 +67,8 @@
       <pubDate>Fri, 16 Jun 2017 18:57:30 -0700</pubDate>
       
       <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-2/</guid>
-      <description>&lt;p&gt;In this video I go over how you can accept funds through your contract using &amp;ldquo;payable&amp;rdquo; functions. I also cover how to destroy a contract and transfer its balance once it is no longer useful to exist on the blockchain.&lt;/p&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/js319cgJvrQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-</description>
+      <description>In this video I go over how you can accept funds through your contract using &amp;ldquo;payable&amp;rdquo; functions. I also cover how to destroy a contract and transfer its balance once it is no longer useful to exist on the blockchain.
+  </description>
     </item>
     
     <item>
@@ -106,14 +77,8 @@
       <pubDate>Thu, 15 Jun 2017 19:06:10 -0700</pubDate>
       
       <guid>http://www.edzynda.com/ethereum-smart-contracts-in-solidity-part-1/</guid>
-      <description>&lt;p&gt;In this tutorial, I show you the basics of Ethereum smart contracts and explain state variables, functions, modifiers and events.&lt;/p&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/xWKq86PWG0o&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-</description>
+      <description>In this tutorial, I show you the basics of Ethereum smart contracts and explain state variables, functions, modifiers and events.
+  </description>
     </item>
     
     <item>
@@ -122,16 +87,8 @@
       <pubDate>Wed, 14 Jun 2017 19:09:39 -0700</pubDate>
       
       <guid>http://www.edzynda.com/create-your-first-ethereum-smart-contract-in-solidity/</guid>
-      <description>&lt;p&gt;I recently started a YouTube channel for posting some tutorials. Check out my latest video on creating Ethereum smart contracts.&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/4Taej55zNY4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-</description>
+      <description>I recently started a YouTube channel for posting some tutorials. Check out my latest video on creating Ethereum smart contracts.
+  </description>
     </item>
     
     <item>
@@ -142,62 +99,7 @@
       <guid>http://www.edzynda.com/single-executable-web-apps-with-go-binary-assets/</guid>
       <description>&lt;p&gt;Go is becoming increasingly popular with building web applications. It&amp;rsquo;s fast, lightweight and easy to learn. Another great feature is to compile your applications into a single redistributable binary. A lot of web applications depend on external assets, however. For the application to work you still need to package your css, JavaScript and image files along with the executable. Let&amp;rsquo;s see if we can fix this.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Imagine you have a single page web application. Your application code is saved in &lt;code&gt;main.go&lt;/code&gt;. Your frontend code is saved in a folder called &lt;code&gt;assets&lt;/code&gt; and called &lt;code&gt;app.js&lt;/code&gt;. You also have a &lt;code&gt;style.css&lt;/code&gt; and a few images. Normally you need to make sure that assets folder exists along side your &lt;code&gt;main&lt;/code&gt; executable wherever you have it deployed. If not your application will complain with a bunch of &lt;code&gt;404 not found&lt;/code&gt; errors.&lt;/p&gt;
-
-&lt;p&gt;In Go, it&amp;rsquo;s possible to convert all of those files to pure Go code and then serve them up like they were sitting on the filesystem. We can accomplish this with two packages &lt;code&gt;jteeuwen/go-bindata&lt;/code&gt; and &lt;code&gt;elazarl/go-bindata-assetfs&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The first thing we need to do is install the packages.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ go get github.com/jteeuwen/go-bindata/...
-$ go get github.com/elazarl/go-bindata-assetfs/...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we can convert our assets to Go code using the &lt;code&gt;go-bindata&lt;/code&gt; CLI tool.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ go-bindata assets/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will create a file called &lt;code&gt;bindata.go&lt;/code&gt; in your current directory. All the code in that file will be scoped to the &lt;code&gt;main&lt;/code&gt; package. To access any of our files we can use the &lt;code&gt;Asset(string) ([]byte, error)&lt;/code&gt; function. Calling &lt;code&gt;Asset(&amp;quot;assets/app.js&amp;quot;)&lt;/code&gt; will return a &lt;code&gt;[]byte&lt;/code&gt; slice of the &lt;code&gt;app.js&lt;/code&gt; file which we can echo through our web application manually if we wish. An easier method would be to create an endpoint that serves all of those assets as if they were on a fileserver. This is where &lt;code&gt;go-bindata-assetfs&lt;/code&gt; comes in.&lt;/p&gt;
-
-&lt;p&gt;Here is an example.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;package main
-
-import (
-	&amp;quot;log&amp;quot;
-	&amp;quot;net/http&amp;quot;
-
-	&amp;quot;github.com/elazarl/go-bindata-assetfs&amp;quot;
-)
-
-func main() {
-	// Use binary asset FileServer
-	http.Handle(&amp;quot;/&amp;quot;,
-		http.FileServer(
-			&amp;amp;assetfs.AssetFS{Asset: Asset, AssetDir: AssetDir, AssetInfo: AssetInfo, Prefix: &amp;quot;assets&amp;quot;}))
-
-	log.Println(&amp;quot;http server started on :8000&amp;quot;)
-	err := http.ListenAndServe(&amp;quot;:8000&amp;quot;, nil)
-	if err != nil {
-		log.Fatal(&amp;quot;ListenAndServe: &amp;quot;, err)
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;go-bindata-assetfs&lt;/code&gt; package includes a &lt;code&gt;Struct&lt;/code&gt; type called &lt;code&gt;AssetFS&lt;/code&gt; that implements the &lt;code&gt;http.Filesystem&lt;/code&gt; interface which looks like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;type FileSystem interface {
-        Open(name string) (File, error)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To initialize a new &lt;code&gt;AssetFS&lt;/code&gt; we need to pass a few of the helper functions generated by &lt;code&gt;go-bindata&lt;/code&gt;. The final property is &lt;code&gt;Prefix&lt;/code&gt; which sets the root of the &lt;code&gt;FileServer&lt;/code&gt; as whatever we specify.&lt;/p&gt;
-
-&lt;p&gt;In this example we are now serving files at &lt;code&gt;/&lt;/code&gt; and any files that were in &lt;code&gt;assets/&lt;/code&gt; are now accessible from that path. It would be simple to place an &lt;code&gt;index.html&lt;/code&gt; file to use as an entrypoint for a single page application.&lt;/p&gt;
-
-&lt;p&gt;Now we no longer have to distribute our assets along with the final executable. This makes our deployments just a little bit easier and more managable.&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -206,95 +108,8 @@ func main() {
       <pubDate>Tue, 27 Dec 2016 09:18:06 -0800</pubDate>
       
       <guid>http://www.edzynda.com/how-easy-is-it-to-containerize-a-go-app/</guid>
-      <description>&lt;p&gt;Recently, I wrote an article on how to &lt;a href=&#34;https://scotch.io/bar-talk/build-a-realtime-chat-server-with-go-and-websockets&#34;&gt;create a simple chat server using WebSockets and Go&lt;/a&gt;. I made the &lt;a href=&#34;https://github.com/scotch-io/go-realtime-chat&#34;&gt;source code&lt;/a&gt; available and it&amp;rsquo;s pretty simple to get the example up and running if you have a basic familiarization with Go. I wanted to see if I could make it easier for people to try out though. For this, I looked to the very popular &lt;a href=&#34;https://docker.io&#34;&gt;Docker&lt;/a&gt; project.&lt;/p&gt;
-
-&lt;p&gt;Docker has been around for quite some time but, I only recently began toying around with it more seriously. At first it seems pretty complicated but as it turns out, it&amp;rsquo;s really simple to use once you get the hang of the basic commands and concepts.&lt;/p&gt;
-
-&lt;p&gt;This is not going to be a tutorial how to get started with Docker though, I&amp;rsquo;m just going to run through the steps of how I turned my chat application into a redistributable container.&lt;/p&gt;
-
-&lt;p&gt;The first step is obviously to have Docker installed for your specific OS. Head on over to the &lt;a href=&#34;https://docker.io&#34;&gt;Docker website&lt;/a&gt; to fetch that.&lt;/p&gt;
-
-&lt;p&gt;The next step is to create a Dockerfile in the same directory you have your app source code. This is just a file that will tell Docker how to build your container. The Dockerfile for my chat application looks just like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;FROM golang:1.7
-
-MAINTAINER Ed Zynda
-
-RUN mkdir /app
-COPY . /app
-
-WORKDIR /app/src
-RUN go get -u github.com/gorilla/websocket
-RUN go build main.go
-
-CMD [&amp;quot;./main&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at this line by line.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;FROM golang:1.7
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This tells Docker that I want to start out with an official Docker container called Golang and use the tagged version 1.7. This container has all of the Golang build tools preinstalled and will provide a good base for us to build upon.&lt;/p&gt;
-
-&lt;p&gt;The Docker hub has thousands of containers provided by Docker and the community which you can download and build upon yourself. There are even containers that literally have nothing in them if you want to keep your final container as light as possible.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;MAINTAINER Ed Zynda
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This just says that I&amp;rsquo;m the maintainer of this container. I&amp;rsquo;m a poet and I didn&amp;rsquo;t even know it!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;RUN mkdir /app
-COPY . /app
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;RUN&lt;/code&gt; keyword allows us to run any command we wish inside our container. In this case I just want to create a new directory to hold our application. Next I use the &lt;code&gt;COPY&lt;/code&gt; keyword to move my source code into the container.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;WORKDIR /app/src
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This tells Docker that I now want to run commands from within the &lt;code&gt;/app/src&lt;/code&gt; directory. This is just like running &lt;code&gt;cd /app/src&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;RUN go get -u github.com/gorilla/webSocket
-RUN go build main.go
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this step, I&amp;rsquo;m just running the normal Go commands to pull down dependencies and then compile the application.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;CMD [&amp;quot;./main&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The final step is to tell Docker which command to run when the container is started. In this case I just want to run the binary called &lt;code&gt;main&lt;/code&gt; which is the result of compiling the Go source.&lt;/p&gt;
-
-&lt;p&gt;After creating my Dockerfile, I can now build the container by running the following command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker build -t ezynda3/go-chat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will build the container, following the steps in the Dockerfile and then tag it with &lt;code&gt;ezynda3/go-chat&lt;/code&gt;. Since I didn&amp;rsquo;t provide a version number the version will automatically be set to &lt;code&gt;latest&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This container only exists on my machine right now though. In order to distribute it so others can use it, I need to publish it to a hub. Docker provides a free hub for public containers at &lt;a href=&#34;https://hub.docker.com&#34;&gt;hub.docker.com&lt;/a&gt;. To push the container up just run the following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker push ezynda3/go-chat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Docker may complain about invalid credentials. In that case run the following after ensuring you have created an account on Docker&amp;rsquo;s hub site.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker login
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;It will prompt you for your credentials and you should be set to run the previous command again.&lt;/p&gt;
-
-&lt;p&gt;Now on any machine that has Docker installed, we can run&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker pull ezynda3/go-chat
-docker run -p 8000:8000 ezynda3/go-chat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will pull the container and then run it mapping port &lt;code&gt;8000&lt;/code&gt; from within the container to port &lt;code&gt;8000&lt;/code&gt; on the host machine.&lt;/p&gt;
-
-&lt;p&gt;As you can see, it was pretty easy to create a nice simple container for a Go application.&lt;/p&gt;
-</description>
+      <description>Recently, I wrote an article on how to create a simple chat server using WebSockets and Go. I made the source code available and it&amp;rsquo;s pretty simple to get the example up and running if you have a basic familiarization with Go. I wanted to see if I could make it easier for people to try out though. For this, I looked to the very popular Docker project.
+Docker has been around for quite some time but, I only recently began toying around with it more seriously.</description>
     </item>
     
     <item>
@@ -303,8 +118,7 @@ docker run -p 8000:8000 ezynda3/go-chat
       <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/single-page-web-app-with-go-and-vue/</guid>
-      <description>&lt;p&gt;I wrote a nice little tutorial on creating a single page web application using Go and VueJS. Check it out over at &lt;a href=&#34;https://scotch.io/tutorials/create-a-single-page-app-with-go-echo-and-vue&#34;&gt;Scotch.io&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>I wrote a nice little tutorial on creating a single page web application using Go and VueJS. Check it out over at Scotch.io.</description>
     </item>
     
     <item>
@@ -313,48 +127,7 @@ docker run -p 8000:8000 ezynda3/go-chat
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/test-the-untestable-with-aspectmock/</guid>
-      <description>&lt;p&gt;Some of us have had the pleasure of working with someone else&amp;rsquo;s ancient codebase to either add new features or fix bugs. It&amp;rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&amp;rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design. This makes the codebase very fragile and any small change could break something if you aren&amp;rsquo;t careful. How do we test the untestable? AspectMock to the rescue!&lt;/p&gt;
-
-&lt;p&gt;Using the power of AOP and the Go! AOP framework AspectMock allows you to create test doubles for almost anything anywhere in your code from public and private methods to static methods and even system functions like time().&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s take a look at an example.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-
-class UserCreator
-{
-    public function create(array $data)
-    {
-        $user = new User($data);
-        $user-&amp;gt;save();
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here we have a UserCreator class that depends on a User object to save a newly created user to the database. We&amp;rsquo;ll pretend this works great but would like to have a test in place to avoid any future defects. We need to mock the User object somehow though because we don&amp;rsquo;t want to make any calls to the database during our test.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-function testUserCreate()
-{
-    $user = Test::double(&#39;User&#39;, [&#39;save&#39; =&amp;gt; null]));
-    $service = new UserCreator;
-    $service-&amp;gt;create([&#39;name&#39; =&amp;gt; &#39;Tony Stark&#39;]);
-    $user-&amp;gt;verifyInvoked(&#39;save&#39;);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now when you run your test, AspectMock basically intercepts the call to the &amp;lsquo;save&amp;rsquo; method and prevents it from touching the database.&lt;/p&gt;
-
-&lt;p&gt;You can even mock builtin PHP functions for greater flexibility.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-namespace demo;
-test::func(&#39;demo&#39;, &#39;time&#39;, &#39;now&#39;);
-$this-&amp;gt;assertEquals(&#39;now&#39;, time());
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;AspectMock opens up a whole new world of possibilities when it comes to testing your legacy and even modern projects. Check out the project on &lt;a href=&#34;https://github.com/Codeception/AspectMock&#34; title=&#34;AspectMock&#34;&gt;GitHub&lt;/a&gt; for more detailed documentation and give it a try in one your projects.&lt;/p&gt;
-</description>
+      <description>Some of us have had the pleasure of working with someone else&amp;rsquo;s ancient codebase to either add new features or fix bugs. It&amp;rsquo;s never fun and usually a pain. Because of the design (or lack thereof) of the application, it doesn&amp;rsquo;t lend itself to unit testing. The code is littered with static method calls, objects instantiated inside methods rather than being injected through a constructor, and other elements of poor design.</description>
     </item>
     
     <item>
@@ -363,86 +136,7 @@ $this-&amp;gt;assertEquals(&#39;now&#39;, time());
       <pubDate>Wed, 13 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/simplify-php-configs-with-environment-variables/</guid>
-      <description>&lt;p&gt;Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &amp;lsquo;app/config&amp;rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.&lt;/p&gt;
-
-&lt;p&gt;In Laravel 5 and above you just create a file name &amp;lsquo;.env&amp;rsquo; and place your configuration in environment variables. The file would look something like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;DB_NAME=mydatabse
-FOOBAR=baz
-SOME_API_KEY=1234abcef
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You would create this file and make sure to add &amp;lsquo;.env&amp;rsquo; to &amp;lsquo;.gitignore&amp;rsquo; in order to keep sensitive data out of your code repository. When you deploy to your different environments you can then just include a &amp;lsquo;.env&amp;rsquo; file that&amp;rsquo;s appropriate for the environment.&lt;/p&gt;
-
-&lt;p&gt;Laravel 4.2 and below doesn&amp;rsquo;t have this but fortunately, with a little bit of tweaking you can add it.&lt;/p&gt;
-
-&lt;p&gt;First we need to include a helpful package that reads &amp;lsquo;.env&amp;rsquo; files and then loads them for PHP to access.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;composer require vlucas/phpdotenv
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you&amp;rsquo;re using Laravel 4.2 you next need to edit &amp;lsquo;bootstrap/start.php&amp;rsquo;. If you&amp;rsquo;re using another framework or none at all you just need to add the following code to wherever you bootstrap your application.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-if (is_file(__DIR__ . &#39;/../.env&#39;)) {
-	Dotenv::load(__DIR__ . &#39;/../&#39;);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will check to see that the file exists and if so, load the data into PHP&amp;rsquo;s $_ENV superglobal array.&lt;/p&gt;
-
-&lt;p&gt;Next we&amp;rsquo;ll need a helper function to grab environment variables or use an acceptable default. If you&amp;rsquo;re using Laravel, place this in &amp;lsquo;app/helpers.php&amp;rsquo; if not you can place it wherever you keep helper functions.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-if ( ! function_exists(&#39;env&#39;))
-{
-    /**
-     * Gets the value of an environment variable. Supports boolean, empty and null.
-     *
-     * @param  string  $key
-     * @param  mixed   $default
-     * @return mixed
-     */
-    function env($key, $default = null)
-    {
-        $value = getenv($key);
-
-        if ($value === false) return value($default);
-
-        switch (strtolower($value))
-        {
-            case &#39;true&#39;:
-            case &#39;(true)&#39;:
-                return true;
-
-            case &#39;false&#39;:
-            case &#39;(false)&#39;:
-                return false;
-
-            case &#39;null&#39;:
-            case &#39;(null)&#39;:
-                return null;
-
-            case &#39;empty&#39;:
-            case &#39;(empty)&#39;:
-                return &#39;&#39;;
-        }
-
-        return $value;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you should be able to use .env files an consolidate your configuration data. For example if you need a config file like &amp;lsquo;app/config/sendgrid.php&amp;rsquo; to handle sending mail with SendGrid you can make it look something like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-return [
-    &#39;api_key&#39; =&amp;gt; env(&#39;SENDGRID_API_KEY&#39;)
-];
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will greatly simplify your deployments and help avoid configuration comlexity in your older Laravel or other non-Laravel applications.&lt;/p&gt;
-</description>
+      <description>Laravel 5 and above icludes a cool feature to help simplify configuration and deployment to different environments. Before you had to create separate directories within &amp;lsquo;app/config&amp;rsquo; to separate configuration based on the environment. You would then use varying methods to tell Laravel which environment it was in a bootstrap file. This can get pretty messy real quick epecially if you are adding third party libraries that may require some special configuration options.</description>
     </item>
     
     <item>
@@ -451,50 +145,7 @@ return [
       <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/running-ajax-requests-sequentially/</guid>
-      <description>&lt;p&gt;Somewhat recently, I was refactoring a project that was having issues uploading and importing large CSV files. I was running into all kinds of issues from timeout errors to memory allocation exceptions. The solution was to break up the import and upload it in chunks. This alone was pretty easy but I also wanted to include the ability to display the progress of the entire import. The problem was, I was using AJAX to upload the data.&lt;/p&gt;
-
-&lt;p&gt;AJAX is pretty useful in that it allows you to make HTTP requests asynchronously without refreshing the entire page. You can update small sections of the page without reloading. This is great if you don&amp;rsquo;t care what order the requests finish. In my case I needed to upload the data in chunks but also calculate the overall progress based on how much had been uploaded vs how much was remaining. Using AJAX as intended, all of the chunks would be sent at the exact same which opens of the possibiity that a chunk that should be uploaded last would finish before an earlier chunk.&lt;/p&gt;
-
-&lt;p&gt;After banging my head against the wall dealing with Javascript promises and deferred objects, I decided to try a functional programming technique. The solution ended up being recursion. Let&amp;rsquo;s take a look at what I mean.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function recursivePost(url, data) {
-  var dfd = $.Deferred();
-  var total = data.length;
-  var chunk = data.splice(0, 10);
-  var payload = {}
-            
-  payload.data = chunk;
-  payload.remaining = total - chunk.length;
-            
-  $.post(url, payload)
-    .success(function (response) {
-                    
-      updateProgressBar(chunk.length);
-                        
-      if (response.status == &#39;complete&#39;) {
-        dfd.resolve(response);
-      } else {
-        recursivePost(url, data).done(function(response) {
-          dfd.resolve(response);
-        });
-      }
-    })
-    .fail(function (response) {
-      dfd.reject(response.responseText);
-    });
-                    
-  return dfd.promise();
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The function above starts out by creating a deferred object which we use to return a promise object at the bottom of the function. This allows us to start the upload process and hold off on doing anything else until all the chunks are finished uploading. Then we take the initial data which should be an array and calculate the total. Then we shave off 10 items from the array using array_splice(). Then we construct a payload object that contains the chunk and then the number of items remaining after this upload completes. This will allow our backend code to determine when the entire process is complete in case it needs to run some additional logic after.&lt;/p&gt;
-
-&lt;p&gt;Using jQuery&amp;rsquo;s handy post() method we can upload the data to the specified URL. On success we can update our progress bar then we check whether there is more to be uploaded. In my case I let the backend decide by sending a &amp;lsquo;complete&amp;rsquo; status. We could also just check whether payload.reaining = 0. If there are still more items we call the same function from within itself. We also attach done() handler to catch the promise returned by that call. This allows the resolved promise from recursive calls to recursivePost to bubble up to the initial call and then be returned at completion.&lt;/p&gt;
-
-&lt;p&gt;If there are no more items to process, we resolve the promise object so the rest of the app knows the upload is complete.&lt;/p&gt;
-
-&lt;p&gt;Because we only run the next request after the previous request succeeds, we prevent the AJAX calls from firing at the same time. Each request is in sequential order and progress can be tracked.&lt;/p&gt;
-</description>
+      <description>Somewhat recently, I was refactoring a project that was having issues uploading and importing large CSV files. I was running into all kinds of issues from timeout errors to memory allocation exceptions. The solution was to break up the import and upload it in chunks. This alone was pretty easy but I also wanted to include the ability to display the progress of the entire import. The problem was, I was using AJAX to upload the data.</description>
     </item>
     
     <item>
@@ -503,12 +154,274 @@ return [
       <pubDate>Sat, 20 Jun 2015 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/new-book-aspect-oriented-programming-in-php/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve been looking for a way to challenge myself as well as showcase some of my knowledge to the world. After some thinking, I&amp;rsquo;ve decided that I would go ahead and write a book.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve been reading a lot about aspect-oriented programming and really like what it provides to enhance object-oriented programming. There isn&amp;rsquo;t a lot of information about this in the PHP community so I figured a book would be a great way to drum up some more interest and help create a larger community around the subject of AOP.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve already got a sample of the book up on Leanpub. You can check it out at &lt;a href=&#34;http://leanpub.com/aopinphp&#34;&gt;http://leanpub.com/aopinphp&lt;/a&gt;. Feel free to read it and send me any feedback as far as what you might like to see covered in the rest of the book. I plan on pushing some more updates very soon so expect to see a minimum viable product up and available for purchase in the next few weeks.&lt;/p&gt;
-</description>
+      <description>I&amp;rsquo;ve been looking for a way to challenge myself as well as showcase some of my knowledge to the world. After some thinking, I&amp;rsquo;ve decided that I would go ahead and write a book.
+I&amp;rsquo;ve been reading a lot about aspect-oriented programming and really like what it provides to enhance object-oriented programming. There isn&amp;rsquo;t a lot of information about this in the PHP community so I figured a book would be a great way to drum up some more interest and help create a larger community around the subject of AOP.</description>
+    </item>
+    
+    <item>
+      <title>Aspect Oriented PHP Using Go! AOP Framework</title>
+      <link>http://www.edzynda.com/aspect-oriented-php-using-go-aop-framework/</link>
+      <pubDate>Tue, 09 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/aspect-oriented-php-using-go-aop-framework/</guid>
+      <description>In my last article we took a look at using aspect oriented programming (AOP) in PHP by installing the excellent AOP PECL extension for PHP. This is great if you have admin access to the servers you run your code on. It&amp;rsquo;s very common though, for people to run their code on shared hosting. These types of providers don&amp;rsquo;t usually provide a way for you to install any extra PHP extensions besides the common extensions they provide.</description>
+    </item>
+    
+    <item>
+      <title>Aspect Oriented PHP And The Interceptor Pattern</title>
+      <link>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</link>
+      <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/aspect-oriented-php-and-the-interceptor-pattern/</guid>
+      <description>There are many ways to modify the behavior of existing code with actually changing the core logic. Some patterns you might be familiar with are the decorator pattern or the observer pattern. Both allow you to take another object and modify the behavior by wrapping your modifcations around the original code. One pattern you might not be familiar with though, is the interceptor pattern.
+The interceptor pattern is a core concept of what is called aspect oriented programming (AOP).</description>
+    </item>
+    
+    <item>
+      <title>Simple Environment Variable Based Feature Toggles</title>
+      <link>http://www.edzynda.com/simple-environment-variable-based-feature-toggles/</link>
+      <pubDate>Wed, 03 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/simple-environment-variable-based-feature-toggles/</guid>
+      <description>There&amp;rsquo;s a lot of talk about continuous delivery in software development these days. One core concept of continuous delivery is &amp;ldquo;Deploy early and deploy often.&amp;rdquo; Rather than deploy an entire application once it&amp;rsquo;s complete, you should be pushing many small features as they come. There are many benefits to this but it isn&amp;rsquo;t without risk.
+Using a software version controll system like git can make working on code in teams easy but can just as easily turn into a nightmare when there are too many active branches from the master branch in the repository.</description>
+    </item>
+    
+    <item>
+      <title>7 Exciting Changes Coming to Magento 2</title>
+      <link>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</link>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</guid>
+      <description>E-commerce is not my favorite thing to write code for and as such, I&amp;rsquo;m no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn&amp;rsquo;t called &amp;ldquo;Magneto&amp;rdquo; which is what I originally thought when I first glanced at the name.</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration With Jenkins Part II</title>
+      <link>http://www.edzynda.com/continuous-integration-with-jenkins-part-ii/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/continuous-integration-with-jenkins-part-ii/</guid>
+      <description>In the first part of this series, I showed you how you can easily set up a project to run automated tests using Jenkins. The quickest and easiest way to build your project and run tests is to add a build step that runs a bunch of shell commands. This is fine for small projects but what about larger projects with complex build steps and dependencies?
+A better options is to use another tool to automate the build process and perform certain tasks dynamically.</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration With Jenkins Part I</title>
+      <link>http://www.edzynda.com/continuous-integration-with-jenkins-part-i/</link>
+      <pubDate>Mon, 09 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/continuous-integration-with-jenkins-part-i/</guid>
+      <description>Continuous integration or CI, is all the rage these days. If you&amp;rsquo;re not familiar with what CI is, it&amp;rsquo;s basically a methodology for rapidly developing, testing and deploying applications. Using a well configured CI setup or pipeline, a developer or team of developers can make a change to their codebase, test those changes to make sure they didn&amp;rsquo;t break those changes and then push that code live in a matter of minutes.</description>
+    </item>
+    
+    <item>
+      <title>Create A Simple PHP Command Line Tool</title>
+      <link>http://www.edzynda.com/create-a-simple-php-command-line-tool/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/create-a-simple-php-command-line-tool/</guid>
+      <description>PHP is no doubt a great fit for building web applications but it also has the ability to create powerful command line applications. PHP has had this ability for a long time but recently there has been some excellent work done in order to improve the quality of PHP command line tools. The Symfony\Console component makes it incredibly easy to create a command line application that accepts different arguments and options.</description>
+    </item>
+    
+    <item>
+      <title>Easily Post To Twitter Using Codebird</title>
+      <link>http://www.edzynda.com/easily-post-to-twitter-using-codebird/</link>
+      <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/easily-post-to-twitter-using-codebird/</guid>
+      <description>Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&amp;#8217;t as hard as you might think.</description>
+    </item>
+    
+    <item>
+      <title>Build a Minimalist WYSIWYG HTML Editor With WYSIHTML5</title>
+      <link>http://www.edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/build-a-minimalist-wysiwyg-html-editor-with-wysihtml5/</guid>
+      <description>For a lot of HTML forms you really don&amp;rsquo;t need much more than the basic form fields that HTML provides. For some projects however you might need a little more. If you want your users to be able to add some styling, formatting or links you&amp;rsquo;re likely to use a third party editor like CKEditor or TinyMCE. Both of these are fine if you need all of the cool features they provide but sometimes those are overkill.</description>
+    </item>
+    
+    <item>
+      <title>My Personal Laravel Application Starter</title>
+      <link>http://www.edzynda.com/my-personal-laravel-application-starter/</link>
+      <pubDate>Fri, 27 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/my-personal-laravel-application-starter/</guid>
+      <description>Frameworks make it easy to hit the ground running when writing web apps. The one hurdle I run into consistently when starting any app though is creating a base user authentication system. It&amp;rsquo;s pretty simple to do with most modern frameworks like Laravel but it&amp;rsquo;s also just an annoying boilerplate task. This is just one of many boilerplate tasks that I&amp;rsquo;ve decided to eliminate by creating a basic starter app that I can pull from GitHub and modify from there.</description>
+    </item>
+    
+    <item>
+      <title>Using Faker To Populate Your Laravel Projects During Development</title>
+      <link>http://www.edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</link>
+      <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
+      <description>I&amp;rsquo;m a very visual person so when I&amp;rsquo;m developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don&amp;rsquo;t have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there&amp;rsquo;s still some manual data entry involved.</description>
+    </item>
+    
+    <item>
+      <title>Javascript Promises Explained</title>
+      <link>http://www.edzynda.com/javascript-promises-explained/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/javascript-promises-explained/</guid>
+      <description>While reading about different Javascript frameworks and utilities, I kept running across a design patter or technique called &amp;lsquo;promises&amp;rsquo;. It seems every shiny new Javascript thing utilizes them in some way or another. At first the concept seemed difficult to wrap my head around but eventually it clicked. It isn&amp;rsquo;t really as difficult as I thought.
+Javascript as well as other modern languages uses a what are called callback functions. These are functions passed as arguments to other functions and are used to do something with the data that the top level function returns.</description>
+    </item>
+    
+    <item>
+      <title>Working With Queues Using PHP And Beanstalkd</title>
+      <link>http://www.edzynda.com/working-with-queues-using-php-and-beanstalkd/</link>
+      <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/working-with-queues-using-php-and-beanstalkd/</guid>
+      <description>PHP is often considered the glue of the Internet because it&amp;rsquo;s can be used for a lot of different things. There are so many built in functions and features that you are unlikely to use close to all of them if you work with PHP the rest of your life. This is great because we can solve various problems in our web apps without resorting to bringing in another language. Sometimes though, our application logic can get quite large or resource intensive.</description>
+    </item>
+    
+    <item>
+      <title>Create A Self-destructing, Encrypted Message App In Laravel Part 2</title>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</link>
+      <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
+      <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Create A Self-destructing, Encrypted Message App In Laravel Part 1</title>
+      <link>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</link>
+      <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
+      <description>The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn&amp;rsquo;t say that I fall into the paranoid category but security, anonymity and cryptography fascinate me.</description>
+    </item>
+    
+    <item>
+      <title>What Is A Microframework? Getting Started With Silex</title>
+      <link>http://www.edzynda.com/what-is-a-microframework-getting-started-with-silex/</link>
+      <pubDate>Wed, 13 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/what-is-a-microframework-getting-started-with-silex/</guid>
+      <description>There is no shortage of coding frameworks these days. I can&amp;rsquo;t scroll through my twitter and facebook feeds or my favorite dev forums without stumbling upon something new. Like a hungry barracuda, I&amp;rsquo;m instantly attracted to new shiny things. While browsing reddit.com/r/php I came across a mention of a microframework called Silex. Now you may be wondering what a microframework is. I was wondering the same thing, so I took a look at the project&amp;rsquo;s website to figure out for myself.</description>
+    </item>
+    
+    <item>
+      <title>Using The PHP Built-in Webserver</title>
+      <link>http://www.edzynda.com/using-the-php-built-in-webserver/</link>
+      <pubDate>Mon, 11 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/using-the-php-built-in-webserver/</guid>
+      <description>For years Ruby and Python have been stealing the show with innovative features and functionality to help developers get their projects off the ground. PHP was left in the dust for quite a while. One simple but invaluable feature that PHP had been lacking was it&amp;rsquo;s own webserver. Since version 5.4 however, PHP developers can now enjoy this modern convenience.
+Not all backend developers are system administrators. They know how to code and code well.</description>
+    </item>
+    
+    <item>
+      <title>The PHP Renaissance: FIG and PSRs</title>
+      <link>http://www.edzynda.com/the-php-renaissance-fig-and-psrs/</link>
+      <pubDate>Fri, 08 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/the-php-renaissance-fig-and-psrs/</guid>
+      <description>If you worked with PHP in the early days or even if you are a newcomer, you are probably familiar with how messy and painful working with another developer&amp;#8217;s code can be. PHP has a low barrier to entry which is great for getting things done. At the same time though, it creates a culture of lazy developers. Even those developers with years of experience have coding styles that are hard to wade through.</description>
+    </item>
+    
+    <item>
+      <title>What Is An IoC Container?</title>
+      <link>http://www.edzynda.com/what-is-an-ioc-container/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/what-is-an-ioc-container/</guid>
+      <description>If you&amp;#8217;re discussing object oriented programming in PHP these days, it&amp;#8217;s likely that you&amp;#8217;ve at least heard about such topics as dependency injection or IoC containers. They&amp;#8217;re both pretty useful tools for coding and testing your code. What exactly is an IoC container though? It sounds pretty complicated but it&amp;#8217;s really not.
+If you read my earlier post on using repositories in Laravel you might have noticed that when using dependency injection in our __construct method, we didn&amp;#8217;t have to actually instantiate our repository.</description>
+    </item>
+    
+    <item>
+      <title>Using Hooks In WordPress</title>
+      <link>http://www.edzynda.com/using-hooks-in-wordpress/</link>
+      <pubDate>Mon, 04 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/using-hooks-in-wordpress/</guid>
+      <description>Every so often I have clients who want me to work on WordPress sites or plugins. I honestly hate working with WordPress. While it&amp;#8217;s one of the most popular CMS products in the world with a massive developer base, I find that anything coded for WordPress tends to follow a tacky and poorly organized form of coding. Coding styles vary wildly from developer to developer and there really is no standard.</description>
+    </item>
+    
+    <item>
+      <title>Using Repositories In Laravel</title>
+      <link>http://www.edzynda.com/using-repositories-in-laravel/</link>
+      <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/using-repositories-in-laravel/</guid>
+      <description>The past couple of days I have been cramming my brain with coding knowledge. I&amp;#8217;m working on a side project that I&amp;#8217;ll likely announce in detail as it gets closer to launch. Since I&amp;#8217;m starting from an empty Laravel project and building it from the ground up, I&amp;#8217;m learning quite a bit about the framework and even some of the new features in PHP 5.4 and above.
+One technique I&amp;#8217;m starting to better understand is that of dependency injection.</description>
+    </item>
+    
+    <item>
+      <title>Using Route/Model Binding In Laravel</title>
+      <link>http://www.edzynda.com/using-routemodel-binding-in-laravel/</link>
+      <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/using-routemodel-binding-in-laravel/</guid>
+      <description>As I work more and more with Laravel, I keep running across some really cool time saving tricks. One of those time savers is route/model binding.
+Let&amp;#8217;s say that you have the following route setup.
+&amp;lt;?php Route::get(&#39;books/{book}&#39;, function($book) { return Book::find($book); });  That&amp;#8217;s pretty simple right? Basically you point your browser at /books and then pass a book id and then use the &amp;#8216;Book&amp;#8217; model to fetch that book from the database.</description>
+    </item>
+    
+    <item>
+      <title>Simple Image Manipulation With Intervention Image</title>
+      <link>http://www.edzynda.com/simple-image-manipulation-with-intervention-image/</link>
+      <pubDate>Fri, 27 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/simple-image-manipulation-with-intervention-image/</guid>
+      <description>A lot of web applications include some sort of photo uploading functionality. Whether it&amp;#8217;s allowing a user to upload a personal avatar or to create and manage an entire photo gallery with watermarking features, it&amp;#8217;s somewhat of a pain to code. PHP includes several built-in functions for accomplishing this using the GD library but they&amp;#8217;re cumbersome at best. Luckily someone else feels your pain and has written a class that makes it a snap to work with images.</description>
+    </item>
+    
+    <item>
+      <title>Use Laravel&#39;s Eloquent ORM Outside Of Laravel</title>
+      <link>http://www.edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</link>
+      <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
+      <description>Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;rsquo;s code, however, I&amp;rsquo;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;rsquo;s key components can be used as stand-alone modules.</description>
+    </item>
+    
+    <item>
+      <title>Tip: Custom Scripts In WordPress</title>
+      <link>http://www.edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</link>
+      <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/tip-custom-scripts-and-stylesheets-in-wordpress/</guid>
+      <description>WordPress is a great CMS (Content Management System) is you want to get a site up and running very quickly. It&amp;#8217;s themable and within the theming framework, WordPress includes the ability to include popular assets like JQuery. All it takes is a simple command.
+&amp;lt;?php wp_enqueue_script(&#39;jquery&#39;);  What if you don&amp;#8217;t want to use the version of JQuery included in WordPress though? There are several reasons you would require a different version, compatibility for example.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started With Laravel 4 and Vagrant</title>
+      <link>http://www.edzynda.com/getting-started-with-laravel-4-and-vagrant/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/getting-started-with-laravel-4-and-vagrant/</guid>
+      <description>I&amp;rsquo;ve worked with a handful of different PHP frameworks over the years. From ZEND Framework to Codeigniter, all have their pros and cons. Some of them are more difficult to work with than others. None of them, however, have been more enjoyable for me to work with than Laravel.
+I came across Laravel while randomly browsing the web. I don&amp;rsquo;t even remember what I was looking for but after reading more about Laravel and how simple it was to setup, I was hooked.</description>
+    </item>
+    
+    <item>
+      <title>3 Reasons To Use Nginx Instead Of Apache</title>
+      <link>http://www.edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</link>
+      <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/3-reasons-to-use-nginx-instead-of-apache/</guid>
+      <description>If you&amp;#8217;ve been working with the web for the past decade, you&amp;#8217;re probably familiar with Apache web server. Apache has long been a pillar of the world wide web. It&amp;#8217;s free, functional and very modular. I&amp;#8217;ve been using Apache for years as it&amp;#8217;s the default on many hosting solutions.
+As great as Apache is, it&amp;#8217;s not a one size fits all solution. In fact it may even be overkill for some projects.</description>
+    </item>
+    
+    <item>
+      <title>Tip: Quick Test For XSS Vulnerabilities</title>
+      <link>http://www.edzynda.com/testing-for-xss-vulnerabilities/</link>
+      <pubDate>Mon, 29 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.edzynda.com/testing-for-xss-vulnerabilities/</guid>
+      <description>There are a lot of things to keep in mind when it comes to web development. Security should be at the top of your list. If you read up on web application security, you&amp;#8217;re probably familiar with cross-site scripting or XSS attacks. XSS attacks can cause serious damage but are really simple to prevent.
+If you aren&amp;#8217;t familiar, a XSS vulnerability occurs when your application takes user data and then sends it to the web browser without proper validation.</description>
     </item>
     
   </channel>

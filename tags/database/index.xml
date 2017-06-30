@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Database on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/tags/database/index.xml</link>
+    <link>http://www.edzynda.com/tags/database/</link>
     <description>Recent content in Database on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://www.edzynda.com/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Dec 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.edzynda.com/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Using Faker To Populate Your Laravel Projects During Development</title>
@@ -15,79 +18,7 @@
       <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/using-faker-to-populate-your-laravel-projects-during-development/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m a very visual person so when I&amp;rsquo;m developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don&amp;rsquo;t have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there&amp;rsquo;s still some manual data entry involved. We can eliminate this with a cool library called &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;Faker&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Faker takes all the manual entry out of database seeding. It can generate anything from usernames, email addresses and city names to dates and fake credit card numbers. This saves loads of time when creating your database seeder. If you&amp;rsquo;re new to Laravel or have no idea how to seed your database, check out the awesome Laravel &lt;a href=&#34;http://laravel.com/docs/migrations#database-seeding&#34; title=&#34;Laravel - Database Seeding&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on the subject.&lt;/p&gt;
-
-&lt;p&gt;To get started just add Faker using composer.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer require fzaninotto/faker  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When prompted for the version I entered &amp;lsquo;1.4.*@dev&amp;rsquo; which is the latest at the time of this writing. This will add faker to &amp;lsquo;comoposer.json&amp;rsquo; and download the library. Laravel will autoload the library for you.&lt;/p&gt;
-
-&lt;p&gt;I have a travel buddy meetup site, that I&amp;rsquo;m creating. Users can sign-up and then create trips. Other users can see these trips and then propose a meetup or just give helpful tips and advice. Let&amp;rsquo;s see what my seeders will look like using Faker.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s the user seeder.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-class UserTableSeeder extends Seeder
-{
-
-    public function run()  
-    {  
-        $faker = Faker\Factory::create();
-
-        User::truncate();
-
-        foreach(range(1,30) as $index)  
-        {  
-            User::create([  
-                &#39;username&#39; =&amp;gt; str_replace(&#39;.&#39;, &#39;_&#39;, $faker-&amp;gt;unique()-&amp;gt;userName),  
-                &#39;email&#39; =&amp;gt; $faker-&amp;gt;email,  
-                &#39;password&#39; =&amp;gt; &#39;password&#39;,  
-                &#39;confirmation&#39; =&amp;gt; str_random(64),  
-                &#39;confirmed&#39; =&amp;gt; true  
-            ]);  
-        }
-    }
-}  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;First I created a new instance of Faker using &amp;lsquo;$faker = Faker\Factory::create();&amp;lsquo;. &amp;lsquo;User::truncate();&amp;rsquo; just clears the database out so we can reseed it. Next I create a loop that will create 30 new users. For any field that requires fake data just call the Faker instance we created up top and the type of data we need (e.g &amp;lsquo;$faker-&amp;gt;userName). Faker likes to add a &amp;lsquo;.&amp;rsquo; to some usernames which doesn&amp;rsquo;t play nice with my app which is why I used &amp;lsquo;str_replace()&amp;rsquo; to get rid of those. You can even use the &amp;lsquo;unique()&amp;rsquo; modifier to make sure usernames aren&amp;rsquo;t repeated.&lt;/p&gt;
-
-&lt;p&gt;As you can see, it&amp;rsquo;s pretty straight forward. Let&amp;rsquo;s look at another example. Here I have my trip seeder.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-
-class TripTableSeeder extends Seeder
-{
-
-    public function run()  
-    {
-
-        $faker = Faker\Factory::create();
-
-        Trip::truncate();
-
-        foreach(range(1,10) as $index)  
-        {  
-            Trip::create([  
-                &#39;user_id&#39; =&amp;gt; rand(1,30),  
-                &#39;location&#39; =&amp;gt; $faker-&amp;gt;city . &#39;, &#39; . $faker-&amp;gt;country,  
-                &#39;from&#39; =&amp;gt; $from = $faker-&amp;gt;dateTimeBetween(&#39;+1 days&#39;, &#39;+2 years&#39;)-&amp;gt;format(&#39;m/d/Y&#39;),  
-                &#39;to&#39; =&amp;gt; $faker-&amp;gt;dateTimeBetween($from, $from . &#39; +3 months&#39;)-&amp;gt;format(&#39;m/d/Y&#39;),  
-                &#39;note&#39; =&amp;gt; $faker-&amp;gt;paragraph(1)  
-            ]);  
-        }  
-    }  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Same principle as before. Faker can create dates in a specific range, words, sentences and even paragraphs using the popular &amp;lsquo;lorem ipsum&amp;rsquo; filler.&lt;/p&gt;
-
-&lt;p&gt;This is a great tool for projects that will be working with a lot of users and data. For more information on Faker&amp;rsquo;s features, check out the &lt;a href=&#34;https://github.com/fzaninotto/Faker&#34; title=&#34;Faker on GitHub&#34; target=&#34;_blank&#34;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>I&amp;rsquo;m a very visual person so when I&amp;rsquo;m developing something, I like see and interact with my projects exactly how I would if it was in the production stage. The problem is, I don&amp;rsquo;t have a handful of test users on call to register on my test application and start using it. Laravel already has an easy way to populate your databases with users and other data but there&amp;rsquo;s still some manual data entry involved.</description>
     </item>
     
     <item>
@@ -96,70 +27,7 @@ class TripTableSeeder extends Seeder
       <pubDate>Mon, 23 Sep 2013 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/use-laravels-eloquent-orm-outside-of-laravel/</guid>
-      <description>&lt;p&gt;Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;rsquo;s code, however, I&amp;rsquo;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;rsquo;s key components can be used as stand-alone modules.&lt;/p&gt;
-
-&lt;p&gt;Using Laravel&amp;rsquo;s database magic in your own projects is pretty simple. First you need to make sure you have all the required components included in your project. Currently Laravel 4 is the latest version and it&amp;rsquo;s codename is &amp;ldquo;Illuminate&amp;rdquo;. It&amp;rsquo;s database component is therefore called &amp;ldquo;Illuminate\Database&amp;rdquo;. The easiest way to grab &amp;ldquo;Illuminate\Database&amp;rdquo; and it&amp;rsquo;s dependencies is to use &lt;a title=&#34;Composer&#34; href=&#34;http://getcomposer.org/&#34; target=&#34;_blank&#34;&gt;Composer&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Make sure there is file called &amp;lsquo;composer.json&amp;rsquo; in your project that contains the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
-    &amp;quot;require&amp;quot;: {
-        &amp;quot;illuminate/database&amp;quot;: &amp;quot;*&amp;quot;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now run:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer install  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In order to start using Eloquent let&amp;rsquo;s create a file called database.php to include in our various project files.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php  
-require &#39;vendor/autoload.php&#39;;  
-
-use Illuminate\Database\Capsule\Manager as Capsule;  
-
-$capsule = new Capsule;
-
-$capsule-&amp;gt;addConnection(array(
-    &#39;driver&#39;    =&amp;gt; &#39;mysql&#39;,
-    &#39;host&#39;      =&amp;gt; &#39;localhost&#39;,
-    &#39;database&#39;  =&amp;gt; &#39;test&#39;,
-    &#39;username&#39;  =&amp;gt; &#39;test&#39;,
-    &#39;password&#39;  =&amp;gt; &#39;l4m3p455w0rd!&#39;,
-    &#39;charset&#39;   =&amp;gt; &#39;utf8&#39;,
-    &#39;collation&#39; =&amp;gt; &#39;utf8_unicode_ci&#39;,
-    &#39;prefix&#39;    =&amp;gt; &#39;&#39;
-));
-
-$capsule-&amp;gt;bootEloquent();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we can start working with database tables just like we would if we were using Laravel!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-include &#39;database.php&#39;;
-
-// Create the Books model
-class Books extends Illuminate\Database\Eloquent\Model {
-    public $timestamps = false;
-}
-
-// Grab a book with an id of 1
-$book = Books::find(1);
-
-// Change some stuff
-$book-&amp;gt;name = &amp;quot;The Best Book in the World&amp;quot;;
-$book-&amp;gt;author = &amp;quot;Ed Zynda&amp;quot;;
-
-// Save it to the database
-$book-&amp;gt;save();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Check out the Laravel &lt;a title=&#34;Laravel Eloquent documentation&#34; href=&#34;http://laravel.com/docs/eloquent&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; for more information on working with Eloquent.&lt;/p&gt;
-</description>
+      <description>Working with databases in Laravel is ridiculously easy thanks to Eloquent. Eloquent allows you to map database tables as simple model objects that include various methods for retrieving and updating the database. While working on other people&amp;rsquo;s code, however, I&amp;rsquo;m usually not lucky enough to be working with something as enjoyable as Laravel. Thankfully Laravel is written in such a way that some of it&amp;rsquo;s key components can be used as stand-alone modules.</description>
     </item>
     
   </channel>

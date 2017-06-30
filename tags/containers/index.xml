@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Containers on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/tags/containers/index.xml</link>
+    <link>http://www.edzynda.com/tags/containers/</link>
     <description>Recent content in Containers on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <atom:link href="http://www.edzynda.com/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Dec 2016 09:18:06 -0800</lastBuildDate>
+    
+	<atom:link href="http://www.edzynda.com/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>How Easy Is It To Containerize A Go App?</title>
@@ -15,95 +18,8 @@
       <pubDate>Tue, 27 Dec 2016 09:18:06 -0800</pubDate>
       
       <guid>http://www.edzynda.com/how-easy-is-it-to-containerize-a-go-app/</guid>
-      <description>&lt;p&gt;Recently, I wrote an article on how to &lt;a href=&#34;https://scotch.io/bar-talk/build-a-realtime-chat-server-with-go-and-websockets&#34;&gt;create a simple chat server using WebSockets and Go&lt;/a&gt;. I made the &lt;a href=&#34;https://github.com/scotch-io/go-realtime-chat&#34;&gt;source code&lt;/a&gt; available and it&amp;rsquo;s pretty simple to get the example up and running if you have a basic familiarization with Go. I wanted to see if I could make it easier for people to try out though. For this, I looked to the very popular &lt;a href=&#34;https://docker.io&#34;&gt;Docker&lt;/a&gt; project.&lt;/p&gt;
-
-&lt;p&gt;Docker has been around for quite some time but, I only recently began toying around with it more seriously. At first it seems pretty complicated but as it turns out, it&amp;rsquo;s really simple to use once you get the hang of the basic commands and concepts.&lt;/p&gt;
-
-&lt;p&gt;This is not going to be a tutorial how to get started with Docker though, I&amp;rsquo;m just going to run through the steps of how I turned my chat application into a redistributable container.&lt;/p&gt;
-
-&lt;p&gt;The first step is obviously to have Docker installed for your specific OS. Head on over to the &lt;a href=&#34;https://docker.io&#34;&gt;Docker website&lt;/a&gt; to fetch that.&lt;/p&gt;
-
-&lt;p&gt;The next step is to create a Dockerfile in the same directory you have your app source code. This is just a file that will tell Docker how to build your container. The Dockerfile for my chat application looks just like this.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;FROM golang:1.7
-
-MAINTAINER Ed Zynda
-
-RUN mkdir /app
-COPY . /app
-
-WORKDIR /app/src
-RUN go get -u github.com/gorilla/websocket
-RUN go build main.go
-
-CMD [&amp;quot;./main&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at this line by line.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;FROM golang:1.7
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This tells Docker that I want to start out with an official Docker container called Golang and use the tagged version 1.7. This container has all of the Golang build tools preinstalled and will provide a good base for us to build upon.&lt;/p&gt;
-
-&lt;p&gt;The Docker hub has thousands of containers provided by Docker and the community which you can download and build upon yourself. There are even containers that literally have nothing in them if you want to keep your final container as light as possible.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;MAINTAINER Ed Zynda
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This just says that I&amp;rsquo;m the maintainer of this container. I&amp;rsquo;m a poet and I didn&amp;rsquo;t even know it!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;RUN mkdir /app
-COPY . /app
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;RUN&lt;/code&gt; keyword allows us to run any command we wish inside our container. In this case I just want to create a new directory to hold our application. Next I use the &lt;code&gt;COPY&lt;/code&gt; keyword to move my source code into the container.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;WORKDIR /app/src
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This tells Docker that I now want to run commands from within the &lt;code&gt;/app/src&lt;/code&gt; directory. This is just like running &lt;code&gt;cd /app/src&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;RUN go get -u github.com/gorilla/webSocket
-RUN go build main.go
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this step, I&amp;rsquo;m just running the normal Go commands to pull down dependencies and then compile the application.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;CMD [&amp;quot;./main&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The final step is to tell Docker which command to run when the container is started. In this case I just want to run the binary called &lt;code&gt;main&lt;/code&gt; which is the result of compiling the Go source.&lt;/p&gt;
-
-&lt;p&gt;After creating my Dockerfile, I can now build the container by running the following command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker build -t ezynda3/go-chat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will build the container, following the steps in the Dockerfile and then tag it with &lt;code&gt;ezynda3/go-chat&lt;/code&gt;. Since I didn&amp;rsquo;t provide a version number the version will automatically be set to &lt;code&gt;latest&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This container only exists on my machine right now though. In order to distribute it so others can use it, I need to publish it to a hub. Docker provides a free hub for public containers at &lt;a href=&#34;https://hub.docker.com&#34;&gt;hub.docker.com&lt;/a&gt;. To push the container up just run the following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker push ezynda3/go-chat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Docker may complain about invalid credentials. In that case run the following after ensuring you have created an account on Docker&amp;rsquo;s hub site.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker login
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;It will prompt you for your credentials and you should be set to run the previous command again.&lt;/p&gt;
-
-&lt;p&gt;Now on any machine that has Docker installed, we can run&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker pull ezynda3/go-chat
-docker run -p 8000:8000 ezynda3/go-chat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will pull the container and then run it mapping port &lt;code&gt;8000&lt;/code&gt; from within the container to port &lt;code&gt;8000&lt;/code&gt; on the host machine.&lt;/p&gt;
-
-&lt;p&gt;As you can see, it was pretty easy to create a nice simple container for a Go application.&lt;/p&gt;
-</description>
+      <description>Recently, I wrote an article on how to create a simple chat server using WebSockets and Go. I made the source code available and it&amp;rsquo;s pretty simple to get the example up and running if you have a basic familiarization with Go. I wanted to see if I could make it easier for people to try out though. For this, I looked to the very popular Docker project.
+Docker has been around for quite some time but, I only recently began toying around with it more seriously.</description>
     </item>
     
   </channel>
