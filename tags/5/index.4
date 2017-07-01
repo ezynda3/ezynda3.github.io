@@ -131,12 +131,12 @@ Not all backend developers are system administrators. They know how to code and 
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'https://mautic.mark3labs.com/index.php/media/js/mautic-form.js';
+        script.src = 'https://mautic.mark3labs.com/media/js/mautic-form.js';
         script.onload = function () {
             MauticSDK.onLoad();
         };
         head.appendChild(script);
-        var MauticDomain = 'https://mautic.mark3labs.com/index.php';
+        var MauticDomain = 'https://mautic.mark3labs.com';
         var MauticLang = {
             'submittingMessage': "Please wait..."
         }

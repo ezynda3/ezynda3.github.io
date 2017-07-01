@@ -2,15 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Twitter on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/tags/twitter/</link>
+    <link>http://www.edzynda.com/tags/twitter/index.xml</link>
     <description>Recent content in Twitter on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <lastBuildDate>Wed, 12 Feb 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://www.edzynda.com/tags/twitter/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://www.edzynda.com/tags/twitter/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Easily Post To Twitter Using Codebird</title>
@@ -18,7 +15,79 @@
       <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/easily-post-to-twitter-using-codebird/</guid>
-      <description>Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&amp;#8217;t as hard as you might think.</description>
+      <description>&lt;p&gt;Recently I needed to add some social media functionality to a project. I needed to be able to post to Twitter and Facebook whenever a user created a new item in the web app. I had never done this before in PHP because normally I would use some sort of plugin in WordPress to do this. Since this was not a WordPress site, I needed to do it by hand. Luckily this isn&amp;#8217;t as hard as you might think.&lt;/p&gt;
+
+&lt;p&gt;The first thing you need is a Twitter account to post to. Second, you need to create and register your application with Twitter.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_1.jpg&#34; alt=&#34;Create your app&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;ve successfully created your app, click on the the API Keys tab. You will need to copy down your API Key and API Secret. Next you will need to change the permissions of this app. Click on &amp;#8220;modify app permissions&amp;#8221; and change it to read and write.&lt;/p&gt;
+
+&lt;p&gt;Last you will need to create an access token. This is what will allow your app to post on your Twitter account&amp;#8217;s behalf. Click &amp;#8220;Generate my Access Token&amp;#8221; and then copy down the Access token and Access token secret.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.edzynda.com/media/twitter_post_app_2.jpg&#34; alt=&#34;Grab your tokens&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that we have an app registered with Twitter we can get to the code.&lt;/p&gt;
+
+&lt;p&gt;In this example we will use a library called Codebird. This is an excellent library with excellent documentation. You can check out the project on &lt;a href=&#34;https://github.com/jublonet/codebird-php&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use composer to install Codebird&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer require jublonet/codebird-php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When prompted enter 2.4.1 for the version.&lt;/p&gt;
+
+&lt;p&gt;Now we can create a simple twitter class.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+require &#39;vendor/autoload.php&#39;;
+
+use Codebird\Codebird;
+
+class Twitter
+{
+    protected $consumer_key = &amp;lt;API_KEY&amp;gt;;
+    protected $consumer_secret = &amp;lt;API_SECRET&amp;gt;;
+    protected $access_token = &amp;lt;ACCESS_TOKEN&amp;gt;;
+    protected $access_secret = &amp;lt;ACCESS_SECRET&amp;gt;;
+    protected $twitter;
+
+    public function __construct()
+    {
+        // Fetch new Twitter Instance
+        Codebird::setConsumerKey($this-&amp;gt;consumer_key, $this-&amp;gt;consumer_secret);
+        $this-&amp;gt;twitter = Codebird::getInstance();
+
+        // Set access token
+        $this-&amp;gt;twitter-&amp;gt;setToken($this-&amp;gt;access_token, $this-&amp;gt;access_secret);
+    }
+
+    public function tweet($message)
+    {
+        return $this-&amp;gt;twitter-&amp;gt;statuses_update([&#39;status&#39; =&amp;gt; $message]);
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Replace the protected variables in &amp;#8216;&amp;lt; &amp;gt;&amp;#8216; brackets with your own app&amp;#8217;s information. In the constructor we simply set our consumer key then fetch an instance of Codebird. Once we have a fresh instance we can set our access token.&lt;/p&gt;
+
+&lt;p&gt;Next we create a simple method with accepts a single argument which is simply the message you would like to tweet.&lt;/p&gt;
+
+&lt;p&gt;Now when we want to tweet we can do something like the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+require &#39;Twitter.php&#39;;
+
+$twtr = new Twitter;
+
+$twtr-&amp;gt;tweet(&#39;Hello World!&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s really that simple. Of course there is a lot more you can do with this like post images for example but this is just to show you how easy it can be. For more features just check out the documentation on the Codebird &lt;a href=&#34;https://github.com/jublonet/codebird-php&#34;&gt;Github&lt;/a&gt; page.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -28,7 +97,131 @@
       
       <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-2/</guid>
       <description>&lt;p&gt;The first thing we&amp;rsquo;ll need to do is create a default layout. This is the layout that the rest of our views will extend. Let&amp;rsquo;s save it as &amp;lsquo;app/views/layouts/default.blade.php&amp;rsquo;.
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+    &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
+    &amp;lt;meta name=&amp;quot;author&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
+
+    &amp;lt;title&amp;gt;Burnmsg - Self-desctructing, encrypted messages&amp;lt;/title&amp;gt;
+
+    &amp;lt;!-- Bootstrap core CSS --&amp;gt;
+    &amp;lt;link href=&amp;quot;{{ asset(&#39;css/styles.css&#39;) }}&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+
+    &amp;lt;!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --&amp;gt;
+    &amp;lt;!--[if lt IE 9]&amp;gt;
+      &amp;lt;script src=&amp;quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+      &amp;lt;script src=&amp;quot;https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;![endif]--&amp;gt;
+  &amp;lt;/head&amp;gt;
+
+  &amp;lt;body&amp;gt;
+
+    &amp;lt;div class=&amp;quot;navbar navbar-inverse navbar-fixed-top&amp;quot; role=&amp;quot;navigation&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+        &amp;lt;div class=&amp;quot;navbar-header&amp;quot;&amp;gt;
+          &amp;lt;a class=&amp;quot;navbar-brand&amp;quot; href=&amp;quot;{{ route(&#39;messages.create&#39;) }}&amp;quot;&amp;gt;Burnmsg&amp;lt;/a&amp;gt;
+        &amp;lt;/div&amp;gt;
+       &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+        @yield(&#39;content&#39;)
+    &amp;lt;/div&amp;gt;&amp;lt;!-- /.container --&amp;gt;
+
+
+    &amp;lt;!-- Bootstrap core JavaScript
+    ================================================== --&amp;gt;
+    &amp;lt;!-- Placed at the end of the document so the pages load faster --&amp;gt;
+    &amp;lt;script src=&amp;quot;https://code.jquery.com/jquery-1.10.2.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;{{ asset(&#39;js/bootstrap.min.js&#39;) }}&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to make sure that Twitter Bootstrap is accessible. Bootstrap is installed into the &amp;lsquo;vendor&amp;rsquo; folder of our project by composer. First let&amp;rsquo;s copy the Javascript libraries.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cp vendor/twitter/bootstrap/dist/js/bootstrap.min.js public/js  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We also need the CSS stylesheet but we are going to need to tweak some of the styles. We are going to do this using LESS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ touch public/css/styles.less  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In our newly created LESS file we will import the original stylesheet and make our tweaks as needed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;@import &amp;quot;../../vendor/twitter/bootstrap/less/bootstrap&amp;quot;;
+
+body {
+    padding-top: 65px; /* bring body to bottom of navbar */
+}
+
+article {
+    white-space: pre-wrap;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LESS makes it easy to work with CSS but it needs to be &amp;ldquo;compiled&amp;rdquo; in order for the browser to understand it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ lessc public/css/styles.less &amp;gt; public/css/styles.css  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I use &amp;lsquo;lessc&amp;rsquo; which is a Ruby gem but you can use any LESS compiler. Google should bring up a handful of options.&lt;/p&gt;
+
+&lt;p&gt;Now all that is left is to create our various views which correspond to the different actions involved in our application. Let&amp;rsquo;s save these views in &amp;lsquo;app/views/messages&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;The first view &amp;lsquo;create.blade.php&amp;rsquo; will represent our message creation form. Notice that it &amp;lsquo;@extends&amp;rsquo; our default layout and renders the form within the &amp;lsquo;content&amp;rsquo; section which is referenced in the default layout.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+
+    @section(&#39;content&#39;)
+    {{ Form::open([&#39;method&#39; =&amp;gt; &#39;post&#39;, &#39;route&#39; =&amp;gt; &#39;messages.store&#39;, &#39;class&#39; =&amp;gt; &#39;form&#39;]) }}
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        @if($errors-&amp;gt;first())
+            &amp;lt;div class=&amp;quot;alert alert-danger&amp;quot;&amp;gt;
+                {{ $errors-&amp;gt;first() }}
+            &amp;lt;/div&amp;gt;
+        @endif
+        {{ Form::label(&#39;body&#39;, &#39;Message&#39;) }}
+        {{ Form::textarea(&#39;body&#39;, null, [&#39;class&#39; =&amp;gt; &#39;form-control&#39;]) }}
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        {{ Form::submit(&#39;Submit&#39;, [&#39;class&#39; =&amp;gt; &#39;btn btn-primary&#39;]) }}
+        {{ Form::close() }}
+    &amp;lt;/div&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once the message is submitted our &amp;lsquo;store.blade.php&amp;rsquo; view will display a link for the user to copy and give to whomever they wish for later reading.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+
+    @section(&#39;content&#39;)
+    &amp;lt;div class=&amp;quot;alert alert-success&amp;quot;&amp;gt;
+        Your message has been saved.
+        Here is the URL &amp;lt;a href=&amp;quot;{{ route(&#39;messages.show&#39;, [$url, $key]) }}&amp;quot;&amp;gt;{{ route(&#39;messages.show&#39;, [$url, $key]) }}&amp;lt;/a&amp;gt;
+    &amp;lt;/div&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lastly the &amp;lsquo;show.blade.php&amp;rsquo; view will display the message for the user once they decide to read it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    @extends(&#39;layouts.default&#39;)
+
+    @section(&#39;content&#39;)
+    &amp;lt;article&amp;gt;
+    {{{ $body }}}
+    &amp;lt;/article&amp;gt;
+    @stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we should have a pretty sweet messaging app that destroys your message upon reading. Keep in mind that I am no cryptography or digital forensics expert so rely on this application at your own risk. Go ahead and modify it to make it more secure if you like. Leave any suggestions you may have in the comments.&lt;/p&gt;</description>
     </item>
     
   </channel>

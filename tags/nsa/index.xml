@@ -2,15 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nsa on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/tags/nsa/</link>
+    <link>http://www.edzynda.com/tags/nsa/index.xml</link>
     <description>Recent content in Nsa on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <lastBuildDate>Fri, 15 Nov 2013 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://www.edzynda.com/tags/nsa/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://www.edzynda.com/tags/nsa/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Create A Self-destructing, Encrypted Message App In Laravel Part 1</title>
@@ -18,7 +15,199 @@
       <pubDate>Fri, 15 Nov 2013 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/create-a-self-destructing-encrypted-message-app-in-laravel-part-1/</guid>
-      <description>The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn&amp;rsquo;t say that I fall into the paranoid category but security, anonymity and cryptography fascinate me.</description>
+      <description>&lt;p&gt;The Internet is the wild west these days. With hackers, scammers and even governments gathering our personal communications, you may have become pretty paranoid about what you post online these days. In response to all this paranoia, there have been several offerings from online applications to SaaS services claiming to improve your security and protect your data online. I wouldn&amp;rsquo;t say that I fall into the paranoid category but security, anonymity and cryptography fascinate me.&lt;/p&gt;
+
+&lt;p&gt;While brain storming one day, I decided to go ahead and build a self-destructing, encrypted messaging application in Laravel, using PHP&amp;rsquo;s built-in mcrypt library to see how hard it would be. Turns out it isn&amp;rsquo;t very hard at all.&lt;/p&gt;
+
+&lt;p&gt;First we need to download Laravel and setup the base of our project. We&amp;rsquo;ll call it &amp;lsquo;Burnmsg&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ composer create-project laravel/laravel burnmsg  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s setup our composer.json file to fetch some dependencies. We&amp;rsquo;ll use Twitter&amp;rsquo;s bootstrap for styling and Jeffrey Way&amp;rsquo;s time-saving artisan generators.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;laravel/laravel&amp;quot;,
+    &amp;quot;description&amp;quot;: &amp;quot;The Laravel Framework.&amp;quot;,
+    &amp;quot;keywords&amp;quot;: [&amp;quot;framework&amp;quot;, &amp;quot;laravel&amp;quot;],
+    &amp;quot;license&amp;quot;: &amp;quot;MIT&amp;quot;,
+    &amp;quot;require&amp;quot;: {
+        &amp;quot;laravel/framework&amp;quot;: &amp;quot;4.0.*&amp;quot;,
+        &amp;quot;twitter/bootstrap&amp;quot;: &amp;quot;3.0.*&amp;quot;
+        &amp;quot;way/generators&amp;quot;: &amp;quot;dev-master&amp;quot;
+    },
+    &amp;quot;autoload&amp;quot;: {
+        &amp;quot;classmap&amp;quot;: [
+            &amp;quot;app/commands&amp;quot;,
+            &amp;quot;app/controllers&amp;quot;,
+            &amp;quot;app/models&amp;quot;,
+            &amp;quot;app/database/migrations&amp;quot;,
+            &amp;quot;app/database/seeds&amp;quot;,
+            &amp;quot;app/tests/TestCase.php&amp;quot;
+        ]
+    },
+    &amp;quot;scripts&amp;quot;: {
+        &amp;quot;post-install-cmd&amp;quot;: [
+            &amp;quot;php artisan optimize&amp;quot;
+        ],
+        &amp;quot;post-update-cmd&amp;quot;: [
+            &amp;quot;php artisan clear-compiled&amp;quot;,
+            &amp;quot;php artisan optimize&amp;quot;
+        ],
+        &amp;quot;post-create-project-cmd&amp;quot;: [
+            &amp;quot;php artisan key:generate&amp;quot;
+        ]
+    },
+    &amp;quot;config&amp;quot;: {
+        &amp;quot;preferred-install&amp;quot;: &amp;quot;dist&amp;quot;
+    },
+    &amp;quot;minimum-stability&amp;quot;: &amp;quot;dev&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure you add the generators service provider to &amp;lsquo;app/config/app.php&amp;rsquo; in the &amp;lsquo;providers&amp;rsquo; array.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+&#39;providers&#39; = array(
+    &#39;...&#39;,
+    &#39;Way\Generators\GeneratorsServiceProvider&#39;
+),
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Change your database configuration in &amp;lsquo;app/config/database.php&amp;rsquo;. Once that&amp;rsquo;s done we can generate our model, controller and views all in one command using the useful generators tool.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php artisan generate:resource --fields=&amp;quot;body:binary,url:string,iv:binary,destroyed:boolean&amp;quot; messages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can run our migration to create the messages table.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ php artisan migrate  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next let&amp;rsquo;s set up our routes. We only need a few. One for the message form. One to post the data and one to view our message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+Route::get(&#39;/&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.create&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@create&#39;]);
+Route::post(&#39;/&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.store&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@store&#39;]);
+Route::get(&#39;/{key}/{value}&#39;, [&#39;as&#39; =&amp;gt; &#39;messages.show&#39;, &#39;uses&#39; =&amp;gt; &#39;MessagesController@show&#39;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In our controller we will only need a create, store and show method. The create method will return the view for displaying our form.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+public function create()
+{
+      return View::make(&#39;messages.create&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The store method will take the input and validate it. In this case we only care that the message isn&amp;rsquo;t left blank. Next we will generate a random key. Then we will generate an IV or initialization vector. This is used to improve the randomization of our encryption. In this case we will use the Blowfish algorithm. The last steps are to encrypt the message and then save the encrypted message and the IV for decryption later. We will also create a random identifier. The key will not be saved though. Instead it will be part of the URL for retrieving the message later. Because the key is part of the URL the message creator needs to keep this as safe as possible. This also prevents the person running the server from being able to read any of the messages. Plausible-deniability. Finally we return the view which displays the URL for our message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php  
+public function store()
+{
+        // Validate input
+        $v = Message::validate(Input::all());
+
+        if ($v !== true) {
+            return Redirect::route(&#39;messages.create&#39;)
+                -&amp;gt;withErrors($v-&amp;gt;errors());
+        }
+
+        $msg = new Message;
+
+        // Generate a key
+        $key = sha1(microtime(true).mt_rand(10000,90000));
+
+        // Generate an IV
+        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_CFB);
+        $iv = mcrypt_create_iv($iv_size, MCRYPT_DEV_URANDOM);
+
+        // Encrypt the message
+        $body = mcrypt_encrypt(MCRYPT_BLOWFISH, $key, Input::get(&#39;body&#39;), MCRYPT_MODE_CFB, $iv);
+
+        // Save the message to the database
+        $msg-&amp;gt;body = $body;
+        $msg-&amp;gt;url = Message::get_unique_url();
+        $msg-&amp;gt;iv = $iv;
+        $msg-&amp;gt;save();
+
+        // Return the view
+        return View::make(&#39;messages.store&#39;, [&#39;url&#39; =&amp;gt; $msg-&amp;gt;url, &#39;key&#39; =&amp;gt; $key]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The show method will take the random identifier and the key and decrypt the message. Once decrypted it will overwrite the message with &amp;lsquo;null&amp;rsquo; in the database and return the view displaying the one-time-viewable message.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+public function show($url, $key)
+{
+        // Fetch our message
+        $msg = Message::where(&#39;url&#39;, &#39;=&#39;, $url)-&amp;gt;first();
+
+        if ($msg-&amp;gt;destroyed) {
+            $body = &amp;quot;This message has been destroyed&amp;quot;;
+        } else {
+            // Decrypt it
+            $iv = $msg-&amp;gt;iv;
+            $body = mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $msg-&amp;gt;body, MCRYPT_MODE_CFB, $iv);
+
+            // Destroy the message
+            $msg-&amp;gt;body = null;
+            $msg-&amp;gt;destroyed = true;
+            $msg-&amp;gt;save();
+        }
+
+        return View::make(&#39;messages.show&#39;, [&#39;body&#39; =&amp;gt; $body]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s take care of our model. The model will handle the validation as well as generating the random url identifier saved in the store method above.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+class Message extends Eloquent {
+    protected $guarded = [&#39;id&#39;, &#39;created_at&#39;, &#39;updated_at&#39;];
+
+    public static $rules = [&#39;body&#39; =&amp;gt; &#39;required&#39;];
+
+    public static function validate($input)
+    {
+        $v = Validator::make($input, static::$rules);
+        return $v-&amp;gt;fails() ? $v : true;
+    }
+
+    public static function  get_unique_url() {
+
+         // set a random number
+        $number = rand(10000, 9999999);
+
+                // character list for generating a random string
+        $charlist = &amp;quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;quot;;
+
+        $decimal = intval($number);
+
+        //get the list of valid characters
+        $charlist = substr($charlist, 0, 62);
+
+        $converted = &#39;&#39;;
+
+        while($number &amp;gt; 0) {
+            $converted = $charlist{($number % 62)} . $converted;
+            $number = floor($number / 62);
+        }
+
+        if( static::whereUrl($converted)-&amp;gt;first() ) {
+            static::get_unique_url();
+        }
+
+                return $converted;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we have most of the hard part out of the way. All that is left is to create and style the various views using Twitter Bootstrap which will be covered in part 2.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

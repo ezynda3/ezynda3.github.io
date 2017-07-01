@@ -2,15 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Magento on Ed Zynda - Coder, Hacker, Superhero</title>
-    <link>http://www.edzynda.com/categories/magento/</link>
+    <link>http://www.edzynda.com/categories/magento/index.xml</link>
     <description>Recent content in Magento on Ed Zynda - Coder, Hacker, Superhero</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2016 Ed Zynda.</copyright>
-    <lastBuildDate>Mon, 01 Jun 2015 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://www.edzynda.com/categories/magento/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://www.edzynda.com/categories/magento/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>7 Exciting Changes Coming to Magento 2</title>
@@ -18,7 +15,56 @@
       <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
       
       <guid>http://www.edzynda.com/7-exciting-changes-coming-to-magento-2/</guid>
-      <description>E-commerce is not my favorite thing to write code for and as such, I&amp;rsquo;m no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn&amp;rsquo;t called &amp;ldquo;Magneto&amp;rdquo; which is what I originally thought when I first glanced at the name.</description>
+      <description>
+
+&lt;p&gt;E-commerce is not my favorite thing to write code for and as such, I&amp;rsquo;m no expert. I was actually thrown into the world of e-commerce customizations when I started working for my current employer a little over a year ago. The very first project I was assigned to start coding for was built using Magento. While I had heard of it, I knew little to nothing about it except that it wasn&amp;rsquo;t called &amp;ldquo;Magneto&amp;rdquo; which is what I originally thought when I first glanced at the name.&lt;/p&gt;
+
+&lt;p&gt;Because I was brought on at pretty much the beginning of the project I was able to learn a lot while building the site. The learning curve was steep at first but eventually I started to become familiar with the &amp;ldquo;Magento way&amp;rdquo; of doing things. To tell the truth I didn&amp;rsquo;t like it much.&lt;/p&gt;
+
+&lt;p&gt;I bursted back into the world of PHP development after a nine year stint in the US Air Force doing something totally un-related. Because I was basically a newb all over again, I dove head first into all the latest literature and video tutorials dealing with how to code &amp;ldquo;&lt;a href=&#34;http://www.phptherightway.com/&#34;&gt;PHP the right way.&lt;/a&gt;&amp;rdquo; I had become familiar with concepts like dependency injection, coding to interfaces, unit testing and a plethora of useful design patterns. Imagine my discomfort when I started writing custom code for Magento.&lt;/p&gt;
+
+&lt;p&gt;The autoloader, while very sofisticated, is terribly outdated compared to the PSR-0 and PSR-4 standards. Composer isn&amp;rsquo;t supported by default. There&amp;rsquo;s no DI container to speak of and unit tests are almost impossible to create without needing to bootstrap a database which technically makes them integration tests.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve since made my peace with Magento and it&amp;rsquo;s silly conventions. I&amp;rsquo;ve also come up with some nifty hacks to allow for modern coding practices. Those days are soon to be over though with the coming of Magento 2!&lt;/p&gt;
+
+&lt;p&gt;Magento 2 has a handful of welcome changes in store. Here are just a few of them.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-modules-are-consolidated-into-a-single-directory&#34;&gt;1. Modules are consolidated into a single directory&lt;/h3&gt;
+
+&lt;p&gt;I remember getting frustrated with the directory structure of Magento and more specifically the way a module&amp;rsquo;s code could be spread out across multiple directories. Your PHP code lived in &amp;lsquo;app/code&amp;rsquo; while templates and layouts in &amp;lsquo;app/design&amp;rsquo; but several directories deep.&lt;/p&gt;
+
+&lt;p&gt;No longer! Now everything that your module requires lives in one directory. This includes PHP code, design templates and config files.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-config-files-have-been-broken-down-into-smaller-files&#34;&gt;2. Config files have been broken down into smaller files&lt;/h3&gt;
+
+&lt;p&gt;You can do a lot with a single &amp;lsquo;config.xml&amp;rsquo; file in a Magento 1 module. Those config files can get huge and because of that, it&amp;rsquo;s sometimes very easy to get lost in them. To make matters worse, you can have a file filled with improperly formatted config data and Magento 1 won&amp;rsquo;t even complain. This makes it hard to debug.&lt;/p&gt;
+
+&lt;p&gt;Magento 2 now breaks that single &amp;lsquo;config.xml&amp;rsquo; file into many smaller files. This makes it easier to see logically where certain things should go. To prevent silent errors, Magento 2 uses XML schema files to validate config files. Now you&amp;rsquo;ll know pretty quickly if you&amp;rsquo;ve messed somthing up.&lt;/p&gt;
+
+&lt;h3 id=&#34;3-dependency-injection&#34;&gt;3. Dependency injection&lt;/h3&gt;
+
+&lt;p&gt;Magento 2 supports dependency injection and provides it&amp;rsquo;s own dependency injection container. The container is configured via and XML config file which wouldn&amp;rsquo;t be my first choice but hey I&amp;rsquo;ll take what I can get.&lt;/p&gt;
+
+&lt;h3 id=&#34;4-interception&#34;&gt;4. Interception&lt;/h3&gt;
+
+&lt;p&gt;In Magento 1, one way to extend the behavior of a core module is to &amp;ldquo;rewrite&amp;rdquo; one of the core classes, extend it and rewrite one of it&amp;rsquo;s methods with your custom code. This works great most of the time. The problem arises when there are two custom modules trying to extend the same core class. This is where collisions occur and one module could end up cancelling out the other or worse.&lt;/p&gt;
+
+&lt;p&gt;Magento 2 provides what it calls Interception. To customize a core module&amp;rsquo;s method you can simply create what is called a plugin class. In the plugin class you can modify any public methods by creating methods prefixed with &amp;lsquo;before&amp;rsquo;, &amp;lsquo;after&amp;rsquo; and &amp;lsquo;around&amp;rsquo; and the tacking on the name of the method you want to change. Then you pass an instance of the core class you are extending. If you are extending something another module is extending, the result is simply passed from one plugin to another. You can specify a sort order as well for more desireable results.&lt;/p&gt;
+
+&lt;h3 id=&#34;5-no-more-god-class&#34;&gt;5. No more god-class&lt;/h3&gt;
+
+&lt;p&gt;Yeah I&amp;rsquo;m not going to miss having to call &amp;lsquo;Mage::&lt;whatever&gt;&amp;rsquo; anymore.&lt;/p&gt;
+
+&lt;h3 id=&#34;6-semantic-versioning&#34;&gt;6. Semantic versioning&lt;/h3&gt;
+
+&lt;p&gt;Magento 2 will use semantic versioning for the core product. No more keeping track of different patches to be applied. Simply take a look at the version you are running and check against the latest &amp;ldquo;patch&amp;rdquo; version to see if you&amp;rsquo;re running the latest, most secure.&lt;/p&gt;
+
+&lt;h3 id=&#34;7-tests-tests-tests&#34;&gt;7. Tests, tests, tests!&lt;/h3&gt;
+
+&lt;p&gt;Magento 2 is very test friendly and even includes an extensive set of tests for the core code. This includes unit, integration and even javascript tests. Tests for your modules live inside the module&amp;rsquo;s directory along with everything else.&lt;/p&gt;
+
+&lt;p&gt;These just a few of the exciting changes coming to Magento 2. To find out more, checkout of the &lt;a href=&#34;https://github.com/magento/magento2&#34;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
