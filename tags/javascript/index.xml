@@ -10,6 +10,22 @@
     <atom:link href="http://www.edzynda.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Frontend Web Applications On Ethereum Part 2</title>
+      <link>http://www.edzynda.com/frontend-web-applications-on-ethereum-part-2/</link>
+      <pubDate>Sun, 09 Jul 2017 23:45:00 -0700</pubDate>
+      
+      <guid>http://www.edzynda.com/frontend-web-applications-on-ethereum-part-2/</guid>
+      <description>&lt;p&gt;In this video we show how we can tie a slick looking UI to an Ethereum smart contract. We&amp;rsquo;ll be creating a wallet application that manages a custom ERC20 token called Func Token. We&amp;rsquo;ll show how to grab the wallet address, balance and the number of Func Tokens held.&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/mu9soRKREJY&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
       <title>Frontend Web Applications On Ethereum Part 1</title>
       <link>http://www.edzynda.com/frontend-web-applications-on-ethereum-part-1/</link>
       <pubDate>Wed, 05 Jul 2017 19:45:00 -0700</pubDate>

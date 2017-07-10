@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.edzynda.com/frontend-web-applications-on-ethereum-part-2/</loc>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.edzynda.com/frontend-web-applications-on-ethereum-part-1/</loc>
     <lastmod>2017-07-05T19:45:00-07:00</lastmod>
   </url>
@@ -304,7 +309,7 @@
   
   <url>
     <loc>http://www.edzynda.com/tags/blockchain/</loc>
-    <lastmod>2017-07-05T19:45:00-07:00</lastmod>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -429,7 +434,7 @@
   
   <url>
     <loc>http://www.edzynda.com/</loc>
-    <lastmod>2017-07-05T19:45:00-07:00</lastmod>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -459,13 +464,13 @@
   
   <url>
     <loc>http://www.edzynda.com/tags/erc20/</loc>
-    <lastmod>2017-07-05T19:45:00-07:00</lastmod>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.edzynda.com/tags/ethereum/</loc>
-    <lastmod>2017-07-05T19:45:00-07:00</lastmod>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -579,7 +584,7 @@
   
   <url>
     <loc>http://www.edzynda.com/tags/javascript/</loc>
-    <lastmod>2017-07-05T19:45:00-07:00</lastmod>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -747,7 +752,7 @@
   
   <url>
     <loc>http://www.edzynda.com/post/</loc>
-    <lastmod>2017-07-05T19:45:00-07:00</lastmod>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -831,7 +836,7 @@
   
   <url>
     <loc>http://www.edzynda.com/tags/solidity/</loc>
-    <lastmod>2017-07-05T19:45:00-07:00</lastmod>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -908,7 +913,7 @@
   
   <url>
     <loc>http://www.edzynda.com/tags/video/</loc>
-    <lastmod>2017-07-05T19:45:00-07:00</lastmod>
+    <lastmod>2017-07-09T23:45:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
